@@ -3,7 +3,8 @@
   "private": true,
   "scripts": {
     "start": "meteor run",
-    "lint": "eslint --ext .js,.jsx ."
+    "lint": "eslint --ext .js,.jsx .",
+    "test": "npm run lint"
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0-beta.42",
