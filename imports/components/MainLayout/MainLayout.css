@@ -1,9 +1,9 @@
-header {
+.logo-container {
 	display: flex;
 	align-items: center;
 }
 
-header img {
+.logo-container img {
 	border-radius: 5px;
 	height: 30px;
 }
@@ -12,8 +12,16 @@ h1 {
 	font-size: 21px;
 }
 
+svg {
+	height: 14px;
+}
+
+svg path {
+	fill: #ffffff;
+}
+
 @media (max-width: 575px)  {
-header img {
+.logo-container img {
 	margin: 0 15px;
 }
 }
