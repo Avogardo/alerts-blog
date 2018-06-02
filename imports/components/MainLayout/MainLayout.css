@@ -1,0 +1,19 @@
+header {
+	display: flex;
+	align-items: center;
+}
+
+header img {
+	border-radius: 5px;
+	height: 30px;
+}
+
+h1 {
+	font-size: 21px;
+}
+
+@media (max-width: 575px)  {
+header img {
+	margin: 0 15px;
+}
+}
