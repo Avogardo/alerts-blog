@@ -1,8 +1,10 @@
 import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import Search from '@material-ui/icons/Search';
 import './MainLayout.css';
 
 const style = {
@@ -12,6 +14,11 @@ const style = {
   toolbar: {
     display: 'flex',
     justifyContent: 'space-between',
+  },
+  secondaryAppBar: {
+    backgroundColor: '#04091e',
+    margin: '0 15px',
+    width: 'auto',
   },
 };
 
@@ -60,9 +67,21 @@ const MainLayout = () => (
       <h1>Alarms blog</h1>
     </div>
 
-    <Button variant="raised" color="secondary">
-      Hello World
-    </Button>
+    <AppBar style={style.secondaryAppBar} position="sticky">
+      <Toolbar style={style.toolbar}>
+        <div className="navigation-wrapper">
+          <IconButton color="inherit" aria-label="Menu">
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="title" color="inherit">
+            Menu
+          </Typography>
+        </div>
+        <IconButton color="inherit">
+          <Search />
+        </IconButton>
+      </Toolbar>
+    </AppBar>
   </div>
 );
 

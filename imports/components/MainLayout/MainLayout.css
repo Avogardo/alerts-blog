@@ -1,6 +1,7 @@
 .logo-container {
 	display: flex;
 	align-items: center;
+    background-color: #ffffff;
 }
 
 .logo-container img {
@@ -18,6 +19,11 @@ svg {
 
 svg path {
 	fill: #ffffff;
+}
+
+.navigation-wrapper {
+	display: flex;
+    align-items: center;
 }
 
 @media (max-width: 575px)  {
