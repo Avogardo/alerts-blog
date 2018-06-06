@@ -5,6 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Search from '@material-ui/icons/Search';
+import NewsContainer from '../NewsContainer';
 import './MainLayout.css';
 
 const style = {
@@ -82,6 +83,8 @@ const MainLayout = () => (
         </IconButton>
       </Toolbar>
     </AppBar>
+
+    <NewsContainer />
   </div>
 );
 
