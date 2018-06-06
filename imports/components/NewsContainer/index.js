@@ -9,6 +9,4 @@ const composer = (props, onData) => {
   });
 };
 
-export default compose(
-  composer,
-)(NewsContainer);
+export default compose(composer)(NewsContainer);

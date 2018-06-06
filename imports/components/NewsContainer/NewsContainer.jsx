@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './NewsContainer.css';
 
 class NewsContainer extends React.Component {
