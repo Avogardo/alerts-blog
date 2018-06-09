@@ -13,40 +13,39 @@ const styles = {
   },
 };
 
-class Sidebar extends React.Component {
-  render() {
-    const { classes, isSidebarOpen, toggleSidebar } = this.props;
+const Sidebar = (props) => {
+  const { classes, isSidebarOpen, toggleSidebar } = props;
 
-    const sideList = (
-      <div className={classes.list}>
-        <List>{mailFolderListItems}</List>
-        <Divider />
-        <List>{otherMailFolderListItems}</List>
-      </div>
-    );
+  const sideList = (
+    <div className={classes.list}>
+      <List>{mailFolderListItems}</List>
+      <Divider />
+      <List>{otherMailFolderListItems}</List>
+    </div>
+  );
 
-    return (
-      <div>
-        <Button onClick={toggleSidebar(true)}>Open Left</Button>
+  return (
+    <div>
+      <Button onClick={toggleSidebar(true)}>Open Left</Button>
 
-        <SwipeableDrawer
-          open={isSidebarOpen}
-          onClose={toggleSidebar(false)}
-          onOpen={toggleSidebar(true)}
+      <SwipeableDrawer
+        open={isSidebarOpen}
+        onClose={toggleSidebar(false)}
+        onOpen={toggleSidebar(true)}
+      >
+        <div
+          tabIndex={0}
+          role="button"
+          onClick={toggleSidebar(false)}
+          onKeyDown={toggleSidebar(false)}
         >
-          <div
-            tabIndex={0}
-            role="button"
-            onClick={toggleSidebar(false)}
-            onKeyDown={toggleSidebar(false)}
-          >
-            {sideList}
-          </div>
-        </SwipeableDrawer>
-      </div>
-    );
-  }
-}
+          {sideList}
+        </div>
+      </SwipeableDrawer>
+    </div>
+  );
+};
+
 
 Sidebar.propTypes = {
   classes: PropTypes.shape({
