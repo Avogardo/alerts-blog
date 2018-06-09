@@ -1,0 +1,31 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Programy\\nodejs\\node.exe',
+1 verbose cli   'C:\\Users\\Kuba\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'run',
+1 verbose cli   'test' ]
+2 info using npm@4.0.2
+3 info using node@v9.11.1
+4 verbose run-script [ 'pretest', 'test', 'posttest' ]
+5 info lifecycle kalisz-alerts@~pretest: kalisz-alerts@
+6 silly lifecycle kalisz-alerts@~pretest: no script for pretest, continuing
+7 info lifecycle kalisz-alerts@~test: kalisz-alerts@
+8 verbose lifecycle kalisz-alerts@~test: unsafe-perm in lifecycle true
+9 verbose lifecycle kalisz-alerts@~test: PATH: C:\Users\Kuba\AppData\Roaming\npm\node_modules\npm\bin\node-gyp-bin;C:\Programowanie\kalisz-alerts\node_modules\.bin;c:\programy\oraclexe\app\oracle\product\11.2.0\server\bin;c:\programdata\oracle\java\javapath;c:\windows\system32;c:\windows;c:\windows\system32\wbem;c:\windows\system32\windowspowershell\v1.0\;c:\programy\matlab\r2013a\runtime\win64;c:\programy\matlab\r2013a\bin;c:\programy\yarn\bin;c:\programy\skype\phone\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\ProgramData\chocolatey\bin;C:\Programy\nodejs\;C:\Programy\Git\cmd;C:\Users\Kuba\AppData\Local\.meteor\;C:\Users\Kuba\AppData\Local\Yarn\.bin;C:\Programy\Heroku\bin;C:\Users\Kuba\AppData\Roaming\npm
+10 verbose lifecycle kalisz-alerts@~test: CWD: C:\Programowanie\kalisz-alerts
+11 silly lifecycle kalisz-alerts@~test: Args: [ '/d /s /c', 'npm run lint && react-scripts test --env=jsdom' ]
+12 verbose stack Error: kill ENOSYS
+12 verbose stack     at process.kill (internal/process.js:166:20)
+12 verbose stack     at process.listener (C:\Users\Kuba\AppData\Roaming\npm\node_modules\npm\node_modules\npmlog\node_modules\gauge\node_modules\signal-exit\index.js:86:15)
+12 verbose stack     at process.emit (events.js:185:15)
+13 verbose cwd C:\Programowanie\kalisz-alerts
+14 error Windows_NT 6.1.7601
+15 error argv "C:\\Programy\\nodejs\\node.exe" "C:\\Users\\Kuba\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\npm-cli.js" "run" "test"
+16 error node v9.11.1
+17 error npm  v4.0.2
+18 error code ENOSYS
+19 error errno ENOSYS
+20 error syscall kill
+21 error kill ENOSYS
+22 error If you need help, you may report this error at:
+22 error     <https://github.com/npm/npm/issues>
+23 verbose exit [ 1, true ]

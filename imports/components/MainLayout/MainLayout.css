@@ -17,10 +17,6 @@ svg {
 	height: 14px;
 }
 
-svg path {
-	fill: #ffffff;
-}
-
 .navigation-wrapper {
 	display: flex;
     align-items: center;

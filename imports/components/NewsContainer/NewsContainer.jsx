@@ -1,9 +1,9 @@
 import React from 'react';
 import './NewsContainer.css';
 
-const NewsContainer = () => (
+const NewsContainer = props => (
   <section>
-    <h2>content</h2>
+    <h2>content {props.newsArray[0]}</h2>
   </section>
 );
 

@@ -48,6 +48,7 @@ class MainLayout extends React.Component {
                 <svg viewBox="0 0 24 24">
                   <path
                     d="M17,2V2H17V6H15C14.31,6 14,6.81 14,7.5V10H14L17,10V14H14V22H10V14H7V10H10V6A4,4 0 0,1 14,2H17Z"
+                    fill="#ffffff"
                   />
                 </svg>
               </IconButton>
@@ -63,6 +64,7 @@ class MainLayout extends React.Component {
                     13.44 2.06,12.84L2,12C2,9.81 2.16,8.2 2.44,7.17C2.69,6.27 3.27,5.69 4.17,
                     5.44C4.64,5.31 5.5,5.22 6.82,5.16C8.12,5.09 9.31,5.06 10.41,5.06L12,5C16.19,
                     5 18.8,5.16 19.83,5.44C20.73,5.69 21.31,6.27 21.56,7.17Z"
+                    fill="#ffffff"
                   />
                 </svg>
               </IconButton>
@@ -73,6 +75,7 @@ class MainLayout extends React.Component {
                 <path
                   d="M4,4H20A2,2 0 0,1 22,6V18A2,2 0 0,1 20,20H4C2.89,20 2,19.1 2,18V6C2,4.89 2.89,
                   4 4,4M12,11L20,6H4L12,11M4,18H20V8.37L12,13.36L4,8.37V18Z"
+                  fill="#ffffff"
                 />
               </svg>
             </IconButton>
