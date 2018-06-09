@@ -3,7 +3,7 @@
 exports[`renders correctly all elements 1`] = `
 <div>
   <header
-    className="MuiPaper-root-92 MuiPaper-elevation4-98 MuiAppBar-root-84 MuiAppBar-positionStatic-88 MuiAppBar-colorPrimary-90"
+    className="MuiPaper-root-111 MuiPaper-elevation4-117 MuiAppBar-root-103 MuiAppBar-positionStatic-107 MuiAppBar-colorPrimary-109"
     style={
       Object {
         "backgroundColor": "#04091e",
@@ -11,7 +11,7 @@ exports[`renders correctly all elements 1`] = `
     }
   >
     <div
-      className="MuiToolbar-root-119 MuiToolbar-gutters-120"
+      className="MuiToolbar-root-138 MuiToolbar-gutters-139"
       style={
         Object {
           "display": "flex",
@@ -21,7 +21,7 @@ exports[`renders correctly all elements 1`] = `
     >
       <div>
         <button
-          className="MuiButtonBase-root-127 MuiIconButton-root-121 MuiIconButton-colorInherit-122"
+          className="MuiButtonBase-root-146 MuiIconButton-root-140 MuiIconButton-colorInherit-141"
           disabled={false}
           onBlur={[Function]}
           onFocus={[Function]}
@@ -37,7 +37,7 @@ exports[`renders correctly all elements 1`] = `
           type="button"
         >
           <span
-            className="MuiIconButton-label-126"
+            className="MuiIconButton-label-145"
           >
             <svg
               viewBox="0 0 24 24"
@@ -48,11 +48,11 @@ exports[`renders correctly all elements 1`] = `
             </svg>
           </span>
           <span
-            className="MuiTouchRipple-root-130"
+            className="MuiTouchRipple-root-149"
           />
         </button>
         <button
-          className="MuiButtonBase-root-127 MuiIconButton-root-121 MuiIconButton-colorInherit-122"
+          className="MuiButtonBase-root-146 MuiIconButton-root-140 MuiIconButton-colorInherit-141"
           disabled={false}
           onBlur={[Function]}
           onFocus={[Function]}
@@ -68,7 +68,7 @@ exports[`renders correctly all elements 1`] = `
           type="button"
         >
           <span
-            className="MuiIconButton-label-126"
+            className="MuiIconButton-label-145"
           >
             <svg
               viewBox="0 0 24 24"
@@ -86,12 +86,12 @@ exports[`renders correctly all elements 1`] = `
             </svg>
           </span>
           <span
-            className="MuiTouchRipple-root-130"
+            className="MuiTouchRipple-root-149"
           />
         </button>
       </div>
       <button
-        className="MuiButtonBase-root-127 MuiIconButton-root-121 MuiIconButton-colorInherit-122"
+        className="MuiButtonBase-root-146 MuiIconButton-root-140 MuiIconButton-colorInherit-141"
         disabled={false}
         onBlur={[Function]}
         onFocus={[Function]}
@@ -107,7 +107,7 @@ exports[`renders correctly all elements 1`] = `
         type="button"
       >
         <span
-          className="MuiIconButton-label-126"
+          className="MuiIconButton-label-145"
         >
           <svg
             viewBox="0 0 24 24"
@@ -119,7 +119,7 @@ exports[`renders correctly all elements 1`] = `
           </svg>
         </span>
         <span
-          className="MuiTouchRipple-root-130"
+          className="MuiTouchRipple-root-149"
         />
       </button>
     </div>
@@ -136,7 +136,7 @@ exports[`renders correctly all elements 1`] = `
     </h1>
   </div>
   <header
-    className="MuiPaper-root-92 MuiPaper-elevation4-98 MuiAppBar-root-84 MuiAppBar-positionSticky-87 MuiAppBar-colorPrimary-90"
+    className="MuiPaper-root-111 MuiPaper-elevation4-117 MuiAppBar-root-103 MuiAppBar-positionSticky-106 MuiAppBar-colorPrimary-109"
     style={
       Object {
         "backgroundColor": "#04091e",
@@ -146,7 +146,7 @@ exports[`renders correctly all elements 1`] = `
     }
   >
     <div
-      className="MuiToolbar-root-119 MuiToolbar-gutters-120"
+      className="MuiToolbar-root-138 MuiToolbar-gutters-139"
       style={
         Object {
           "display": "flex",
@@ -159,9 +159,10 @@ exports[`renders correctly all elements 1`] = `
       >
         <button
           aria-label="Menu"
-          className="MuiButtonBase-root-127 MuiIconButton-root-121 MuiIconButton-colorInherit-122"
+          className="MuiButtonBase-root-146 MuiIconButton-root-140 MuiIconButton-colorInherit-141"
           disabled={false}
           onBlur={[Function]}
+          onClick={[Function]}
           onFocus={[Function]}
           onKeyDown={[Function]}
           onKeyUp={[Function]}
@@ -175,11 +176,11 @@ exports[`renders correctly all elements 1`] = `
           type="button"
         >
           <span
-            className="MuiIconButton-label-126"
+            className="MuiIconButton-label-145"
           >
             <svg
               aria-hidden="true"
-              className="MuiSvgIcon-root-137"
+              className="MuiSvgIcon-root-156"
               color={undefined}
               focusable="false"
               viewBox="0 0 24 24"
@@ -192,17 +193,17 @@ exports[`renders correctly all elements 1`] = `
             </svg>
           </span>
           <span
-            className="MuiTouchRipple-root-130"
+            className="MuiTouchRipple-root-149"
           />
         </button>
         <h2
-          className="MuiTypography-root-143 MuiTypography-title-149 MuiTypography-colorInherit-162"
+          className="MuiTypography-root-162 MuiTypography-title-168 MuiTypography-colorInherit-181"
         >
           Menu
         </h2>
       </div>
       <button
-        className="MuiButtonBase-root-127 MuiIconButton-root-121 MuiIconButton-colorInherit-122"
+        className="MuiButtonBase-root-146 MuiIconButton-root-140 MuiIconButton-colorInherit-141"
         disabled={false}
         onBlur={[Function]}
         onFocus={[Function]}
@@ -218,11 +219,11 @@ exports[`renders correctly all elements 1`] = `
         type="button"
       >
         <span
-          className="MuiIconButton-label-126"
+          className="MuiIconButton-label-145"
         >
           <svg
             aria-hidden="true"
-            className="MuiSvgIcon-root-137"
+            className="MuiSvgIcon-root-156"
             color={undefined}
             focusable="false"
             viewBox="0 0 24 24"
@@ -235,10 +236,23 @@ exports[`renders correctly all elements 1`] = `
           </svg>
         </span>
         <span
-          className="MuiTouchRipple-root-130"
+          className="MuiTouchRipple-root-149"
         />
       </button>
     </div>
   </header>
+  <div
+    className="SwipeArea-root-200 SwipeArea-discoveryAnchorLeft-201"
+    style={
+      Object {
+        "width": 20,
+      }
+    }
+  />
+  <section>
+    <h2>
+      content
+    </h2>
+  </section>
 </div>
 `;
