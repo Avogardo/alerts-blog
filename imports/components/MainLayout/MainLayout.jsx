@@ -26,9 +26,12 @@ const style = {
 };
 
 class MainLayout extends React.Component {
-  isSidebarOpen = false;
+  state = {
+    isSidebarOpen: false,
+  };
 
   toggleSidebar = () => () => {
+    console.log('go');
     this.setState({
       isSidebarOpen: !this.state.isSidebarOpen,
     });
@@ -83,7 +86,7 @@ class MainLayout extends React.Component {
         <AppBar style={style.secondaryAppBar} position="sticky">
           <Toolbar style={style.toolbar}>
             <div className="navigation-wrapper">
-              <IconButton onClick={() => this.toggleSidebar(false)} color="inherit" aria-label="Menu">
+              <IconButton onClick={this.toggleSidebar(false)} color="inherit" aria-label="Menu">
                 <MenuIcon />
               </IconButton>
               <Typography variant="title" color="inherit">
@@ -96,7 +99,7 @@ class MainLayout extends React.Component {
           </Toolbar>
         </AppBar>
 
-        <Sidebar isSidebarOpen={false} toggleSidebar={() => this.toggleSidebar()} />
+        <Sidebar isSidebarOpen={false} toggleSidebar={this.toggleSidebar()} />
 
         <NewsContainer />
       </div>

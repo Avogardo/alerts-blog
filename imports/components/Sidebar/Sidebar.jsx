@@ -88,14 +88,14 @@ const Sidebar = (props) => {
   return (
     <SwipeableDrawer
       open={isSidebarOpen}
-      onClose={toggleSidebar(false)}
-      onOpen={toggleSidebar(true)}
+      onClose={() => toggleSidebar(false)}
+      onOpen={() => toggleSidebar(true)}
     >
       <div
         tabIndex={0}
         role="button"
-        onClick={toggleSidebar(false)}
-        onKeyDown={toggleSidebar(false)}
+        onClick={() => toggleSidebar(false)}
+        onKeyDown={() => toggleSidebar(false)}
       >
         {sideList}
       </div>
