@@ -14,18 +14,8 @@ const styles = {
 };
 
 class Sidebar extends React.Component {
-  state = {
-    left: false,
-  };
-
-  toggleDrawer = open => () => {
-    this.setState({
-      left: open,
-    });
-  };
-
   render() {
-    const { classes, isSidebarOpen } = this.props;
+    const { classes, isSidebarOpen, toggleSidebar } = this.props;
 
     const sideList = (
       <div className={classes.list}>
@@ -37,18 +27,18 @@ class Sidebar extends React.Component {
 
     return (
       <div>
-        <Button onClick={this.toggleDrawer(true)}>Open Left</Button>
+        <Button onClick={toggleSidebar(true)}>Open Left</Button>
 
         <SwipeableDrawer
           open={isSidebarOpen}
-          onClose={this.toggleDrawer(false)}
-          onOpen={this.toggleDrawer(true)}
+          onClose={toggleSidebar(false)}
+          onOpen={toggleSidebar(true)}
         >
           <div
             tabIndex={0}
             role="button"
-            onClick={this.toggleDrawer(false)}
-            onKeyDown={this.toggleDrawer(false)}
+            onClick={toggleSidebar(false)}
+            onKeyDown={toggleSidebar(false)}
           >
             {sideList}
           </div>
@@ -65,6 +55,7 @@ Sidebar.propTypes = {
     }).isRequired,
   }).isRequired,
   isSidebarOpen: PropTypes.bool.isRequired,
+  toggleSidebar: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(Sidebar);
