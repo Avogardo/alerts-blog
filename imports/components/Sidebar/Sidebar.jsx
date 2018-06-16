@@ -75,7 +75,6 @@ const Sidebar = (props) => {
   );
 };
 
-
 Sidebar.propTypes = {
   classes: PropTypes.shape({
     list: PropTypes.string.isRequired,
