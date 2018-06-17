@@ -43,6 +43,7 @@
       }
     ],
     "prefer-arrow-callback": "off",
+    "react/prefer-stateless-function": [1],
     "import/extensions": [
       "off",
       "never"

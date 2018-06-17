@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './NewsContainer.css';
 
-const NewsContainer = props => (
-  <section>
-    <h2>content {props.newsArray[0]}</h2>
-  </section>
-);
+class NewsContainer extends Component {
+  render() {
+    const { newsArray } = this.props;
+    return (
+      <section>
+        <h2>content {newsArray[0]}</h2>
+      </section>
+    );
+  }
+}
 
 NewsContainer.propTypes = {
   newsArray: PropTypes.arrayOf(PropTypes.number).isRequired,
