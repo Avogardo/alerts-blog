@@ -20,7 +20,7 @@ class MainLayout extends React.Component {
 
     return (
       <div>
-        <Navigation />
+        <Navigation toggleSidebar={this.toggleSidebar()} />
 
         <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={this.toggleSidebar()} />
 

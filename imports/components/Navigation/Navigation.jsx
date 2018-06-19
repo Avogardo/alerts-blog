@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -26,7 +27,7 @@ const style = {
   },
 };
 
-const Navigation = () => (
+const Navigation = props => (
   <nav>
     <AppBar style={style.appBar} position="static">
       <Toolbar style={style.toolbar}>
@@ -54,7 +55,7 @@ const Navigation = () => (
     <AppBar style={style.secondaryAppBar} position="sticky">
       <Toolbar style={style.toolbar}>
         <div className="navigation-wrapper">
-          <IconButton onClick={this.toggleSidebar(false)} color="inherit" aria-label="Menu">
+          <IconButton onClick={() => props.toggleSidebar()} color="inherit" aria-label="Menu">
             <MenuIcon />
           </IconButton>
           <Typography variant="title" color="inherit">
@@ -68,5 +69,9 @@ const Navigation = () => (
     </AppBar>
   </nav>
 );
+
+Navigation.propTypes = {
+  toggleSidebar: PropTypes.func.isRequired,
+};
 
 export default Navigation;
