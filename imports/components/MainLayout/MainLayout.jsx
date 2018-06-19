@@ -4,8 +4,6 @@ import Navigation from '../Navigation';
 import NewsContainer from '../NewsContainer';
 import Sidebar from '../Sidebar';
 
-import './MainLayout.css';
-
 class MainLayout extends React.Component {
   state = {
     isSidebarOpen: false,
