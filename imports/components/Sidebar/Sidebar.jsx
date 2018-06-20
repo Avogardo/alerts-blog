@@ -19,55 +19,43 @@ const styles = {
   },
 };
 
-const Sidebar = (props) => {
-  const { classes, isSidebarOpen, closeSidebar } = props;
-
-  const mailFolderListItems = (
-    <div>
-      <ListItem button>
-        <ListItemIcon>
-          <AccountBox />
-        </ListItemIcon>
-        <ListItemText primary="Log in" />
-      </ListItem>
-      <ListItem button>
-        <ListItemIcon>
-          <StarIcon />
-        </ListItemIcon>
-        <ListItemText primary="Sign in" />
-      </ListItem>
-    </div>
-  );
-
-  const otherMailFolderListItems = (
-    <div>
-      <ListItem button>
-        <ListItemIcon>
-          <MailIcon />
-        </ListItemIcon>
-        <ListItemText primary="All mail" />
-      </ListItem>
-    </div>
-  );
-
-  const sideList = (
+const Sidebar = ({ classes, isSidebarOpen, closeSidebar }) => (
+  <Drawer
+    open={isSidebarOpen}
+    onChange={open => closeSidebar(open)}
+    drawerStyle={{ backgroundColor: 'white' }}
+  >
     <div className={classes.list}>
-      <List>{mailFolderListItems}</List>
+      <List>
+        <div>
+          <ListItem button>
+            <ListItemIcon>
+              <AccountBox />
+            </ListItemIcon>
+            <ListItemText primary="Log in" />
+          </ListItem>
+          <ListItem button>
+            <ListItemIcon>
+              <StarIcon />
+            </ListItemIcon>
+            <ListItemText primary="Sign in" />
+          </ListItem>
+        </div>
+      </List>
       <Divider />
-      <List>{otherMailFolderListItems}</List>
+      <List>
+        <div>
+          <ListItem button>
+            <ListItemIcon>
+              <MailIcon />
+            </ListItemIcon>
+            <ListItemText primary="All mail" />
+          </ListItem>
+        </div>
+      </List>
     </div>
-  );
-
-  return (
-    <Drawer
-      open={isSidebarOpen}
-      onChange={open => closeSidebar(open)}
-      drawerStyle={{ backgroundColor: 'white' }}
-    >
-      {sideList}
-    </Drawer>
-  );
-};
+  </Drawer>
+);
 
 Sidebar.propTypes = {
   classes: PropTypes.shape({
