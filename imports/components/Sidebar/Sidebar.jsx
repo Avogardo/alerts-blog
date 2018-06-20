@@ -12,6 +12,8 @@ import AccountBox from '@material-ui/icons/AccountBox';
 import StarIcon from '@material-ui/icons/Star';
 import MailIcon from '@material-ui/icons/Mail';
 
+import Drawer from 'react-motion-drawer';
+
 const styles = {
   list: {
     width: 250,
@@ -19,7 +21,7 @@ const styles = {
 };
 
 const Sidebar = (props) => {
-  const { classes, isSidebarOpen, toggleSidebar } = props;
+  const { classes, isSidebarOpen, toggleSidebar, closeSidebar } = props;
 
   const mailFolderListItems = (
     <div>
@@ -58,20 +60,17 @@ const Sidebar = (props) => {
   );
 
   return (
-    <SwipeableDrawer
+    <Drawer
       open={isSidebarOpen}
-      onClose={() => toggleSidebar(false)}
-      onOpen={() => toggleSidebar(true)}
+      onChange={open => closeSidebar(open)}
+      drawerStyle={{ backgroundColor: 'white' }}
     >
-      <div
-        tabIndex={0}
-        role="button"
-        onClick={() => toggleSidebar(false)}
-        onKeyDown={() => toggleSidebar(false)}
-      >
-        {sideList}
-      </div>
-    </SwipeableDrawer>
+      <ul>
+        <li>Home</li>
+        <li>About</li>
+        <li>Settings</li>
+      </ul>
+    </Drawer>
   );
 };
 

@@ -20,12 +20,23 @@ class MainLayout extends Component {
     });
   }
 
+  closeSidebar(open) {
+    this.setState({
+      isSidebarOpen: open,
+    });
+  }
+
   render() {
     const { isSidebarOpen } = this.state;
 
     return [
       <Navigation key="navigation" toggleSidebar={() => this.toggleSidebar()} />,
-      <Sidebar key="sidebar" isSidebarOpen={isSidebarOpen} toggleSidebar={() => this.toggleSidebar()} />,
+      <Sidebar
+        key="sidebar"
+        isSidebarOpen={isSidebarOpen}
+        toggleSidebar={() => this.toggleSidebar()}
+        closeSidebar={open => this.closeSidebar(open)}
+      />,
       <NewsContainer key="news-container" />,
     ];
   }
