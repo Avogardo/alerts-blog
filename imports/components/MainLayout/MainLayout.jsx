@@ -34,7 +34,6 @@ class MainLayout extends Component {
       <Sidebar
         key="sidebar"
         isSidebarOpen={isSidebarOpen}
-        toggleSidebar={() => this.toggleSidebar()}
         closeSidebar={open => this.closeSidebar(open)}
       />,
       <NewsContainer key="news-container" />,

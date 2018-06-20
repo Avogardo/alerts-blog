@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 
@@ -21,7 +20,7 @@ const styles = {
 };
 
 const Sidebar = (props) => {
-  const { classes, isSidebarOpen, toggleSidebar, closeSidebar } = props;
+  const { classes, isSidebarOpen, closeSidebar } = props;
 
   const mailFolderListItems = (
     <div>
@@ -65,11 +64,7 @@ const Sidebar = (props) => {
       onChange={open => closeSidebar(open)}
       drawerStyle={{ backgroundColor: 'white' }}
     >
-      <ul>
-        <li>Home</li>
-        <li>About</li>
-        <li>Settings</li>
-      </ul>
+      {sideList}
     </Drawer>
   );
 };
@@ -79,7 +74,7 @@ Sidebar.propTypes = {
     list: PropTypes.string.isRequired,
   }).isRequired,
   isSidebarOpen: PropTypes.bool.isRequired,
-  toggleSidebar: PropTypes.func.isRequired,
+  closeSidebar: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(Sidebar);
