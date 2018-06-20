@@ -55,7 +55,7 @@ const Navigation = ({ toggleSidebar }) => {
         <h1>Alarms blog</h1>
       </div>
 
-      <AppBar style={secondaryAppBar} position="sticky">
+      <AppBar style={secondaryAppBar} position="block">
         <Toolbar style={toolbar}>
           <div className="navigation-wrapper">
             <IconButton onClick={() => toggleSidebar()} color="inherit" aria-label="Menu">
