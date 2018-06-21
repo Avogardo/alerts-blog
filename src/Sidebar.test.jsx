@@ -42,7 +42,15 @@ it('renders without crashing', () => {
   );
 });
 
-it("always renders a div", () => {
+it('always renders a div', () => {
   const drawers = SidebarComponent().find('Drawer');
   expect(drawers.length).toBe(1);
+});
+
+it('contains everything else that gets rendered', () => {
+  const drawers = SidebarComponent().find('Drawer');
+
+  const wrappingDrawer = drawers.first();
+  k
+  expect(wrappingDrawer.children().length).toBe(SidebarComponent().children().length);
 });
