@@ -14,15 +14,15 @@ class MainLayout extends Component {
     };
   }
 
-  toggleSidebar() {
+  setSidebarState(open) {
     this.setState({
-      isSidebarOpen: !this.state.isSidebarOpen,
+      isSidebarOpen: open,
     });
   }
 
-  closeSidebar(open) {
+  toggleSidebar() {
     this.setState({
-      isSidebarOpen: open,
+      isSidebarOpen: !this.state.isSidebarOpen,
     });
   }
 
@@ -34,7 +34,7 @@ class MainLayout extends Component {
       <Sidebar
         key="sidebar"
         isSidebarOpen={isSidebarOpen}
-        closeSidebar={open => this.closeSidebar(open)}
+        setSidebarState={open => this.setSidebarState(open)}
       />,
       <NewsContainer key="news-container" />,
     ];
