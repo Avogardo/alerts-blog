@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import ListItem from '@material-ui/core/ListItem';
 import List from '@material-ui/core/List';
 import Sidebar from '../imports/components/Sidebar';
+import Drawer from 'react-motion-drawer';
 
 import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
@@ -49,7 +51,7 @@ it('always renders a div', () => {
 });
 
 it('contains everything else that gets rendered', () => {
-  const drawers = SidebarComponent().find('Drawer');
+  const drawers = SidebarComponent().find(Drawer);
 
   const wrappingDrawer = drawers.first();
 
@@ -58,4 +60,8 @@ it('contains everything else that gets rendered', () => {
 
 it("always renders a List elements", () => {
   expect(SidebarComponent().find(List).length).toBeGreaterThan(0);
+});
+
+it("always renders ListItems elements", () => {
+  expect(SidebarComponent().find(ListItem).length).toBeGreaterThan(0);
 });
