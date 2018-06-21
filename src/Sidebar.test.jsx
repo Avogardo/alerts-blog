@@ -44,5 +44,5 @@ it('renders without crashing', () => {
 
 it("always renders a div", () => {
   const drawers = SidebarComponent().find('Drawer');
-  expect(drawers.length).toBeGreaterThan(0);
+  expect(drawers.length).toBe(1);
 });
