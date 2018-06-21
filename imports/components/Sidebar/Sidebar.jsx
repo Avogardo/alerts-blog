@@ -1,16 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import Drawer from 'react-motion-drawer';
 
-import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
+import {
+  ListItem,
+  Divider,
+  List,
+  ListItemIcon,
+  ListItemText,
+  withStyles,
+} from '@material-ui/core';
 import AccountBox from '@material-ui/icons/AccountBox';
 import StarIcon from '@material-ui/icons/Star';
 import MailIcon from '@material-ui/icons/Mail';
-import Drawer from 'react-motion-drawer';
 
 const styles = {
   list: {

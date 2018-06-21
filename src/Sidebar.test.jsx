@@ -2,8 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ListItem from '@material-ui/core/ListItem';
 import List from '@material-ui/core/List';
-import Sidebar from '../imports/components/Sidebar';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Drawer from 'react-motion-drawer';
+import Sidebar from '../imports/components/Sidebar';
 
 import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
@@ -64,4 +65,8 @@ it("always renders a List elements", () => {
 
 it("always renders ListItems elements", () => {
   expect(SidebarComponent().find(ListItem).length).toBeGreaterThan(0);
+});
+
+it("always renders ListItemIcon elements", () => {
+  expect(SidebarComponent().find(ListItemIcon).length).toBeGreaterThan(0);
 });
