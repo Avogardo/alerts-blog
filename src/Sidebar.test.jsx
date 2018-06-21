@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import List from '@material-ui/core/List';
 import Sidebar from '../imports/components/Sidebar';
 
 import { configure } from 'enzyme';
@@ -53,4 +54,8 @@ it('contains everything else that gets rendered', () => {
   const wrappingDrawer = drawers.first();
 
   expect(wrappingDrawer.children().length).toBe(SidebarComponent().children().length);
+});
+
+it("always renders a List elements", () => {
+  expect(SidebarComponent().find(List).length).toBeGreaterThan(0);
 });
