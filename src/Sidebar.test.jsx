@@ -1,20 +1,34 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import TestRenderer from 'react-test-renderer';
 import Sidebar from '../imports/components/Sidebar';
 
-let props = {};
+import { configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+configure({ adapter: new Adapter() });
+import { mount } from 'enzyme';
+
+
+let props, mountedComponent;
 const div = document.createElement('div');
-const styles = {
-  list: 'width: 250',
+const SidebarComponent = () => {
+  if (!mountedComponent) {
+    mountedComponent = mount(
+      <Sidebar {...props} />
+    );
+  }
+  return mountedComponent;
 };
 
 beforeEach(() => {
   props = {
-    classes: styles,
+    classes: {
+      list: 'width: 250',
+    },
     isSidebarOpen: false,
     setSidebarState: () => {},
   };
+
+  mountedComponent = undefined;
 });
 
 afterEach(() => {
@@ -26,4 +40,9 @@ it('renders without crashing', () => {
     <Sidebar {...props} />,
     div,
   );
+});
+
+it("always renders a div", () => {
+  const drawers = SidebarComponent().find('Drawer');
+  expect(drawers.length).toBe(1);
 });
