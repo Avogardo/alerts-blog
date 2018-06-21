@@ -3,18 +3,24 @@ import ReactDOM from 'react-dom';
 import TestRenderer from 'react-test-renderer';
 import Sidebar from '../imports/components/Sidebar';
 
+let props = {};
+const styles = {
+  list: 'width: 250',
+};
+
+beforeEach(() => {
+  props = {
+    classes: styles,
+    isSidebarOpen: false,
+    setSidebarState: () => {},
+  };
+});
+
 it('renders without crashing', () => {
   const div = document.createElement('div');
 
-  const styles = {
-    list: 'width: 250',
-  };
-
   ReactDOM.render(
-    <Sidebar
-      classes={styles}
-      isSidebarOpen={false}
-      setSidebarState={() => {}} />,
+    <Sidebar {...props} />,
     div,
   );
 
