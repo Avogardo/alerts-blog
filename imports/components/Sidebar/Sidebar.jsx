@@ -28,31 +28,27 @@ const Sidebar = ({ classes, isSidebarOpen, setSidebarState }) => (
   >
     <div className={classes.list}>
       <List>
-        <div>
-          <ListItem button>
-            <ListItemIcon>
-              <AccountBox />
-            </ListItemIcon>
-            <ListItemText primary="Log in" />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <StarIcon />
-            </ListItemIcon>
-            <ListItemText primary="Sign in" />
-          </ListItem>
-        </div>
+        <ListItem button>
+          <ListItemIcon>
+            <AccountBox />
+          </ListItemIcon>
+          <ListItemText primary="Log in" />
+        </ListItem>
+        <ListItem button>
+          <ListItemIcon>
+            <StarIcon />
+          </ListItemIcon>
+          <ListItemText primary="Sign in" />
+        </ListItem>
       </List>
       <Divider />
       <List>
-        <div>
-          <ListItem button>
-            <ListItemIcon>
-              <MailIcon />
-            </ListItemIcon>
-            <ListItemText primary="All mail" />
-          </ListItem>
-        </div>
+        <ListItem button>
+          <ListItemIcon>
+            <MailIcon />
+          </ListItemIcon>
+          <ListItemText primary="All mail" />
+        </ListItem>
       </List>
     </div>
   </Drawer>
