@@ -11,81 +11,82 @@ import Adapter from 'enzyme-adapter-react-16';
 configure({ adapter: new Adapter() });
 import { mount } from 'enzyme';
 
-
-let props, mountedComponent;
-const div = document.createElement('div');
-const SidebarComponent = () => {
-  if (!mountedComponent) {
-    mountedComponent = mount(
-      <Sidebar {...props} />
-    );
-  }
-  return mountedComponent;
-};
-
-beforeEach(() => {
-  props = {
-    classes: {
-      list: 'width: 300',
-    },
-    isSidebarOpen: false,
-    setSidebarState: () => {},
+describe("Sidebar", () => {
+  let props, mountedComponent;
+  const div = document.createElement('div');
+  const SidebarComponent = () => {
+    if (!mountedComponent) {
+      mountedComponent = mount(
+        <Sidebar {...props} />
+      );
+    }
+    return mountedComponent;
   };
 
-  mountedComponent = undefined;
-});
+  beforeEach(() => {
+    props = {
+      classes: {
+        list: 'width: 300',
+      },
+      isSidebarOpen: false,
+      setSidebarState: () => {},
+    };
 
-afterEach(() => {
-  ReactDOM.unmountComponentAtNode(div);
-});
+    mountedComponent = undefined;
+  });
 
-it('renders without crashing', () => {
-  ReactDOM.render(
-    <Sidebar {...props} />,
-    div,
-  );
-});
+  afterEach(() => {
+    ReactDOM.unmountComponentAtNode(div);
+  });
 
-it('always renders a div', () => {
-  const drawers = SidebarComponent().find('Drawer');
-  expect(drawers.length).toBe(1);
-});
+  it('renders without crashing', () => {
+    ReactDOM.render(
+      <Sidebar {...props} />,
+      div,
+    );
+  });
 
-it('contains everything else that gets rendered', () => {
-  const drawers = SidebarComponent().find(Drawer);
+  it('always renders a drawer', () => {
+    const drawers = SidebarComponent().find('Drawer');
+    expect(drawers.length).toBe(1);
+  });
 
-  const wrappingDrawer = drawers.first();
+  it('contains everything else that gets rendered', () => {
+    const drawers = SidebarComponent().find(Drawer);
 
-  expect(wrappingDrawer.children().length).toBe(SidebarComponent().children().length);
-});
+    const wrappingDrawer = drawers.first();
 
-it("always renders a List elements", () => {
-  expect(SidebarComponent().find(List).length).toBeGreaterThan(0);
-});
+    expect(wrappingDrawer.children().length).toBe(SidebarComponent().children().length);
+  });
 
-it("always renders ListItems elements", () => {
-  expect(SidebarComponent().find(ListItem).length).toBeGreaterThan(0);
-});
+  it("always renders a List elements", () => {
+    expect(SidebarComponent().find(List).length).toBeGreaterThan(0);
+  });
 
-it("always renders ListItemIcon elements", () => {
-  expect(SidebarComponent().find(ListItemIcon).length).toBeGreaterThan(0);
-});
+  it("always renders ListItems elements", () => {
+    expect(SidebarComponent().find(ListItem).length).toBeGreaterThan(0);
+  });
 
-it("drawet state is equal to sidebar prop state", () => {
-  const drawer = SidebarComponent().find(Drawer);
+  it("always renders ListItemIcon elements", () => {
+    expect(SidebarComponent().find(ListItemIcon).length).toBeGreaterThan(0);
+  });
 
-  expect(drawer.props().open).toBe(SidebarComponent().props().isSidebarOpen);
-});
+  it("drawet state is equal to sidebar prop state", () => {
+    const drawer = SidebarComponent().find(Drawer);
 
-it("drawet onChange function is equal to received from props function", () => {
-  const drawer = SidebarComponent().find(Drawer);
+    expect(drawer.props().open).toBe(SidebarComponent().props().isSidebarOpen);
+  });
 
-  expect(drawer.props().onChange()).toBe(SidebarComponent().props().setSidebarState());
-});
+  it("drawet onChange function is equal to received from props function", () => {
+    const drawer = SidebarComponent().find(Drawer);
 
-it("drawers list width is equal to received width prop", () => {
-  const wrappingDiv  = SidebarComponent().find('div').first();
+    expect(drawer.props().onChange()).toBe(SidebarComponent().props().setSidebarState());
+  });
 
-  expect(wrappingDiv.prop('style').width)
-    .toBe(Number(SidebarComponent().props().classes.list.slice(-3)));
+  it("drawers list width is equal to received width prop", () => {
+    const wrappingDiv = SidebarComponent().find('div').first();
+
+    expect(wrappingDiv.prop('style').width)
+      .toBe(Number(SidebarComponent().props().classes.list.slice(-3)));
+  });
 });
