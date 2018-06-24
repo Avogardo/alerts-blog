@@ -70,3 +70,9 @@ it("always renders ListItems elements", () => {
 it("always renders ListItemIcon elements", () => {
   expect(SidebarComponent().find(ListItemIcon).length).toBeGreaterThan(0);
 });
+
+it("drawet state is equal to sidebar prop state", () => {
+  const drawer = SidebarComponent().find(Drawer);
+
+  expect(drawer.props().open).toBe(SidebarComponent().props().isSidebarOpen);
+});
