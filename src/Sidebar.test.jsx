@@ -26,7 +26,7 @@ const SidebarComponent = () => {
 beforeEach(() => {
   props = {
     classes: {
-      list: 'width: 250',
+      list: 'width: 300',
     },
     isSidebarOpen: false,
     setSidebarState: () => {},
@@ -81,4 +81,11 @@ it("drawet onChange function is equal to received from props function", () => {
   const drawer = SidebarComponent().find(Drawer);
 
   expect(drawer.props().onChange()).toBe(SidebarComponent().props().setSidebarState());
+});
+
+it("drawers list width is equal to received width prop", () => {
+  const wrappingDiv  = SidebarComponent().find('div').first();
+
+  expect(wrappingDiv.prop('style').width)
+    .toBe(Number(SidebarComponent().props().classes.list.slice(-3)));
 });
