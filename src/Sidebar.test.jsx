@@ -76,3 +76,9 @@ it("drawet state is equal to sidebar prop state", () => {
 
   expect(drawer.props().open).toBe(SidebarComponent().props().isSidebarOpen);
 });
+
+it("drawet onChange function is equal to received from props function", () => {
+  const drawer = SidebarComponent().find(Drawer);
+
+  expect(drawer.props().onChange()).toBe(SidebarComponent().props().setSidebarState());
+});
