@@ -26,11 +26,11 @@ describe("Navigation", () => {
   });
 
   it('always renders a nav bar', () => {
-    expect(testInstance.findAllByType('nav').length).toBe(1);
+    expect(testInstance.findByType('nav')).toBeDefined();
   });
 
   it('always renders a h1 element', () => {
-    expect(testInstance.findAllByType('h1').length).toBe(1);
+    expect(testInstance.findByType('h1')).toBeDefined();
   });
 
   it('always renders both app bars', () => {
