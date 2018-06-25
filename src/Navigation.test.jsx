@@ -6,12 +6,15 @@ import AppBar from '@material-ui/core/AppBar';
 import Navigation from '../imports/components/Navigation';
 
 describe("Navigation", () => {
-  let props;
+  let props, testRenderer, testInstance;
 
   beforeEach(() => {
     props = {
       toggleSidebar: () => {},
     };
+
+    testRenderer = TestRenderer.create(<Navigation {...props} />);
+    testInstance = testRenderer.root;
   });
 
   it('renders without crashing', () => {
@@ -21,16 +24,10 @@ describe("Navigation", () => {
   });
 
   it('always renders a nav bar', () => {
-    const testRenderer = TestRenderer.create(<Navigation {...props} />);
-    const testInstance = testRenderer.root;
-
     expect(testInstance.findAllByType('nav').length).toBe(1);
   });
 
   it('always renders both app bars', () => {
-    const testRenderer = TestRenderer.create(<Navigation {...props} />);
-    const testInstance = testRenderer.root;
-
     expect(testInstance.findAllByType(AppBar).length).toBe(2);
   });
 });
