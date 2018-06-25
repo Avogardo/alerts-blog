@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import TestRenderer from 'react-test-renderer';
 
 import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
 import Navigation from '../imports/components/Navigation';
 
 describe("Navigation", () => {
@@ -29,5 +30,9 @@ describe("Navigation", () => {
 
   it('always renders both app bars', () => {
     expect(testInstance.findAllByType(AppBar).length).toBe(2);
+  });
+
+  it('always renders both app toolbars', () => {
+    expect(testInstance.findAllByType(Toolbar).length).toBe(2);
   });
 });
