@@ -34,11 +34,11 @@ describe("Navigation", () => {
   });
 
   it('always renders both app bars', () => {
-    expect(testInstance.findAllByType(AppBar).length).toBe(2);
+    expect(testInstance.findAllByType(AppBar)).toHaveLength(2);
   });
 
   it('always renders both app toolbars', () => {
-    expect(testInstance.findAllByType(Toolbar).length).toBe(2);
+    expect(testInstance.findAllByType(Toolbar)).toHaveLength(2);
   });
 
   it('always renders IconButton elements', () => {
