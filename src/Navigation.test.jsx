@@ -4,6 +4,7 @@ import TestRenderer from 'react-test-renderer';
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
 import Navigation from '../imports/components/Navigation';
 
 describe("Navigation", () => {
@@ -34,5 +35,9 @@ describe("Navigation", () => {
 
   it('always renders both app toolbars', () => {
     expect(testInstance.findAllByType(Toolbar).length).toBe(2);
+  });
+
+  it('always renders IconButton elements', () => {
+    expect(testInstance.findAllByType(IconButton).length).toBeGreaterThan(0);
   });
 });
