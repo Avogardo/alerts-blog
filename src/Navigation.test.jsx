@@ -44,4 +44,10 @@ describe("Navigation", () => {
   it('always renders IconButton elements', () => {
     expect(testInstance.findAllByType(IconButton).length).toBeGreaterThan(0);
   });
+
+  it('appbars position should be static', () => {
+    const appBars = testInstance.findAllByType(AppBar);
+
+    appBars.forEach(appBar => expect(appBar.props.position).toBe('static'));
+  });
 });
