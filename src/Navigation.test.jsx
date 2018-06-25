@@ -33,6 +33,10 @@ describe("Navigation", () => {
     expect(testInstance.findByType('h1')).toBeDefined();
   });
 
+  it('always renders a img element', () => {
+    expect(testInstance.findByType('img')).toBeDefined();
+  });
+
   it('always renders both app bars', () => {
     expect(testInstance.findAllByType(AppBar)).toHaveLength(2);
   });
