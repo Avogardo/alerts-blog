@@ -6,11 +6,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Navigation from '../imports/components/Navigation';
-import Drawer from 'react-motion-drawer';
-
-import { configure, mount } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-configure({ adapter: new Adapter() });
 
 describe("Navigation", () => {
   let props, testRenderer, testInstance;
