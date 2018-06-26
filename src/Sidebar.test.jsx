@@ -1,15 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ListItem from '@material-ui/core/ListItem';
-import List from '@material-ui/core/List';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
+import {
+  ListItem,
+  List,
+  ListItemIcon,
+} from '@material-ui/core';
 import Drawer from 'react-motion-drawer';
-import Sidebar from '../imports/components/Sidebar';
 
-import { configure } from 'enzyme';
+import { configure, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 configure({ adapter: new Adapter() });
-import { mount } from 'enzyme';
+
+import Sidebar from '../imports/components/Sidebar';
 
 describe("Sidebar", () => {
   let props, mountedComponent;

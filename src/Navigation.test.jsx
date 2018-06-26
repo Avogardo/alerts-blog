@@ -2,9 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import TestRenderer from 'react-test-renderer';
 
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
+import {
+  AppBar,
+  Toolbar,
+  IconButton,
+} from '@material-ui/core';
 import Navigation from '../imports/components/Navigation';
 
 describe("Navigation", () => {
