@@ -34,4 +34,8 @@ describe("Main layout", () => {
   it('always renders a Navigation component', () => {
     expect(MainLayoutComponent().find(Navigation)).toBeDefined();
   });
+
+  it('always renders a Sidebar component', () => {
+    expect(MainLayoutComponent().find(Sidebar)).toBeDefined();
+  });
 });
