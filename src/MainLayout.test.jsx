@@ -11,7 +11,7 @@ import Sidebar from '../imports/components/Sidebar';
 import NewsContainer from '../imports/components/NewsContainer';
 
 describe("Main layout", () => {
-  let mountedComponent;
+  let mountedComponent, state;
   const MainLayoutComponent = () => {
     if (!mountedComponent) {
       mountedComponent = mount(
@@ -23,6 +23,9 @@ describe("Main layout", () => {
 
   beforeEach(() => {
     mountedComponent = undefined;
+    state = {
+      isSidebarOpen: false,
+    }
   });
 
   it('renders without crashing', () => {
@@ -41,5 +44,11 @@ describe("Main layout", () => {
 
   it('always renders only 3 childs', () => {
     expect(MainLayoutComponent().children()).toHaveLength(3);
+  });
+
+  describe("Main layout states", () => {
+    it('has expected state', () => {
+      expect(MainLayoutComponent().state()).toEqual(state);
+    });
   });
 });
