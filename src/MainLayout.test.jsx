@@ -81,5 +81,9 @@ describe("Main layout", () => {
     it('Sidebar always have isSidebarOpen prop equal to isSidebarOpen state', () => {
       expect(MainLayoutComponent().find(Sidebar).prop('isSidebarOpen')).toBe(state.isSidebarOpen);
     });
+
+    it('Sidebar always have setSidebarState function', () => {
+      expect(MainLayoutComponent().find(Sidebar).prop('setSidebarState')).toBeDefined();
+    });
   });
 });
