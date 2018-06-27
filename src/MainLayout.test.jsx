@@ -42,6 +42,10 @@ describe("Main layout", () => {
     expect(MainLayoutComponent().find(Sidebar)).toBeDefined();
   });
 
+  it('always renders a NewsContainer component', () => {
+    expect(MainLayoutComponent().find(NewsContainer)).toBeDefined();
+  });
+
   it('always renders only 3 childs', () => {
     expect(MainLayoutComponent().children()).toHaveLength(3);
   });
