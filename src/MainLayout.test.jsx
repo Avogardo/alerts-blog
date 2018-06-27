@@ -61,5 +61,15 @@ describe("Main layout", () => {
 
       expect(wrapper.state().isSidebarOpen).toBe(true);
     });
+
+    it('toggleSidebar is setting negation of isSidebarOpen state', () => {
+      const wrapper = shallow(<MainLayout />);
+
+      wrapper.instance().toggleSidebar();
+      expect(wrapper.state().isSidebarOpen).toBe(!state.isSidebarOpen);
+
+      wrapper.instance().toggleSidebar();
+      expect(wrapper.state().isSidebarOpen).toBe(state.isSidebarOpen);
+    });
   });
 });
