@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { configure, mount } from 'enzyme';
+import { configure, mount, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 configure({ adapter: new Adapter() });
 
@@ -49,6 +49,13 @@ describe("Main layout", () => {
   describe("Main layout states", () => {
     it('has expected state', () => {
       expect(MainLayoutComponent().state()).toEqual(state);
+    });
+
+    it('setSidebarState is setting isSidebarOpen state value', () => {
+      const wrapper = shallow(<MainLayout />);
+      wrapper.instance().setSidebarState(true);
+
+      expect(wrapper.state().isSidebarOpen).toBe(true);
     });
   });
 });
