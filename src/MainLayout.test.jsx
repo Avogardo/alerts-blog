@@ -38,4 +38,8 @@ describe("Main layout", () => {
   it('always renders a Sidebar component', () => {
     expect(MainLayoutComponent().find(Sidebar)).toBeDefined();
   });
+
+  it('always renders only 3 childs', () => {
+    expect(MainLayoutComponent().children()).toHaveLength(3);
+  });
 });
