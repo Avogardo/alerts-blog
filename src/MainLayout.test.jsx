@@ -72,4 +72,10 @@ describe("Main layout", () => {
       expect(wrapper.state().isSidebarOpen).toBe(state.isSidebarOpen);
     });
   });
+
+  describe("Elements have correct props", () => {
+    it('Navigation always have toggleSidebar function', () => {
+      expect(MainLayoutComponent().find(Navigation).prop('toggleSidebar')).toBeDefined();
+    });
+  });
 });
