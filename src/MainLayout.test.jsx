@@ -77,5 +77,9 @@ describe("Main layout", () => {
     it('Navigation always have toggleSidebar function', () => {
       expect(MainLayoutComponent().find(Navigation).prop('toggleSidebar')).toBeDefined();
     });
+
+    it('Sidebar always have isSidebarOpen prop equal to isSidebarOpen state', () => {
+      expect(MainLayoutComponent().find(Sidebar).prop('isSidebarOpen')).toBe(state.isSidebarOpen);
+    });
   });
 });
