@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import TestRenderer from 'react-test-renderer';
 
+import Button from '@material-ui/core/Button';
 import SignIn from '../imports/components/SignIn';
 
 describe("SignIn", () => {
@@ -19,6 +20,10 @@ describe("SignIn", () => {
   });
 
   it('always renders a h2 header', () => {
-    expect(testInstance.findAllByType('h2')).toHaveLength(1);
+    expect(testInstance.findByType('h2')).toBeDefined();
+  });
+
+  it('always renders a google plus button', () => {
+    expect(testInstance.findByType(Button)).toBeDefined();
   });
 });
