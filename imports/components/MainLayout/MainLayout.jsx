@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import ReactRouterPropTypes from 'react-router-prop-types';
 
 import Navigation from '../Navigation';
 import Sidebar from '../Sidebar';
@@ -48,7 +48,7 @@ class MainLayout extends Component {
 }
 
 MainLayout.propTypes = {
-  history: PropTypes.object.isRequired,
+  history: ReactRouterPropTypes.history.isRequired,
 };
 
 export default MainLayout;
