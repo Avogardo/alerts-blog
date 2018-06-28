@@ -17,4 +17,8 @@ describe("SignIn", () => {
     ReactDOM.render(<SignIn />, div);
     ReactDOM.unmountComponentAtNode(div);
   });
+
+  it('always renders a h2 header', () => {
+    expect(testInstance.findAllByType('h2')).toHaveLength(1);
+  });
 });
