@@ -13,17 +13,11 @@ h1 {
     font-size: 21px;
 }
 
-nav svg {
-    height: 14px;
-}
-
 .navigation-wrapper {
     display: flex;
     align-items: center;
 }
 
-@media (max-width: 575px)  {
-    .logo-container img {
-        margin: 0 15px;
-    }
+.logo-container img {
+    margin: 0 15px;
 }
