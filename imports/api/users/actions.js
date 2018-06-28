@@ -1,4 +1,4 @@
-const goToSignIn = history => history.push('/profile');
+const goToSignIn = history => history.push('/sign-in');
 
 const actions = {
   goToSignIn,

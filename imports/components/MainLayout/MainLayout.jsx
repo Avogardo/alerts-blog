@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
 import Navigation from '../Navigation';
@@ -28,8 +29,10 @@ class MainLayout extends Component {
   }
 
   goToSignIn() {
+    const { goToSignIn, history } = this.props;
+
     this.toggleSidebar();
-    this.props.history.push('/sign-in');
+    goToSignIn(history);
   }
 
   render() {
@@ -48,6 +51,7 @@ class MainLayout extends Component {
 }
 
 MainLayout.propTypes = {
+  goToSignIn: PropTypes.func.isRequired,
   history: ReactRouterPropTypes.history.isRequired,
 };
 
