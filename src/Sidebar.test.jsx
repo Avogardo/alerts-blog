@@ -32,6 +32,7 @@ describe("Sidebar", () => {
       },
       isSidebarOpen: false,
       setSidebarState: () => {},
+      goToSignIn: () => {},
     };
 
     mountedComponent = undefined;
