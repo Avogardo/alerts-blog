@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
+import { Route } from 'react-router-dom';
 
 import Navigation from '../Navigation';
 import NewsContainer from '../NewsContainer';
@@ -30,16 +31,19 @@ class MainLayout extends Component {
   render() {
     const { isSidebarOpen } = this.state;
 
-    return [
-      <Navigation key="navigation" toggleSidebar={() => this.toggleSidebar()} />,
-      <Sidebar
-        key="sidebar"
-        isSidebarOpen={isSidebarOpen}
-        setSidebarState={open => this.setSidebarState(open)}
-      />,
-      <NewsContainer key="news-container" />,
-      <SignIn />,
-    ];
+    return (
+      <Fragment>
+        <Navigation key="navigation" toggleSidebar={() => this.toggleSidebar()} />
+        <Sidebar
+          key="sidebar"
+          isSidebarOpen={isSidebarOpen}
+          setSidebarState={open => this.setSidebarState(open)}
+        />
+
+        <Route exact path="/" component={NewsContainer} />
+        <Route exact path="/sign-in" component={SignIn} />
+      </Fragment>
+    );
   }
 }
 

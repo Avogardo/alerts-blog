@@ -11,7 +11,7 @@ import MainLayout from '/imports/components/MainLayout';
 const App = () => (
   <Router>
     <div className="container">
-      <Route exact path="/" component={MainLayout} />
+      <Route path="/" component={MainLayout} />
     </div>
   </Router>
 );
