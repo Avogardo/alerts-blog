@@ -9,8 +9,11 @@ import {
 import MenuIcon from '@material-ui/icons/Menu';
 import Search from '@material-ui/icons/Search';
 
-import { FacebookIcon, YoutubeIcon } from 'mdi-react';
-import EmailIcon from './Icons/EmailIcon.jsx';
+import {
+  FacebookIcon,
+  YoutubeIcon,
+  EmailOutlineIcon,
+} from 'mdi-react';
 import './Navigation.css';
 
 const style = {
@@ -46,7 +49,7 @@ const Navigation = ({ toggleSidebar }) => {
           </div>
 
           <IconButton color="inherit">
-            <EmailIcon />
+            <EmailOutlineIcon size={14} />
           </IconButton>
         </Toolbar>
       </AppBar>
