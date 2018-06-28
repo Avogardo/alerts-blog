@@ -7,10 +7,10 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Search from '@material-ui/icons/Search';
 
-import './Navigation.css';
-import FacebookIcon from './Icons/FacebookIcon.jsx';
+import FacebookIcon from 'mdi-react/FacebookIcon';
 import YoutubeIcon from './Icons/YoutubeIcon.jsx';
 import EmailIcon from './Icons/EmailIcon.jsx';
+import './Navigation.css';
 
 const style = {
   appBar: {
@@ -36,7 +36,7 @@ const Navigation = ({ toggleSidebar }) => {
         <Toolbar style={toolbar}>
           <div>
             <IconButton color="inherit">
-              <FacebookIcon />
+              <FacebookIcon size={14} />
             </IconButton>
 
             <IconButton color="inherit">
