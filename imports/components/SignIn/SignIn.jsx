@@ -1,8 +1,6 @@
 import React from 'react';
-
 import Button from '@material-ui/core/Button';
-import Delete from '@material-ui/icons/Delete';
-
+import GooglePlusIcon from 'mdi-react/GooglePlusIcon';
 import './SignIn.css';
 
 const SignIn = () => (
@@ -10,8 +8,8 @@ const SignIn = () => (
     <h2>Create account with Google Plus!</h2>
 
     <Button variant="raised" color="secondary">
-      Google +
-      <Delete />
+      Continue with Google
+      <GooglePlusIcon />
     </Button>
   </section>
 );
