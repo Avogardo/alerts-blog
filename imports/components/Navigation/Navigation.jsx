@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  IconButton,
+} from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import Search from '@material-ui/icons/Search';
 
-import FacebookIcon from 'mdi-react/FacebookIcon';
-import YoutubeIcon from './Icons/YoutubeIcon.jsx';
+import { FacebookIcon, YoutubeIcon } from 'mdi-react';
 import EmailIcon from './Icons/EmailIcon.jsx';
 import './Navigation.css';
 
@@ -40,7 +41,7 @@ const Navigation = ({ toggleSidebar }) => {
             </IconButton>
 
             <IconButton color="inherit">
-              <YoutubeIcon />
+              <YoutubeIcon size={14} />
             </IconButton>
           </div>
 
