@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Navigation from '../Navigation';
 import NewsContainer from '../NewsContainer';
 import Sidebar from '../Sidebar';
+import SignIn from '../SignIn';
 
 class MainLayout extends Component {
   constructor(props) {
@@ -37,6 +38,7 @@ class MainLayout extends Component {
         setSidebarState={open => this.setSidebarState(open)}
       />,
       <NewsContainer key="news-container" />,
+      <SignIn />,
     ];
   }
 }
