@@ -8,7 +8,6 @@ configure({ adapter: new Adapter() });
 import MainLayout from '../imports/components/MainLayout';
 import Navigation from '../imports/components/Navigation';
 import Sidebar from '../imports/components/Sidebar';
-import NewsContainer from '../imports/components/NewsContainer';
 
 describe("Main layout", () => {
   let mountedComponent, state;
@@ -42,12 +41,8 @@ describe("Main layout", () => {
     expect(MainLayoutComponent().find(Sidebar)).toBeDefined();
   });
 
-  it('always renders a NewsContainer component', () => {
-    expect(MainLayoutComponent().find(NewsContainer)).toBeDefined();
-  });
-
-  it('always renders only 3 childs', () => {
-    expect(MainLayoutComponent().children()).toHaveLength(3);
+  it('renders only 2 childs', () => {
+    expect(MainLayoutComponent().children()).toHaveLength(2);
   });
 
   describe("Main layout states", () => {
