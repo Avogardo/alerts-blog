@@ -20,7 +20,12 @@ const styles = {
   },
 };
 
-const Sidebar = ({ classes, isSidebarOpen, setSidebarState }) => (
+const Sidebar = ({
+  classes,
+  isSidebarOpen,
+  setSidebarState,
+  goToSignIn,
+}) => (
   <Drawer
     open={isSidebarOpen}
     onChange={open => setSidebarState(open)}
@@ -34,7 +39,7 @@ const Sidebar = ({ classes, isSidebarOpen, setSidebarState }) => (
           </ListItemIcon>
           <ListItemText primary="Log in" />
         </ListItem>
-        <ListItem button>
+        <ListItem button onClick={() => goToSignIn()}>
           <ListItemIcon>
             <StarIcon />
           </ListItemIcon>
@@ -60,6 +65,7 @@ Sidebar.propTypes = {
   }).isRequired,
   isSidebarOpen: PropTypes.bool.isRequired,
   setSidebarState: PropTypes.func.isRequired,
+  goToSignIn: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(Sidebar);
