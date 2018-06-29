@@ -66,22 +66,23 @@ describe("Main layout", () => {
   });
 
   describe("Main layout states", () => {
-    it('has expected state', () => {
-      const wrapper = shallow(<MainLayout {...props} />);
+    let wrapper;
 
+    beforeEach(() => {
+      wrapper = shallow(<MainLayout {...props} />);
+    });
+
+    it('has expected state', () => {
       expect(wrapper.state()).toEqual(state);
     });
 
     it('setSidebarState is setting isSidebarOpen state value', () => {
-      const wrapper = shallow(<MainLayout {...props} />);
       wrapper.instance().setSidebarState(true);
 
       expect(wrapper.state().isSidebarOpen).toBe(true);
     });
 
     it('toggleSidebar is setting negation of isSidebarOpen state', () => {
-      const wrapper = shallow(<MainLayout {...props} />);
-
       wrapper.instance().toggleSidebar();
       expect(wrapper.state().isSidebarOpen).toBe(!state.isSidebarOpen);
 
