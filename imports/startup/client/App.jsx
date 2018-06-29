@@ -23,6 +23,6 @@ const App = () => (
 Meteor.startup(() => {
   render(
     <App />,
-    document.querySelector('#app'),
+    document.getElementById('app'),
   );
 });
