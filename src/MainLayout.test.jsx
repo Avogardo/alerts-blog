@@ -16,7 +16,9 @@ describe("Main layout", () => {
   const MainLayoutComponent = () => {
     if (!mountedComponent) {
       mountedComponent = mount(
-        <MainLayout {...props} />
+        <MemoryRouter>
+          <MainLayout {...props} />
+        </MemoryRouter>
       );
     }
     return mountedComponent;
@@ -42,7 +44,12 @@ describe("Main layout", () => {
 
   it('renders without crashing', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<MainLayout {...props} />, div);
+    ReactDOM.render(
+      <MemoryRouter>
+        <MainLayout {...props} />
+      </MemoryRouter>,
+      div,
+    );
     ReactDOM.unmountComponentAtNode(div);
   });
 
@@ -55,12 +62,14 @@ describe("Main layout", () => {
   });
 
   it('renders only 4 childs', () => {
-    expect(MainLayoutComponent().children()).toHaveLength(4);
+    expect(MainLayoutComponent().find(MainLayout).children()).toHaveLength(4);
   });
 
   describe("Main layout states", () => {
     it('has expected state', () => {
-      expect(MainLayoutComponent().state()).toEqual(state);
+      const wrapper = shallow(<MainLayout {...props} />);
+
+      expect(wrapper.state()).toEqual(state);
     });
 
     it('setSidebarState is setting isSidebarOpen state value', () => {
