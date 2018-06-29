@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Route } from 'react-router-dom';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
 import Navigation from '../Navigation';
 import Sidebar from '../Sidebar';
+import NewsContainer from '../NewsContainer';
+import SignIn from '../SignIn';
 
 class MainLayout extends Component {
   constructor(props) {
@@ -46,6 +49,8 @@ class MainLayout extends Component {
         setSidebarState={open => this.setSidebarState(open)}
         goToSignIn={this.goToSignIn}
       />,
+      <Route key="news-container" exact path="/" component={NewsContainer} />,
+      <Route key="sign-in" exact path="/sign-in" component={SignIn} />,
     ];
   }
 }

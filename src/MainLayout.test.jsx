@@ -54,8 +54,8 @@ describe("Main layout", () => {
     expect(MainLayoutComponent().find(Sidebar)).toBeDefined();
   });
 
-  it('renders only 2 childs', () => {
-    expect(MainLayoutComponent().children()).toHaveLength(2);
+  it('renders only 4 childs', () => {
+    expect(MainLayoutComponent().children()).toHaveLength(4);
   });
 
   describe("Main layout states", () => {

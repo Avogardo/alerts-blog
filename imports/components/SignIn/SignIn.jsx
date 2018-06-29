@@ -5,7 +5,6 @@ import {
   Button,
 } from '@material-ui/core';
 import GooglePlusIcon from 'mdi-react/GooglePlusIcon';
-import './SignIn.css';
 
 const styles = theme => ({
   button: {
@@ -14,10 +13,13 @@ const styles = theme => ({
   rightIcon: {
     marginLeft: theme.spacing.unit,
   },
+  signIn: {
+    padding: '10px',
+  },
 });
 
 const SignIn = ({ classes }) => (
-  <section>
+  <section className={classes.signIn}>
     <h2>Create account with Google Plus!</h2>
 
     <Button variant="raised" color="secondary" className={classes.button}>
@@ -31,6 +33,7 @@ SignIn.propTypes = {
   classes: PropTypes.shape({
     button: PropTypes.string.isRequired,
     rightIcon: PropTypes.string.isRequired,
+    signIn: PropTypes.string.isRequired,
   }).isRequired,
 };
 
