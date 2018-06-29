@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { MemoryRouter  } from 'react-router-dom';
 
 import { configure, mount, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
@@ -15,7 +16,7 @@ describe("Main layout", () => {
   const MainLayoutComponent = () => {
     if (!mountedComponent) {
       mountedComponent = mount(
-        <MainLayout goToSignIn={() => {}} />
+        <MainLayout {...props} />
       );
     }
     return mountedComponent;
@@ -27,15 +28,21 @@ describe("Main layout", () => {
       isSidebarOpen: false,
     };
 
+    const history = mount(
+      <MemoryRouter>
+        <div />
+      </MemoryRouter>
+    ).childAt(0).props().history;
+
     props = {
       goToSignIn: () => {},
-      history:  () => {},
+      history,
     };
   });
 
   it('renders without crashing', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<MainLayout />, div);
+    ReactDOM.render(<MainLayout {...props} />, div);
     ReactDOM.unmountComponentAtNode(div);
   });
 
@@ -57,14 +64,14 @@ describe("Main layout", () => {
     });
 
     it('setSidebarState is setting isSidebarOpen state value', () => {
-      const wrapper = shallow(<MainLayout />);
+      const wrapper = shallow(<MainLayout {...props} />);
       wrapper.instance().setSidebarState(true);
 
       expect(wrapper.state().isSidebarOpen).toBe(true);
     });
 
     it('toggleSidebar is setting negation of isSidebarOpen state', () => {
-      const wrapper = shallow(<MainLayout />);
+      const wrapper = shallow(<MainLayout {...props} />);
 
       wrapper.instance().toggleSidebar();
       expect(wrapper.state().isSidebarOpen).toBe(!state.isSidebarOpen);
