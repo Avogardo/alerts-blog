@@ -5,16 +5,17 @@ import { configure, mount, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 configure({ adapter: new Adapter() });
 
-import MainLayout from '../imports/components/MainLayout';
+import MainLayout from '../imports/components/MainLayout/MainLayout.jsx';
 import Navigation from '../imports/components/Navigation';
 import Sidebar from '../imports/components/Sidebar';
 
 describe("Main layout", () => {
-  let mountedComponent, state;
+  let mountedComponent, props, state;
+
   const MainLayoutComponent = () => {
     if (!mountedComponent) {
       mountedComponent = mount(
-        <MainLayout />
+        <MainLayout goToSignIn={() => {}} />
       );
     }
     return mountedComponent;
@@ -24,7 +25,12 @@ describe("Main layout", () => {
     mountedComponent = undefined;
     state = {
       isSidebarOpen: false,
-    }
+    };
+
+    props = {
+      goToSignIn: () => {},
+      history:  () => {},
+    };
   });
 
   it('renders without crashing', () => {
