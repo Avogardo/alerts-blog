@@ -7,6 +7,7 @@ import Navigation from '../Navigation';
 import Sidebar from '../Sidebar';
 import NewsContainer from '../NewsContainer';
 import SignIn from '../SignIn';
+import './MainLayout.css';
 
 class MainLayout extends Component {
   constructor(props) {
@@ -49,8 +50,10 @@ class MainLayout extends Component {
         setSidebarState={open => this.setSidebarState(open)}
         goToSignIn={this.goToSignIn}
       />,
-      <Route key="news-container" exact path="/" component={NewsContainer} />,
-      <Route key="sign-in" exact path="/sign-in" component={SignIn} />,
+      <div className="content-container" key="content-container">
+        <Route exact path="/" component={NewsContainer} />
+        <Route exact path="/sign-in" component={SignIn} />
+      </div>,
     ];
   }
 }
