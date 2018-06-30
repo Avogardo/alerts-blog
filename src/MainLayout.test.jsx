@@ -65,6 +65,10 @@ describe("Main layout", () => {
     expect(MainLayoutComponent().find(MainLayout).children()).toHaveLength(1);
   });
 
+  it('MainLayout is renders 3 childs inside', () => {
+    expect(MainLayoutComponent().find('.container').children()).toHaveLength(3);
+  });
+
   it('always renders 2 Route childs', () => {
     expect(MainLayoutComponent().find(Route)).toHaveLength(2);
   });
