@@ -31,7 +31,7 @@ const style = {
   },
 };
 
-const Navigation = ({ toggleSidebar }) => {
+const Navigation = ({ toggleSidebar, goToNewsContainer }) => {
   const { appBar, toolbar, secondaryAppBar } = style;
 
   return (
@@ -54,7 +54,11 @@ const Navigation = ({ toggleSidebar }) => {
         </Toolbar>
       </AppBar>
 
-      <div className="logo-container">
+      <div
+        className="logo-container"
+        onClick={() => goToNewsContainer()}
+        role="presentation"
+      >
         <img alt="logo" src="https://drive.google.com/uc?id=1U_HEoR8c2kubf6-JsbHEcwo564J5zjlE" />
         <h1>Alarms blog</h1>
       </div>
@@ -80,6 +84,7 @@ const Navigation = ({ toggleSidebar }) => {
 
 Navigation.propTypes = {
   toggleSidebar: PropTypes.func.isRequired,
+  goToNewsContainer: PropTypes.func.isRequired,
 };
 
 export default Navigation;
