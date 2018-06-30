@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { MemoryRouter  } from 'react-router-dom';
+import { MemoryRouter, Route } from 'react-router-dom';
 
 import { configure, mount, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
@@ -63,6 +63,10 @@ describe("Main layout", () => {
 
   it('renders only 1 childs', () => {
     expect(MainLayoutComponent().find(MainLayout).children()).toHaveLength(1);
+  });
+
+  it('always renders 2 Route childs', () => {
+    expect(MainLayoutComponent().find(Route)).toHaveLength(2);
   });
 
   describe("Main layout states", () => {
