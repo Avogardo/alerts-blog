@@ -42,19 +42,21 @@ class MainLayout extends Component {
   render() {
     const { isSidebarOpen } = this.state;
 
-    return [
-      <Navigation key="navigation" toggleSidebar={() => this.toggleSidebar()} />,
-      <Sidebar
-        key="sidebar"
-        isSidebarOpen={isSidebarOpen}
-        setSidebarState={open => this.setSidebarState(open)}
-        goToSignIn={this.goToSignIn}
-      />,
-      <div className="content-container" key="content-container">
-        <Route exact path="/" component={NewsContainer} />
-        <Route exact path="/sign-in" component={SignIn} />
-      </div>,
-    ];
+    return (
+      <div className="container">
+        <Navigation key="navigation" toggleSidebar={() => this.toggleSidebar()} />
+        <Sidebar
+          key="sidebar"
+          isSidebarOpen={isSidebarOpen}
+          setSidebarState={open => this.setSidebarState(open)}
+          goToSignIn={this.goToSignIn}
+        />
+        <div className="content-container" key="content-container">
+          <Route exact path="/" component={NewsContainer} />
+          <Route exact path="/sign-in" component={SignIn} />
+        </div>
+      </div>
+    );
   }
 }
 

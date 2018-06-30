@@ -1,5 +1,12 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
 .content-container {
 	width: auto;
 	background-color: #ffffff;
-	margin: 0 15px;
+	margin: 0 15px 15px 15px;
+	flex: 1 1 auto;
 }
