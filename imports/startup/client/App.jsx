@@ -10,7 +10,7 @@ import MainLayout from '/imports/components/MainLayout';
 
 const App = () => (
   <Router>
-      <Route path="/" component={MainLayout} />
+    <Route path="/" component={MainLayout} />
   </Router>
 );
 
