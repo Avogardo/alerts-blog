@@ -15,6 +15,9 @@ const styles = theme => ({
   },
   signIn: {
     padding: '10px',
+    display: 'flex',
+    flexDirection: 'column',
+    textAlign: 'center',
   },
 });
 
