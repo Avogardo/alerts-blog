@@ -44,6 +44,10 @@ describe("SignIn", () => {
   });
 
   describe("SignIn has only one child - form", () => {
+    it('always have only one child', () => {
+      expect(testInstance.children[0].children).toHaveLength(1);
+    });
+
     it('always have child form', () => {
       expect(testInstance.children[0].children[0].type).toBe('form');
     });
