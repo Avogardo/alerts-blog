@@ -36,12 +36,10 @@ const SignIn = ({ classes, errorMessage, onGoogleLogin }) => (
       <GooglePlusIcon className={classes.rightIcon} />
     </Button>
 
-    {errorMessage ?
+    {errorMessage &&
       <CardContent>
         {errorMessage}
       </CardContent>
-      :
-      ''
     }
   </form>
 );
