@@ -23,7 +23,7 @@ const styles = theme => ({
 });
 
 const SignIn = ({ classes, errorMessage, onGoogleLogin }) => (
-  <section className={classes.signIn}>
+  <form className={classes.signIn}>
     <h2>Create account with Google Plus!</h2>
 
     <Button
@@ -43,7 +43,7 @@ const SignIn = ({ classes, errorMessage, onGoogleLogin }) => (
       :
       ''
     }
-  </section>
+  </form>
 );
 
 SignIn.defaultProps = {
