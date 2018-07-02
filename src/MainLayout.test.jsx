@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { MemoryRouter  } from 'react-router-dom';
+import { MemoryRouter, Route } from 'react-router-dom';
 
 import { configure, mount, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
@@ -16,7 +16,9 @@ describe("Main layout", () => {
   const MainLayoutComponent = () => {
     if (!mountedComponent) {
       mountedComponent = mount(
-        <MainLayout {...props} />
+        <MemoryRouter>
+          <MainLayout {...props} />
+        </MemoryRouter>
       );
     }
     return mountedComponent;
@@ -42,7 +44,12 @@ describe("Main layout", () => {
 
   it('renders without crashing', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<MainLayout {...props} />, div);
+    ReactDOM.render(
+      <MemoryRouter>
+        <MainLayout {...props} />
+      </MemoryRouter>,
+      div,
+    );
     ReactDOM.unmountComponentAtNode(div);
   });
 
@@ -54,25 +61,36 @@ describe("Main layout", () => {
     expect(MainLayoutComponent().find(Sidebar)).toBeDefined();
   });
 
-  it('renders only 2 childs', () => {
-    expect(MainLayoutComponent().children()).toHaveLength(2);
+  it('renders only 1 childs', () => {
+    expect(MainLayoutComponent().find(MainLayout).children()).toHaveLength(1);
+  });
+
+  it('MainLayout is renders 3 childs inside', () => {
+    expect(MainLayoutComponent().find('.container').children()).toHaveLength(3);
+  });
+
+  it('always renders 2 Route childs', () => {
+    expect(MainLayoutComponent().find(Route)).toHaveLength(2);
   });
 
   describe("Main layout states", () => {
+    let wrapper;
+
+    beforeEach(() => {
+      wrapper = shallow(<MainLayout {...props} />);
+    });
+
     it('has expected state', () => {
-      expect(MainLayoutComponent().state()).toEqual(state);
+      expect(wrapper.state()).toEqual(state);
     });
 
     it('setSidebarState is setting isSidebarOpen state value', () => {
-      const wrapper = shallow(<MainLayout {...props} />);
       wrapper.instance().setSidebarState(true);
 
       expect(wrapper.state().isSidebarOpen).toBe(true);
     });
 
     it('toggleSidebar is setting negation of isSidebarOpen state', () => {
-      const wrapper = shallow(<MainLayout {...props} />);
-
       wrapper.instance().toggleSidebar();
       expect(wrapper.state().isSidebarOpen).toBe(!state.isSidebarOpen);
 

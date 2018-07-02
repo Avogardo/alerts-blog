@@ -13,6 +13,10 @@ h1 {
     font-size: 21px;
 }
 
+nav {
+	flex: 0 1 auto;
+}
+
 .navigation-wrapper {
     display: flex;
     align-items: center;

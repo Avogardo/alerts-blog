@@ -1,12 +1,12 @@
-const goToSignIn = (history) => {
-  const location = '/sign-in';
+const goToNewsContainer = (history) => {
+  const location = '/';
   if (history.location.pathname !== location) {
     history.push(location);
   }
 };
 
 const actions = {
-  goToSignIn,
+  goToNewsContainer,
 };
 
 export default actions;

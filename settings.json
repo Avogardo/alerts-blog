@@ -1,0 +1,10 @@
+{
+  "skipSeeds": false,
+  "services": {
+    "google": {
+      "clientId": "CLIENT-ID",
+      "loginStyle": "popup",
+      "secret": "SECRET"
+    }
+  }
+}

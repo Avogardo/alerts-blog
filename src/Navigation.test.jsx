@@ -15,6 +15,7 @@ describe("Navigation", () => {
   beforeEach(() => {
     props = {
       toggleSidebar: () => {},
+      goToNewsContainer: () => {},
     };
 
     testRenderer = TestRenderer.create(<Navigation {...props} />);
