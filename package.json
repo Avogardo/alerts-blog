@@ -1,5 +1,12 @@
 {
   "name": "kalisz-alerts",
+  "jest": {
+    "moduleNameMapper": {
+      "^meteor/(.*)": "<rootDir>/.meteorMocks/index.js"
+    },
+    "^meteor/(.*)": "<rootDir>/.meteorMocks/index.js",
+    "testDirectoryName":"src"
+  },
   "private": true,
   "scripts": {
     "start": "meteor run --settings=settings.json",

@@ -10,7 +10,10 @@ import MainLayout from '../imports/components/MainLayout/MainLayout.jsx';
 import Navigation from '../imports/components/Navigation';
 import Sidebar from '../imports/components/Sidebar';
 
+// jest.mock('meteor/meteor');
+
 describe("Main layout", () => {
+
   let mountedComponent, props, state;
 
   const MainLayoutComponent = () => {
