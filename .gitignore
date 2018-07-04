@@ -2,3 +2,4 @@ node_modules/
 *.xml
 .idea/kalisz-alerts.iml
 npm-debug.log
+settings.json
