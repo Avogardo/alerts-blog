@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Drawer from 'react-motion-drawer';
 
@@ -25,6 +25,7 @@ const Sidebar = ({
   isSidebarOpen,
   setSidebarState,
   goToSignIn,
+  isLoggedInUser,
 }) => (
   <Drawer
     open={isSidebarOpen}
@@ -32,29 +33,53 @@ const Sidebar = ({
     drawerStyle={{ backgroundColor: 'white' }}
   >
     <div className={classes.list}>
-      <List>
-        <ListItem button>
-          <ListItemIcon>
-            <AccountBox />
-          </ListItemIcon>
-          <ListItemText primary="Log in" />
-        </ListItem>
-        <ListItem button onClick={() => goToSignIn()}>
-          <ListItemIcon>
-            <StarIcon />
-          </ListItemIcon>
-          <ListItemText primary="Sign in" />
-        </ListItem>
-      </List>
-      <Divider />
-      <List>
-        <ListItem button>
-          <ListItemIcon>
-            <MailIcon />
-          </ListItemIcon>
-          <ListItemText primary="All mail" />
-        </ListItem>
-      </List>
+      { isLoggedInUser ?
+        <Fragment>
+          <List>
+            <ListItem button>
+              <ListItemIcon>
+                <AccountBox />
+              </ListItemIcon>
+              <ListItemText primary="Log in" />
+            </ListItem>
+          </List>
+          <Divider />
+          <List>
+            <ListItem button>
+              <ListItemIcon>
+                <MailIcon />
+              </ListItemIcon>
+              <ListItemText primary="Log out" />
+            </ListItem>
+          </List>
+        </Fragment>
+      :
+        <Fragment>
+          <List>
+            <ListItem button>
+              <ListItemIcon>
+                <AccountBox />
+              </ListItemIcon>
+              <ListItemText primary="Log in" />
+            </ListItem>
+            <ListItem button onClick={() => goToSignIn()}>
+              <ListItemIcon>
+                <StarIcon />
+              </ListItemIcon>
+              <ListItemText primary="Sign in" />
+            </ListItem>
+          </List>
+          <Divider />
+          <List>
+            <ListItem button>
+              <ListItemIcon>
+                <MailIcon />
+              </ListItemIcon>
+              <ListItemText primary="All mail" />
+            </ListItem>
+          </List>
+        </Fragment>
+        }
     </div>
   </Drawer>
 );
@@ -66,6 +91,7 @@ Sidebar.propTypes = {
   isSidebarOpen: PropTypes.bool.isRequired,
   setSidebarState: PropTypes.func.isRequired,
   goToSignIn: PropTypes.func.isRequired,
+  isLoggedInUser: PropTypes.bool.isRequired,
 };
 
 export default withStyles(styles)(Sidebar);
