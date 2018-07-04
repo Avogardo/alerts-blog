@@ -47,7 +47,7 @@ class MainLayout extends Component {
 
   render() {
     const { isSidebarOpen } = this.state;
-    const { isLoggedInUser } = this.props;
+    const { isLoggedInUser, history } = this.props;
 
     return (
       <div className="container">
@@ -59,6 +59,7 @@ class MainLayout extends Component {
           isSidebarOpen={isSidebarOpen}
           setSidebarState={open => this.setSidebarState(open)}
           goToSignIn={this.goToSignIn}
+          history={history}
         />
         <div className="content-container" key="content-container">
           <Route exact path="/" component={NewsContainer} />

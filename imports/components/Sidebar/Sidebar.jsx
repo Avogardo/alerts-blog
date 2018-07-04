@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
+import ReactRouterPropTypes from 'react-router-prop-types';
 import Drawer from 'react-motion-drawer';
 
 import {
@@ -26,6 +27,8 @@ const Sidebar = ({
   setSidebarState,
   goToSignIn,
   isLoggedInUser,
+  onLogOut,
+  history,
 }) => (
   <Drawer
     open={isSidebarOpen}
@@ -45,7 +48,7 @@ const Sidebar = ({
           </List>
           <Divider />
           <List>
-            <ListItem button>
+            <ListItem button onClick={() => onLogOut(history)}>
               <ListItemIcon>
                 <MailIcon />
               </ListItemIcon>
@@ -91,7 +94,9 @@ Sidebar.propTypes = {
   isSidebarOpen: PropTypes.bool.isRequired,
   setSidebarState: PropTypes.func.isRequired,
   goToSignIn: PropTypes.func.isRequired,
+  onLogOut: PropTypes.func.isRequired,
   isLoggedInUser: PropTypes.bool.isRequired,
+  history: ReactRouterPropTypes.history.isRequired,
 };
 
 export default withStyles(styles)(Sidebar);
