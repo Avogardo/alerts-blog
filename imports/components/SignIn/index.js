@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { compose } from 'react-komposer';
+import { actions as newsActions } from '../../api/news';
 import SignIn from './SignIn.jsx';
 
 const composer = (props, onData) => {
@@ -12,6 +13,8 @@ const composer = (props, onData) => {
           onGoogleLogin,
           errorMessage,
         });
+      } else {
+        newsActions.goToNewsContainer(props.history);
       }
     },
   );
