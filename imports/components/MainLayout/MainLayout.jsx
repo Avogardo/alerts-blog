@@ -15,10 +15,18 @@ class MainLayout extends Component {
     this.toggleSidebar = this.toggleSidebar.bind(this);
     this.goToSignIn = this.goToSignIn.bind(this);
     this.goToNewsContainer = this.goToNewsContainer.bind(this);
+    this.onLogOut = this.onLogOut.bind(this);
 
     this.state = {
       isSidebarOpen: false,
     };
+  }
+
+  onLogOut() {
+    const { onLogOut, history } = this.props;
+
+    this.toggleSidebar();
+    onLogOut(history);
   }
 
   setSidebarState(open) {
@@ -47,7 +55,7 @@ class MainLayout extends Component {
 
   render() {
     const { isSidebarOpen } = this.state;
-    const { isLoggedInUser, history } = this.props;
+    const { isLoggedInUser } = this.props;
 
     return (
       <div className="container">
@@ -59,7 +67,7 @@ class MainLayout extends Component {
           isSidebarOpen={isSidebarOpen}
           setSidebarState={open => this.setSidebarState(open)}
           goToSignIn={this.goToSignIn}
-          history={history}
+          onLogOut={this.onLogOut}
         />
         <div className="content-container" key="content-container">
           <Route exact path="/" component={NewsContainer} />
@@ -81,6 +89,7 @@ class MainLayout extends Component {
 MainLayout.propTypes = {
   goToSignIn: PropTypes.func.isRequired,
   goToNewsContainer: PropTypes.func.isRequired,
+  onLogOut: PropTypes.func.isRequired,
   history: ReactRouterPropTypes.history.isRequired,
   isLoggedInUser: PropTypes.bool.isRequired,
 };

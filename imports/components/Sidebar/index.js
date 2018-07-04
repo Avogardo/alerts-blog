@@ -1,5 +1,5 @@
 import { compose } from 'react-komposer';
-import { isLoggedIn, onLogOut } from '../../api/users';
+import { isLoggedIn } from '../../api/users';
 import Sidebar from './Sidebar.jsx';
 
 const composer = (props, onData) => {
@@ -7,7 +7,6 @@ const composer = (props, onData) => {
 
   onData(null, {
     isLoggedInUser,
-    onLogOut,
     ...props,
   });
 };

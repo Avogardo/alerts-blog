@@ -1,5 +1,9 @@
 import { compose } from 'react-komposer';
-import { actions as userActions, isLoggedIn } from '../../api/users';
+import {
+  isLoggedIn,
+  onLogOut,
+  actions as userActions,
+} from '../../api/users';
 import { actions as newsActions } from '../../api/news';
 import MainLayout from './MainLayout.jsx';
 
@@ -12,6 +16,7 @@ const composer = (props, onData) => {
     goToSignIn,
     goToNewsContainer,
     isLoggedInUser,
+    onLogOut,
     ...props,
   });
 };
