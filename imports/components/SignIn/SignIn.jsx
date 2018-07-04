@@ -10,6 +10,7 @@ import GooglePlusIcon from 'mdi-react/GooglePlusIcon';
 const styles = theme => ({
   button: {
     margin: theme.spacing.unit,
+    backgroundColor: '#d34836',
   },
   rightIcon: {
     marginLeft: theme.spacing.unit,
