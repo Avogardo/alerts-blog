@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
 import Navigation from '../Navigation';
@@ -47,6 +47,7 @@ class MainLayout extends Component {
 
   render() {
     const { isSidebarOpen } = this.state;
+    const { isLoggedInUser } = this.props;
 
     return (
       <div className="container">
@@ -61,7 +62,15 @@ class MainLayout extends Component {
         />
         <div className="content-container" key="content-container">
           <Route exact path="/" component={NewsContainer} />
-          <Route exact path="/sign-in" component={SignIn} />
+          <Route
+            exact
+            path="/sign-in"
+            render={props => (
+              isLoggedInUser
+                ? <Redirect to="/" />
+                : <SignIn {...props} />
+              )}
+          />
         </div>
       </div>
     );
@@ -72,6 +81,7 @@ MainLayout.propTypes = {
   goToSignIn: PropTypes.func.isRequired,
   goToNewsContainer: PropTypes.func.isRequired,
   history: ReactRouterPropTypes.history.isRequired,
+  isLoggedInUser: PropTypes.bool.isRequired,
 };
 
 export default MainLayout;
