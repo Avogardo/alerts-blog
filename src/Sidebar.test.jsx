@@ -11,7 +11,7 @@ import { configure, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 configure({ adapter: new Adapter() });
 
-import Sidebar from '../imports/components/Sidebar';
+import Sidebar from '../imports/components/Sidebar/Sidebar.jsx';
 
 describe("Sidebar", () => {
   let props, mountedComponent;
@@ -31,8 +31,10 @@ describe("Sidebar", () => {
         list: 'width: 300',
       },
       isSidebarOpen: false,
+      isLoggedInUser: false,
       setSidebarState: () => {},
       goToSignIn: () => {},
+      onLogOut: () => {},
     };
 
     mountedComponent = undefined;
