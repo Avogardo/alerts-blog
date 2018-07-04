@@ -19,7 +19,7 @@ describe("SignIn", () => {
       },
       errorMessage: '',
       onGoogleLogin: () => {},
-    }
+    };
 
     testRenderer = TestRenderer.create(<SignIn {...props} />);
     testInstance = testRenderer.root;
@@ -51,5 +51,9 @@ describe("SignIn", () => {
     it('always have child form', () => {
       expect(testInstance.children[0].children[0].type).toBe('form');
     });
+  });
+
+  describe("Error message", () => {
+
   });
 });
