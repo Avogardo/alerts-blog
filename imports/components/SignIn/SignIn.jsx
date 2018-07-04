@@ -39,7 +39,7 @@ const SignIn = ({ classes, errorMessage, onGoogleLogin }) => (
 
     {errorMessage &&
       <CardContent>
-        {errorMessage}
+        Error: {errorMessage}. Please try again later.
       </CardContent>
     }
   </form>
