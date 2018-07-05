@@ -58,5 +58,14 @@ describe("SignIn", () => {
       const isErrorCard = testInstance.findAllByType(CardContent).length;
       expect(isErrorCard).toBeFalsy();
     });
+
+    it('when errorMessage is set, there is error message displayed', () => {
+      props.errorMessage = 'An error occurred, please try again later';
+      const testErrorRenderer = TestRenderer.create(<SignIn {...props} />);
+      const testErrorInstance = testErrorRenderer.root;
+
+      const isErrorCard = testErrorInstance.findByType(CardContent);
+      expect(isErrorCard).toBeDefined();
+    });
   });
 });
