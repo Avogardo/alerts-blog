@@ -54,6 +54,9 @@ describe("SignIn", () => {
   });
 
   describe("Error message", () => {
-
+    it('when errorMessage is empty there is no error message', () => {
+      const isErrorCard = testInstance.findAllByType(CardContent).length;
+      expect(isErrorCard).toBeFalsy();
+    });
   });
 });
