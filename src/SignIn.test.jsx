@@ -67,5 +67,17 @@ describe("SignIn", () => {
       const isErrorCard = testErrorInstance.findByType(CardContent);
       expect(isErrorCard).toBeDefined();
     });
+
+    it('when errorMessage is set, is displayed inside card content component', () => {
+      props.errorMessage = 'An error occurred, please try again later';
+      const testErrorRenderer = TestRenderer.create(<SignIn {...props} />);
+      const testErrorInstance = testErrorRenderer.root;
+
+      const isErrorCard = testErrorInstance.findByType(CardContent)
+        .children[0]
+        .children[0]
+        .children.join('');
+      expect(isErrorCard).toContain(props.errorMessage);
+    });
   });
 });
