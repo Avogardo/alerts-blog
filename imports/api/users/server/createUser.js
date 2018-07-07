@@ -10,7 +10,14 @@ const setAdminOnFirstUser = (options, user) => {
   return user;
 };
 
+const saveUserProfile = (options, user) => {
+    const profile = (options && options.profile) || {};
+    user.profile = profile;
+    return user;
+};
+
 Accounts.onCreateUser((options, user) => {
   user = setAdminOnFirstUser(options, user);
+  user = saveUserProfile(options, user);
   return user;
 });
