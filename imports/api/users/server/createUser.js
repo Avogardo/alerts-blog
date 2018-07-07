@@ -61,6 +61,6 @@ Accounts.onCreateUser((options, user) => {
   user = saveUserProfile(options, user);
   user = setUserAvatar(options, user);
   user = setPublicEmail(options, user);
-  
+
   return user;
 });

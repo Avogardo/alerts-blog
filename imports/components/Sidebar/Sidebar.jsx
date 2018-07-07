@@ -4,7 +4,6 @@ import Drawer from 'react-motion-drawer';
 
 import {
   ListItem,
-  Divider,
   List,
   ListItemIcon,
   ListItemText,
@@ -12,7 +11,7 @@ import {
 } from '@material-ui/core';
 import AccountBox from '@material-ui/icons/AccountBox';
 import StarIcon from '@material-ui/icons/Star';
-import MailIcon from '@material-ui/icons/Mail';
+import { LogoutIcon } from 'mdi-react';
 
 const styles = {
   list: {
@@ -35,25 +34,14 @@ const Sidebar = ({
   >
     <div className={classes.list}>
       { isLoggedInUser ?
-        <Fragment>
-          <List>
-            <ListItem button>
-              <ListItemIcon>
-                <AccountBox />
-              </ListItemIcon>
-              <ListItemText primary="Log in" />
-            </ListItem>
-          </List>
-          <Divider />
-          <List>
-            <ListItem button onClick={() => onLogOut()}>
-              <ListItemIcon>
-                <MailIcon />
-              </ListItemIcon>
-              <ListItemText primary="Log out" />
-            </ListItem>
-          </List>
-        </Fragment>
+        <List>
+          <ListItem button onClick={() => onLogOut()}>
+            <ListItemIcon>
+              <LogoutIcon />
+            </ListItemIcon>
+            <ListItemText primary="Log out" />
+          </ListItem>
+        </List>
       :
         <Fragment>
           <List>
@@ -68,15 +56,6 @@ const Sidebar = ({
                 <StarIcon />
               </ListItemIcon>
               <ListItemText primary="Sign in" />
-            </ListItem>
-          </List>
-          <Divider />
-          <List>
-            <ListItem button>
-              <ListItemIcon>
-                <MailIcon />
-              </ListItemIcon>
-              <ListItemText primary="All mail" />
             </ListItem>
           </List>
         </Fragment>
