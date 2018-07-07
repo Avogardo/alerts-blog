@@ -1,5 +1,6 @@
 import { Accounts } from 'meteor/accounts-base';
 import { Meteor } from 'meteor/meteor';
+import md5 from 'md5';
 
 const setAdminOnFirstUser = (options, user) => {
   if (Meteor.users.find({}).count() > 0) {
@@ -11,13 +12,32 @@ const setAdminOnFirstUser = (options, user) => {
 };
 
 const saveUserProfile = (options, user) => {
-    const profile = (options && options.profile) || {};
-    user.profile = profile;
-    return user;
+  const profile = (options && options.profile) || {};
+  user.profile = profile;
+  return user;
+};
+
+const getAvatarUrl = (user) => {
+  const googleAvatar = user.services.google.picture;
+
+  if (googleAvatar) {
+    return googleAvatar;
+  }
+
+  const emailHash = md5(user.services.google.email);
+  return `https://s.gravatar.com/avatar/${emailHash}`;
+};
+
+const setUserAvatar = (options, user) => {
+  if (user && user.profile && !user.profile.avatar) {
+    user.profile.avatar = getAvatarUrl(user);
+  }
+  return user;
 };
 
 Accounts.onCreateUser((options, user) => {
   user = setAdminOnFirstUser(options, user);
   user = saveUserProfile(options, user);
+  user = setUserAvatar(options, user);
   return user;
 });
