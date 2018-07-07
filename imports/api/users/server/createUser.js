@@ -35,9 +35,32 @@ const setUserAvatar = (options, user) => {
   return user;
 };
 
+const getPublicEmail = (user) => {
+  if (user.services.google) {
+    const googleEmail = [{
+      address: user.services.google.email,
+      verified: user.services.google.verified_email,
+    }];
+
+    return googleEmail;
+  }
+
+  return undefined;
+};
+
+const setPublicEmail = (options, user) => {
+  if (user && !user.emails && getPublicEmail(user)) {
+    user.emails = getPublicEmail(user);
+  }
+
+  return user;
+};
+
 Accounts.onCreateUser((options, user) => {
   user = setAdminOnFirstUser(options, user);
   user = saveUserProfile(options, user);
   user = setUserAvatar(options, user);
+  user = setPublicEmail(options, user);
+  
   return user;
 });
