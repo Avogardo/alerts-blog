@@ -1,14 +1,17 @@
 import { Meteor } from 'meteor/meteor';
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
 import { isAdmin } from '/imports/api/users';
-import { AddNewsSchema } from './schema.js';
+import {
+  AddNewsSchema,
+  NewsIdentitySchema,
+} from './schema.js';
 import News from './News.js';
 
 const throwErrorIfNotAdmin = () => {
   if (!isAdmin()) {
     throw new Meteor.Error(
       'create.news.unauthorized',
-      'Only redactor is authorized to create news',
+      'Only redactor is authorized to carry out this operation',
     );
   }
 };
@@ -23,9 +26,7 @@ const throwErrorIfNotAdmin = () => {
  */
 export const createNews = new ValidatedMethod({
   name: 'news.add',
-  validate: AddNewsSchema.validator({
-    clean: true,
-  }),
+  validate: AddNewsSchema.validator({ clean: true }),
   run({
     title,
     content,
@@ -46,4 +47,18 @@ export const createNews = new ValidatedMethod({
       tags,
     });
   },
+});
+
+/**
+ * Remove news
+ * @param   { String }   newsId  news id
+ * @return  { Boolean }          true if no error
+ */
+export const removeNews = new ValidatedMethod({
+    name: 'news.remove',
+    validate: NewsIdentitySchema.validator({ clean: true }),
+    run({ newsId }) {
+        throwErrorIfNotAdmin();
+        return News.remove({ _id: newsId });
+    },
 });
