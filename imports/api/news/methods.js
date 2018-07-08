@@ -35,18 +35,37 @@ const createNews = new ValidatedMethod({
     tags,
   }) {
     throwErrorIfNotAdmin();
+    if (images.length > 15) {
+      throw new Meteor.Error(
+        'too.many.images.uploaded',
+        'There is too many images',
+      );
+    }
 
     const authorId = Meteor.userId();
     const createdAt = new Date();
 
-    return News.insert({
-      authorId,
-      createdAt,
-      title,
-      content,
-      images,
-      tags,
-    });
+    const image = images[0];
+
+    // create a reader according to HTML5 File API
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      // convert to binary
+      const buffer = new Uint8Array(reader.result);
+
+      return News.insert({
+        authorId,
+        createdAt,
+        title,
+        content,
+        images: buffer,
+        tags,
+      });
+    };
+
+    // read the file as arraybuffer
+    reader.readAsArrayBuffer(image);
   },
 });
 
