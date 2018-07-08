@@ -25,7 +25,7 @@ const throwErrorIfNotAdmin = () => {
  * @param   { Array }   tags     tags (strings)
  * @return  { String }           news
  */
-export const createNews = new ValidatedMethod({
+const createNews = new ValidatedMethod({
   name: 'news.add',
   validate: AddNewsSchema.validator({ clean: true }),
   run({
@@ -55,7 +55,7 @@ export const createNews = new ValidatedMethod({
  * @param   { String }   newsId  news id
  * @return  { Boolean }          true if no error
  */
-export const removeNews = new ValidatedMethod({
+const removeNews = new ValidatedMethod({
   name: 'news.remove',
   validate: NewsIdentitySchema.validator({ clean: true }),
   run({ newsId }) {
@@ -73,7 +73,7 @@ export const removeNews = new ValidatedMethod({
  * @param   { Array }   tags     tags (strings)
  * @return  { String }           news
  */
-export const updateNews = new ValidatedMethod({
+const updateNews = new ValidatedMethod({
   name: 'news.update',
   validate: UpdateNewsSchema.validator({ clean: true }),
   run({
@@ -95,3 +95,9 @@ export const updateNews = new ValidatedMethod({
     });
   },
 });
+
+export {
+  createNews,
+  removeNews,
+  updateNews,
+};
