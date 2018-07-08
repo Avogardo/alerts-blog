@@ -1,15 +1,15 @@
 import SimpleSchema from 'simpl-schema';
 
-export const NewsSchema = new SimpleSchema({
+const NewsContentSchema = new SimpleSchema({
   title: {
     type: String,
   },
   content: {
     type: String,
   },
-  authorId: {
-    type: String,
-  },
+});
+
+const NewsImagesSchema = new SimpleSchema({
   images: {
     type: Array,
     defaultValue: [],
@@ -17,11 +17,20 @@ export const NewsSchema = new SimpleSchema({
   'images.$': {
     type: String,
   },
+});
+
+const NewsTagsSchema = new SimpleSchema({
   tags: {
     type: Array,
     defaultValue: [],
   },
   'tags.$': {
+    type: String,
+  },
+});
+
+const NewsSchema = new SimpleSchema({
+  authorId: {
     type: String,
   },
   createdAt: {
@@ -29,27 +38,17 @@ export const NewsSchema = new SimpleSchema({
     defaultValue: new Date(),
   },
 });
+NewsSchema.extend(NewsContentSchema);
+NewsSchema.extend(NewsImagesSchema);
+NewsSchema.extend(NewsTagsSchema);
 
 // method schemas
-export const AddNewsSchema = new SimpleSchema({
-  title: {
-    type: String,
-  },
-  content: {
-    type: String,
-  },
-  images: {
-    type: Array,
-    defaultValue: [],
-  },
-  'images.$': {
-    type: String,
-  },
-  tags: {
-    type: Array,
-    defaultValue: [],
-  },
-  'tags.$': {
-    type: String,
-  },
-});
+const AddNewsSchema = new SimpleSchema({});
+AddNewsSchema.extend(NewsContentSchema);
+AddNewsSchema.extend(NewsImagesSchema);
+AddNewsSchema.extend(NewsTagsSchema);
+
+export {
+  NewsSchema,
+  AddNewsSchema,
+};
