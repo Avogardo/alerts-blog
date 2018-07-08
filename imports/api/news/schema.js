@@ -14,9 +14,15 @@ export const NewsSchema = new SimpleSchema({
     type: Array,
     defaultValue: [],
   },
+  'images.$': {
+    type: String,
+  },
   tags: {
     type: Array,
     defaultValue: [],
+  },
+  'tags.$': {
+    type: String,
   },
   createdAt: {
     type: Date,
@@ -36,8 +42,14 @@ export const AddNewsSchema = new SimpleSchema({
     type: Array,
     defaultValue: [],
   },
+  'images.$': {
+    type: String,
+  },
   tags: {
     type: Array,
     defaultValue: [],
+  },
+  'tags.$': {
+    type: String,
   },
 });
