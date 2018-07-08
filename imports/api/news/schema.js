@@ -54,8 +54,13 @@ const NewsIdentitySchema = new SimpleSchema({
     },
 });
 
+const UpdateNewsSchema = new SimpleSchema({});
+UpdateNewsSchema.extend(AddNewsSchema);
+UpdateNewsSchema.extend(NewsIdentitySchema);
+
 export {
   NewsSchema,
   AddNewsSchema,
   NewsIdentitySchema,
+  UpdateNewsSchema,
 };
