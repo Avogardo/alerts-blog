@@ -4,6 +4,7 @@ import { isAdmin } from '/imports/api/users';
 import {
   AddNewsSchema,
   NewsIdentitySchema,
+  UpdateNewsSchema,
 } from './schema.js';
 import News from './News.js';
 
@@ -55,10 +56,42 @@ export const createNews = new ValidatedMethod({
  * @return  { Boolean }          true if no error
  */
 export const removeNews = new ValidatedMethod({
-    name: 'news.remove',
-    validate: NewsIdentitySchema.validator({ clean: true }),
-    run({ newsId }) {
-        throwErrorIfNotAdmin();
-        return News.remove({ _id: newsId });
-    },
+  name: 'news.remove',
+  validate: NewsIdentitySchema.validator({ clean: true }),
+  run({ newsId }) {
+    throwErrorIfNotAdmin();
+    return News.remove({ _id: newsId });
+  },
+});
+
+/**
+ * Update news
+ * @param   { String }  newsId   news id
+ * @param   { String }  title    news title
+ * @param   { String }  content  news content
+ * @param   { Array }   images   images (blobs)
+ * @param   { Array }   tags     tags (strings)
+ * @return  { String }           news
+ */
+export const updateNews = new ValidatedMethod({
+  name: 'news.update',
+  validate: UpdateNewsSchema.validator({ clean: true }),
+  run({
+    newsId,
+    title,
+    content,
+    images,
+    tags,
+  }) {
+    throwErrorIfNotAdmin();
+
+    return News.update(newsId, {
+      $set: {
+        title,
+        content,
+        images,
+        tags,
+      },
+    });
+  },
 });
