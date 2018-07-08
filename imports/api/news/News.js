@@ -2,9 +2,8 @@ import { Mongo } from 'meteor/mongo';
 
 import { NewsSchema } from './schema.js';
 
-export const collectionName = 'news';
-const News = new Mongo.Collection(collectionName);
+const News = new Mongo.Collection('news');
 
 News.attachSchema(NewsSchema);
 
-export { News };
+export default News;
