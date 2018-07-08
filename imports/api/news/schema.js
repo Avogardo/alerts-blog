@@ -48,7 +48,14 @@ AddNewsSchema.extend(NewsContentSchema);
 AddNewsSchema.extend(NewsImagesSchema);
 AddNewsSchema.extend(NewsTagsSchema);
 
+const NewsIdentitySchema = new SimpleSchema({
+    newsId: {
+        type: String,
+    },
+});
+
 export {
   NewsSchema,
   AddNewsSchema,
+  NewsIdentitySchema,
 };
