@@ -49,9 +49,9 @@ AddNewsSchema.extend(NewsImagesSchema);
 AddNewsSchema.extend(NewsTagsSchema);
 
 const NewsIdentitySchema = new SimpleSchema({
-    newsId: {
-        type: String,
-    },
+  newsId: {
+    type: String,
+  },
 });
 
 const UpdateNewsSchema = new SimpleSchema({});
