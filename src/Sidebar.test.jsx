@@ -6,6 +6,7 @@ import {
   ListItemIcon,
 } from '@material-ui/core';
 import Drawer from 'react-motion-drawer';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
 
 import { configure, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
@@ -95,5 +96,32 @@ describe("Sidebar", () => {
 
     expect(wrappingDiv.prop('style').width)
       .toBe(Number(SidebarComponent().props().classes.list.slice(-3)));
+  });
+
+  describe("user is authorized or not to go to create news component", () => {
+    let props;
+
+    beforeEach(() => {
+      props = {
+        classes: {
+          list: 'width: 300',
+        },
+        isSidebarOpen: false,
+        isLoggedInUser: false,
+        setSidebarState: () => {},
+        goToSignIn: () => {},
+        onLogOut: () => {},
+        goToCreateNews: () => {},
+        isAuthorized: false,
+      };
+    });
+
+    it("there is no create news button if user is unauthorized", () => {
+      const SidebarComponent = mount(
+        <Sidebar {...props} />
+      );
+
+      expect(SidebarComponent.find(AddCircleIcon)).toHaveLength(0)
+    });
   });
 });
