@@ -6,7 +6,7 @@ const isAdmin = (userId) => {
     Meteor.users.findOne(userId)
     :
     Meteor.user();
-  return user && !!user.isAdmin;
+  return !!(user && !!user.isAdmin);
 };
 
 const isLoggedIn = () => !!Meteor.userId();

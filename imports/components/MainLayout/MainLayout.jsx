@@ -7,6 +7,7 @@ import Navigation from '../Navigation';
 import Sidebar from '../Sidebar';
 import NewsContainer from '../NewsContainer';
 import SignIn from '../SignIn';
+import CreateNews from '../CreateNews';
 import './MainLayout.css';
 
 class MainLayout extends Component {
@@ -55,7 +56,7 @@ class MainLayout extends Component {
 
   render() {
     const { isSidebarOpen } = this.state;
-    const { isLoggedInUser } = this.props;
+    const { isLoggedInUser, isAuthorized } = this.props;
 
     return (
       <div className="container">
@@ -80,6 +81,15 @@ class MainLayout extends Component {
                 : <SignIn {...props} />
               )}
           />
+          <Route
+            exact
+            path="/create-news"
+            render={() => (
+              isAuthorized
+                ? <CreateNews />
+                : <Redirect to="/" />
+            )}
+          />
         </div>
       </div>
     );
@@ -92,6 +102,7 @@ MainLayout.propTypes = {
   onLogOut: PropTypes.func.isRequired,
   history: ReactRouterPropTypes.history.isRequired,
   isLoggedInUser: PropTypes.bool.isRequired,
+  isAuthorized: PropTypes.bool.isRequired,
 };
 
 export default MainLayout;
