@@ -11,6 +11,13 @@ const goToNewsContainer = (history) => {
   }
 };
 
+const goToCreateNews = (history) => {
+  const location = '/create-news';
+  if (history.location.pathname !== location) {
+    history.push(location);
+  }
+};
+
 const createNews = (title, content, images, tags) => new Promise((resolve, reject) => {
   createNewsMethod.call({
     title,
@@ -54,6 +61,7 @@ const updateNews = (newsId, title, content, images, tags) => new Promise((resolv
 
 const actions = {
   goToNewsContainer,
+  goToCreateNews,
   createNews,
   removeNews,
   updateNews,
