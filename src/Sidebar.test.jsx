@@ -35,6 +35,8 @@ describe("Sidebar", () => {
       setSidebarState: () => {},
       goToSignIn: () => {},
       onLogOut: () => {},
+      goToCreateNews: () => {},
+      isAuthorized: false,
     };
 
     mountedComponent = undefined;
