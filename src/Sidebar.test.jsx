@@ -107,7 +107,7 @@ describe("Sidebar", () => {
           list: 'width: 300',
         },
         isSidebarOpen: false,
-        isLoggedInUser: false,
+        isLoggedInUser: true,
         setSidebarState: () => {},
         goToSignIn: () => {},
         onLogOut: () => {},
@@ -122,6 +122,15 @@ describe("Sidebar", () => {
       );
 
       expect(SidebarComponent.find(AddCircleIcon)).toHaveLength(0)
+    });
+
+    it("there is create news button if user is unauthorized", () => {
+      props.isAuthorized = true;
+      const SidebarComponent = mount(
+        <Sidebar {...props} />
+      );
+
+      expect(SidebarComponent.find(AddCircleIcon)).toHaveLength(1)
     });
   });
 });
