@@ -12,6 +12,7 @@ import {
 } from '@material-ui/core';
 import AccountBox from '@material-ui/icons/AccountBox';
 import StarIcon from '@material-ui/icons/Star';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
 import { LogoutIcon } from 'mdi-react';
 
 const styles = {
@@ -42,7 +43,7 @@ const Sidebar = ({
             <Fragment>
               <ListItem button onClick={goToCreateNews}>
                 <ListItemIcon>
-                  <LogoutIcon />
+                  <AddCircleIcon />
                 </ListItemIcon>
                 <ListItemText primary="Create news" />
               </ListItem>
