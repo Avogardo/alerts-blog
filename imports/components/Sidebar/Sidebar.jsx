@@ -7,6 +7,7 @@ import {
   List,
   ListItemIcon,
   ListItemText,
+  Divider,
   withStyles,
 } from '@material-ui/core';
 import AccountBox from '@material-ui/icons/AccountBox';
@@ -24,7 +25,9 @@ const Sidebar = ({
   isSidebarOpen,
   setSidebarState,
   goToSignIn,
+  goToCreateNews,
   isLoggedInUser,
+  isAuthorized,
   onLogOut,
 }) => (
   <Drawer
@@ -35,6 +38,17 @@ const Sidebar = ({
     <div className={classes.list}>
       { isLoggedInUser ?
         <List>
+          {isAuthorized &&
+            <Fragment>
+              <ListItem button onClick={goToCreateNews}>
+                <ListItemIcon>
+                  <LogoutIcon />
+                </ListItemIcon>
+                <ListItemText primary="Create news" />
+              </ListItem>
+              <Divider />
+            </Fragment>
+          }
           <ListItem button onClick={onLogOut}>
             <ListItemIcon>
               <LogoutIcon />
@@ -71,8 +85,10 @@ Sidebar.propTypes = {
   isSidebarOpen: PropTypes.bool.isRequired,
   setSidebarState: PropTypes.func.isRequired,
   goToSignIn: PropTypes.func.isRequired,
+  goToCreateNews: PropTypes.func.isRequired,
   onLogOut: PropTypes.func.isRequired,
   isLoggedInUser: PropTypes.bool.isRequired,
+  isAuthorized: PropTypes.bool.isRequired,
 };
 
 export default withStyles(styles)(Sidebar);
