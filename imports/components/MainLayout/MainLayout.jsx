@@ -16,6 +16,7 @@ class MainLayout extends Component {
     this.toggleSidebar = this.toggleSidebar.bind(this);
     this.goToSignIn = this.goToSignIn.bind(this);
     this.goToNewsContainer = this.goToNewsContainer.bind(this);
+    this.goToCreateNews = this.goToCreateNews.bind(this);
     this.onLogOut = this.onLogOut.bind(this);
 
     this.state = {
@@ -54,6 +55,13 @@ class MainLayout extends Component {
     goToNewsContainer(history);
   }
 
+  goToCreateNews() {
+    const { goToCreateNews, history } = this.props;
+
+    this.toggleSidebar();
+    goToCreateNews(history);
+  }
+
   render() {
     const { isSidebarOpen } = this.state;
     const { isLoggedInUser, isAuthorized } = this.props;
@@ -68,7 +76,9 @@ class MainLayout extends Component {
           isSidebarOpen={isSidebarOpen}
           setSidebarState={open => this.setSidebarState(open)}
           goToSignIn={this.goToSignIn}
+          goToCreateNews={this.goToCreateNews}
           onLogOut={this.onLogOut}
+          isAuthorized={isAuthorized}
         />
         <div className="content-container" key="content-container">
           <Route exact path="/" component={NewsContainer} />
@@ -99,6 +109,7 @@ class MainLayout extends Component {
 MainLayout.propTypes = {
   goToSignIn: PropTypes.func.isRequired,
   goToNewsContainer: PropTypes.func.isRequired,
+  goToCreateNews: PropTypes.func.isRequired,
   onLogOut: PropTypes.func.isRequired,
   history: ReactRouterPropTypes.history.isRequired,
   isLoggedInUser: PropTypes.bool.isRequired,
