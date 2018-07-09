@@ -3,3 +3,4 @@ node_modules/
 .idea/kalisz-alerts.iml
 npm-debug.log
 settings.json
+.idea/alerts-blog.iml
