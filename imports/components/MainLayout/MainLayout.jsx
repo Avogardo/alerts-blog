@@ -60,7 +60,7 @@ class MainLayout extends Component {
     return (
       <div className="container">
         <Navigation
-          toggleSidebar={() => this.toggleSidebar()}
+          toggleSidebar={this.toggleSidebar}
           goToNewsContainer={this.goToNewsContainer}
         />
         <Sidebar

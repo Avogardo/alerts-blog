@@ -35,7 +35,7 @@ const Sidebar = ({
     <div className={classes.list}>
       { isLoggedInUser ?
         <List>
-          <ListItem button onClick={() => onLogOut()}>
+          <ListItem button onClick={onLogOut}>
             <ListItemIcon>
               <LogoutIcon />
             </ListItemIcon>
@@ -51,7 +51,7 @@ const Sidebar = ({
               </ListItemIcon>
               <ListItemText primary="Log in" />
             </ListItem>
-            <ListItem button onClick={() => goToSignIn()}>
+            <ListItem button onClick={goToSignIn}>
               <ListItemIcon>
                 <StarIcon />
               </ListItemIcon>

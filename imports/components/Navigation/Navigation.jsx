@@ -56,7 +56,7 @@ const Navigation = ({ toggleSidebar, goToNewsContainer }) => {
 
       <div
         className="logo-container"
-        onClick={() => goToNewsContainer()}
+        onClick={goToNewsContainer}
         role="presentation"
       >
         <img alt="logo" src="https://drive.google.com/uc?id=1U_HEoR8c2kubf6-JsbHEcwo564J5zjlE" />
@@ -66,7 +66,7 @@ const Navigation = ({ toggleSidebar, goToNewsContainer }) => {
       <AppBar style={secondaryAppBar} position="static">
         <Toolbar style={toolbar}>
           <div className="navigation-wrapper">
-            <IconButton onClick={() => toggleSidebar()} color="inherit" aria-label="Menu">
+            <IconButton onClick={toggleSidebar} color="inherit" aria-label="Menu">
               <MenuIcon />
             </IconButton>
             <Typography variant="title" color="inherit">
