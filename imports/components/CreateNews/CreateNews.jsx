@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import {
   Button,
@@ -6,52 +7,70 @@ import {
   TextField,
   CardActions,
   Chip,
+  withStyles,
 } from '@material-ui/core';
 
-const CreateNews = () => (
-  <form>
-    <CardHeader title="Create news" />
-    <CardActions>
-      <TextField
-        label="Post title"
-        fullWidth
-        margin="normal"
-      />
-      <TextField
-        label="Post content"
-        fullWidth
-        multiline
-        margin="normal"
-        rowsMax="15"
-      />
+const styles = {
+  actions: {
+    flexDirection: 'column',
+    padding: '8px 16px',
+  },
+};
 
-      <input
-        accept="image/*"
-        id="raised-button-file"
-        multiple
-        type="file"
-      />
-      <label htmlFor="raised-button-file">
-        <Button variant="raised" component="span">
-          Upload images
-        </Button>
-      </label>
+class CreateNews extends React.Component {
+  render() {
+    return (
+      <form>
+        <CardHeader title="Create news" />
+        <CardActions className={this.props.classes.actions}>
+          <TextField
+            label="Post title"
+            fullWidth
+            margin="normal"
+          />
+          <TextField
+            label="Post content"
+            fullWidth
+            multiline
+            margin="normal"
+            rowsMax="15"
+          />
 
-      <TextField
-        label="Type tags"
-        fullWidth
-        margin="normal"
-      />
-      <Chip label="data.label" />
+          <input
+            accept="image/*"
+            id="raised-button-file"
+            multiple
+            type="file"
+          />
+          <label htmlFor="raised-button-file">
+            <Button variant="raised" component="span">
+              Upload images
+            </Button>
+          </label>
 
-      <Button variant="flat" color="secondary">
-        Clear
-      </Button>
-      <Button variant="raised" color="primary">
-        Create
-      </Button>
-    </CardActions>
-  </form>
-);
+          <TextField
+            label="Type tags"
+            fullWidth
+            margin="normal"
+          />
+          <Chip label="data.label" />
 
-export default CreateNews;
+          <Button variant="flat" color="secondary">
+            Clear
+          </Button>
+          <Button variant="raised" color="primary">
+            Create
+          </Button>
+        </CardActions>
+      </form>
+    );
+  }
+}
+
+CreateNews.propTypes = {
+  classes: PropTypes.shape({
+    actions: PropTypes.string.isRequired,
+  }).isRequired,
+};
+
+export default withStyles(styles)(CreateNews);
