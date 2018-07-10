@@ -29,7 +29,17 @@ describe("Create news", () => {
     expect(testInstance.findAllByType(CardActions)).toHaveLength(1)
   });
 
-  it('always renders TextField', () => {
+  it('always renders 3 TextField', () => {
     expect(testInstance.findAllByType(TextField)).toHaveLength(3)
+  });
+
+  describe("file button", () => {
+    it('always render a input type file', () => {
+      const inputFile = testInstance.findAllByType('input').find(input =>
+        input.props.type === 'file'
+      );
+
+      expect(inputFile).toBeDefined();
+    });
   });
 });
