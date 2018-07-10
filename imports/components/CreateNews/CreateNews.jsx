@@ -15,14 +15,22 @@ const styles = {
     flexDirection: 'column',
     padding: '8px 16px',
   },
+  defaultFileInput: {
+    display: 'none',
+  },
 };
 
 class CreateNews extends React.Component {
   render() {
+    const {
+      actions,
+      defaultFileInput,
+    } = this.props.classes;
+
     return (
       <form>
         <CardHeader title="Create news" />
-        <CardActions className={this.props.classes.actions}>
+        <CardActions className={actions}>
           <TextField
             label="Post title"
             fullWidth
@@ -41,6 +49,7 @@ class CreateNews extends React.Component {
             id="raised-button-file"
             multiple
             type="file"
+            className={defaultFileInput}
           />
           <label htmlFor="raised-button-file">
             <Button variant="raised" component="span">
@@ -70,6 +79,7 @@ class CreateNews extends React.Component {
 CreateNews.propTypes = {
   classes: PropTypes.shape({
     actions: PropTypes.string.isRequired,
+    defaultFileInput: PropTypes.string.isRequired,
   }).isRequired,
 };
 
