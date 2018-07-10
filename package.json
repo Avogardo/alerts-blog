@@ -8,20 +8,17 @@
     "test": "npm run lint && npm run jest"
   },
   "dependencies": {
-    "@babel/runtime": "^7.0.0-beta.52",
+    "@babel/runtime": "^7.0.0-beta.42",
     "@material-ui/core": "^1.1.0",
     "@material-ui/icons": "^1.1.0",
-    "lodash": "^4.17.10",
-    "md5": "^2.2.1",
     "mdi-react": "^4.0.0",
-    "meteor-node-stubs": "^0.4.1",
+    "meteor-node-stubs": "^0.3.2",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-komposer": "^2.0.0",
     "react-motion-drawer": "^3.1.0",
     "react-router-dom": "^4.2.2",
-    "react-router-prop-types": "^1.0.4",
-    "simpl-schema": "^1.5.0"
+    "react-router-prop-types": "^1.0.4"
   },
   "devDependencies": {
     "@meteorjs/eslint-config-meteor": "^1.0.5",
