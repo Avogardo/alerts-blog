@@ -17,6 +17,9 @@ const styles = {
     flexDirection: 'column',
     padding: '8px 16px',
   },
+  secondActions: {
+    justifyContent: 'space-between',
+  },
   defaultFileInput: {
     display: 'none',
   },
@@ -25,6 +28,9 @@ const styles = {
   },
   customFileButton: {
     marginTop: 35,
+  },
+  actionButtons: {
+    margin: 16,
   },
 };
 
@@ -35,6 +41,8 @@ class CreateNews extends React.Component {
       defaultFileInput,
       topInput,
       customFileButton,
+      secondActions,
+      actionButtons,
     } = this.props.classes;
 
     return (
@@ -80,11 +88,21 @@ class CreateNews extends React.Component {
             className={topInput}
           />
           <Chip label="data.label" />
+        </CardActions>
 
-          <Button variant="flat" color="secondary">
+        <CardActions className={secondActions}>
+          <Button
+            className={actionButtons}
+            variant="flat"
+            color="secondary"
+          >
             Clear
           </Button>
-          <Button variant="raised" color="primary">
+          <Button
+            className={actionButtons}
+            variant="raised"
+            color="primary"
+          >
             Create
           </Button>
         </CardActions>
@@ -96,9 +114,11 @@ class CreateNews extends React.Component {
 CreateNews.propTypes = {
   classes: PropTypes.shape({
     actions: PropTypes.string.isRequired,
+    secondActions: PropTypes.string.isRequired,
     defaultFileInput: PropTypes.string.isRequired,
     topInput: PropTypes.string.isRequired,
     customFileButton: PropTypes.string.isRequired,
+    actionButtons: PropTypes.string.isRequired,
   }).isRequired,
 };
 
