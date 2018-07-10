@@ -2,7 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import TestRenderer from 'react-test-renderer';
 import CreateNews from '../imports/components/CreateNews/CreateNews.jsx';
-import { CardActions } from '@material-ui/core';
+import {
+  CardActions,
+  TextField,
+} from '@material-ui/core';
 
 describe("Create news", () => {
   let testRenderer, testInstance;
@@ -24,5 +27,9 @@ describe("Create news", () => {
 
   it('always renders a CardActions', () => {
     expect(testInstance.findAllByType(CardActions)).toHaveLength(1)
+  });
+
+  it('always renders TextField', () => {
+    expect(testInstance.findAllByType(TextField)).toHaveLength(3)
   });
 });
