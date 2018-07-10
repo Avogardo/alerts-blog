@@ -8,6 +8,8 @@ import {
   CardActions,
   Chip,
   withStyles,
+  CardContent,
+  Typography,
 } from '@material-ui/core';
 
 const styles = {
@@ -18,6 +20,12 @@ const styles = {
   defaultFileInput: {
     display: 'none',
   },
+  topInput: {
+    marginTop: 0,
+  },
+  customFileButton: {
+    marginTop: 35,
+  },
 };
 
 class CreateNews extends React.Component {
@@ -25,6 +33,8 @@ class CreateNews extends React.Component {
     const {
       actions,
       defaultFileInput,
+      topInput,
+      customFileButton,
     } = this.props.classes;
 
     return (
@@ -35,6 +45,7 @@ class CreateNews extends React.Component {
             label="Post title"
             fullWidth
             margin="normal"
+            className={topInput}
           />
           <TextField
             label="Post content"
@@ -51,16 +62,22 @@ class CreateNews extends React.Component {
             type="file"
             className={defaultFileInput}
           />
-          <label htmlFor="raised-button-file">
+          <label className={customFileButton} htmlFor="raised-button-file">
             <Button variant="raised" component="span">
               Upload images
             </Button>
           </label>
+          <CardContent>
+            <Typography paragraph>
+              Select images to import (max 15 photos, 300kb per file)
+            </Typography>
+          </CardContent>
 
           <TextField
             label="Type tags"
             fullWidth
             margin="normal"
+            className={topInput}
           />
           <Chip label="data.label" />
 
@@ -80,6 +97,8 @@ CreateNews.propTypes = {
   classes: PropTypes.shape({
     actions: PropTypes.string.isRequired,
     defaultFileInput: PropTypes.string.isRequired,
+    topInput: PropTypes.string.isRequired,
+    customFileButton: PropTypes.string.isRequired,
   }).isRequired,
 };
 
