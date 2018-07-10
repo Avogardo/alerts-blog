@@ -5,6 +5,7 @@ import CreateNews from '../imports/components/CreateNews/CreateNews.jsx';
 import {
   CardActions,
   TextField,
+  Button,
 } from '@material-ui/core';
 
 describe("Create news", () => {
@@ -40,6 +41,15 @@ describe("Create news", () => {
       );
 
       expect(inputFile).toBeDefined();
+    });
+
+    it('input type file has it material ui own button ', () => {
+      const inputFile = testInstance.findAllByType('input').find(input =>
+        input.props.type === 'file'
+      );
+      const inputId = inputFile.props.id;
+
+      expect(testInstance.findByProps({ htmlFor: inputId }).findByType(Button)).toBeDefined();
     });
   });
 });
