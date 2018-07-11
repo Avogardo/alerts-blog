@@ -72,19 +72,24 @@ class CreateNews extends React.Component {
 
   onTagChange({ target: { value } }) {
     this.setState({
-      tagInput: value,
+      tagInput: value.trim(),
     });
   }
 
   onTagKeyPress({ key, target }) {
     const { tags } = this.state;
     if (target.value && key === 'Enter' && tags.length < 5) {
-      tags.push(target.value);
-      this.setState({
-        tags,
+      this.setState(prevState => ({
+        tags: [...prevState.tags, target.value],
         tagInput: '',
-      });
+      }));
     }
+  }
+
+  renderTags() {
+    const { tags } = this.state;
+    return tags.map(tag =>
+      <Chip key={tag + new Date().getTime() + Math.random()} label={tag} />);
   }
 
   render() {
@@ -153,7 +158,7 @@ class CreateNews extends React.Component {
             onChange={this.onTagChange}
             value={tagInput}
           />
-          <Chip label="data.label" />
+          {this.renderTags()}
         </CardActions>
 
         <CardActions className={secondActions}>
