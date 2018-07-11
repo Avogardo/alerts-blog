@@ -40,11 +40,15 @@ class CreateNews extends React.Component {
     this.onTitleChange = this.onTitleChange.bind(this);
     this.onContentChange = this.onContentChange.bind(this);
     this.onFileChange = this.onFileChange.bind(this);
+    this.onTagKeyPress = this.onTagKeyPress.bind(this);
+    this.onTagChange = this.onTagChange.bind(this);
 
     this.state = {
       title: '',
       content: '',
+      tagInput: '',
       files: [],
+      tags: [],
     };
   }
 
@@ -66,6 +70,23 @@ class CreateNews extends React.Component {
     });
   }
 
+  onTagChange({ target: { value } }) {
+    this.setState({
+      tagInput: value,
+    });
+  }
+
+  onTagKeyPress({ key, target }) {
+    const { tags } = this.state;
+    if (target.value && key === 'Enter' && tags.length < 5) {
+      tags.push(target.value);
+      this.setState({
+        tags,
+        tagInput: '',
+      });
+    }
+  }
+
   render() {
     const {
       actions,
@@ -79,6 +100,7 @@ class CreateNews extends React.Component {
     const {
       title,
       content,
+      tagInput,
     } = this.state;
 
     return (
@@ -123,10 +145,13 @@ class CreateNews extends React.Component {
           </CardContent>
 
           <TextField
-            label="Type tags"
+            label="Add tags - max 5"
             fullWidth
             margin="normal"
             className={topInput}
+            onKeyPress={this.onTagKeyPress}
+            onChange={this.onTagChange}
+            value={tagInput}
           />
           <Chip label="data.label" />
         </CardActions>
