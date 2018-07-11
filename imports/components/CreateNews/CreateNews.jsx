@@ -52,6 +52,7 @@ class CreateNews extends React.Component {
     this.onFileChange = this.onFileChange.bind(this);
     this.onTagKeyPress = this.onTagKeyPress.bind(this);
     this.onTagChange = this.onTagChange.bind(this);
+    this.clearState = this.clearState.bind(this);
 
     this.state = {
       title: '',
@@ -116,6 +117,16 @@ class CreateNews extends React.Component {
         className={chips}
       />
     ));
+  }
+
+  clearState() {
+    this.setState({
+      title: '',
+      content: '',
+      tagInput: '',
+      files: [],
+      tags: [],
+    });
   }
 
   render() {
@@ -196,6 +207,7 @@ class CreateNews extends React.Component {
             className={actionButtons}
             variant="flat"
             color="secondary"
+            onClick={this.clearState}
           >
             Clear
           </Button>
