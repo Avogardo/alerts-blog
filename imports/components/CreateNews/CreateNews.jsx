@@ -86,10 +86,24 @@ class CreateNews extends React.Component {
     }
   }
 
+  deleteTag = tag => () => {
+    this.setState((state) => {
+      const tags = [...state.tags];
+      const chipToDelete = tags.indexOf(tag);
+      tags.splice(chipToDelete, 1);
+      return { tags };
+    });
+  };
+
   renderTags() {
     const { tags } = this.state;
-    return tags.map(tag =>
-      <Chip key={tag + new Date().getTime() + Math.random()} label={tag} />);
+    return tags.map(tag => (
+      <Chip
+        key={tag + new Date().getTime() + Math.random()}
+        label={tag}
+        onDelete={this.deleteTag(tag)}
+      />
+    ));
   }
 
   render() {
