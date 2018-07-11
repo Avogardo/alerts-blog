@@ -34,6 +34,10 @@ describe("Create news", () => {
     expect(testInstance.findAllByType(TextField)).toHaveLength(3)
   });
 
+  it('always renders 3 buttons', () => {
+    expect(testInstance.findAllByType(Button)).toHaveLength(3)
+  });
+
   describe("file button", () => {
     it('always render a input type file', () => {
       const inputFile = testInstance.findAllByType('input').find(input =>
