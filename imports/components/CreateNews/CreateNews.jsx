@@ -35,6 +35,21 @@ const styles = {
 };
 
 class CreateNews extends React.Component {
+  constructor(props) {
+    super(props);
+    this.onTitleChange = this.onTitleChange.bind(this);
+
+    this.state = {
+      title: '',
+    };
+  }
+
+  onTitleChange({ target: { value } }) {
+    this.setState({
+      title: value,
+    });
+  }
+
   render() {
     const {
       actions,
@@ -45,6 +60,8 @@ class CreateNews extends React.Component {
       actionButtons,
     } = this.props.classes;
 
+    const { title } = this.state;
+
     return (
       <form>
         <CardHeader title="Create news" />
@@ -54,6 +71,8 @@ class CreateNews extends React.Component {
             fullWidth
             margin="normal"
             className={topInput}
+            onChange={this.onTitleChange}
+            value={title}
           />
           <TextField
             label="Post content"
