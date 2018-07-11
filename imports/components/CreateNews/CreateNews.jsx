@@ -97,6 +97,16 @@ class CreateNews extends React.Component {
     }
   }
 
+  clearState() {
+    this.setState({
+      title: '',
+      content: '',
+      tagInput: '',
+      files: [],
+      tags: [],
+    });
+  }
+
   deleteTag = tag => () => {
     this.setState((state) => {
       const tags = [...state.tags];
@@ -117,16 +127,6 @@ class CreateNews extends React.Component {
         className={chips}
       />
     ));
-  }
-
-  clearState() {
-    this.setState({
-      title: '',
-      content: '',
-      tagInput: '',
-      files: [],
-      tags: [],
-    });
   }
 
   render() {
