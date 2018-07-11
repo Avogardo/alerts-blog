@@ -39,10 +39,12 @@ class CreateNews extends React.Component {
     super(props);
     this.onTitleChange = this.onTitleChange.bind(this);
     this.onContentChange = this.onContentChange.bind(this);
+    this.onFileChange = this.onFileChange.bind(this);
 
     this.state = {
       title: '',
       content: '',
+      files: [],
     };
   }
 
@@ -55,6 +57,12 @@ class CreateNews extends React.Component {
   onContentChange({ target: { value } }) {
     this.setState({
       content: value,
+    });
+  }
+
+  onFileChange({ target: { files } }) {
+    this.setState({
+      files,
     });
   }
 
@@ -101,6 +109,7 @@ class CreateNews extends React.Component {
             multiple
             type="file"
             className={defaultFileInput}
+            onChange={this.onFileChange}
           />
           <label className={customFileButton} htmlFor="raised-button-file">
             <Button variant="raised" component="span">
