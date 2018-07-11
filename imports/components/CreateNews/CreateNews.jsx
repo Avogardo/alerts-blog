@@ -38,15 +38,23 @@ class CreateNews extends React.Component {
   constructor(props) {
     super(props);
     this.onTitleChange = this.onTitleChange.bind(this);
+    this.onContentChange = this.onContentChange.bind(this);
 
     this.state = {
       title: '',
+      content: '',
     };
   }
 
   onTitleChange({ target: { value } }) {
     this.setState({
       title: value,
+    });
+  }
+
+  onContentChange({ target: { value } }) {
+    this.setState({
+      content: value,
     });
   }
 
@@ -60,7 +68,10 @@ class CreateNews extends React.Component {
       actionButtons,
     } = this.props.classes;
 
-    const { title } = this.state;
+    const {
+      title,
+      content,
+    } = this.state;
 
     return (
       <form>
@@ -80,6 +91,8 @@ class CreateNews extends React.Component {
             multiline
             margin="normal"
             rowsMax="15"
+            onChange={this.onContentChange}
+            value={content}
           />
 
           <input
