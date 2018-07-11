@@ -20,6 +20,10 @@ const styles = {
   secondActions: {
     justifyContent: 'space-between',
   },
+  chipsActions: {
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+  },
   defaultFileInput: {
     display: 'none',
   },
@@ -31,6 +35,12 @@ const styles = {
   },
   actionButtons: {
     margin: 16,
+  },
+  chips: {
+    margin: 4,
+  },
+  chipsInput: {
+    margin: 0,
   },
 };
 
@@ -97,11 +107,13 @@ class CreateNews extends React.Component {
 
   renderTags() {
     const { tags } = this.state;
+    const { chips } = this.props.classes;
     return tags.map(tag => (
       <Chip
         key={tag + new Date().getTime() + Math.random()}
         label={tag}
         onDelete={this.deleteTag(tag)}
+        className={chips}
       />
     ));
   }
@@ -114,6 +126,8 @@ class CreateNews extends React.Component {
       customFileButton,
       secondActions,
       actionButtons,
+      chipsActions,
+      chipsInput,
     } = this.props.classes;
 
     const {
@@ -167,11 +181,13 @@ class CreateNews extends React.Component {
             label="Add tags - max 5"
             fullWidth
             margin="normal"
-            className={topInput}
+            className={chipsInput}
             onKeyPress={this.onTagKeyPress}
             onChange={this.onTagChange}
             value={tagInput}
           />
+        </CardActions>
+        <CardActions className={chipsActions}>
           {this.renderTags()}
         </CardActions>
 
@@ -204,6 +220,9 @@ CreateNews.propTypes = {
     topInput: PropTypes.string.isRequired,
     customFileButton: PropTypes.string.isRequired,
     actionButtons: PropTypes.string.isRequired,
+    chipsActions: PropTypes.string.isRequired,
+    chips: PropTypes.string.isRequired,
+    chipsInput: PropTypes.string.isRequired,
   }).isRequired,
 };
 
