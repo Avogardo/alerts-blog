@@ -26,8 +26,8 @@ describe("Create news", () => {
     expect(testInstance.findAllByType('form')).toHaveLength(1)
   });
 
-  it('always renders a CardActions', () => {
-    expect(testInstance.findAllByType(CardActions)).toHaveLength(1)
+  it('always renders 2 CardActions', () => {
+    expect(testInstance.findAllByType(CardActions)).toHaveLength(2)
   });
 
   it('always renders 3 TextField', () => {
