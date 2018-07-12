@@ -1,4 +1,3 @@
-import { Meteor } from 'meteor/meteor';
 import { compose } from 'react-komposer';
 import { actions as newsActions } from '../../api/news';
 import CreateNews from './CreateNews.jsx';
