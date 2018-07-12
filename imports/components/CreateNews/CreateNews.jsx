@@ -99,13 +99,20 @@ class CreateNews extends React.Component {
   }
 
   onCreate() {
+    const { createNews } = this.props;
     const {
       title,
       content,
-      tagInput,
       files,
       tags,
     } = this.state;
+
+    createNews(
+      title,
+      content,
+      files,
+      tags,
+    );
   }
 
   clearState() {
@@ -248,6 +255,7 @@ CreateNews.propTypes = {
     chips: PropTypes.string.isRequired,
     chipsInput: PropTypes.string.isRequired,
   }).isRequired,
+  createNews: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(CreateNews);

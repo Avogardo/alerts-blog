@@ -7,14 +7,12 @@ const composer = (props, onData) => {
   const createNews = (
     title,
     content,
-    tagInput,
     files,
     tags,
   ) => {
     newsActions.createNews(
       title,
       content,
-      tagInput,
       files,
       tags,
     ).then(() => console.log('success'))
