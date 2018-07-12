@@ -11,6 +11,7 @@ import {
   CardContent,
   Typography,
   Snackbar,
+  Avatar,
 } from '@material-ui/core';
 
 const styles = {
@@ -183,6 +184,23 @@ class CreateNews extends React.Component {
     ));
   }
 
+  renderImages() {
+    const { unit8ArrayFiles } = this.state;
+
+    return unit8ArrayFiles.map((image, index) => {
+      const blob = new Blob([image], { type: 'image/jpeg' });
+      const urlCreator = window.URL || window.webkitURL;
+      const imageUrl = urlCreator.createObjectURL(blob);
+      return (
+        <Chip
+          key={image[0] + new Date().getTime() + Math.random()}
+          avatar={<Avatar src={imageUrl} />}
+          label={`Picture ${index + 1}`}
+        />
+      );
+    });
+  }
+
   render() {
     const {
       actions,
@@ -225,6 +243,7 @@ class CreateNews extends React.Component {
             value={content}
           />
 
+          {this.renderImages()}
           <input
             accept="image/*"
             id="raised-button-file"
