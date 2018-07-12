@@ -79,8 +79,8 @@ class CreateNews extends React.Component {
     });
   }
 
-  onFileChange({ target: { files } }) {
-    const fileArray = [...files];
+  onFileChange({ target }) {
+    const fileArray = [...target.files];
     // read the file as arraybuffer
     fileArray.forEach((file) => {
       const reader = new FileReader();
@@ -94,6 +94,8 @@ class CreateNews extends React.Component {
 
       reader.readAsArrayBuffer(file);
     });
+
+    target.value = null;
   }
 
   onTagChange({ target: { value } }) {
