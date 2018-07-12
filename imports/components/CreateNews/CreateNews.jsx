@@ -63,6 +63,7 @@ class CreateNews extends React.Component {
       unit8ArrayFiles: [],
       tags: [],
       isSnackBarOpen: false,
+      snackBarMessage: '',
     };
   }
 
@@ -127,10 +128,14 @@ class CreateNews extends React.Component {
       tags,
     ).then(() => {
       this.setState({
+        snackBarMessage: 'News has been created',
         isSnackBarOpen: true,
       });
     }).catch((error) => {
-      console.log(error);
+      this.setState({
+        snackBarMessage: error,
+        isSnackBarOpen: true,
+      });
     });
   }
 
@@ -193,6 +198,7 @@ class CreateNews extends React.Component {
       content,
       tagInput,
       isSnackBarOpen,
+      snackBarMessage,
     } = this.state;
 
     return (
@@ -280,7 +286,7 @@ class CreateNews extends React.Component {
           ContentProps={{
             'aria-describedby': 'message-id',
           }}
-          message={<span id="message-id">News has been created</span>}
+          message={<span id="message-id">{snackBarMessage}</span>}
         />
       </form>
     );
