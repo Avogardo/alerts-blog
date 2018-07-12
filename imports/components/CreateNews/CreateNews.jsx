@@ -59,7 +59,7 @@ class CreateNews extends React.Component {
       title: '',
       content: '',
       tagInput: '',
-      files: [],
+      unit8ArrayFiles: {},
       tags: [],
     };
   }
@@ -77,9 +77,16 @@ class CreateNews extends React.Component {
   }
 
   onFileChange({ target: { files } }) {
-    this.setState({
-      files,
-    });
+    const reader = new FileReader();
+    reader.onload = () => {
+      // convert to binary
+      const buffer = new Uint8Array(reader.result);
+      this.setState({
+        unit8ArrayFiles: buffer,
+      });
+    };
+    // read the file as arraybuffer
+    reader.readAsArrayBuffer(files[0]);
   }
 
   onTagChange({ target: { value } }) {
@@ -103,14 +110,14 @@ class CreateNews extends React.Component {
     const {
       title,
       content,
-      files,
+      unit8ArrayFiles,
       tags,
     } = this.state;
-
+    console.log(typeof unit8ArrayFiles);
     createNews(
       title,
       content,
-      files,
+      { data: unit8ArrayFiles },
       tags,
     );
   }
@@ -120,7 +127,7 @@ class CreateNews extends React.Component {
       title: '',
       content: '',
       tagInput: '',
-      files: [],
+      unit8ArrayFiles: [],
       tags: [],
     });
   }

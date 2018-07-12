@@ -45,27 +45,32 @@ const createNews = new ValidatedMethod({
     const authorId = Meteor.userId();
     const createdAt = new Date();
 
-    const image = images[0];
-
     // create a reader according to HTML5 File API
-    const reader = new FileReader();
 
-    reader.onload = () => {
-      // convert to binary
-      const buffer = new Uint8Array(reader.result);
-
-      return News.insert({
-        authorId,
-        createdAt,
-        title,
-        content,
-        images: buffer,
-        tags,
-      });
-    };
-
-    // read the file as arraybuffer
-    reader.readAsArrayBuffer(image);
+    console.log(
+      authorId,
+      createdAt,
+      title,
+      content,
+      images,
+      tags,
+    );
+//     reader.onload = () => {
+//       // convert to binary
+//       const buffer = new Uint8Array(reader.result);
+// console.log(buffer);
+//       return News.insert({
+//         authorId,
+//         createdAt,
+//         title,
+//         content,
+//         images: buffer,
+//         tags,
+//       });
+//     };
+//
+//     // read the file as arraybuffer
+//     reader.readAsArrayBuffer(image);
   },
 });
 

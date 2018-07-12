@@ -11,11 +11,10 @@ const NewsContentSchema = new SimpleSchema({
 
 const NewsImagesSchema = new SimpleSchema({
   images: {
-    type: Array,
-    defaultValue: [],
-  },
-  'images.$': {
-    type: String,
+    type: Object,
+    optional: true,
+    blackbox: true,
+    defaultValue: {},
   },
 });
 
