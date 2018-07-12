@@ -10,6 +10,7 @@ import {
   withStyles,
   CardContent,
   Typography,
+  Snackbar,
 } from '@material-ui/core';
 
 const styles = {
@@ -61,6 +62,7 @@ class CreateNews extends React.Component {
       tagInput: '',
       unit8ArrayFiles: [],
       tags: [],
+      isSnackBarOpen: false,
     };
   }
 
@@ -123,8 +125,24 @@ class CreateNews extends React.Component {
       content,
       { data: unit8ArrayFiles },
       tags,
-    );
+    ).then(() => {
+      this.setState({
+        isSnackBarOpen: true,
+      });
+    }).catch((error) => {
+      console.log(error);
+    });
   }
+
+  snackBarClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    this.setState({
+      isSnackBarOpen: false,
+    });
+  };
 
   clearState() {
     this.setState({
@@ -174,6 +192,7 @@ class CreateNews extends React.Component {
       title,
       content,
       tagInput,
+      isSnackBarOpen,
     } = this.state;
 
     return (
@@ -249,6 +268,20 @@ class CreateNews extends React.Component {
             Create
           </Button>
         </CardActions>
+
+        <Snackbar
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'left',
+          }}
+          open={isSnackBarOpen}
+          autoHideDuration={3500}
+          onClose={this.snackBarClose}
+          ContentProps={{
+            'aria-describedby': 'message-id',
+          }}
+          message={<span id="message-id">News has been created</span>}
+        />
       </form>
     );
   }
