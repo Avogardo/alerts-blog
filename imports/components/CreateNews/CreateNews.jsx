@@ -52,6 +52,7 @@ class CreateNews extends React.Component {
     this.onFileChange = this.onFileChange.bind(this);
     this.onTagKeyPress = this.onTagKeyPress.bind(this);
     this.onTagChange = this.onTagChange.bind(this);
+    this.onCreate = this.onCreate.bind(this);
     this.clearState = this.clearState.bind(this);
 
     this.state = {
@@ -95,6 +96,16 @@ class CreateNews extends React.Component {
         tagInput: '',
       }));
     }
+  }
+
+  onCreate() {
+    const {
+      title,
+      content,
+      tagInput,
+      files,
+      tags,
+    } = this.state;
   }
 
   clearState() {
@@ -215,6 +226,7 @@ class CreateNews extends React.Component {
             className={actionButtons}
             variant="raised"
             color="primary"
+            onClick={this.onCreate}
           >
             Create
           </Button>
