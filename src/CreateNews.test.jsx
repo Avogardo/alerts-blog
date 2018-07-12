@@ -9,16 +9,20 @@ import {
 } from '@material-ui/core';
 
 describe("Create news", () => {
-  let testRenderer, testInstance;
+  let props, testRenderer, testInstance;
 
   beforeEach(() => {
-    testRenderer = TestRenderer.create(<CreateNews />);
+    props = {
+      createNews: () => {},
+    };
+
+    testRenderer = TestRenderer.create(<CreateNews {...props} />);
     testInstance = testRenderer.root;
   });
 
   it('renders without crashing', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<CreateNews />, div);
+    ReactDOM.render(<CreateNews {...props} />, div);
     ReactDOM.unmountComponentAtNode(div);
   });
 
@@ -26,8 +30,8 @@ describe("Create news", () => {
     expect(testInstance.findAllByType('form')).toHaveLength(1)
   });
 
-  it('always renders 2 CardActions', () => {
-    expect(testInstance.findAllByType(CardActions)).toHaveLength(2)
+  it('always renders 3 CardActions', () => {
+    expect(testInstance.findAllByType(CardActions)).toHaveLength(3)
   });
 
   it('always renders 3 TextField', () => {
