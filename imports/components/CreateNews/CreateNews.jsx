@@ -146,7 +146,7 @@ class CreateNews extends React.Component {
       });
     }).catch((error) => {
       this.setState({
-        snackBarMessage: error,
+        snackBarMessage: `Error: ${error.message}`,
         isSnackBarOpen: true,
       });
     });

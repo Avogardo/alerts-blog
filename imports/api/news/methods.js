@@ -35,10 +35,20 @@ const createNews = new ValidatedMethod({
     tags,
   }) {
     throwErrorIfNotAdmin();
-    if (images.length > 15) {
+    if (images.data.length > 15) {
       throw new Meteor.Error(
         'too.many.images.uploaded',
         'There is too many images',
+      );
+    } else if (title.length < 3) {
+      throw new Meteor.Error(
+        'not.enought.characters',
+        'Title is too short',
+      );
+    } else if (content.length < 15) {
+      throw new Meteor.Error(
+        'not.enought.characters',
+        'Article is too short',
       );
     }
 
