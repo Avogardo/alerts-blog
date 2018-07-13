@@ -4,17 +4,35 @@ import './NewsContainer.css';
 
 class NewsContainer extends Component {
   render() {
-    const { newsArray } = this.props;
+    const { topNews } = this.props;
+
     return (
       <section>
-        <h2>content {newsArray[0]}</h2>
+        <h2>{topNews.length ? topNews[0].title : ''}</h2>
       </section>
     );
   }
 }
 
+NewsContainer.defaultProps = {
+  topNews: [],
+};
+
 NewsContainer.propTypes = {
-  newsArray: PropTypes.arrayOf(PropTypes.number).isRequired,
+  topNews: PropTypes.arrayOf(PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    authorId: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired,
+    createdAt: PropTypes.instanceOf(Date).isRequired,
+    tags: PropTypes.arrayOf(PropTypes.string).isRequired,
+    images: PropTypes.shape({
+      data: PropTypes.arrayOf(PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        image: PropTypes.instanceOf(Uint8Array).isRequired,
+      })),
+    }).isRequired,
+  }).isRequired),
 };
 
 export default NewsContainer;

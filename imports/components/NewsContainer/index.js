@@ -22,16 +22,15 @@ const getTrackerLoader = composer =>
 const composer = (props, onData) => {
   const topNewsHandler = Meteor.subscribe('recentNewsWithLimit');
 
-  if (topNewsHandler) {
+  if (topNewsHandler.ready()) {
     const topNews = NewsCollection.find().fetch();
-    console.log(topNews);
 
     onData(null, {
       topNews,
     });
+  } else {
+    onData(null, {});
   }
-
-  onData(null, {});
 };
 
 export default compose(getTrackerLoader(composer))(NewsContainer);

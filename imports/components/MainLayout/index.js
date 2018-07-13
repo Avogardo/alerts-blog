@@ -10,8 +10,8 @@ import {
 import { actions as newsActions } from '../../api/news';
 import MainLayout from './MainLayout.jsx';
 
-function getTrackerLoader(composer) {
-  return (props, onData, env) => {
+const getTrackerLoader = composer =>
+  (props, onData, env) => {
     let trackerCleanup = null;
     const handler = Tracker.nonreactive(() =>
       Tracker.autorun(() => {
@@ -24,7 +24,7 @@ function getTrackerLoader(composer) {
       return handler.stop();
     };
   };
-}
+
 
 const composer = (props, onData) => {
   const userHandler = Meteor.subscribe('extendedUser');
