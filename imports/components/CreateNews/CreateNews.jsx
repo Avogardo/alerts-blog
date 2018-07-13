@@ -208,6 +208,14 @@ class CreateNews extends React.Component {
     });
   };
 
+  deleteImage = index => () => {
+    this.setState((state) => {
+      const unit8ArrayFiles = [...state.unit8ArrayFiles];
+      unit8ArrayFiles.splice(index, 1);
+      return { unit8ArrayFiles };
+    });
+  };
+
   renderTags() {
     const { tags } = this.state;
     const { chips } = this.props.classes;
@@ -224,7 +232,7 @@ class CreateNews extends React.Component {
   renderImages() {
     const { unit8ArrayFiles } = this.state;
 
-    return unit8ArrayFiles.map(({ image, name }) => {
+    return unit8ArrayFiles.map(({ image, name }, index) => {
       const blob = new Blob([image], { type: 'image/jpeg' });
       const urlCreator = window.URL || window.webkitURL;
       const imageUrl = urlCreator.createObjectURL(blob);
@@ -236,6 +244,7 @@ class CreateNews extends React.Component {
           avatar={<Avatar src={imageUrl} />}
           label={labelName}
           className={chips}
+          onDelete={this.deleteImage(index)}
         />
       );
     });
