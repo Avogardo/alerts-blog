@@ -66,6 +66,7 @@ class CreateNews extends React.Component {
       isSnackBarOpen: false,
       snackBarMessage: '',
       titleError: '',
+      contentError: '',
     };
   }
 
@@ -125,7 +126,7 @@ class CreateNews extends React.Component {
       tags,
     } = this.state;
 
-    if (this.validateForm(title, content, unit8ArrayFiles, tags)) {
+    if (this.validateForm(title, content)) {
       return;
     }
 
@@ -147,7 +148,7 @@ class CreateNews extends React.Component {
     });
   }
 
-  validateForm(title, content, unit8ArrayFiles, tags) {
+  validateForm(title, content) {
     let isError = false;
     if (title.length < 3) {
       isError = true;
@@ -157,6 +158,17 @@ class CreateNews extends React.Component {
     } else {
       this.setState({
         titleError: '',
+      });
+    }
+
+    if (content.length < 15) {
+      isError = true;
+      this.setState({
+        contentError: 'Article is too short',
+      });
+    } else {
+      this.setState({
+        contentError: '',
       });
     }
 
@@ -241,6 +253,7 @@ class CreateNews extends React.Component {
       isSnackBarOpen,
       snackBarMessage,
       titleError,
+      contentError,
     } = this.state;
 
     return (
@@ -265,6 +278,8 @@ class CreateNews extends React.Component {
             rowsMax="15"
             onChange={this.onContentChange}
             value={content}
+            error={!!contentError}
+            helperText={contentError}
           />
 
           {this.renderImages()}
