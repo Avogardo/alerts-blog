@@ -65,6 +65,7 @@ class CreateNews extends React.Component {
       tags: [],
       isSnackBarOpen: false,
       snackBarMessage: '',
+      titleError: '',
     };
   }
 
@@ -124,6 +125,10 @@ class CreateNews extends React.Component {
       tags,
     } = this.state;
 
+    if (this.validateForm(title, content, unit8ArrayFiles, tags)) {
+      return;
+    }
+
     createNews(
       title,
       content,
@@ -140,6 +145,22 @@ class CreateNews extends React.Component {
         isSnackBarOpen: true,
       });
     });
+  }
+
+  validateForm(title, content, unit8ArrayFiles, tags) {
+    let isError = false;
+    if (title.length < 3) {
+      isError = true;
+      this.setState({
+        titleError: 'Tittle is too short',
+      });
+    } else {
+      this.setState({
+        titleError: '',
+      });
+    }
+
+    return isError;
   }
 
   snackBarClose = (event, reason) => {
@@ -219,6 +240,7 @@ class CreateNews extends React.Component {
       tagInput,
       isSnackBarOpen,
       snackBarMessage,
+      titleError,
     } = this.state;
 
     return (
@@ -232,6 +254,7 @@ class CreateNews extends React.Component {
             className={topInput}
             onChange={this.onTitleChange}
             value={title}
+            error={!!titleError}
           />
           <TextField
             label="Post content"
