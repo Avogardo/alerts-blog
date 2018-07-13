@@ -199,16 +199,15 @@ class CreateNews extends React.Component {
     });
   }
 
-  deleteTag = tag => () => {
+  deleteTag = index => () => {
     this.setState((state) => {
       const tags = [...state.tags];
-      const chipToDelete = tags.indexOf(tag);
-      tags.splice(chipToDelete, 1);
+      tags.splice(index, 1);
       return { tags };
     });
   };
 
-  deleteImage = index => () => {
+  deleteChip = index => () => {
     this.setState((state) => {
       const unit8ArrayFiles = [...state.unit8ArrayFiles];
       unit8ArrayFiles.splice(index, 1);
@@ -219,11 +218,11 @@ class CreateNews extends React.Component {
   renderTags() {
     const { tags } = this.state;
     const { chips } = this.props.classes;
-    return tags.map(tag => (
+    return tags.map((tag, index) => (
       <Chip
         key={tag + new Date().getTime() + Math.random()}
         label={tag}
-        onDelete={this.deleteTag(tag)}
+        onDelete={this.deleteTag(index)}
         className={chips}
       />
     ));
@@ -244,7 +243,7 @@ class CreateNews extends React.Component {
           avatar={<Avatar src={imageUrl} />}
           label={labelName}
           className={chips}
-          onDelete={this.deleteImage(index)}
+          onDelete={this.deleteChip(index)}
         />
       );
     });
