@@ -32,8 +32,8 @@ const styles = {
   topInput: {
     marginTop: 0,
   },
-  customFileButton: {
-    marginTop: 35,
+  contentInput: {
+    marginBottom: 35,
   },
   actionButtons: {
     margin: 16,
@@ -224,11 +224,13 @@ class CreateNews extends React.Component {
       const blob = new Blob([image], { type: 'image/jpeg' });
       const urlCreator = window.URL || window.webkitURL;
       const imageUrl = urlCreator.createObjectURL(blob);
+      const { chips } = this.props.classes;
       return (
         <Chip
           key={image[0] + new Date().getTime() + Math.random()}
           avatar={<Avatar src={imageUrl} />}
           label={`Picture ${index + 1}`}
+          className={chips}
         />
       );
     });
@@ -239,11 +241,11 @@ class CreateNews extends React.Component {
       actions,
       defaultFileInput,
       topInput,
-      customFileButton,
       secondActions,
       actionButtons,
       chipsActions,
       chipsInput,
+      contentInput,
     } = this.props.classes;
 
     const {
@@ -280,9 +282,12 @@ class CreateNews extends React.Component {
             value={content}
             error={!!contentError}
             helperText={contentError}
+            className={contentInput}
           />
 
-          {this.renderImages()}
+          <CardActions className={chipsActions}>
+            {this.renderImages()}
+          </CardActions>
           <input
             accept="image/*"
             id="raised-button-file"
@@ -291,7 +296,7 @@ class CreateNews extends React.Component {
             className={defaultFileInput}
             onChange={this.onFileChange}
           />
-          <label className={customFileButton} htmlFor="raised-button-file">
+          <label htmlFor="raised-button-file">
             <Button variant="raised" component="span">
               Upload images
             </Button>
@@ -359,11 +364,11 @@ CreateNews.propTypes = {
     secondActions: PropTypes.string.isRequired,
     defaultFileInput: PropTypes.string.isRequired,
     topInput: PropTypes.string.isRequired,
-    customFileButton: PropTypes.string.isRequired,
     actionButtons: PropTypes.string.isRequired,
     chipsActions: PropTypes.string.isRequired,
     chips: PropTypes.string.isRequired,
     chipsInput: PropTypes.string.isRequired,
+    contentInput: PropTypes.string.isRequired,
   }).isRequired,
   createNews: PropTypes.func.isRequired,
 };
