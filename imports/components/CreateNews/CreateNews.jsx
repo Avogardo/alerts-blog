@@ -255,6 +255,7 @@ class CreateNews extends React.Component {
             onChange={this.onTitleChange}
             value={title}
             error={!!titleError}
+            helperText={titleError}
           />
           <TextField
             label="Post content"
