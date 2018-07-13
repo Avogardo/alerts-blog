@@ -91,7 +91,10 @@ class CreateNews extends React.Component {
         // convert to binary
         const buffer = new Uint8Array(reader.result);
         this.setState(prevState => ({
-          unit8ArrayFiles: [...prevState.unit8ArrayFiles, buffer],
+          unit8ArrayFiles: [
+            ...prevState.unit8ArrayFiles,
+            { image: buffer, name: file.name },
+          ],
         }));
       };
 
@@ -136,6 +139,7 @@ class CreateNews extends React.Component {
       { data: unit8ArrayFiles },
       tags,
     ).then(() => {
+      this.clearState();
       this.setState({
         snackBarMessage: 'News has been created',
         isSnackBarOpen: true,
@@ -220,16 +224,17 @@ class CreateNews extends React.Component {
   renderImages() {
     const { unit8ArrayFiles } = this.state;
 
-    return unit8ArrayFiles.map((image, index) => {
+    return unit8ArrayFiles.map(({ image, name }) => {
       const blob = new Blob([image], { type: 'image/jpeg' });
       const urlCreator = window.URL || window.webkitURL;
       const imageUrl = urlCreator.createObjectURL(blob);
       const { chips } = this.props.classes;
+      const labelName = name.length < 40 ? name : `${name.substring(0, 40)}...`;
       return (
         <Chip
           key={image[0] + new Date().getTime() + Math.random()}
           avatar={<Avatar src={imageUrl} />}
-          label={`Picture ${index + 1}`}
+          label={labelName}
           className={chips}
         />
       );
