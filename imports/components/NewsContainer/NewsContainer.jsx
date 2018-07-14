@@ -1,14 +1,38 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import {
+  GridList,
+  GridListTile,
+  GridListTileBar,
+} from '@material-ui/core';
 import './NewsContainer.css';
 
 class NewsContainer extends Component {
+  static renderImage(news) {
+    const blob = new Blob([news.enterImage.data.image], { type: 'image/jpeg' });
+    const urlCreator = window.URL || window.webkitURL;
+    const imageUrl = urlCreator.createObjectURL(blob);
+    return <img src={imageUrl} alt={news.enterImage.data.name} />;
+  }
+
   render() {
     const { topNews } = this.props;
 
     return (
       <section>
-        <h2>{topNews.length ? topNews[0].title : ''}</h2>
+        {topNews.length &&
+          <GridList cellHeight={250} cols={1}>
+            {topNews.map(news => (
+              <GridListTile key={news._id}>
+                {NewsContainer.renderImage(news)}
+                <GridListTileBar
+                  title={news.title}
+                  subtitle={<span>by: {news.authorId}</span>}
+                />
+              </GridListTile>
+            ))}
+          </GridList>
+        }
       </section>
     );
   }
