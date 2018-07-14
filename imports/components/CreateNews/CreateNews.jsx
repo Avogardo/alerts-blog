@@ -236,7 +236,7 @@ class CreateNews extends React.Component {
       const urlCreator = window.URL || window.webkitURL;
       const imageUrl = urlCreator.createObjectURL(blob);
       const { chips } = this.props.classes;
-      const labelName = name.length < 40 ? name : `${name.substring(0, 40)}...`;
+      const labelName = name.length < 30 ? name : `${name.substring(0, 30)}...`;
       return (
         <Chip
           key={image[0] + new Date().getTime() + Math.random()}
