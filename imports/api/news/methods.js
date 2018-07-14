@@ -54,6 +54,7 @@ const createNews = new ValidatedMethod({
 
     const authorId = Meteor.userId();
     const createdAt = new Date();
+    const enterImage = images.data[0];
 
     return News.insert({
       authorId,
@@ -61,6 +62,7 @@ const createNews = new ValidatedMethod({
       title,
       content,
       images,
+      enterImage: { data: enterImage },
       tags,
     });
   },

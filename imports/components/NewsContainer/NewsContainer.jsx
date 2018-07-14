@@ -26,11 +26,11 @@ NewsContainer.propTypes = {
     content: PropTypes.string.isRequired,
     createdAt: PropTypes.instanceOf(Date).isRequired,
     tags: PropTypes.arrayOf(PropTypes.string).isRequired,
-    images: PropTypes.shape({
-      data: PropTypes.arrayOf(PropTypes.shape({
+    enterImage: PropTypes.shape({
+      data: PropTypes.shape({
         name: PropTypes.string.isRequired,
         image: PropTypes.instanceOf(Uint8Array).isRequired,
-      })),
+      }),
     }).isRequired,
   }).isRequired),
 };

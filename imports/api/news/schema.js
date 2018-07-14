@@ -36,6 +36,12 @@ const NewsSchema = new SimpleSchema({
     type: Date,
     defaultValue: new Date(),
   },
+  enterImage: {
+    type: Object,
+    optional: true,
+    blackbox: true,
+    defaultValue: {},
+  },
 });
 NewsSchema.extend(NewsContentSchema);
 NewsSchema.extend(NewsImagesSchema);
