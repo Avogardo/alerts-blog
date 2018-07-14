@@ -24,7 +24,7 @@ const composer = (props, onData) => {
 
   if (topNewsHandler.ready()) {
     const topNews = NewsCollection.find().fetch();
-    const authors = topNews.map(news => Meteor.user(news.authorId));
+    const authors = topNews.map(news => Meteor.user(news.authorId).profile.name);
     onData(null, {
       topNews,
       authors,

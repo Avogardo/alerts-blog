@@ -5,6 +5,7 @@ import {
   GridListTile,
   GridListTileBar,
 } from '@material-ui/core';
+import { AccountOutlineIcon } from 'mdi-react';
 import './NewsContainer.css';
 
 class NewsContainer extends Component {
@@ -27,7 +28,11 @@ class NewsContainer extends Component {
                 {NewsContainer.renderImage(news)}
                 <GridListTileBar
                   title={news.title}
-                  subtitle={<span>by: {authors[index].profile.name}</span>}
+                  subtitle={
+                    <span className="subtitle-tile">
+                      <AccountOutlineIcon className="user-icon" size={17} /> {authors[index]}
+                    </span>
+                  }
                 />
               </GridListTile>
             ))}
@@ -40,6 +45,7 @@ class NewsContainer extends Component {
 
 NewsContainer.defaultProps = {
   topNews: [],
+  authors: [],
 };
 
 NewsContainer.propTypes = {
@@ -57,6 +63,7 @@ NewsContainer.propTypes = {
       }),
     }).isRequired,
   }).isRequired),
+  authors: PropTypes.arrayOf(PropTypes.string.isRequired),
 };
 
 export default NewsContainer;
