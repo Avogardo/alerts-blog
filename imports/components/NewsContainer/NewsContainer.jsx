@@ -16,18 +16,18 @@ class NewsContainer extends Component {
   }
 
   render() {
-    const { topNews } = this.props;
+    const { topNews, authors } = this.props;
 
     return (
       <section>
         {topNews.length &&
           <GridList cellHeight={250} cols={1}>
-            {topNews.map(news => (
+            {topNews.map((news, index) => (
               <GridListTile key={news._id}>
                 {NewsContainer.renderImage(news)}
                 <GridListTileBar
                   title={news.title}
-                  subtitle={<span>by: {news.authorId}</span>}
+                  subtitle={<span>by: {authors[index].profile.name}</span>}
                 />
               </GridListTile>
             ))}
