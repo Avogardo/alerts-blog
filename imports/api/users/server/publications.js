@@ -16,3 +16,13 @@ Meteor.publish('extendedUser', function publishExtendedUser() {
     },
   });
 });
+
+Meteor.publish('userList', function publishUserList() {
+  const options = {
+    fields: {
+      'profile.name': 1,
+    },
+  };
+
+  return Meteor.users.find({}, options);
+});

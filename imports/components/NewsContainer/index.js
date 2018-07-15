@@ -21,10 +21,15 @@ const getTrackerLoader = composer =>
 
 const composer = (props, onData) => {
   const topNewsHandler = Meteor.subscribe('recentNewsWithLimit');
+  const userListHandler = Meteor.subscribe('userList');
 
-  if (topNewsHandler.ready()) {
+  if (topNewsHandler.ready() && userListHandler.ready()) {
     const topNews = NewsCollection.find().fetch();
-    const authors = topNews.map(news => Meteor.user(news.authorId).profile.name);
+    const users = Meteor.users.find({}).fetch();
+
+    const authors = topNews.map(news =>
+      users.find(user => user._id === news.authorId).profile.name);
+
     onData(null, {
       topNews,
       authors,
