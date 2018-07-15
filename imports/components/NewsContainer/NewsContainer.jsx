@@ -39,7 +39,7 @@ class NewsContainer extends Component {
     const blob = new Blob([news.enterImage.data.image], { type: 'image/jpeg' });
     const urlCreator = window.URL || window.webkitURL;
     const imageUrl = urlCreator.createObjectURL(blob);
-    return <img className="enter-news-image" src={imageUrl} alt={news.enterImage.data.name} />;
+    return <div><img className="enter-news-image" src={imageUrl} alt={news.enterImage.data.name} /></div>;
   }
 
   render() {
