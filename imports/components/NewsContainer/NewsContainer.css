@@ -27,6 +27,10 @@
     min-height: 100%;
 }
 
+.enter-news-tile {
+    margin-bottom: 6px;
+}
+
 .enter-news-tile:hover .enter-news-image {
 	transform: scale(1.05, 1.05);
     opacity: 1;

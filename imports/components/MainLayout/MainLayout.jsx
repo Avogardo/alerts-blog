@@ -64,7 +64,7 @@ class MainLayout extends Component {
 
   render() {
     const { isSidebarOpen } = this.state;
-    const { isLoggedInUser, isAuthorized } = this.props;
+    const { isLoggedInUser, isAuthorized, location } = this.props;
 
     return (
       <div className="container">
@@ -80,7 +80,10 @@ class MainLayout extends Component {
           onLogOut={this.onLogOut}
           isAuthorized={isAuthorized}
         />
-        <div className="content-container" key="content-container">
+        <div
+          className={location.pathname === '/' ? 'content-container-root' : 'content-container'}
+          key="content-container"
+        >
           <Route exact path="/" component={NewsContainer} />
           <Route
             exact
@@ -114,6 +117,7 @@ MainLayout.propTypes = {
   history: ReactRouterPropTypes.history.isRequired,
   isLoggedInUser: PropTypes.bool.isRequired,
   isAuthorized: PropTypes.bool.isRequired,
+  location: ReactRouterPropTypes.location.isRequired,
 };
 
 export default MainLayout;
