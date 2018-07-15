@@ -6,8 +6,23 @@ import {
   GridListTileBar,
   withStyles,
 } from '@material-ui/core';
-import { AccountOutlineIcon } from 'mdi-react';
+import { AccountOutlineIcon, CalendarMultipleCheckIcon } from 'mdi-react';
 import './NewsContainer.css';
+
+const formatDate = (date) => {
+  const monthNamesEng = [
+    'January', 'February', 'March',
+    'April', 'May', 'June', 'July',
+    'August', 'September', 'October',
+    'November', 'December',
+  ];
+
+  const day = date.getDate();
+  const monthIndex = date.getMonth();
+  const year = date.getFullYear();
+
+  return `${day} ${monthNamesEng[monthIndex]}, ${year}`;
+};
 
 const styles = {
   gridListTileBar: {
@@ -40,6 +55,7 @@ class NewsContainer extends Component {
                   subtitle={
                     <span className="subtitle-tile">
                       <AccountOutlineIcon className="user-icon" size={17} /> {authors[index]}
+                      <CalendarMultipleCheckIcon className="middle-icon" size={17} /> {formatDate(news.createdAt)}
                     </span>
                   }
                 />
