@@ -23,17 +23,23 @@ const composer = (props, onData) => {
   const topNewsHandler = Meteor.subscribe('recentNewsWithLimit');
   const userListHandler = Meteor.subscribe('userList');
 
-  if (topNewsHandler.ready() && userListHandler.ready()) {
+  if (topNewsHandler.ready()) {
     const topNews = NewsCollection.find().fetch();
-    const users = Meteor.users.find({}).fetch();
-
-    const authors = topNews.map(news =>
-      users.find(user => user._id === news.authorId).profile.name);
 
     onData(null, {
       topNews,
-      authors,
     });
+
+    if (userListHandler.ready()) {
+      const users = Meteor.users.find({}).fetch();
+      const authors = topNews.map(news =>
+        users.find(user => user._id === news.authorId).profile.name);
+
+      onData(null, {
+        topNews,
+        authors,
+      });
+    }
   } else {
     onData(null, {});
   }
