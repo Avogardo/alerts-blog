@@ -6,7 +6,11 @@ import {
   GridListTileBar,
   withStyles,
 } from '@material-ui/core';
-import { AccountOutlineIcon, CalendarMultipleCheckIcon } from 'mdi-react';
+import {
+  AccountOutlineIcon,
+  CalendarMultipleCheckIcon,
+  MessageOutlineIcon,
+} from 'mdi-react';
 import './NewsContainer.css';
 
 const formatDate = (date) => {
@@ -60,6 +64,7 @@ class NewsContainer extends Component {
                         ''
                       }
                       <CalendarMultipleCheckIcon className="middle-icon" size={17} /> {formatDate(news.createdAt)}
+                      <MessageOutlineIcon className="middle-icon" size={17} /> 06 Comments
                     </span>
                   }
                 />
