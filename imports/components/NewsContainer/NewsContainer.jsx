@@ -51,7 +51,7 @@ class NewsContainer extends Component {
         {topNews.length ?
           <GridList cellHeight={250} cols={1}>
             {topNews.map((news, index) => (
-              <GridListTile key={news._id}>
+              <GridListTile className="enter-news-tile" key={news._id}>
                 {NewsContainer.renderImage(news)}
                 <GridListTileBar
                   className={gridListTileBar}
@@ -59,11 +59,16 @@ class NewsContainer extends Component {
                   subtitle={
                     <span className="subtitle-tile">
                       {authors.length ?
-                        <Fragment><AccountOutlineIcon className="user-icon" size={17} /> {authors[index]}</Fragment>
+                        <Fragment>
+                          <AccountOutlineIcon className="user-icon" size={17} /> {authors[index]}
+                        </Fragment>
                         :
                         ''
                       }
-                      <CalendarMultipleCheckIcon className="middle-icon" size={17} /> {formatDate(news.createdAt)}
+                      <CalendarMultipleCheckIcon
+                        className="middle-icon"
+                        size={17}
+                      /> {formatDate(news.createdAt)}
                       <MessageOutlineIcon className="middle-icon" size={17} /> 06 Comments
                     </span>
                   }

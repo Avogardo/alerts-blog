@@ -17,6 +17,6 @@
     cursor: pointer;
 }
 
-.enter-news-image:hover {
+.enter-news-tile:hover img {
 	transform: scale(1.05, 1.05) translateY(-50%);
 }
