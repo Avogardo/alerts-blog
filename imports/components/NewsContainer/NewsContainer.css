@@ -13,10 +13,16 @@
 }
 
 .enter-news-image {
-	transition: transform 0.3s ease;
+    opacity: 0.7;
+	transition: transform 0.3s ease, opacity 0.1s ease;
     cursor: pointer;
 }
 
-.enter-news-tile:hover img {
+.enter-news-tile:hover .enter-news-image {
 	transform: scale(1.05, 1.05) translateY(-50%);
+    opacity: 1;
+}
+
+.enter-news-tile > div {
+    background-color: #000000;
 }
