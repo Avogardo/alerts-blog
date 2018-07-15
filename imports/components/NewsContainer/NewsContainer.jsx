@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import {
   GridList,
@@ -44,7 +44,7 @@ class NewsContainer extends Component {
 
     return (
       <section>
-        {topNews.length &&
+        {topNews.length ?
           <GridList cellHeight={250} cols={1}>
             {topNews.map((news, index) => (
               <GridListTile key={news._id}>
@@ -54,7 +54,11 @@ class NewsContainer extends Component {
                   title={news.title}
                   subtitle={
                     <span className="subtitle-tile">
-                      <AccountOutlineIcon className="user-icon" size={17} /> {authors[index]}
+                      {authors.length ?
+                        <Fragment><AccountOutlineIcon className="user-icon" size={17} /> {authors[index]}</Fragment>
+                        :
+                        ''
+                      }
                       <CalendarMultipleCheckIcon className="middle-icon" size={17} /> {formatDate(news.createdAt)}
                     </span>
                   }
@@ -62,6 +66,8 @@ class NewsContainer extends Component {
               </GridListTile>
             ))}
           </GridList>
+          :
+          ''
         }
       </section>
     );
