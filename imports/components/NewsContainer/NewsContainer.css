@@ -11,3 +11,12 @@
 	margin-left: 15px;
 	margin-right: 10px;
 }
+
+.enter-news-image {
+	transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.enter-news-image:hover {
+	transform: scale(1.05, 1.05) translateY(-50%);
+}
