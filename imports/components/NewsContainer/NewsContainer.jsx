@@ -5,6 +5,7 @@ import {
   GridListTile,
   GridListTileBar,
   withStyles,
+  Card,
 } from '@material-ui/core';
 import {
   AccountOutlineIcon,
@@ -32,6 +33,11 @@ const styles = {
   gridListTileBar: {
     background: 'unset',
   },
+  breakingNews: {
+    padding: '12px 15px',
+    marginTop: 4,
+    fontSize: 14,
+  },
 };
 
 class NewsContainer extends Component {
@@ -39,12 +45,16 @@ class NewsContainer extends Component {
     const blob = new Blob([news.enterImage.data.image], { type: 'image/jpeg' });
     const urlCreator = window.URL || window.webkitURL;
     const imageUrl = urlCreator.createObjectURL(blob);
-    return <div><img className="enter-news-image" src={imageUrl} alt={news.enterImage.data.name} /></div>;
+    return (
+      <div>
+        <img className="enter-news-image" src={imageUrl} alt={news.enterImage.data.name} />
+      </div>
+    );
   }
 
   render() {
     const { topNews, authors } = this.props;
-    const { gridListTileBar } = this.props.classes;
+    const { gridListTileBar, breakingNews } = this.props.classes;
 
     return (
       <section>
@@ -79,6 +89,10 @@ class NewsContainer extends Component {
           :
           ''
         }
+
+        <Card className={breakingNews}>
+          <strong className="breaking-news-strong">Breaking News:</strong> Astronomy Binoculars A Great Alternative
+        </Card>
       </section>
     );
   }
@@ -107,6 +121,7 @@ NewsContainer.propTypes = {
   authors: PropTypes.arrayOf(PropTypes.string.isRequired),
   classes: PropTypes.shape({
     gridListTileBar: PropTypes.string.isRequired,
+    breakingNews: PropTypes.string.isRequired,
   }).isRequired,
 };
 

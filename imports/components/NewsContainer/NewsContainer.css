@@ -39,3 +39,7 @@
 .enter-news-tile > div {
     background-color: #000000;
 }
+
+.breaking-news-strong {
+    color: #f6214b;
+}
