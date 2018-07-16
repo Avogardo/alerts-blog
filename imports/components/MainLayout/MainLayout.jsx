@@ -5,6 +5,7 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 
 import Navigation from '../Navigation';
 import Sidebar from '../Sidebar';
+import MainNewsContainer from '../MainNewsContainer';
 import NewsContainer from '../NewsContainer';
 import SignIn from '../SignIn';
 import CreateNews from '../CreateNews';
@@ -89,7 +90,7 @@ class MainLayout extends Component {
             path="/"
             render={() => (
               <Fragment>
-                <NewsContainer mainNews />
+                <MainNewsContainer />
                 <NewsContainer />
               </Fragment>
             )}

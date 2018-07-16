@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import {
   GridList,
   GridListTile,
-  GridListTileBar,
   withStyles,
   Card,
   CardHeader,
+  CardContent,
+  Typography,
 } from '@material-ui/core';
 import {
   AccountOutlineIcon,
@@ -31,21 +32,9 @@ const formatDate = (date) => {
 };
 
 const styles = {
-  gridListTileBar: {
-    background: 'unset',
-  },
-  mainNewsCard: {
-    backgroundColor: 'transparent',
-    boxShadow: 'unset',
-  },
   newsCard: {
     padding: 20,
     marginTop: 50,
-  },
-  breakingNews: {
-    padding: '12px 15px',
-    marginTop: 4,
-    fontSize: 14,
   },
   headerCard: {
     padding: '0 25px',
@@ -67,11 +56,8 @@ class NewsContainer extends Component {
   }
 
   render() {
-    const { topNews, authors, mainNews } = this.props;
+    const { topNews, authors } = this.props;
     const {
-      gridListTileBar,
-      breakingNews,
-      mainNewsCard,
       newsCard,
       headerCard,
     } = this.props.classes;
@@ -79,45 +65,46 @@ class NewsContainer extends Component {
     return (
       <section>
         {topNews.length ?
-          <Card className={mainNews ? mainNewsCard : newsCard}>
-            {!mainNews && <CardHeader className={headerCard} title={<span className="header-card-title">Latest News</span>} />}
-            <GridList cellHeight={250} cols={1}>
-              {topNews.map((news, index) => (
-                <GridListTile className="enter-news-tile" key={news._id}>
-                  {NewsContainer.renderImage(news)}
-                  <GridListTileBar
-                    className={gridListTileBar}
-                    title={news.title}
-                    subtitle={
-                      <span className="subtitle-tile">
-                        {authors.length ?
-                          <Fragment>
-                            <AccountOutlineIcon className="user-icon" size={17} /> {authors[index]}
-                          </Fragment>
-                          :
-                          ''
-                        }
-                        <CalendarMultipleCheckIcon
-                          className="middle-icon"
-                          size={17}
-                        /> {formatDate(news.createdAt)}
-                        <MessageOutlineIcon className="middle-icon" size={17} /> 06 Comments
-                      </span>
-                    }
-                  />
-                </GridListTile>
-              ))}
-            </GridList>
+          <Card className={newsCard}>
+            <CardHeader className={headerCard} title={<span className="header-card-title">Latest News</span>} />
+
+            {topNews.map((news, index) => (
+              <Card key={news._id}>
+                <GridList cellHeight={250} cols={1}>
+                  <GridListTile className="enter-news-tile" key={news._id}>
+                    {NewsContainer.renderImage(news)}
+                  </GridListTile>
+                </GridList>
+                <CardHeader
+                  title={news.title}
+                  subheader={
+                    <span className="subtitle-tile">
+                      {authors.length ?
+                        <Fragment>
+                          <AccountOutlineIcon className="user-icon" size={17} /> {authors[index]}
+                        </Fragment>
+                        :
+                        ''
+                      }
+                      <CalendarMultipleCheckIcon
+                        className="middle-icon"
+                        size={17}
+                      /> {formatDate(news.createdAt)}
+                      <MessageOutlineIcon className="middle-icon" size={17} /> 06 Comments
+                    </span>
+                  }
+                />
+                <CardContent>
+                  <Typography component="p">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit
+                    , sed do eiusmod tempor incididunt.
+                  </Typography>
+                </CardContent>
+              </Card>
+            ))}
           </Card>
           :
           ''
-        }
-
-        {mainNews &&
-          <Card className={breakingNews}>
-            <strong className="breaking-news-strong">Breaking News: </strong>
-            Astronomy Binoculars A Great Alternative
-          </Card>
         }
       </section>
     );
@@ -127,7 +114,6 @@ class NewsContainer extends Component {
 NewsContainer.defaultProps = {
   topNews: [],
   authors: [],
-  mainNews: false,
 };
 
 NewsContainer.propTypes = {
@@ -146,11 +132,7 @@ NewsContainer.propTypes = {
     }).isRequired,
   }).isRequired),
   authors: PropTypes.arrayOf(PropTypes.string.isRequired),
-  mainNews: PropTypes.bool,
   classes: PropTypes.shape({
-    gridListTileBar: PropTypes.string.isRequired,
-    breakingNews: PropTypes.string.isRequired,
-    mainNewsCard: PropTypes.string.isRequired,
     newsCard: PropTypes.string.isRequired,
     headerCard: PropTypes.string.isRequired,
   }).isRequired,
