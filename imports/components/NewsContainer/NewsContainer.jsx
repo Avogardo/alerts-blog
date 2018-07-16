@@ -6,6 +6,7 @@ import {
   GridListTileBar,
   withStyles,
   Card,
+  CardHeader,
 } from '@material-ui/core';
 import {
   AccountOutlineIcon,
@@ -46,6 +47,11 @@ const styles = {
     marginTop: 4,
     fontSize: 14,
   },
+  headerCard: {
+    padding: '0 25px',
+    backgroundColor: '#000000',
+    marginBottom: 20,
+  },
 };
 
 class NewsContainer extends Component {
@@ -67,12 +73,14 @@ class NewsContainer extends Component {
       breakingNews,
       mainNewsCard,
       newsCard,
+      headerCard,
     } = this.props.classes;
 
     return (
       <section>
         {topNews.length ?
           <Card className={mainNews ? mainNewsCard : newsCard}>
+            {!mainNews && <CardHeader className={headerCard} title={<span className="header-card-title">Latest News</span>} />}
             <GridList cellHeight={250} cols={1}>
               {topNews.map((news, index) => (
                 <GridListTile className="enter-news-tile" key={news._id}>
@@ -144,6 +152,7 @@ NewsContainer.propTypes = {
     breakingNews: PropTypes.string.isRequired,
     mainNewsCard: PropTypes.string.isRequired,
     newsCard: PropTypes.string.isRequired,
+    headerCard: PropTypes.string.isRequired,
   }).isRequired,
 };
 

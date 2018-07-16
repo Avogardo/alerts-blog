@@ -43,3 +43,9 @@
 .breaking-news-strong {
     color: #f6214b;
 }
+
+.header-card-title {
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+}
