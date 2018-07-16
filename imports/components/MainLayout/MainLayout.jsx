@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Route, Redirect } from 'react-router-dom';
 import ReactRouterPropTypes from 'react-router-prop-types';
@@ -84,7 +84,16 @@ class MainLayout extends Component {
           className={location.pathname === '/' ? 'content-container-root' : 'content-container'}
           key="content-container"
         >
-          <Route exact path="/" component={NewsContainer} />
+          <Route
+            exact
+            path="/"
+            render={() => (
+              <Fragment>
+                <NewsContainer mainNews />
+                <NewsContainer />
+              </Fragment>
+            )}
+          />
           <Route
             exact
             path="/sign-in"

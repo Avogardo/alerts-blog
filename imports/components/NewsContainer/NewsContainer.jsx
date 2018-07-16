@@ -33,6 +33,14 @@ const styles = {
   gridListTileBar: {
     background: 'unset',
   },
+  mainNewsCard: {
+    backgroundColor: 'transparent',
+    boxShadow: 'unset',
+  },
+  newsCard: {
+    padding: 20,
+    marginTop: 50,
+  },
   breakingNews: {
     padding: '12px 15px',
     marginTop: 4,
@@ -53,46 +61,56 @@ class NewsContainer extends Component {
   }
 
   render() {
-    const { topNews, authors } = this.props;
-    const { gridListTileBar, breakingNews } = this.props.classes;
+    const { topNews, authors, mainNews } = this.props;
+    const {
+      gridListTileBar,
+      breakingNews,
+      mainNewsCard,
+      newsCard,
+    } = this.props.classes;
 
     return (
       <section>
         {topNews.length ?
-          <GridList cellHeight={250} cols={1}>
-            {topNews.map((news, index) => (
-              <GridListTile className="enter-news-tile" key={news._id}>
-                {NewsContainer.renderImage(news)}
-                <GridListTileBar
-                  className={gridListTileBar}
-                  title={news.title}
-                  subtitle={
-                    <span className="subtitle-tile">
-                      {authors.length ?
-                        <Fragment>
-                          <AccountOutlineIcon className="user-icon" size={17} /> {authors[index]}
-                        </Fragment>
-                        :
-                        ''
-                      }
-                      <CalendarMultipleCheckIcon
-                        className="middle-icon"
-                        size={17}
-                      /> {formatDate(news.createdAt)}
-                      <MessageOutlineIcon className="middle-icon" size={17} /> 06 Comments
-                    </span>
-                  }
-                />
-              </GridListTile>
-            ))}
-          </GridList>
+          <Card className={mainNews ? mainNewsCard : newsCard}>
+            <GridList cellHeight={250} cols={1}>
+              {topNews.map((news, index) => (
+                <GridListTile className="enter-news-tile" key={news._id}>
+                  {NewsContainer.renderImage(news)}
+                  <GridListTileBar
+                    className={gridListTileBar}
+                    title={news.title}
+                    subtitle={
+                      <span className="subtitle-tile">
+                        {authors.length ?
+                          <Fragment>
+                            <AccountOutlineIcon className="user-icon" size={17} /> {authors[index]}
+                          </Fragment>
+                          :
+                          ''
+                        }
+                        <CalendarMultipleCheckIcon
+                          className="middle-icon"
+                          size={17}
+                        /> {formatDate(news.createdAt)}
+                        <MessageOutlineIcon className="middle-icon" size={17} /> 06 Comments
+                      </span>
+                    }
+                  />
+                </GridListTile>
+              ))}
+            </GridList>
+          </Card>
           :
           ''
         }
 
-        <Card className={breakingNews}>
-          <strong className="breaking-news-strong">Breaking News:</strong> Astronomy Binoculars A Great Alternative
-        </Card>
+        {mainNews &&
+          <Card className={breakingNews}>
+            <strong className="breaking-news-strong">Breaking News: </strong>
+            Astronomy Binoculars A Great Alternative
+          </Card>
+        }
       </section>
     );
   }
@@ -101,6 +119,7 @@ class NewsContainer extends Component {
 NewsContainer.defaultProps = {
   topNews: [],
   authors: [],
+  mainNews: false,
 };
 
 NewsContainer.propTypes = {
@@ -119,9 +138,12 @@ NewsContainer.propTypes = {
     }).isRequired,
   }).isRequired),
   authors: PropTypes.arrayOf(PropTypes.string.isRequired),
+  mainNews: PropTypes.bool,
   classes: PropTypes.shape({
     gridListTileBar: PropTypes.string.isRequired,
     breakingNews: PropTypes.string.isRequired,
+    mainNewsCard: PropTypes.string.isRequired,
+    newsCard: PropTypes.string.isRequired,
   }).isRequired,
 };
 
