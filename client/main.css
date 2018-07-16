@@ -1,6 +1,9 @@
 /* CSS declarations go here */
 body {
 	margin: 0;
-	font-family: 'Poppins', sans-serif;
 	background-color: #ecf0f1;
+}
+
+* {
+	font-family: 'Poppins', sans-serif;
 }
