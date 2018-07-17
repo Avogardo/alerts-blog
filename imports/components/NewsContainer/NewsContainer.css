@@ -1,6 +1,7 @@
 .subtitle-tile {
 	display: flex;
 	align-items: center;
+    font-size: 12px;
 }
 
 .user-icon {
@@ -47,5 +48,11 @@
 .header-card-title {
     color: #ffffff;
     font-size: 14px;
+    font-weight: 600;
+}
+
+.news-card-title {
+    margin: 0 0 6px 0;
+    font-size: 18px;
     font-weight: 600;
 }

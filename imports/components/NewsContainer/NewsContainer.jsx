@@ -41,6 +41,19 @@ const styles = {
     backgroundColor: '#000000',
     marginBottom: 20,
   },
+  tileCard: {
+    boxShadow: 'unset',
+  },
+  newsCardHeader: {
+    padding: 0,
+    marginTop: 10,
+  },
+  newsCardContent: {
+    paddingTop: 16,
+    paddingLeft: 0,
+    paddingRight: 0,
+    marginBottom: 16,
+  },
 };
 
 class NewsContainer extends Component {
@@ -60,6 +73,9 @@ class NewsContainer extends Component {
     const {
       newsCard,
       headerCard,
+      newsCardHeader,
+      newsCardContent,
+      tileCard,
     } = this.props.classes;
 
     return (
@@ -69,14 +85,15 @@ class NewsContainer extends Component {
             <CardHeader className={headerCard} title={<span className="header-card-title">Latest News</span>} />
 
             {topNews.map((news, index) => (
-              <Card key={news._id}>
+              <Card className={tileCard} key={news._id}>
                 <GridList cellHeight={250} cols={1}>
                   <GridListTile className="enter-news-tile" key={news._id}>
                     {NewsContainer.renderImage(news)}
                   </GridListTile>
                 </GridList>
                 <CardHeader
-                  title={news.title}
+                  className={newsCardHeader}
+                  title={<h4 className="news-card-title">{news.title}</h4>}
                   subheader={
                     <span className="subtitle-tile">
                       {authors.length ?
@@ -94,7 +111,7 @@ class NewsContainer extends Component {
                     </span>
                   }
                 />
-                <CardContent>
+                <CardContent className={newsCardContent}>
                   <Typography component="p">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit
                     , sed do eiusmod tempor incididunt.
@@ -135,6 +152,9 @@ NewsContainer.propTypes = {
   classes: PropTypes.shape({
     newsCard: PropTypes.string.isRequired,
     headerCard: PropTypes.string.isRequired,
+    newsCardHeader: PropTypes.string.isRequired,
+    newsCardContent: PropTypes.string.isRequired,
+    tileCard: PropTypes.string.isRequired,
   }).isRequired,
 };
 

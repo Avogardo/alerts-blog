@@ -76,7 +76,7 @@ class MainNewsContainer extends Component {
                     className={gridListTileBar}
                     title={news.title}
                     subtitle={
-                      <span className="subtitle-tile">
+                      <span className="main-subtitle-tile">
                         {authors.length ?
                           <Fragment>
                             <AccountOutlineIcon className="user-icon" size={17} /> {authors[index]}
