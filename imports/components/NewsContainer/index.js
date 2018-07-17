@@ -23,6 +23,12 @@ const composer = (props, onData) => {
   const topNewsHandler = Meteor.subscribe('recentNewsWithLimit', 4);
   const userListHandler = Meteor.subscribe('userList');
 
+  const unit8ArrayToUrl = (image) => {
+    const blob = new Blob([image], { type: 'image/jpeg' });
+    const urlCreator = window.URL || window.webkitURL;
+    return urlCreator.createObjectURL(blob);
+  };
+
   if (topNewsHandler.ready()) {
     const options = {
       limit: props.enterContainer ? 3 : 4,
@@ -31,6 +37,7 @@ const composer = (props, onData) => {
 
     onData(null, {
       topNews,
+      unit8ArrayToUrl,
     });
 
     if (userListHandler.ready()) {
@@ -41,10 +48,13 @@ const composer = (props, onData) => {
       onData(null, {
         topNews,
         authors,
+        unit8ArrayToUrl,
       });
     }
   } else {
-    onData(null, {});
+    onData(null, {
+      unit8ArrayToUrl,
+    });
   }
 };
 

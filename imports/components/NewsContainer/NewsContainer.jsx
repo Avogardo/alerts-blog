@@ -30,6 +30,7 @@ class NewsContainer extends Component {
       enterContainer,
       topNews,
       authors,
+      unit8ArrayToUrl,
     } = this.props;
     const {
       mainNewsCard,
@@ -44,6 +45,7 @@ class NewsContainer extends Component {
             <EnterNews
               topNews={topNews}
               authors={authors}
+              unit8ArrayToUrl={unit8ArrayToUrl}
             />
           </Card>
           :
@@ -52,6 +54,7 @@ class NewsContainer extends Component {
             <BasicNews
               topNews={topNews}
               authors={authors}
+              unit8ArrayToUrl={unit8ArrayToUrl}
             />
           </Card>
         }
@@ -88,6 +91,7 @@ NewsContainer.propTypes = {
     newsCard: PropTypes.string.isRequired,
     headerCard: PropTypes.string.isRequired,
   }).isRequired,
+  unit8ArrayToUrl: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(NewsContainer);

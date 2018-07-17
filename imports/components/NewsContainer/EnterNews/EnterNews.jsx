@@ -41,23 +41,9 @@ const styles = {
 };
 
 class EnterNews extends Component {
-  static renderImage(news) {
-    const blob = new Blob([news.enterImage.data.image], { type: 'image/jpeg' });
-    const urlCreator = window.URL || window.webkitURL;
-    const imageUrl = urlCreator.createObjectURL(blob);
-    return (
-      <div>
-        <img className="enter-news-image" src={imageUrl} alt={news.enterImage.data.name} />
-      </div>
-    );
-  }
-
   render() {
-    const { topNews, authors } = this.props;
-    const {
-      gridListTileBar,
-      breakingNews,
-    } = this.props.classes;
+    const { topNews, authors, unit8ArrayToUrl } = this.props;
+    const { gridListTileBar, breakingNews } = this.props.classes;
 
     return (
       <Fragment>
@@ -65,7 +51,13 @@ class EnterNews extends Component {
           <GridList cellHeight={250} cols={1}>
             {topNews.map((news, index) => (
               <GridListTile className="enter-news-tile" key={news._id}>
-                {EnterNews.renderImage(news)}
+                <div>
+                  <img
+                    className="enter-news-image"
+                    src={unit8ArrayToUrl(news.enterImage.data.image)}
+                    alt={news.enterImage.data.name}
+                  />
+                </div>
                 <GridListTileBar
                   className={gridListTileBar}
                   title={news.title}
@@ -127,6 +119,7 @@ EnterNews.propTypes = {
     gridListTileBar: PropTypes.string.isRequired,
     breakingNews: PropTypes.string.isRequired,
   }).isRequired,
+  unit8ArrayToUrl: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(EnterNews);
