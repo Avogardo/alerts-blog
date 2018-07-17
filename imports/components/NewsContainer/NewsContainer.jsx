@@ -1,7 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import {
+  withStyles,
+  Card,
+} from '@material-ui/core';
 import EnterNewsGrid from './EnterNewsGrid';
 import BasicNewsGrid from './BasicNewsGrid';
+
+const styles = {
+  mainNewsCard: {
+    backgroundColor: 'transparent',
+    boxShadow: 'unset',
+  },
+};
 
 class NewsContainer extends Component {
   render() {
@@ -10,18 +21,24 @@ class NewsContainer extends Component {
       topNews,
       authors,
     } = this.props;
+    const { mainNewsCard } = this.props.classes;
 
     return (
-      enterContainer ?
-        <EnterNewsGrid
-          topNews={topNews}
-          authors={authors}
-        />
-        :
-        <BasicNewsGrid
-          topNews={topNews}
-          authors={authors}
-        />
+      <section>
+        {enterContainer ?
+          <Card className={mainNewsCard}>
+            <EnterNewsGrid
+              topNews={topNews}
+              authors={authors}
+            />
+          </Card>
+          :
+          <BasicNewsGrid
+            topNews={topNews}
+            authors={authors}
+          />
+        }
+      </section>
     );
   }
 }
@@ -49,6 +66,9 @@ NewsContainer.propTypes = {
     }).isRequired,
   }).isRequired),
   authors: PropTypes.arrayOf(PropTypes.string.isRequired),
+  classes: PropTypes.shape({
+    mainNewsCard: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
-export default NewsContainer;
+export default withStyles(styles)(NewsContainer);
