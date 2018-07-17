@@ -7,27 +7,8 @@ import {
   withStyles,
   Card,
 } from '@material-ui/core';
-import {
-  AccountOutlineIcon,
-  CalendarMultipleCheckIcon,
-  MessageOutlineIcon,
-} from 'mdi-react';
+import TileSubtitle from '../TileSubtitle';
 import './EnterNews.css';
-
-const formatDate = (date) => {
-  const monthNamesEng = [
-    'January', 'February', 'March',
-    'April', 'May', 'June', 'July',
-    'August', 'September', 'October',
-    'November', 'December',
-  ];
-
-  const day = date.getDate();
-  const monthIndex = date.getMonth();
-  const year = date.getFullYear();
-
-  return `${day} ${monthNamesEng[monthIndex]}, ${year}`;
-};
 
 const styles = {
   gridListTileBar: {
@@ -62,20 +43,7 @@ class EnterNews extends Component {
                   className={gridListTileBar}
                   title={news.title}
                   subtitle={
-                    <span className="main-subtitle-tile">
-                      {authors.length ?
-                        <Fragment>
-                          <AccountOutlineIcon className="user-icon" size={17} /> {authors[index]}
-                        </Fragment>
-                        :
-                        ''
-                      }
-                      <CalendarMultipleCheckIcon
-                        className="middle-icon"
-                        size={17}
-                      /> {formatDate(news.createdAt)}
-                      <MessageOutlineIcon className="middle-icon" size={17} /> 06 Comments
-                    </span>
+                    <TileSubtitle authors={authors} createdAt={news.createdAt} index={index} />
                   }
                 />
               </GridListTile>
