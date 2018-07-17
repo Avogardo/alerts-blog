@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
   GridList,
@@ -9,27 +9,8 @@ import {
   CardContent,
   Typography,
 } from '@material-ui/core';
-import {
-  AccountOutlineIcon,
-  CalendarMultipleCheckIcon,
-  MessageOutlineIcon,
-} from 'mdi-react';
+import TileSubtitle from '../TileSubtitle';
 import './BasicNews.css';
-
-const formatDate = (date) => {
-  const monthNamesEng = [
-    'January', 'February', 'March',
-    'April', 'May', 'June', 'July',
-    'August', 'September', 'October',
-    'November', 'December',
-  ];
-
-  const day = date.getDate();
-  const monthIndex = date.getMonth();
-  const year = date.getFullYear();
-
-  return `${day} ${monthNamesEng[monthIndex]}, ${year}`;
-};
 
 const styles = {
   tileCard: {
@@ -71,24 +52,7 @@ class BasicNews extends Component {
               className={newsCardHeader}
               title={<h4 className="news-card-title">{news.title}</h4>}
               subheader={
-                <span className="subtitle-tile">
-                  {authors.length ?
-                    <span className="tile-subtitle-item">
-                      <AccountOutlineIcon className="user-icon" size={17} /> {authors[index]}
-                    </span>
-                    :
-                    ''
-                  }
-                  <span className="tile-subtitle-item">
-                    <CalendarMultipleCheckIcon
-                      className="user-icon"
-                      size={17}
-                    /> {formatDate(news.createdAt)}
-                  </span>
-                  <span className="tile-subtitle-item">
-                    <MessageOutlineIcon className="user-icon" size={17} /> 06 Comments
-                  </span>
-                </span>
+                <TileSubtitle authors={authors} createdAt={news.createdAt} index={index} />
               }
             />
             <CardContent className={newsCardContent}>
