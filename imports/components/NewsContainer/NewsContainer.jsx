@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {
   withStyles,
   Card,
+  CardHeader,
 } from '@material-ui/core';
 import EnterNewsGrid from './EnterNewsGrid';
 import BasicNewsGrid from './BasicNewsGrid';
@@ -11,6 +12,15 @@ const styles = {
   mainNewsCard: {
     backgroundColor: 'transparent',
     boxShadow: 'unset',
+  },
+  newsCard: {
+    padding: 20,
+    marginTop: 50,
+  },
+  headerCard: {
+    padding: '0 25px',
+    backgroundColor: '#000000',
+    marginBottom: 20,
   },
 };
 
@@ -21,7 +31,11 @@ class NewsContainer extends Component {
       topNews,
       authors,
     } = this.props;
-    const { mainNewsCard } = this.props.classes;
+    const {
+      mainNewsCard,
+      newsCard,
+      headerCard,
+    } = this.props.classes;
 
     return (
       <section>
@@ -33,10 +47,13 @@ class NewsContainer extends Component {
             />
           </Card>
           :
-          <BasicNewsGrid
-            topNews={topNews}
-            authors={authors}
-          />
+          <Card className={newsCard}>
+            <CardHeader className={headerCard} title={<span className="header-card-title">Latest News</span>} />
+            <BasicNewsGrid
+              topNews={topNews}
+              authors={authors}
+            />
+          </Card>
         }
       </section>
     );
@@ -68,6 +85,8 @@ NewsContainer.propTypes = {
   authors: PropTypes.arrayOf(PropTypes.string.isRequired),
   classes: PropTypes.shape({
     mainNewsCard: PropTypes.string.isRequired,
+    newsCard: PropTypes.string.isRequired,
+    headerCard: PropTypes.string.isRequired,
   }).isRequired,
 };
 

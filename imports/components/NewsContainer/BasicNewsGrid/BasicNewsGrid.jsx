@@ -32,15 +32,6 @@ const formatDate = (date) => {
 };
 
 const styles = {
-  newsCard: {
-    padding: 20,
-    marginTop: 50,
-  },
-  headerCard: {
-    padding: '0 25px',
-    backgroundColor: '#000000',
-    marginBottom: 20,
-  },
   tileCard: {
     boxShadow: 'unset',
   },
@@ -71,59 +62,50 @@ class BasicNewsGrid extends Component {
   render() {
     const { topNews, authors } = this.props;
     const {
-      newsCard,
-      headerCard,
       newsCardHeader,
       newsCardContent,
       tileCard,
     } = this.props.classes;
 
     return (
-      <section>
-        {topNews.length ?
-          <Card className={newsCard}>
-            <CardHeader className={headerCard} title={<span className="header-card-title">Latest News</span>} />
-
-            {topNews.map((news, index) => (
-              <Card className={tileCard} key={news._id}>
-                <GridList cellHeight={250} cols={1}>
-                  <GridListTile className="enter-news-tile" key={news._id}>
-                    {BasicNewsGrid.renderImage(news)}
-                  </GridListTile>
-                </GridList>
-                <CardHeader
-                  className={newsCardHeader}
-                  title={<h4 className="news-card-title">{news.title}</h4>}
-                  subheader={
-                    <span className="subtitle-tile">
-                      {authors.length ?
-                        <Fragment>
-                          <AccountOutlineIcon className="user-icon" size={17} /> {authors[index]}
-                        </Fragment>
-                        :
-                        ''
-                      }
-                      <CalendarMultipleCheckIcon
-                        className="middle-icon"
-                        size={17}
-                      /> {formatDate(news.createdAt)}
-                      <MessageOutlineIcon className="middle-icon" size={17} /> 06 Comments
-                    </span>
+      topNews.length ?
+        topNews.map((news, index) => (
+          <Card className={tileCard} key={news._id}>
+            <GridList cellHeight={250} cols={1}>
+              <GridListTile className="enter-news-tile" key={news._id}>
+                {BasicNewsGrid.renderImage(news)}
+              </GridListTile>
+            </GridList>
+            <CardHeader
+              className={newsCardHeader}
+              title={<h4 className="news-card-title">{news.title}</h4>}
+              subheader={
+                <span className="subtitle-tile">
+                  {authors.length ?
+                    <Fragment>
+                      <AccountOutlineIcon className="user-icon" size={17} /> {authors[index]}
+                    </Fragment>
+                    :
+                    ''
                   }
-                />
-                <CardContent className={newsCardContent}>
-                  <Typography component="p">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit
-                    , sed do eiusmod tempor incididunt.
-                  </Typography>
-                </CardContent>
-              </Card>
-            ))}
+                  <CalendarMultipleCheckIcon
+                    className="middle-icon"
+                    size={17}
+                  /> {formatDate(news.createdAt)}
+                  <MessageOutlineIcon className="middle-icon" size={17} /> 06 Comments
+                </span>
+              }
+            />
+            <CardContent className={newsCardContent}>
+              <Typography component="p">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit
+                , sed do eiusmod tempor incididunt.
+              </Typography>
+            </CardContent>
           </Card>
-          :
-          ''
-        }
-      </section>
+        ))
+        :
+        ''
     );
   }
 }
@@ -150,8 +132,6 @@ BasicNewsGrid.propTypes = {
   }).isRequired),
   authors: PropTypes.arrayOf(PropTypes.string.isRequired),
   classes: PropTypes.shape({
-    newsCard: PropTypes.string.isRequired,
-    headerCard: PropTypes.string.isRequired,
     newsCardHeader: PropTypes.string.isRequired,
     newsCardContent: PropTypes.string.isRequired,
     tileCard: PropTypes.string.isRequired,
