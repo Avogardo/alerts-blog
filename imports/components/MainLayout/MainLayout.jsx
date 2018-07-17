@@ -90,7 +90,7 @@ class MainLayout extends Component {
             render={() => (
               <Fragment>
                 <NewsContainer enterContainer />
-                <NewsContainer />
+                <NewsContainer headerTitle="Latest News" />
               </Fragment>
             )}
           />

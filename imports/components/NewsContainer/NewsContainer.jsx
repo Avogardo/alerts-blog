@@ -31,6 +31,7 @@ class NewsContainer extends Component {
       topNews,
       authors,
       unit8ArrayToUrl,
+      headerTitle,
     } = this.props;
     const {
       mainNewsCard,
@@ -50,7 +51,10 @@ class NewsContainer extends Component {
           </Card>
           :
           <Card className={newsCard}>
-            <CardHeader className={headerCard} title={<span className="header-card-title">Latest News</span>} />
+            <CardHeader
+              className={headerCard}
+              title={<span className="header-card-title">{headerTitle}</span>}
+            />
             <BasicNews
               topNews={topNews}
               authors={authors}
@@ -65,12 +69,14 @@ class NewsContainer extends Component {
 
 NewsContainer.defaultProps = {
   enterContainer: false,
+  headerTitle: '',
   topNews: [],
   authors: [],
 };
 
 NewsContainer.propTypes = {
   enterContainer: PropTypes.bool,
+  headerTitle: PropTypes.string,
   topNews: PropTypes.arrayOf(PropTypes.shape({
     _id: PropTypes.string.isRequired,
     authorId: PropTypes.string.isRequired,
