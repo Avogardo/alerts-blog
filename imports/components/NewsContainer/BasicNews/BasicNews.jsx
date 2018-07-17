@@ -39,13 +39,10 @@ class BasicNews extends Component {
           <Card className={tileCard} key={news._id}>
             <GridList cellHeight={250} cols={1}>
               <GridListTile className="enter-news-tile" key={news._id}>
-                <div>
-                  <img
-                    className="enter-news-image"
-                    src={unit8ArrayToUrl(news.enterImage.data.image)}
-                    alt={news.enterImage.data.name}
-                  />
-                </div>
+                <div
+                  className="enter-news-image"
+                  style={{ backgroundImage: `url(${unit8ArrayToUrl(news.enterImage.data.image)})` }}
+                />
               </GridListTile>
             </GridList>
             <CardHeader
