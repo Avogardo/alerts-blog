@@ -14,7 +14,7 @@ import {
   CalendarMultipleCheckIcon,
   MessageOutlineIcon,
 } from 'mdi-react';
-import './BasicNewsGrid.css';
+import './BasicNews.css';
 
 const formatDate = (date) => {
   const monthNamesEng = [
@@ -47,7 +47,7 @@ const styles = {
   },
 };
 
-class BasicNewsGrid extends Component {
+class BasicNews extends Component {
   static renderImage(news) {
     const blob = new Blob([news.enterImage.data.image], { type: 'image/jpeg' });
     const urlCreator = window.URL || window.webkitURL;
@@ -73,7 +73,7 @@ class BasicNewsGrid extends Component {
           <Card className={tileCard} key={news._id}>
             <GridList cellHeight={250} cols={1}>
               <GridListTile className="enter-news-tile" key={news._id}>
-                {BasicNewsGrid.renderImage(news)}
+                {BasicNews.renderImage(news)}
               </GridListTile>
             </GridList>
             <CardHeader
@@ -110,12 +110,12 @@ class BasicNewsGrid extends Component {
   }
 }
 
-BasicNewsGrid.defaultProps = {
+BasicNews.defaultProps = {
   topNews: [],
   authors: [],
 };
 
-BasicNewsGrid.propTypes = {
+BasicNews.propTypes = {
   topNews: PropTypes.arrayOf(PropTypes.shape({
     _id: PropTypes.string.isRequired,
     authorId: PropTypes.string.isRequired,
@@ -138,4 +138,4 @@ BasicNewsGrid.propTypes = {
   }).isRequired,
 };
 
-export default withStyles(styles)(BasicNewsGrid);
+export default withStyles(styles)(BasicNews);

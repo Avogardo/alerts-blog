@@ -5,8 +5,8 @@ import {
   Card,
   CardHeader,
 } from '@material-ui/core';
-import EnterNewsGrid from './EnterNewsGrid';
-import BasicNewsGrid from './BasicNewsGrid';
+import EnterNews from './EnterNews';
+import BasicNews from './BasicNews';
 
 const styles = {
   mainNewsCard: {
@@ -41,7 +41,7 @@ class NewsContainer extends Component {
       <section>
         {enterContainer ?
           <Card className={mainNewsCard}>
-            <EnterNewsGrid
+            <EnterNews
               topNews={topNews}
               authors={authors}
             />
@@ -49,7 +49,7 @@ class NewsContainer extends Component {
           :
           <Card className={newsCard}>
             <CardHeader className={headerCard} title={<span className="header-card-title">Latest News</span>} />
-            <BasicNewsGrid
+            <BasicNews
               topNews={topNews}
               authors={authors}
             />

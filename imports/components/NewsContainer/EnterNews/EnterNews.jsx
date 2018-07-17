@@ -12,7 +12,7 @@ import {
   CalendarMultipleCheckIcon,
   MessageOutlineIcon,
 } from 'mdi-react';
-import './EnterNewsGrid.css';
+import './EnterNews.css';
 
 const formatDate = (date) => {
   const monthNamesEng = [
@@ -40,7 +40,7 @@ const styles = {
   },
 };
 
-class EnterNewsGrid extends Component {
+class EnterNews extends Component {
   static renderImage(news) {
     const blob = new Blob([news.enterImage.data.image], { type: 'image/jpeg' });
     const urlCreator = window.URL || window.webkitURL;
@@ -65,7 +65,7 @@ class EnterNewsGrid extends Component {
           <GridList cellHeight={250} cols={1}>
             {topNews.map((news, index) => (
               <GridListTile className="enter-news-tile" key={news._id}>
-                {EnterNewsGrid.renderImage(news)}
+                {EnterNews.renderImage(news)}
                 <GridListTileBar
                   className={gridListTileBar}
                   title={news.title}
@@ -102,12 +102,12 @@ class EnterNewsGrid extends Component {
   }
 }
 
-EnterNewsGrid.defaultProps = {
+EnterNews.defaultProps = {
   topNews: [],
   authors: [],
 };
 
-EnterNewsGrid.propTypes = {
+EnterNews.propTypes = {
   topNews: PropTypes.arrayOf(PropTypes.shape({
     _id: PropTypes.string.isRequired,
     authorId: PropTypes.string.isRequired,
@@ -129,4 +129,4 @@ EnterNewsGrid.propTypes = {
   }).isRequired,
 };
 
-export default withStyles(styles)(EnterNewsGrid);
+export default withStyles(styles)(EnterNews);
