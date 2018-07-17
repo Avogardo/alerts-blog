@@ -73,17 +73,21 @@ class BasicNews extends Component {
               subheader={
                 <span className="subtitle-tile">
                   {authors.length ?
-                    <Fragment>
+                    <span className="tile-subtitle-item">
                       <AccountOutlineIcon className="user-icon" size={17} /> {authors[index]}
-                    </Fragment>
+                    </span>
                     :
                     ''
                   }
-                  <CalendarMultipleCheckIcon
-                    className="middle-icon"
-                    size={17}
-                  /> {formatDate(news.createdAt)}
-                  <MessageOutlineIcon className="middle-icon" size={17} /> 06 Comments
+                  <span className="tile-subtitle-item">
+                    <CalendarMultipleCheckIcon
+                      className="user-icon"
+                      size={17}
+                    /> {formatDate(news.createdAt)}
+                  </span>
+                  <span className="tile-subtitle-item">
+                    <MessageOutlineIcon className="user-icon" size={17} /> 06 Comments
+                  </span>
                 </span>
               }
             />
