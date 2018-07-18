@@ -7,6 +7,7 @@ import {
 } from '@material-ui/core';
 import EnterNews from './EnterNews';
 import BasicNews from './BasicNews';
+import TileSubtitle from './TileSubtitle';
 
 const styles = {
   mainNewsCard: {
@@ -55,6 +56,11 @@ class NewsContainer extends Component {
     } else if (bottomContainer) {
       const oneNews = topNews.slice(0, 1);
 
+      // display: flex;
+      // align-items: center;
+      // border-bottom: 1px solid #eee;
+      // border-top: 1px solid #eee;
+
       return (
         <section>
           <Card className={newsCard}>
@@ -67,6 +73,19 @@ class NewsContainer extends Component {
               authors={authors}
               unit8ArrayToUrl={unit8ArrayToUrl}
             />
+            {topNews.map((news, index) => (
+              <Card key={`bottom${news._id}`} className={mainNewsCard}>
+                <div
+                  style={{ backgroundImage: `url(${unit8ArrayToUrl(news.enterImage.data.image)})` }}
+                />
+                <CardHeader
+                  title={<h5>{news.title}</h5>}
+                  subheader={
+                    <TileSubtitle createdAt={news.createdAt} index={index} />
+                  }
+                />
+              </Card>
+            ))}
           </Card>
         </section>
       );
