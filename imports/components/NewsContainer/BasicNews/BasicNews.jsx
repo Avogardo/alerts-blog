@@ -85,7 +85,7 @@ BasicNews.propTypes = {
         image: PropTypes.instanceOf(Uint8Array).isRequired,
       }),
     }).isRequired,
-  }).isRequired),
+  })),
   authors: PropTypes.arrayOf(PropTypes.string.isRequired),
   classes: PropTypes.shape({
     newsCardHeader: PropTypes.string.isRequired,

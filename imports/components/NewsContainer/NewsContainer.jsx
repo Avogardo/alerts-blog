@@ -53,6 +53,8 @@ class NewsContainer extends Component {
         </section>
       );
     } else if (bottomContainer) {
+      const oneNews = topNews.slice(0, 1);
+
       return (
         <section>
           <Card className={newsCard}>
@@ -61,7 +63,7 @@ class NewsContainer extends Component {
               title={<span className="header-card-title">{headerTitle}</span>}
             />
             <BasicNews
-              topNews={topNews}
+              topNews={oneNews}
               authors={authors}
               unit8ArrayToUrl={unit8ArrayToUrl}
             />
