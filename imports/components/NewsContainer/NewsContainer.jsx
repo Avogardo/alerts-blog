@@ -28,6 +28,7 @@ class NewsContainer extends Component {
   render() {
     const {
       enterContainer,
+      bottomContainer,
       topNews,
       authors,
       unit8ArrayToUrl,
@@ -39,9 +40,9 @@ class NewsContainer extends Component {
       headerCard,
     } = this.props.classes;
 
-    return (
-      <section>
-        {enterContainer ?
+    if (enterContainer) {
+      return (
+        <section>
           <Card className={mainNewsCard}>
             <EnterNews
               topNews={topNews}
@@ -49,7 +50,11 @@ class NewsContainer extends Component {
               unit8ArrayToUrl={unit8ArrayToUrl}
             />
           </Card>
-          :
+        </section>
+      );
+    } else if (bottomContainer) {
+      return (
+        <section>
           <Card className={newsCard}>
             <CardHeader
               className={headerCard}
@@ -61,7 +66,23 @@ class NewsContainer extends Component {
               unit8ArrayToUrl={unit8ArrayToUrl}
             />
           </Card>
-        }
+        </section>
+      );
+    }
+
+    return (
+      <section>
+        <Card className={newsCard}>
+          <CardHeader
+            className={headerCard}
+            title={<span className="header-card-title">{headerTitle}</span>}
+          />
+          <BasicNews
+            topNews={topNews}
+            authors={authors}
+            unit8ArrayToUrl={unit8ArrayToUrl}
+          />
+        </Card>
       </section>
     );
   }
@@ -69,6 +90,7 @@ class NewsContainer extends Component {
 
 NewsContainer.defaultProps = {
   enterContainer: false,
+  bottomContainer: false,
   headerTitle: '',
   topNews: [],
   authors: [],
@@ -76,6 +98,7 @@ NewsContainer.defaultProps = {
 
 NewsContainer.propTypes = {
   enterContainer: PropTypes.bool,
+  bottomContainer: PropTypes.bool,
   headerTitle: PropTypes.string,
   topNews: PropTypes.arrayOf(PropTypes.shape({
     _id: PropTypes.string.isRequired,
