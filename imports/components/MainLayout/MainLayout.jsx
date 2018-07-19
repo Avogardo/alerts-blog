@@ -91,7 +91,7 @@ class MainLayout extends Component {
               <Fragment>
                 <NewsContainer enterContainer />
                 <NewsContainer headerTitle="Latest News" />
-                <NewsContainer exitNews headerTitle="Editor`s Pick" />
+                <NewsContainer exitNews />
               </Fragment>
             )}
           />

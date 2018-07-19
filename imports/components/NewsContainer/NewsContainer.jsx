@@ -53,13 +53,15 @@ class NewsContainer extends Component {
       return (
         <section>
           <Card className={newsCard}>
-            <SectionHeader headerTitle={headerTitle} />
+            <SectionHeader headerTitle="Most Popular" />
             <BasicNews
               topNews={oneNews}
               authors={authors}
               unit8ArrayToUrl={unit8ArrayToUrl}
             />
             <ExitNews topNews={topNews} unit8ArrayToUrl={unit8ArrayToUrl} />
+            <SectionHeader secondary headerTitle="Social Networks" />
+            <SectionHeader youtube />
           </Card>
         </section>
       );
