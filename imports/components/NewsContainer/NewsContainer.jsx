@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import {
   withStyles,
   Card,
-  CardHeader,
 } from '@material-ui/core';
 import EnterNews from './EnterNews';
 import BasicNews from './BasicNews';
 import ExitNews from './ExitNews';
+import SectionHeader from './SectionHeader';
 
 const styles = {
   mainNewsCard: {
@@ -17,11 +17,6 @@ const styles = {
   newsCard: {
     padding: 20,
     marginTop: 50,
-  },
-  headerCard: {
-    padding: '0 25px',
-    backgroundColor: '#000000',
-    marginBottom: 20,
   },
 };
 
@@ -38,7 +33,6 @@ class NewsContainer extends Component {
     const {
       mainNewsCard,
       newsCard,
-      headerCard,
     } = this.props.classes;
 
     if (enterContainer) {
@@ -59,10 +53,7 @@ class NewsContainer extends Component {
       return (
         <section>
           <Card className={newsCard}>
-            <CardHeader
-              className={headerCard}
-              title={<span className="header-card-title">{headerTitle}</span>}
-            />
+            <SectionHeader headerTitle={headerTitle} />
             <BasicNews
               topNews={oneNews}
               authors={authors}
@@ -77,10 +68,7 @@ class NewsContainer extends Component {
     return (
       <section>
         <Card className={newsCard}>
-          <CardHeader
-            className={headerCard}
-            title={<span className="header-card-title">{headerTitle}</span>}
-          />
+          <SectionHeader headerTitle={headerTitle} />
           <BasicNews
             topNews={topNews}
             authors={authors}
@@ -122,7 +110,6 @@ NewsContainer.propTypes = {
   classes: PropTypes.shape({
     mainNewsCard: PropTypes.string.isRequired,
     newsCard: PropTypes.string.isRequired,
-    headerCard: PropTypes.string.isRequired,
   }).isRequired,
   unit8ArrayToUrl: PropTypes.func.isRequired,
 };
