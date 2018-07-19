@@ -8,6 +8,7 @@ import {
 import EnterNews from './EnterNews';
 import BasicNews from './BasicNews';
 import TileSubtitle from './TileSubtitle';
+import './NewsContainer.css';
 
 const styles = {
   mainNewsCard: {
