@@ -7,8 +7,7 @@ import {
 } from '@material-ui/core';
 import EnterNews from './EnterNews';
 import BasicNews from './BasicNews';
-import TileSubtitle from './TileSubtitle';
-import './NewsContainer.css';
+import ExitNews from './ExitNews';
 
 const styles = {
   mainNewsCard: {
@@ -24,24 +23,13 @@ const styles = {
     backgroundColor: '#000000',
     marginBottom: 20,
   },
-  asideNewsCard: {
-    backgroundColor: 'transparent',
-    boxShadow: 'unset',
-    display: 'flex',
-    alignItems: 'center',
-    borderTop: '1px solid #eeeeee',
-  },
-  asideNewsHeaderCard: {
-    flex: 1,
-    paddingRight: 0,
-  },
 };
 
 class NewsContainer extends Component {
   render() {
     const {
       enterContainer,
-      bottomContainer,
+      exitNews,
       topNews,
       authors,
       unit8ArrayToUrl,
@@ -51,8 +39,6 @@ class NewsContainer extends Component {
       mainNewsCard,
       newsCard,
       headerCard,
-      asideNewsCard,
-      asideNewsHeaderCard,
     } = this.props.classes;
 
     if (enterContainer) {
@@ -67,13 +53,8 @@ class NewsContainer extends Component {
           </Card>
         </section>
       );
-    } else if (bottomContainer) {
+    } else if (exitNews) {
       const oneNews = topNews.slice(0, 1);
-
-      // display: flex;
-      // align-items: center;
-      // border-bottom: 1px solid #eee;
-      // border-top: 1px solid #eee;
 
       return (
         <section>
@@ -87,21 +68,7 @@ class NewsContainer extends Component {
               authors={authors}
               unit8ArrayToUrl={unit8ArrayToUrl}
             />
-            {topNews.map((news, index) => (
-              <Card key={`bottom${news._id}`} className={asideNewsCard}>
-                <div
-                  className="aside-news-image"
-                  style={{ backgroundImage: `url(${unit8ArrayToUrl(news.enterImage.data.image)})` }}
-                />
-                <CardHeader
-                  className={asideNewsHeaderCard}
-                  title={<h6>{news.title}</h6>}
-                  subheader={
-                    <TileSubtitle isAside createdAt={news.createdAt} index={index} />
-                  }
-                />
-              </Card>
-            ))}
+            <ExitNews topNews={topNews} unit8ArrayToUrl={unit8ArrayToUrl} />
           </Card>
         </section>
       );
@@ -127,7 +94,7 @@ class NewsContainer extends Component {
 
 NewsContainer.defaultProps = {
   enterContainer: false,
-  bottomContainer: false,
+  exitNews: false,
   headerTitle: '',
   topNews: [],
   authors: [],
@@ -135,7 +102,7 @@ NewsContainer.defaultProps = {
 
 NewsContainer.propTypes = {
   enterContainer: PropTypes.bool,
-  bottomContainer: PropTypes.bool,
+  exitNews: PropTypes.bool,
   headerTitle: PropTypes.string,
   topNews: PropTypes.arrayOf(PropTypes.shape({
     _id: PropTypes.string.isRequired,
@@ -156,8 +123,6 @@ NewsContainer.propTypes = {
     mainNewsCard: PropTypes.string.isRequired,
     newsCard: PropTypes.string.isRequired,
     headerCard: PropTypes.string.isRequired,
-    asideNewsCard: PropTypes.string.isRequired,
-    asideNewsHeaderCard: PropTypes.string.isRequired,
   }).isRequired,
   unit8ArrayToUrl: PropTypes.func.isRequired,
 };
