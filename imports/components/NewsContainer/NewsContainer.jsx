@@ -24,6 +24,17 @@ const styles = {
     backgroundColor: '#000000',
     marginBottom: 20,
   },
+  asideNewsCard: {
+    backgroundColor: 'transparent',
+    boxShadow: 'unset',
+    display: 'flex',
+    alignItems: 'center',
+    borderTop: '1px solid #eeeeee',
+  },
+  asideNewsHeaderCard: {
+    flex: 1,
+    paddingRight: 0,
+  },
 };
 
 class NewsContainer extends Component {
@@ -40,6 +51,8 @@ class NewsContainer extends Component {
       mainNewsCard,
       newsCard,
       headerCard,
+      asideNewsCard,
+      asideNewsHeaderCard,
     } = this.props.classes;
 
     if (enterContainer) {
@@ -75,14 +88,16 @@ class NewsContainer extends Component {
               unit8ArrayToUrl={unit8ArrayToUrl}
             />
             {topNews.map((news, index) => (
-              <Card key={`bottom${news._id}`} className={mainNewsCard}>
+              <Card key={`bottom${news._id}`} className={asideNewsCard}>
                 <div
+                  className="aside-news-image"
                   style={{ backgroundImage: `url(${unit8ArrayToUrl(news.enterImage.data.image)})` }}
                 />
                 <CardHeader
-                  title={<h5>{news.title}</h5>}
+                  className={asideNewsHeaderCard}
+                  title={<h6>{news.title}</h6>}
                   subheader={
-                    <TileSubtitle createdAt={news.createdAt} index={index} />
+                    <TileSubtitle isAside createdAt={news.createdAt} index={index} />
                   }
                 />
               </Card>
@@ -141,6 +156,8 @@ NewsContainer.propTypes = {
     mainNewsCard: PropTypes.string.isRequired,
     newsCard: PropTypes.string.isRequired,
     headerCard: PropTypes.string.isRequired,
+    asideNewsCard: PropTypes.string.isRequired,
+    asideNewsHeaderCard: PropTypes.string.isRequired,
   }).isRequired,
   unit8ArrayToUrl: PropTypes.func.isRequired,
 };

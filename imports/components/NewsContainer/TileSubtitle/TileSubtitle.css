@@ -17,3 +17,7 @@
     font-size: 12px;
     flex-wrap: wrap;
 }
+
+.aside-margin {
+    margin: 10px 0;
+}

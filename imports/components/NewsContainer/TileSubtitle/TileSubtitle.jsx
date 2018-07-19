@@ -22,9 +22,14 @@ const formatDate = (date) => {
   return `${day} ${monthNamesEng[monthIndex]}, ${year}`;
 };
 
-const TileSubtitle = ({ authors, index, createdAt }) => (
-  <span className="subtitle-tile">
-    {authors.length ?
+const TileSubtitle = ({
+  authors,
+  index,
+  createdAt,
+  isAside,
+}) => (
+  <span className={`subtitle-tile${isAside ? ' aside-margin' : ''}`}>
+    {authors.length && !isAside ?
       <span className="tile-subtitle-item">
         <AccountOutlineIcon className="user-icon" size={17} /> {authors[index]}
       </span>
@@ -38,19 +43,21 @@ const TileSubtitle = ({ authors, index, createdAt }) => (
       /> {formatDate(createdAt)}
     </span>
     <span className="tile-subtitle-item">
-      <MessageOutlineIcon className="user-icon" size={17} /> 06 Comments
+      <MessageOutlineIcon className="user-icon" size={17} /> 06 {!isAside ? 'Comments' : ''}
     </span>
   </span>
 );
 
 TileSubtitle.defaultProps = {
   authors: [],
+  isAside: false,
 };
 
 TileSubtitle.propTypes = {
   authors: PropTypes.arrayOf(PropTypes.string.isRequired),
   index: PropTypes.number.isRequired,
   createdAt: PropTypes.instanceOf(Date).isRequired,
+  isAside: PropTypes.bool,
 };
 
 export default TileSubtitle;
