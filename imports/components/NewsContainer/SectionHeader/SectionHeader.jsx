@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { CardHeader, withStyles } from '@material-ui/core';
+import { CardHeader, withStyles, IconButton } from '@material-ui/core';
+import { YoutubeIcon } from 'mdi-react';
 import './SectionHeader.css';
 
 const styles = {
@@ -20,6 +21,12 @@ const styles = {
     marginBottom: 10,
     backgroundColor: '#c41713',
   },
+  socialIconButton: {
+    borderRadius: 0,
+    backgroundColor: '#ffffff',
+    height: 25,
+    width: 25,
+  },
 };
 
 class SectionHeader extends Component {
@@ -33,13 +40,21 @@ class SectionHeader extends Component {
       headerCard,
       secondaryHeaderCard,
       youtubeHeader,
+      socialIconButton,
     } = this.props.classes;
 
     if (youtube) {
       return (
         <CardHeader
           className={youtubeHeader}
-          title={<span className="header-card-title">1023 Subscriber</span>}
+          title={
+            <Fragment>
+              <IconButton className={socialIconButton} color="inherit">
+                <YoutubeIcon color="#c41713" size={14} />
+              </IconButton>
+              <span className="header-card-title">1023 Subscriber</span>
+            </Fragment>
+          }
         />
       );
     }
@@ -67,6 +82,7 @@ SectionHeader.propTypes = {
     headerCard: PropTypes.string.isRequired,
     secondaryHeaderCard: PropTypes.string.isRequired,
     youtubeHeader: PropTypes.string.isRequired,
+    socialIconButton: PropTypes.string.isRequired,
   }).isRequired,
 };
 
