@@ -61,6 +61,7 @@ class NewsContainer extends Component {
             />
             <ExitNews topNews={topNews} unit8ArrayToUrl={unit8ArrayToUrl} />
             <SectionHeader secondary headerTitle="Social Networks" />
+            <SectionHeader facebook />
             <SectionHeader youtube />
           </Card>
         </section>

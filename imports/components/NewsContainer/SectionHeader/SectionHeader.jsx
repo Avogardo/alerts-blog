@@ -1,7 +1,7 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { CardHeader, withStyles, IconButton } from '@material-ui/core';
-import { YoutubeIcon } from 'mdi-react';
+import { YoutubeIcon, FacebookIcon } from 'mdi-react';
 import './SectionHeader.css';
 
 const styles = {
@@ -21,6 +21,11 @@ const styles = {
     marginBottom: 10,
     backgroundColor: '#c41713',
   },
+  facebookHeader: {
+    padding: 9,
+    marginBottom: 10,
+    backgroundColor: '#4c63a2',
+  },
   socialIconButton: {
     borderRadius: 0,
     backgroundColor: '#ffffff',
@@ -38,12 +43,14 @@ class SectionHeader extends Component {
       headerTitle,
       secondary,
       youtube,
+      facebook,
     } = this.props;
     const {
       headerCard,
       secondaryHeaderCard,
       youtubeHeader,
       socialIconButton,
+      facebookHeader,
     } = this.props.classes;
 
     if (youtube) {
@@ -63,6 +70,23 @@ class SectionHeader extends Component {
           }
         />
       );
+    } else if (facebook) {
+      return (
+        <CardHeader
+          className={facebookHeader}
+          title={
+            <div className="social-header-content-wrapper">
+              <div className="social-header-wrapper">
+                <IconButton className={socialIconButton} color="default">
+                  <FacebookIcon color="#4c63a2" size={14} />
+                </IconButton>
+                <span className="header-card-title social-header">924 Likes</span>
+              </div>
+              <span className="header-card-title social-header">Like our page</span>
+            </div>
+          }
+        />
+      );
     }
 
     return (
@@ -77,6 +101,7 @@ class SectionHeader extends Component {
 SectionHeader.defaultProps = {
   secondary: false,
   youtube: false,
+  facebook: false,
   headerTitle: '',
 };
 
@@ -84,11 +109,13 @@ SectionHeader.propTypes = {
   headerTitle: PropTypes.string,
   secondary: PropTypes.bool,
   youtube: PropTypes.bool,
+  facebook: PropTypes.bool,
   classes: PropTypes.shape({
     headerCard: PropTypes.string.isRequired,
     secondaryHeaderCard: PropTypes.string.isRequired,
     youtubeHeader: PropTypes.string.isRequired,
     socialIconButton: PropTypes.string.isRequired,
+    facebookHeaderk: PropTypes.string.isRequired,
   }).isRequired,
 };
 
