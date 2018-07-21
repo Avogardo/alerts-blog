@@ -2,7 +2,22 @@
     color: #ffffff;
     font-size: 14px;
     font-weight: 600;
+}
+
+.social-header {
     margin-left: 10px;
     border-left: 1px solid #eee;
     padding-left: 10px;
+    line-height: 23px;
+}
+
+.social-header-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.social-header-content-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }

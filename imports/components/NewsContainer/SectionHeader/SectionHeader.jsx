@@ -17,7 +17,7 @@ const styles = {
     marginTop: 30,
   },
   youtubeHeader: {
-    padding: '4px 10px',
+    padding: 9,
     marginBottom: 10,
     backgroundColor: '#c41713',
   },
@@ -51,12 +51,15 @@ class SectionHeader extends Component {
         <CardHeader
           className={youtubeHeader}
           title={
-            <Fragment>
-              <IconButton className={socialIconButton} color="default">
-                <YoutubeIcon color="#c41713" size={14} />
-              </IconButton>
-              <span className="header-card-title">1023 Subscriber</span>
-            </Fragment>
+            <div className="social-header-content-wrapper">
+              <div className="social-header-wrapper">
+                <IconButton className={socialIconButton} color="default">
+                  <YoutubeIcon color="#c41713" size={14} />
+                </IconButton>
+                <span className="header-card-title social-header">1023 Subscriber</span>
+              </div>
+              <span className="header-card-title social-header">Subscribe</span>
+            </div>
           }
         />
       );
