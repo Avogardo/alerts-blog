@@ -26,6 +26,9 @@ const styles = {
     backgroundColor: '#ffffff',
     height: 25,
     width: 25,
+    '&:hover': {
+      backgroundColor: '#ffffff',
+    },
   },
 };
 
@@ -49,7 +52,7 @@ class SectionHeader extends Component {
           className={youtubeHeader}
           title={
             <Fragment>
-              <IconButton className={socialIconButton} color="inherit">
+              <IconButton className={socialIconButton} color="default">
                 <YoutubeIcon color="#c41713" size={14} />
               </IconButton>
               <span className="header-card-title">1023 Subscriber</span>
