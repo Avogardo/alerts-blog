@@ -63,9 +63,9 @@ class SectionHeader extends Component {
                 <IconButton className={socialIconButton} color="default">
                   <YoutubeIcon color="#c41713" size={14} />
                 </IconButton>
-                <span className="header-card-title social-header">1023 Subscriber</span>
+                <span className="social-header">1023 Subscriber</span>
               </div>
-              <span className="header-card-title social-header">Subscribe</span>
+              <span className="social-header-action">Subscribe</span>
             </div>
           }
         />
@@ -80,9 +80,9 @@ class SectionHeader extends Component {
                 <IconButton className={socialIconButton} color="default">
                   <FacebookIcon color="#4c63a2" size={14} />
                 </IconButton>
-                <span className="header-card-title social-header">924 Likes</span>
+                <span className="social-header">924 Likes</span>
               </div>
-              <span className="header-card-title social-header">Like our page</span>
+              <span className="social-header-action">Like our page</span>
             </div>
           }
         />

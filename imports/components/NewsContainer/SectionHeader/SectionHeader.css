@@ -9,6 +9,19 @@
     border-left: 1px solid #eee;
     padding-left: 10px;
     line-height: 23px;
+    font-weight: 300;
+    color: #ffffff;
+    font-size: 14px;
+}
+
+.social-header-action {
+    margin-left: 10px;
+    border-left: 1px solid #eee;
+    padding-left: 10px;
+    line-height: 23px;
+    font-weight: 500;
+    color: #ffffff;
+    font-size: 14px;
 }
 
 .social-header-wrapper {
