@@ -5,7 +5,7 @@ import TestRenderer from 'react-test-renderer';
 import { Button, CardContent } from '@material-ui/core';
 import GooglePlusIcon from 'mdi-react/GooglePlusIcon';
 
-import SignIn from '../imports/components/SignIn/SignIn.jsx';
+import SignIn from '../../imports/components/SignIn/SignIn.jsx';
 
 describe('SignIn', () => {
   let props;

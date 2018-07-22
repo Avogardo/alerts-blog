@@ -6,7 +6,7 @@ import {
   TextField,
   Button,
 } from '@material-ui/core';
-import CreateNews from '../imports/components/CreateNews/CreateNews.jsx';
+import CreateNews from '../../imports/components/CreateNews/CreateNews.jsx';
 
 describe('Create news', () => {
   let props;

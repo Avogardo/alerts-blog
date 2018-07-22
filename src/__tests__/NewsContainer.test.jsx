@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TestRenderer from 'react-test-renderer';
-import NewsContainer from '../imports/components/NewsContainer/NewsContainer.jsx';
+import NewsContainer from '../../imports/components/NewsContainer/NewsContainer.jsx';
 
 describe('NewsContainer', () => {
   let props;
