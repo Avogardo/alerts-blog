@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { CardHeader, withStyles, IconButton } from '@material-ui/core';
 import { YoutubeIcon, FacebookIcon } from 'mdi-react';
@@ -37,66 +37,62 @@ const styles = {
   },
 };
 
-class SectionHeader extends Component {
-  render() {
-    const {
-      headerTitle,
-      secondary,
-      youtube,
-      facebook,
-    } = this.props;
-    const {
-      headerCard,
-      secondaryHeaderCard,
-      youtubeHeader,
-      socialIconButton,
-      facebookHeader,
-    } = this.props.classes;
-
-    if (youtube) {
-      return (
-        <CardHeader
-          className={youtubeHeader}
-          title={
-            <div className="social-header-content-wrapper">
-              <div className="social-header-wrapper">
-                <IconButton className={socialIconButton} color="default">
-                  <YoutubeIcon color="#c41713" size={14} />
-                </IconButton>
-                <span className="social-header">1023 Subscriber</span>
-              </div>
-              <span className="social-header-action">Subscribe</span>
-            </div>
-          }
-        />
-      );
-    } else if (facebook) {
-      return (
-        <CardHeader
-          className={facebookHeader}
-          title={
-            <div className="social-header-content-wrapper">
-              <div className="social-header-wrapper">
-                <IconButton className={socialIconButton} color="default">
-                  <FacebookIcon color="#4c63a2" size={14} />
-                </IconButton>
-                <span className="social-header">924 Likes</span>
-              </div>
-              <span className="social-header-action">Like our page</span>
-            </div>
-          }
-        />
-      );
-    }
-
+const SectionHeader = ({
+  headerTitle,
+  secondary,
+  youtube,
+  facebook,
+  classes: {
+    headerCard,
+    secondaryHeaderCard,
+    youtubeHeader,
+    socialIconButton,
+    facebookHeader,
+  },
+}) => {
+  if (youtube) {
     return (
       <CardHeader
-        className={secondary ? secondaryHeaderCard : headerCard}
-        title={<span className="header-card-title">{headerTitle}</span>}
+        className={youtubeHeader}
+        title={
+          <div className="social-header-content-wrapper">
+            <div className="social-header-wrapper">
+              <IconButton className={socialIconButton} color="default">
+                <YoutubeIcon color="#c41713" size={14} />
+              </IconButton>
+              <span className="social-header">1023 Subscriber</span>
+            </div>
+            <span className="social-header-action">Subscribe</span>
+          </div>
+        }
+      />
+    );
+  } else if (facebook) {
+    return (
+      <CardHeader
+        className={facebookHeader}
+        title={
+          <div className="social-header-content-wrapper">
+            <div className="social-header-wrapper">
+              <IconButton className={socialIconButton} color="default">
+                <FacebookIcon color="#4c63a2" size={14} />
+              </IconButton>
+              <span className="social-header">924 Likes</span>
+            </div>
+            <span className="social-header-action">Like our page</span>
+          </div>
+        }
       />
     );
   }
-}
+
+  return (
+    <CardHeader
+      className={secondary ? secondaryHeaderCard : headerCard}
+      title={<span className="header-card-title">{headerTitle}</span>}
+    />
+  );
+};
 
 SectionHeader.defaultProps = {
   secondary: false,
