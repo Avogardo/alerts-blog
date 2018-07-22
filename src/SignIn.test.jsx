@@ -7,8 +7,10 @@ import GooglePlusIcon from 'mdi-react/GooglePlusIcon';
 
 import SignIn from '../imports/components/SignIn/SignIn.jsx';
 
-describe("SignIn", () => {
-  let props, testRenderer, testInstance;
+describe('SignIn', () => {
+  let props;
+  let testRenderer;
+  let testInstance;
 
   beforeEach(() => {
     props = {
@@ -43,7 +45,7 @@ describe("SignIn", () => {
     expect(testInstance.findByType(GooglePlusIcon)).toBeDefined();
   });
 
-  describe("SignIn has only one child - form", () => {
+  describe('SignIn has only one child - form', () => {
     it('always have only one child', () => {
       expect(testInstance.children[0].children).toHaveLength(1);
     });
@@ -53,7 +55,7 @@ describe("SignIn", () => {
     });
   });
 
-  describe("Error message", () => {
+  describe('Error message', () => {
     it('when errorMessage is empty there is no error message', () => {
       const isErrorCard = testInstance.findAllByType(CardContent).length;
       expect(isErrorCard).toBeFalsy();

@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 // import ReactDOM from 'react-dom';
 // import TestRenderer from 'react-test-renderer';
 //
@@ -9,7 +9,7 @@ import React from 'react';
 // } from '@material-ui/core';
 // import Navigation from '../imports/components/Navigation';
 
-describe("Navigation", () => {
+describe('Navigation', () => {
   // let props, testRenderer, testInstance;
   //
   // beforeEach(() => {

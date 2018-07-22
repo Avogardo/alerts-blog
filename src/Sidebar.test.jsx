@@ -14,14 +14,14 @@ configure({ adapter: new Adapter() });
 
 import Sidebar from '../imports/components/Sidebar/Sidebar.jsx';
 
-describe("Sidebar", () => {
-  let props, mountedComponent;
+describe('Sidebar', () => {
+  let props;
+  let mountedComponent;
+
   const div = document.createElement('div');
   const SidebarComponent = () => {
     if (!mountedComponent) {
-      mountedComponent = mount(
-        <Sidebar {...props} />
-      );
+      mountedComponent = mount(<Sidebar {...props} />);
     }
     return mountedComponent;
   };
@@ -67,38 +67,38 @@ describe("Sidebar", () => {
     expect(wrappingDrawer.children().length).toBe(SidebarComponent().children().length);
   });
 
-  it("always renders a List elements", () => {
+  it('always renders a List elements', () => {
     expect(SidebarComponent().find(List).length).toBeGreaterThan(0);
   });
 
-  it("always renders ListItems elements", () => {
+  it('always renders ListItems elements', () => {
     expect(SidebarComponent().find(ListItem).length).toBeGreaterThan(0);
   });
 
-  it("always renders ListItemIcon elements", () => {
+  it('always renders ListItemIcon elements', () => {
     expect(SidebarComponent().find(ListItemIcon).length).toBeGreaterThan(0);
   });
 
-  it("drawet state is equal to sidebar prop state", () => {
+  it('drawet state is equal to sidebar prop state', () => {
     const drawer = SidebarComponent().find(Drawer);
 
     expect(drawer.props().open).toBe(SidebarComponent().props().isSidebarOpen);
   });
 
-  it("drawet onChange function is equal to received from props function", () => {
+  it('drawet onChange function is equal to received from props function', () => {
     const drawer = SidebarComponent().find(Drawer);
 
     expect(drawer.props().onChange()).toBe(SidebarComponent().props().setSidebarState());
   });
 
-  it("drawers list width is equal to received width prop", () => {
+  it('drawers list width is equal to received width prop', () => {
     const wrappingDiv = SidebarComponent().find('div').first();
 
     expect(wrappingDiv.prop('style').width)
       .toBe(Number(SidebarComponent().props().classes.list.slice(-3)));
   });
 
-  describe("user is authorized or not to go to create news component", () => {
+  describe('user is authorized or not to go to create news component', () => {
     let props;
 
     beforeEach(() => {
@@ -116,21 +116,16 @@ describe("Sidebar", () => {
       };
     });
 
-    it("there is no create news button if user is unauthorized", () => {
-      const SidebarComponent = mount(
-        <Sidebar {...props} />
-      );
-
-      expect(SidebarComponent.find(AddCircleIcon)).toHaveLength(0)
+    it('there is no create news button if user is unauthorized', () => {
+      const SidebarAuthorisedComponent = mount(<Sidebar {...props} />);
+      expect(SidebarAuthorisedComponent.find(AddCircleIcon)).toHaveLength(0);
     });
 
-    it("there is create news button if user is unauthorized", () => {
+    it('there is create news button if user is unauthorized', () => {
       props.isAuthorized = true;
-      const SidebarComponent = mount(
-        <Sidebar {...props} />
-      );
 
-      expect(SidebarComponent.find(AddCircleIcon)).toHaveLength(1)
+      const SidebarAuthorisedComponent = mount(<Sidebar {...props} />);
+      expect(SidebarAuthorisedComponent.find(AddCircleIcon)).toHaveLength(1);
     });
   });
 });

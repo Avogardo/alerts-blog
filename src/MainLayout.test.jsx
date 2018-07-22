@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 // import ReactDOM from 'react-dom';
 // import { MemoryRouter, Route } from 'react-router-dom';
 //
@@ -10,7 +10,7 @@ import React from 'react';
 // import Navigation from '../imports/components/Navigation';
 // import Sidebar from '../imports/components/Sidebar';
 
-describe("Main layout", () => {
+describe('Main layout', () => {
   // let mountedComponent, props, state;
   //
   // const MainLayoutComponent = () => {
@@ -105,7 +105,8 @@ describe("Main layout", () => {
   //   });
   //
   //   it('Sidebar always have isSidebarOpen prop equal to isSidebarOpen state', () => {
-  //     expect(MainLayoutComponent().find(Sidebar).prop('isSidebarOpen')).toBe(state.isSidebarOpen);
+  //     expect(MainLayoutComponent().find(Sidebar).prop('isSidebarOpen'))
+  //       .toBe(state.isSidebarOpen);
   //   });
   //
   //   it('Sidebar always have setSidebarState function', () => {
