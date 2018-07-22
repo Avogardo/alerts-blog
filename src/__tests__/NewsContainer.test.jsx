@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TestRenderer from 'react-test-renderer';
+import { Card } from '@material-ui/core';
 import NewsContainer from '../../imports/components/NewsContainer/NewsContainer.jsx';
 
 describe('NewsContainer', () => {
@@ -47,6 +48,10 @@ describe('NewsContainer', () => {
 
     it('always render a section element', () => {
       expect(testInstance.findByType('section')).toBeDefined();
+    });
+
+    it('always render a card element', () => {
+      expect(testInstance.findByType(Card)).toBeDefined();
     });
   });
 });
