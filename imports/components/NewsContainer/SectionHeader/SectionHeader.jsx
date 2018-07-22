@@ -115,7 +115,7 @@ SectionHeader.propTypes = {
     secondaryHeaderCard: PropTypes.string.isRequired,
     youtubeHeader: PropTypes.string.isRequired,
     socialIconButton: PropTypes.string.isRequired,
-    facebookHeaderk: PropTypes.string.isRequired,
+    facebookHeader: PropTypes.string.isRequired,
   }).isRequired,
 };
 

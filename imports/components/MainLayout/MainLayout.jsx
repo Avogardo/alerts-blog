@@ -8,6 +8,7 @@ import Sidebar from '../Sidebar';
 import NewsContainer from '../NewsContainer';
 import SignIn from '../SignIn';
 import CreateNews from '../CreateNews';
+import Footer from '../Footer';
 import './MainLayout.css';
 
 class MainLayout extends Component {
@@ -114,6 +115,8 @@ class MainLayout extends Component {
             )}
           />
         </div>
+
+        <Footer />
       </div>
     );
   }
