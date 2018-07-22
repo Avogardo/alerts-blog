@@ -44,5 +44,9 @@ describe('NewsContainer', () => {
       ReactDOM.render(<NewsContainer {...props} />, div);
       ReactDOM.unmountComponentAtNode(div);
     });
+
+    it('always render a section element', () => {
+      expect(testInstance.findByType('section')).toBeDefined();
+    });
   });
 });
