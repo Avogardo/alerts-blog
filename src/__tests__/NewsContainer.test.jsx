@@ -122,6 +122,13 @@ describe('NewsContainer', () => {
         );
         expect(SectionHeaderComponent).toBeDefined();
       });
+
+      it('always render youtube SectionHeader', () => {
+        const SectionHeaderComponent = SectionHeaderComponents.find(header =>
+          header.props.youtube,
+        );
+        expect(SectionHeaderComponent).toBeDefined();
+      });
     });
   });
 });
