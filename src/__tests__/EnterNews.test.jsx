@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TestRenderer from 'react-test-renderer';
-import { Card } from '@material-ui/core';
+import { Card, GridList } from '@material-ui/core';
 import EnterNews from '../../imports/components/NewsContainer/EnterNews';
 
 describe('EnterNews', () => {
@@ -63,6 +63,10 @@ describe('EnterNews', () => {
       const div = document.createElement('div');
       ReactDOM.render(<EnterNews {...props} />, div);
       ReactDOM.unmountComponentAtNode(div);
+    });
+
+    it('always render a gridlist element', () => {
+      expect(testInstance.findByType(GridList)).toBeDefined();
     });
   });
 
