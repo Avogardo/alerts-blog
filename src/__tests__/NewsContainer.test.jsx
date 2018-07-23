@@ -146,5 +146,9 @@ describe('NewsContainer', () => {
     it('always render a card element', () => {
       expect(testInstance.findByType(Card)).toBeDefined();
     });
+
+    it('always render a card element', () => {
+      expect(testInstance.findByType(SectionHeader)).toBeDefined();
+    });
   });
 });
