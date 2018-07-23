@@ -62,4 +62,26 @@ describe('NewsContainer', () => {
       expect(testInstance.findByType(EnterNews)).toBeDefined();
     });
   });
+
+  describe('Exit container', () => {
+    beforeEach(() => {
+      props = {
+        unit8ArrayToUrl: () => {},
+        exitContainer: true,
+        classes: {
+          mainNewsCard: '',
+          newsCard: '',
+        },
+      };
+
+      testRenderer = TestRenderer.create(<NewsContainer {...props} />);
+      testInstance = testRenderer.root;
+    });
+
+    it('renders without crashing', () => {
+      const div = document.createElement('div');
+      ReactDOM.render(<NewsContainer {...props} />, div);
+      ReactDOM.unmountComponentAtNode(div);
+    });
+  });
 });
