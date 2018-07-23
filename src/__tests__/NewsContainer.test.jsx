@@ -131,4 +131,20 @@ describe('NewsContainer', () => {
       });
     });
   });
+
+  describe('Middle container', () => {
+    it('renders without crashing', () => {
+      const div = document.createElement('div');
+      ReactDOM.render(<NewsContainer {...props} />, div);
+      ReactDOM.unmountComponentAtNode(div);
+    });
+
+    it('always render a section element', () => {
+      expect(testInstance.findByType('section')).toBeDefined();
+    });
+
+    it('always render a card element', () => {
+      expect(testInstance.findByType(Card)).toBeDefined();
+    });
+  });
 });
