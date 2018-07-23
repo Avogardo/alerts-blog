@@ -1,7 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TestRenderer from 'react-test-renderer';
-import { Card, GridList, GridListTile } from '@material-ui/core';
+import {
+  Card,
+  GridList,
+  GridListTile,
+  GridListTileBar,
+} from '@material-ui/core';
 import EnterNews from '../../imports/components/NewsContainer/EnterNews';
 
 describe('EnterNews', () => {
@@ -73,8 +78,12 @@ describe('EnterNews', () => {
       expect(testInstance.findAllByType(GridListTile).length).toBe(props.topNews.length);
     });
 
-    it('always render a icon element', () => {
+    it('always render a image element', () => {
       expect(testInstance.findByProps({className: 'enter-news-image'})).toBeDefined();
+    });
+
+    it('always render a GridListTileBar element', () => {
+      expect(testInstance.findAllByType(GridListTileBar)).toBeDefined();
     });
   });
 
