@@ -56,4 +56,25 @@ describe('EnterNews', () => {
       ReactDOM.unmountComponentAtNode(div);
     });
   });
+
+  describe('There are no news', () => {
+    beforeEach(() => {
+      props = {
+        unit8ArrayToUrl: () => {},
+        classes: {
+          gridListTileBar: '',
+          breakingNews: '',
+        },
+      };
+
+      testRenderer = TestRenderer.create(<EnterNews {...props} />);
+      testInstance = testRenderer.root;
+    });
+
+    it('renders without crashing', () => {
+      const div = document.createElement('div');
+      ReactDOM.render(<EnterNews {...props} />, div);
+      ReactDOM.unmountComponentAtNode(div);
+    });
+  });
 });
