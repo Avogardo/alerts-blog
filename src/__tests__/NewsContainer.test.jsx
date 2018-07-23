@@ -6,6 +6,7 @@ import NewsContainer from '../../imports/components/NewsContainer/NewsContainer.
 import EnterNews from '../../imports/components/NewsContainer/EnterNews';
 import ExitNews from '../../imports/components/NewsContainer/ExitNews';
 import SectionHeader from '../../imports/components/NewsContainer/SectionHeader';
+import BasicNews from '../../imports/components/NewsContainer/BasicNews';
 
 describe('NewsContainer', () => {
   let props;
@@ -149,6 +150,10 @@ describe('NewsContainer', () => {
 
     it('always render a card element', () => {
       expect(testInstance.findByType(SectionHeader)).toBeDefined();
+    });
+
+    it('always render a BasicNews component', () => {
+      expect(testInstance.findByType(BasicNews)).toBeDefined();
     });
   });
 });
