@@ -72,6 +72,10 @@ describe('EnterNews', () => {
     it('always render as much GridListTiles as news element', () => {
       expect(testInstance.findAllByType(GridListTile).length).toBe(props.topNews.length);
     });
+
+    it('always render a icon element', () => {
+      expect(testInstance.findByProps({className: 'enter-news-image'})).toBeDefined();
+    });
   });
 
   describe('There are no news', () => {
