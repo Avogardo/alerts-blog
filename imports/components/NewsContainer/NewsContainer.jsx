@@ -24,7 +24,7 @@ class NewsContainer extends Component {
   render() {
     const {
       enterContainer,
-      exitNews,
+      exitContainer,
       topNews,
       authors,
       unit8ArrayToUrl,
@@ -47,7 +47,7 @@ class NewsContainer extends Component {
           </Card>
         </section>
       );
-    } else if (exitNews) {
+    } else if (exitContainer) {
       const oneNews = topNews.slice(0, 1);
 
       return (
@@ -85,7 +85,7 @@ class NewsContainer extends Component {
 
 NewsContainer.defaultProps = {
   enterContainer: false,
-  exitNews: false,
+  exitContainer: false,
   headerTitle: '',
   topNews: [],
   authors: [],
@@ -93,7 +93,7 @@ NewsContainer.defaultProps = {
 
 NewsContainer.propTypes = {
   enterContainer: PropTypes.bool,
-  exitNews: PropTypes.bool,
+  exitContainer: PropTypes.bool,
   headerTitle: PropTypes.string,
   topNews: PropTypes.arrayOf(PropTypes.shape({
     _id: PropTypes.string.isRequired,
