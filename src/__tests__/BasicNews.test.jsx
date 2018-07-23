@@ -1,10 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ShallowRenderer from 'react-test-renderer/shallow';
+import TestRenderer from 'react-test-renderer';
+import { Card } from '@material-ui/core';
 import BasicNews from '../../imports/components/NewsContainer/BasicNews';
 
 describe('BasicNews', () => {
   let props;
+  let testRenderer;
   let testInstance;
 
   beforeEach(() => {
@@ -17,9 +19,8 @@ describe('BasicNews', () => {
       },
     };
 
-    const renderer = new ShallowRenderer();
-    renderer.render(<BasicNews {...props} />);
-    testInstance = renderer.getRenderOutput();
+    testRenderer = TestRenderer.create(<BasicNews {...props} />);
+    testInstance = testRenderer.root;
   });
 
   describe('There are news', () => {
@@ -48,15 +49,18 @@ describe('BasicNews', () => {
         },
       };
 
-      const renderer = new ShallowRenderer();
-      renderer.render(<BasicNews {...props} />);
-      testInstance = renderer.getRenderOutput();
+      testRenderer = TestRenderer.create(<BasicNews {...props} />);
+      testInstance = testRenderer.root;
     });
 
     it('renders without crashing', () => {
       const div = document.createElement('div');
       ReactDOM.render(<BasicNews {...props} />, div);
       ReactDOM.unmountComponentAtNode(div);
+    });
+
+    it('always render as much Cards as news elements', () => {
+      expect(testInstance.findAllByType(Card).length).toBe(props.topNews.length);
     });
   });
 
@@ -71,9 +75,8 @@ describe('BasicNews', () => {
         },
       };
 
-      const renderer = new ShallowRenderer();
-      renderer.render(<BasicNews {...props} />);
-      testInstance = renderer.getRenderOutput();
+      testRenderer = TestRenderer.create(<BasicNews {...props} />);
+      testInstance = testRenderer.root;
     });
 
     it('renders without crashing', () => {
