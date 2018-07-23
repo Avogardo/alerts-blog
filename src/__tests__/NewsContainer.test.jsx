@@ -5,6 +5,7 @@ import { Card } from '@material-ui/core';
 import NewsContainer from '../../imports/components/NewsContainer/NewsContainer.jsx';
 import EnterNews from '../../imports/components/NewsContainer/EnterNews';
 import ExitNews from '../../imports/components/NewsContainer/ExitNews';
+import SectionHeader from '../../imports/components/NewsContainer/SectionHeader';
 
 describe('NewsContainer', () => {
   let props;
@@ -95,6 +96,10 @@ describe('NewsContainer', () => {
 
     it('always render a ExitNews component', () => {
       expect(testInstance.findByType(ExitNews)).toBeDefined();
+    });
+
+    it('always render SectionHeader components', () => {
+      expect(testInstance.findAllByType(SectionHeader).length).toBeGreaterThan(1)
     });
   });
 });
