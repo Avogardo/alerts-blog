@@ -26,6 +26,10 @@ describe('EnterNews', () => {
     expect(testInstance.findByType(Card)).toBeDefined();
   });
 
+  it('always render breaking news strong title', () => {
+    expect(testInstance.findByType(Card).findByType('strong')).toBeDefined();
+  });
+
   describe('There are news', () => {
     beforeEach(() => {
       props = {
