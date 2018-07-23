@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TestRenderer from 'react-test-renderer';
-import { Card, GridList } from '@material-ui/core';
+import { Card, GridList, GridListTile } from '@material-ui/core';
 import EnterNews from '../../imports/components/NewsContainer/EnterNews';
 
 describe('EnterNews', () => {
@@ -67,6 +67,10 @@ describe('EnterNews', () => {
 
     it('always render a gridlist element', () => {
       expect(testInstance.findByType(GridList)).toBeDefined();
+    });
+
+    it('always render as much GridListTiles as news element', () => {
+      expect(testInstance.findAllByType(GridListTile).length).toBe(props.topNews.length);
     });
   });
 
