@@ -8,6 +8,7 @@ import {
   GridListTileBar,
 } from '@material-ui/core';
 import EnterNews from '../../imports/components/NewsContainer/EnterNews';
+import TileSubtitle from '../../imports/components/NewsContainer/TileSubtitle';
 
 describe('EnterNews', () => {
   let props;
@@ -83,7 +84,11 @@ describe('EnterNews', () => {
     });
 
     it('always render a GridListTileBar element', () => {
-      expect(testInstance.findAllByType(GridListTileBar)).toBeDefined();
+      expect(testInstance.findByType(GridListTileBar)).toBeDefined();
+    });
+
+    it('always render a TileSubtitle element', () => {
+      expect(testInstance.findByType(TileSubtitle)).toBeDefined();
     });
   });
 
