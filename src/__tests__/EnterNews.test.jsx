@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TestRenderer from 'react-test-renderer';
+import { Card } from '@material-ui/core';
 import EnterNews from '../../imports/components/NewsContainer/EnterNews';
 
 describe('EnterNews', () => {
@@ -19,6 +20,10 @@ describe('EnterNews', () => {
 
     testRenderer = TestRenderer.create(<EnterNews {...props} />);
     testInstance = testRenderer.root;
+  });
+
+  it('always render breaking news card', () => {
+    expect(testInstance.findByType(Card)).toBeDefined();
   });
 
   describe('There are news', () => {

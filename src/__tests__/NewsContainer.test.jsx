@@ -100,7 +100,7 @@ describe('NewsContainer', () => {
     });
 
     it('always render SectionHeader components', () => {
-      expect(testInstance.findAllByType(SectionHeader).length).toBeGreaterThan(1)
+      expect(testInstance.findAllByType(SectionHeader).length).toBeGreaterThan(1);
     });
 
     describe('Social SectionHeaders', () => {
