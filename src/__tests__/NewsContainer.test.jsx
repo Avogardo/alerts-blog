@@ -115,6 +115,13 @@ describe('NewsContainer', () => {
         );
         expect(SectionHeaderComponent).toBeDefined();
       });
+
+      it('always render facebook SectionHeader', () => {
+        const SectionHeaderComponent = SectionHeaderComponents.find(header =>
+          header.props.facebook,
+        );
+        expect(SectionHeaderComponent).toBeDefined();
+      });
     });
   });
 });
