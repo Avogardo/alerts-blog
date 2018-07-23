@@ -101,5 +101,20 @@ describe('NewsContainer', () => {
     it('always render SectionHeader components', () => {
       expect(testInstance.findAllByType(SectionHeader).length).toBeGreaterThan(1)
     });
+
+    describe('Social SectionHeaders', () => {
+      let SectionHeaderComponents;
+
+      beforeEach(() => {
+        SectionHeaderComponents = testInstance.findAllByType(SectionHeader);
+      });
+
+      it('always render social SectionHeader', () => {
+        const SectionHeaderComponent = SectionHeaderComponents.find(header =>
+          header.props.secondary,
+        );
+        expect(SectionHeaderComponent).toBeDefined();
+      });
+    });
   });
 });
