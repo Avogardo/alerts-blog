@@ -43,7 +43,7 @@ describe('EnterNews', () => {
         topNews: [{
           _id: '',
           authorId: '',
-          title: '',
+          title: 'title',
           content: '',
           createdAt: new Date(),
           tags: [],
@@ -89,6 +89,10 @@ describe('EnterNews', () => {
 
     it('always render a TileSubtitle element', () => {
       expect(testInstance.findByType(TileSubtitle)).toBeDefined();
+    });
+
+    it('GridListTileBar title is equal to news title', () => {
+      expect(testInstance.findByType(GridListTileBar).props.title).toBe(props.topNews[0].title);
     });
   });
 
