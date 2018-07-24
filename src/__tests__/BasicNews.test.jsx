@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TestRenderer from 'react-test-renderer';
-import { Card } from '@material-ui/core';
+import { Card, GridList } from '@material-ui/core';
 import BasicNews from '../../imports/components/NewsContainer/BasicNews';
 
 describe('BasicNews', () => {
@@ -61,6 +61,10 @@ describe('BasicNews', () => {
 
     it('always render as much Cards as news elements', () => {
       expect(testInstance.findAllByType(Card).length).toBe(props.topNews.length);
+    });
+
+    it('always render a GridList element', () => {
+      expect(testInstance.findByType(GridList)).toBeDefined()
     });
   });
 
