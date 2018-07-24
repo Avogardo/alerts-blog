@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TestRenderer from 'react-test-renderer';
-import { Card, GridList } from '@material-ui/core';
+import { Card, GridList, GridListTile } from '@material-ui/core';
 import BasicNews from '../../imports/components/NewsContainer/BasicNews';
 
 describe('BasicNews', () => {
@@ -65,6 +65,10 @@ describe('BasicNews', () => {
 
     it('always render a GridList element', () => {
       expect(testInstance.findByType(GridList)).toBeDefined()
+    });
+
+    it('always render a GridListTile element', () => {
+      expect(testInstance.findByType(GridListTile)).toBeDefined()
     });
   });
 
