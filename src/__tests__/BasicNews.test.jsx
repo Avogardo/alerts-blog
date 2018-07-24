@@ -70,6 +70,10 @@ describe('BasicNews', () => {
     it('always render a GridListTile element', () => {
       expect(testInstance.findByType(GridListTile)).toBeDefined()
     });
+
+    it('always render an image element', () => {
+      expect(testInstance.findByProps({className: 'enter-news-image'})).toBeDefined();
+    });
   });
 
   describe('There are no news', () => {

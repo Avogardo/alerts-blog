@@ -79,7 +79,7 @@ describe('EnterNews', () => {
       expect(testInstance.findAllByType(GridListTile).length).toBe(props.topNews.length);
     });
 
-    it('always render a image element', () => {
+    it('always render an image element', () => {
       expect(testInstance.findByProps({className: 'enter-news-image'})).toBeDefined();
     });
 
