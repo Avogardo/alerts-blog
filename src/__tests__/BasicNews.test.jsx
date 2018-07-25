@@ -69,11 +69,11 @@ describe('BasicNews', () => {
     });
 
     it('always render a GridList element', () => {
-      expect(testInstance.findByType(GridList)).toBeDefined()
+      expect(testInstance.findByType(GridList)).toBeDefined();
     });
 
     it('always render a GridListTile element', () => {
-      expect(testInstance.findByType(GridListTile)).toBeDefined()
+      expect(testInstance.findByType(GridListTile)).toBeDefined();
     });
 
     it('always render an image element', () => {
@@ -81,7 +81,11 @@ describe('BasicNews', () => {
     });
 
     it('always render a CardHeader element', () => {
-      expect(testInstance.findByType(CardHeader)).toBeDefined()
+      expect(testInstance.findByType(CardHeader)).toBeDefined();
+    });
+
+    it('card header element contains news h4 header', () => {
+      expect(testInstance.findByType(CardHeader).props.title.type).toBe('h4');
     });
   });
 
