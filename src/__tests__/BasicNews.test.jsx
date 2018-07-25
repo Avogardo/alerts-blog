@@ -46,7 +46,7 @@ describe('BasicNews', () => {
             },
           },
         }],
-        authors: [''],
+        authors: ['Jakub'],
         classes: {
           newsCardHeader: '',
           newsCardContent: '',
@@ -86,6 +86,11 @@ describe('BasicNews', () => {
 
     it('card header element contains news h4 header', () => {
       expect(testInstance.findByType(CardHeader).props.title.type).toBe('h4');
+    });
+
+    it('card header element subtitle contain authors from props', () => {
+      expect(testInstance.findByType(CardHeader).props.subheader.props.authors)
+        .toEqual(props.authors);
     });
   });
 
