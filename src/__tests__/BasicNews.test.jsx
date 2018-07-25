@@ -92,6 +92,11 @@ describe('BasicNews', () => {
       expect(testInstance.findByType(CardHeader).props.subheader.props.authors)
         .toEqual(props.authors);
     });
+
+    it('card header element subtitle contain createdAt prop from props', () => {
+      expect(testInstance.findByType(CardHeader).props.subheader.props.createdAt)
+        .toBe(props.topNews[0].createdAt);
+    });
   });
 
   describe('There are no news', () => {
