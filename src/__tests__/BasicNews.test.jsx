@@ -1,7 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TestRenderer from 'react-test-renderer';
-import { Card, GridList, GridListTile } from '@material-ui/core';
+import {
+  Card,
+  GridList,
+  GridListTile,
+  CardHeader,
+} from '@material-ui/core';
 import BasicNews from '../../imports/components/NewsContainer/BasicNews';
 
 describe('BasicNews', () => {
@@ -73,6 +78,10 @@ describe('BasicNews', () => {
 
     it('always render an image element', () => {
       expect(testInstance.findByProps({className: 'enter-news-image'})).toBeDefined();
+    });
+
+    it('always render a CardHeader element', () => {
+      expect(testInstance.findByType(CardHeader)).toBeDefined()
     });
   });
 
