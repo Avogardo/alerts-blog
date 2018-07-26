@@ -107,6 +107,10 @@ describe('BasicNews', () => {
     it('always render a CardContent Typography element', () => {
       expect(testInstance.findByType(CardContent).findByType(Typography)).toBeDefined();
     });
+
+    it('always render a CardContent Typography element is p type', () => {
+      expect(testInstance.findByType(CardContent).findByType(Typography).props.component).toBe('p');
+    });
   });
 
   describe('There are no news', () => {
