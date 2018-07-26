@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import TestRenderer from 'react-test-renderer';
 import { CardHeader, IconButton } from '@material-ui/core';
+import { YoutubeIcon } from 'mdi-react';
 import SectionHeader from '../../imports/components/NewsContainer/SectionHeader';
 
 describe('SectionHeader', () => {
@@ -71,6 +72,10 @@ describe('SectionHeader', () => {
 
     it('always render a IconButton element', () => {
       expect(testInstance.findByType(IconButton)).toBeDefined();
+    });
+
+    it('always render a YoutubeIcon element', () => {
+      expect(testInstance.findByType(YoutubeIcon)).toBeDefined();
     });
   });
 });
