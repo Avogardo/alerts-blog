@@ -38,4 +38,28 @@ describe('SectionHeader', () => {
   it('always render a span title inside card header', () => {
     expect(testInstance.findByType(CardHeader).findByType('span')).toBeDefined();
   });
+
+  describe('Youtube', () => {
+    beforeEach(() => {
+      props = {
+        youtube: true,
+        classes: {
+          headerCard: '',
+          secondaryHeaderCard: '',
+          youtubeHeader: '',
+          socialIconButton: '',
+          facebookHeader: '',
+        },
+      };
+
+      testRenderer = TestRenderer.create(<SectionHeader {...props} />);
+      testInstance = testRenderer.root;
+    });
+
+    it('renders without crashing', () => {
+      const div = document.createElement('div');
+      ReactDOM.render(<SectionHeader {...props} />, div);
+      ReactDOM.unmountComponentAtNode(div);
+    });
+  });
 });
