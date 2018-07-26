@@ -53,4 +53,8 @@ describe('ExitNews', () => {
   it('always render a CardHeader element', () => {
     expect(testInstance.findByType(CardHeader)).toBeDefined();
   });
+
+  it('card header element contains news h6 header', () => {
+    expect(testInstance.findByType(CardHeader).props.title.type).toBe('h6');
+  });
 });
