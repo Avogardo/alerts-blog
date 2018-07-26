@@ -10,6 +10,7 @@ import {
   Typography,
 } from '@material-ui/core';
 import BasicNews from '../../imports/components/NewsContainer/BasicNews';
+import TileSubtitle from "../../imports/components/NewsContainer/TileSubtitle";
 
 describe('BasicNews', () => {
   let props;
@@ -88,6 +89,10 @@ describe('BasicNews', () => {
 
     it('card header element contains news h4 header', () => {
       expect(testInstance.findByType(CardHeader).props.title.type).toBe('h4');
+    });
+
+    it('card header element subtitle contains TileSubtitle', () => {
+      expect(testInstance.findByType(CardHeader).findByType(TileSubtitle)).toBeDefined();
     });
 
     it('card header element subtitle contain authors from props', () => {

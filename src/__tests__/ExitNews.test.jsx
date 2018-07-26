@@ -59,7 +59,7 @@ describe('ExitNews', () => {
     expect(testInstance.findByType(CardHeader).props.title.type).toBe('h6');
   });
 
-  it('card header element subtitle contain authors from props', () => {
+  it('card header element subtitle contains TileSubtitle', () => {
     expect(testInstance.findByType(CardHeader).findByType(TileSubtitle)).toBeDefined();
   });
 });
