@@ -6,6 +6,7 @@ import {
   GridList,
   GridListTile,
   CardHeader,
+  CardContent,
 } from '@material-ui/core';
 import BasicNews from '../../imports/components/NewsContainer/BasicNews';
 
@@ -96,6 +97,10 @@ describe('BasicNews', () => {
     it('card header element subtitle contain createdAt prop from props', () => {
       expect(testInstance.findByType(CardHeader).props.subheader.props.createdAt)
         .toBe(props.topNews[0].createdAt);
+    });
+
+    it('always render a CardContent element', () => {
+      expect(testInstance.findByType(CardContent)).toBeDefined();
     });
   });
 
