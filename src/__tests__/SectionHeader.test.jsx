@@ -61,5 +61,12 @@ describe('SectionHeader', () => {
       ReactDOM.render(<SectionHeader {...props} />, div);
       ReactDOM.unmountComponentAtNode(div);
     });
+
+    it('always render wrappers inside card header title', () => {
+      expect(testInstance.findByType(CardHeader).findByProps({className: 'social-header-content-wrapper'}))
+        .toBeDefined();
+      expect(testInstance.findByType(CardHeader).findByProps({className: 'social-header-wrapper'}))
+        .toBeDefined();
+    });
   });
 });
