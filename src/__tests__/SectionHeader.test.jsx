@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TestRenderer from 'react-test-renderer';
-import { CardHeader } from '@material-ui/core';
+import { CardHeader, IconButton } from '@material-ui/core';
 import SectionHeader from '../../imports/components/NewsContainer/SectionHeader';
 
 describe('SectionHeader', () => {
@@ -67,6 +67,10 @@ describe('SectionHeader', () => {
         .toBeDefined();
       expect(testInstance.findByType(CardHeader).findByProps({className: 'social-header-wrapper'}))
         .toBeDefined();
+    });
+
+    it('always render a IconButton element', () => {
+      expect(testInstance.findByType(IconButton)).toBeDefined();
     });
   });
 });
