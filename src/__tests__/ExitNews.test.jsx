@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TestRenderer from 'react-test-renderer';
+import { Card } from '@material-ui/core';
 import ExitNews from '../../imports/components/NewsContainer/ExitNews';
 
 describe('ExitNews', () => {
@@ -39,5 +40,9 @@ describe('ExitNews', () => {
     const div = document.createElement('div');
     ReactDOM.render(<ExitNews {...props} />, div);
     ReactDOM.unmountComponentAtNode(div);
+  });
+
+  it('always render as much Cards as news elements', () => {
+    expect(testInstance.findAllByType(Card).length).toBe(props.topNews.length);
   });
 });
