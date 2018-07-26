@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TestRenderer from 'react-test-renderer';
+import { CardHeader } from '@material-ui/core';
 import SectionHeader from '../../imports/components/NewsContainer/SectionHeader';
 
 describe('SectionHeader', () => {
@@ -28,5 +29,9 @@ describe('SectionHeader', () => {
     const div = document.createElement('div');
     ReactDOM.render(<SectionHeader {...props} />, div);
     ReactDOM.unmountComponentAtNode(div);
+  });
+
+  it('always render a CardHeader element', () => {
+    expect(testInstance.findByType(CardHeader)).toBeDefined();
   });
 });
