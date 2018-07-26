@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TestRenderer from 'react-test-renderer';
-import { Card } from '@material-ui/core';
+import { Card, CardHeader } from '@material-ui/core';
 import ExitNews from '../../imports/components/NewsContainer/ExitNews';
 
 describe('ExitNews', () => {
@@ -48,5 +48,9 @@ describe('ExitNews', () => {
 
   it('always render an image element', () => {
     expect(testInstance.findByProps({className: 'aside-news-image'})).toBeDefined();
+  });
+
+  it('always render a CardHeader element', () => {
+    expect(testInstance.findByType(CardHeader)).toBeDefined();
   });
 });
