@@ -50,36 +50,26 @@ const SectionHeader = ({
     facebookHeader,
   },
 }) => {
-  if (youtube) {
+  if (youtube || facebook) {
+    const socialHeader = youtube ? '1023 Subscriber' : '924 Likes';
+    const socialHeaderAction = youtube ? 'Subscribe' : 'Like our page';
+
     return (
       <CardHeader
-        className={youtubeHeader}
+        className={youtube ? youtubeHeader : facebookHeader}
         title={
           <div className="social-header-content-wrapper">
             <div className="social-header-wrapper">
               <IconButton className={socialIconButton} color="default">
-                <YoutubeIcon color="#c41713" size={14} />
+                {youtube ?
+                  <YoutubeIcon color="#c41713" size={14} />
+                  :
+                  <FacebookIcon color="#4c63a2" size={14} />
+                }
               </IconButton>
-              <span className="social-header">1023 Subscriber</span>
+              <span className="social-header">{socialHeader}</span>
             </div>
-            <span className="social-header-action">Subscribe</span>
-          </div>
-        }
-      />
-    );
-  } else if (facebook) {
-    return (
-      <CardHeader
-        className={facebookHeader}
-        title={
-          <div className="social-header-content-wrapper">
-            <div className="social-header-wrapper">
-              <IconButton className={socialIconButton} color="default">
-                <FacebookIcon color="#4c63a2" size={14} />
-              </IconButton>
-              <span className="social-header">924 Likes</span>
-            </div>
-            <span className="social-header-action">Like our page</span>
+            <span className="social-header-action">{socialHeaderAction}</span>
           </div>
         }
       />
