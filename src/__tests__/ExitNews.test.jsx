@@ -45,4 +45,8 @@ describe('ExitNews', () => {
   it('always render as much Cards as news elements', () => {
     expect(testInstance.findAllByType(Card).length).toBe(props.topNews.length);
   });
+
+  it('always render an image element', () => {
+    expect(testInstance.findByProps({className: 'aside-news-image'})).toBeDefined();
+  });
 });
