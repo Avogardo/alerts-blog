@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import TestRenderer from 'react-test-renderer';
 import { Card, CardHeader } from '@material-ui/core';
 import ExitNews from '../../imports/components/NewsContainer/ExitNews';
+import TileSubtitle from '../../imports/components/NewsContainer/TileSubtitle';
 
 describe('ExitNews', () => {
   let props;
@@ -56,5 +57,9 @@ describe('ExitNews', () => {
 
   it('card header element contains news h6 header', () => {
     expect(testInstance.findByType(CardHeader).props.title.type).toBe('h6');
+  });
+
+  it('card header element subtitle contain authors from props', () => {
+    expect(testInstance.findByType(CardHeader).findByType(TileSubtitle)).toBeDefined();
   });
 });
