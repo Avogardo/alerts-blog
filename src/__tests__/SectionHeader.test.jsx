@@ -34,4 +34,8 @@ describe('SectionHeader', () => {
   it('always render a CardHeader element', () => {
     expect(testInstance.findByType(CardHeader)).toBeDefined();
   });
+
+  it('always render a span title inside card header', () => {
+    expect(testInstance.findByType(CardHeader).findByType('span')).toBeDefined();
+  });
 });
