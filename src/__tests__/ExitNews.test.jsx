@@ -63,6 +63,10 @@ describe('ExitNews', () => {
     expect(testInstance.findByType(CardHeader).findByType(TileSubtitle)).toBeDefined();
   });
 
+  it('card header element subtitle contain isAside prop true', () => {
+    expect(testInstance.findByType(CardHeader).props.subheader.props.isAside).toBe(true);
+  });
+
   it('card header element subtitle contain createdAt prop from props', () => {
     expect(testInstance.findByType(CardHeader).props.subheader.props.createdAt)
       .toBe(props.topNews[0].createdAt);
