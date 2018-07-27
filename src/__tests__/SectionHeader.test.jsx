@@ -77,5 +77,9 @@ describe('SectionHeader', () => {
     it('always render a YoutubeIcon element', () => {
       expect(testInstance.findByType(YoutubeIcon)).toBeDefined();
     });
+
+    it('always render a social header element', () => {
+      expect(testInstance.findByProps({className: 'social-header'})).toBeDefined();
+    });
   });
 });
