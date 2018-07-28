@@ -22,6 +22,8 @@ class MainLayout extends Component {
       history,
     } = this.props;
 
+    const shouldHideBackground = location.pathname === '/' || location.pathname.includes('/news/');
+
     return (
       <div className="container">
         <Navigation
@@ -31,7 +33,7 @@ class MainLayout extends Component {
         />
 
         <div
-          className={location.pathname === '/' ? 'content-container-root' : 'content-container'}
+          className={shouldHideBackground ? 'content-container-root' : 'content-container'}
           key="content-container"
         >
           <HistoryContext.Provider value={history}>
