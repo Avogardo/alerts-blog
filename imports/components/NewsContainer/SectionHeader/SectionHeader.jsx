@@ -1,6 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { CardHeader, withStyles, IconButton } from '@material-ui/core';
+import {
+  CardHeader,
+  withStyles,
+  IconButton,
+  Card,
+} from '@material-ui/core';
 import { YoutubeIcon, FacebookIcon } from 'mdi-react';
 import './SectionHeader.css';
 
@@ -35,6 +40,11 @@ const styles = {
       backgroundColor: '#ffffff',
     },
   },
+  breakingNewsCard: {
+    padding: '12px 15px',
+    marginTop: 4,
+    fontSize: 14,
+  },
 };
 
 const SectionHeader = ({
@@ -42,12 +52,14 @@ const SectionHeader = ({
   secondary,
   youtube,
   facebook,
+  breakingNews,
   classes: {
     headerCard,
     secondaryHeaderCard,
     youtubeHeader,
     socialIconButton,
     facebookHeader,
+    breakingNewsCard,
   },
 }) => {
   if (youtube || facebook) {
@@ -74,6 +86,13 @@ const SectionHeader = ({
         }
       />
     );
+  } else if (breakingNews) {
+    return (
+      <Card className={breakingNewsCard}>
+        <strong className="breaking-news-strong">Breaking News: </strong>
+        {headerTitle}
+      </Card>
+    );
   }
 
   return (
@@ -88,6 +107,7 @@ SectionHeader.defaultProps = {
   secondary: false,
   youtube: false,
   facebook: false,
+  breakingNews: false,
   headerTitle: '',
 };
 
@@ -96,12 +116,14 @@ SectionHeader.propTypes = {
   secondary: PropTypes.bool,
   youtube: PropTypes.bool,
   facebook: PropTypes.bool,
+  breakingNews: PropTypes.bool,
   classes: PropTypes.shape({
     headerCard: PropTypes.string.isRequired,
     secondaryHeaderCard: PropTypes.string.isRequired,
     youtubeHeader: PropTypes.string.isRequired,
     socialIconButton: PropTypes.string.isRequired,
     facebookHeader: PropTypes.string.isRequired,
+    breakingNewsCard: PropTypes.string.isRequired,
   }).isRequired,
 };
 

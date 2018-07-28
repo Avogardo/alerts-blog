@@ -5,7 +5,6 @@ import {
   GridListTile,
   GridListTileBar,
   withStyles,
-  Card,
 } from '@material-ui/core';
 import TileSubtitle from '../TileSubtitle';
 import { HistoryContext } from '../../MainLayout';
@@ -14,11 +13,6 @@ import './EnterNews.css';
 const styles = {
   gridListTileBar: {
     background: 'unset',
-  },
-  breakingNews: {
-    padding: '12px 15px',
-    marginTop: 4,
-    fontSize: 14,
   },
 };
 
@@ -30,7 +24,7 @@ class EnterNews extends Component {
       unit8ArrayToUrl,
       goToNews,
     } = this.props;
-    const { gridListTileBar, breakingNews } = this.props.classes;
+    const { gridListTileBar } = this.props.classes;
 
     return (
       <Fragment>
@@ -60,11 +54,6 @@ class EnterNews extends Component {
           :
           ''
         }
-
-        <Card className={breakingNews}>
-          <strong className="breaking-news-strong">Breaking News: </strong>
-          Astronomy Binoculars A Great Alternative
-        </Card>
       </Fragment>
     );
   }
@@ -93,7 +82,6 @@ EnterNews.propTypes = {
   authors: PropTypes.arrayOf(PropTypes.string.isRequired),
   classes: PropTypes.shape({
     gridListTileBar: PropTypes.string.isRequired,
-    breakingNews: PropTypes.string.isRequired,
   }).isRequired,
   goToNews: PropTypes.func.isRequired,
   unit8ArrayToUrl: PropTypes.func.isRequired,
