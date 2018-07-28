@@ -42,12 +42,12 @@ const composer = (props, onData) => {
         unit8ArrayToUrl,
         author,
       });
+    } else {
+      onData(null, {
+        news,
+        unit8ArrayToUrl,
+      });
     }
-
-    onData(null, {
-      news,
-      unit8ArrayToUrl,
-    });
   }
 };
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Card, withStyles } from '@material-ui/core';
+import { Card, withStyles, CardContent } from '@material-ui/core';
 
 import SectionHeader from '../NewsContainer/SectionHeader';
 import BasicNews from '../NewsContainer/BasicNews';
@@ -29,6 +29,9 @@ class News extends Component {
             authors={author}
             unit8ArrayToUrl={unit8ArrayToUrl}
           />
+          <CardContent>
+            {news[0].content}
+          </CardContent>
         </Card>
       </article>,
     ];
