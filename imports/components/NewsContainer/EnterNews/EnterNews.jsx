@@ -8,6 +8,7 @@ import {
   Card,
 } from '@material-ui/core';
 import TileSubtitle from '../TileSubtitle';
+import { HistoryContext } from '../../MainLayout';
 import './EnterNews.css';
 
 const styles = {
@@ -23,7 +24,12 @@ const styles = {
 
 class EnterNews extends Component {
   render() {
-    const { topNews, authors, unit8ArrayToUrl } = this.props;
+    const {
+      topNews,
+      authors,
+      unit8ArrayToUrl,
+      goToNews,
+    } = this.props;
     const { gridListTileBar, breakingNews } = this.props.classes;
 
     return (
@@ -36,13 +42,18 @@ class EnterNews extends Component {
                   className="enter-news-image"
                   style={{ backgroundImage: `url(${unit8ArrayToUrl(news.enterImage.data.image)})` }}
                 />
-                <GridListTileBar
-                  className={gridListTileBar}
-                  title={news.title}
-                  subtitle={
-                    <TileSubtitle authors={authors} createdAt={news.createdAt} index={index} />
-                  }
-                />
+                <HistoryContext.Consumer>
+                  {history => (
+                    <GridListTileBar
+                      onClick={() => goToNews(history, news._id)}
+                      className={gridListTileBar}
+                      title={news.title}
+                      subtitle={
+                        <TileSubtitle authors={authors} createdAt={news.createdAt} index={index} />
+                      }
+                    />
+                  )}
+                </HistoryContext.Consumer>
               </GridListTile>
             ))}
           </GridList>
@@ -84,6 +95,7 @@ EnterNews.propTypes = {
     gridListTileBar: PropTypes.string.isRequired,
     breakingNews: PropTypes.string.isRequired,
   }).isRequired,
+  goToNews: PropTypes.func.isRequired,
   unit8ArrayToUrl: PropTypes.func.isRequired,
 };
 

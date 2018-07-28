@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Tracker } from 'meteor/tracker';
 import { compose } from 'react-komposer';
-import { News as NewsCollection } from '/imports/api/news';
+import { News as NewsCollection, actions as newsActions } from '/imports/api/news';
 import NewsContainer from './NewsContainer.jsx';
 
 const getTrackerLoader = composer =>
@@ -38,6 +38,7 @@ const composer = (props, onData) => {
     onData(null, {
       topNews,
       unit8ArrayToUrl,
+      goToNews: newsActions.goToNews,
     });
 
     if (userListHandler.ready()) {
@@ -49,11 +50,13 @@ const composer = (props, onData) => {
         topNews,
         authors,
         unit8ArrayToUrl,
+        goToNews: newsActions.goToNews,
       });
     }
   } else {
     onData(null, {
       unit8ArrayToUrl,
+      goToNews: newsActions.goToNews,
     });
   }
 };

@@ -19,7 +19,7 @@ const goToCreateNews = (history) => {
 };
 
 const goToNews = (history, newsId) => {
-  const location = `/create-news/${newsId}`;
+  const location = `news/${newsId}`;
   if (history.location.pathname !== location) {
     history.push(location);
   }

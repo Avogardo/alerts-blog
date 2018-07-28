@@ -11,6 +11,8 @@ import Footer from '../Footer';
 import News from '../News';
 import './MainLayout.css';
 
+export const HistoryContext = React.createContext({});
+
 class MainLayout extends Component {
   render() {
     const {
@@ -32,36 +34,37 @@ class MainLayout extends Component {
           className={location.pathname === '/' ? 'content-container-root' : 'content-container'}
           key="content-container"
         >
-          <Route
-            exact
-            path="/"
-            render={() => (
-              <Fragment>
-                <NewsContainer enterContainer />
-                <NewsContainer headerTitle="Latest News" />
-                <NewsContainer exitContainer />
-              </Fragment>
-            )}
-          />
-          <Route
-            exact
-            path="/sign-in"
-            render={props => (
-              isLoggedInUser
-                ? <Redirect to="/" />
-                : <SignIn {...props} />
+          <HistoryContext.Provider value={history}>
+            <Route
+              exact
+              path="/"
+              render={() => (
+                <Fragment>
+                  <NewsContainer enterContainer />
+                  <NewsContainer headerTitle="Latest News" />
+                  <NewsContainer exitContainer />
+                </Fragment>
               )}
-          />
-          <Route
-            exact
-            path="/create-news"
-            render={() => (
-              isAuthorized
-                ? <CreateNews />
-                : <Redirect to="/" />
-            )}
-          />
-
+            />
+            <Route
+              exact
+              path="/sign-in"
+              render={props => (
+                isLoggedInUser
+                  ? <Redirect to="/" />
+                  : <SignIn {...props} />
+                )}
+            />
+            <Route
+              exact
+              path="/create-news"
+              render={() => (
+                isAuthorized
+                  ? <CreateNews />
+                  : <Redirect to="/" />
+              )}
+            />
+          </HistoryContext.Provider>
           <Route exact path="/news/:id" component={News} />
         </div>
 

@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Tracker } from 'meteor/tracker';
 import { compose } from 'react-komposer';
 import { isLoggedIn, isAdmin } from '../../api/users';
-import MainLayout from './MainLayout.jsx';
+import MainLayout, { HistoryContext } from './MainLayout.jsx';
 
 const getTrackerLoader = composer =>
   (props, onData, env) => {
@@ -33,4 +33,5 @@ const composer = (props, onData) => {
   }
 };
 
+export { HistoryContext };
 export default compose(getTrackerLoader(composer))(MainLayout);
