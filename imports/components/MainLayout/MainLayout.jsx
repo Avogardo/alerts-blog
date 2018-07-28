@@ -8,6 +8,7 @@ import NewsContainer from '../NewsContainer';
 import SignIn from '../SignIn';
 import CreateNews from '../CreateNews';
 import Footer from '../Footer';
+import News from '../News';
 import './MainLayout.css';
 
 class MainLayout extends Component {
@@ -60,6 +61,8 @@ class MainLayout extends Component {
                 : <Redirect to="/" />
             )}
           />
+
+          <Route exact path="/news/:id" component={News} />
         </div>
 
         <Footer />
