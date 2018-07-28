@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {
-  withStyles,
-  Card,
-} from '@material-ui/core';
+import { withStyles, Card } from '@material-ui/core';
 import EnterNews from './EnterNews';
 import BasicNews from './BasicNews';
 import ExitNews from './ExitNews';
@@ -31,10 +28,7 @@ class NewsContainer extends Component {
       headerTitle,
       goToNews,
     } = this.props;
-    const {
-      mainNewsCard,
-      newsCard,
-    } = this.props.classes;
+    const { mainNewsCard, newsCard } = this.props.classes;
 
     if (enterContainer) {
       return (
