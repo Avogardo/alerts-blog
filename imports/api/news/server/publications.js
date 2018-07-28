@@ -1,4 +1,5 @@
 import { Meteor } from 'meteor/meteor';
+import { check } from 'meteor/check';
 import News from './../News.js';
 
 Meteor.publish('news', function publishNewsList() {
@@ -14,4 +15,16 @@ Meteor.publish('recentNewsWithLimit', function publishRecentNewsLimit(limit = 3)
     },
   };
   return News.find({}, options);
+});
+
+Meteor.publish('singleNews', function publishSingleNews(newsId) {
+  check(newsId, String);
+
+  const query = {
+    _id: newsId,
+  };
+
+  const options = {};
+
+  return News.find(query, options);
 });
