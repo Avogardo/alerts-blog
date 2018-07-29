@@ -7,19 +7,19 @@ const CommentsDateSchema = new SimpleSchema({
   },
 });
 
-const CommentsNewsIdSchema = new SimpleSchema({
-  newsId: {
+const CommentsContentSchema = new SimpleSchema({
+  content: {
     type: String,
   },
 });
 
 const CommentsSchema = new SimpleSchema({
-  content: {
-    type: String,
-  },
   authorId: {
     type: String,
     optional: true,
+  },
+  newsId: {
+    type: String,
   },
   parentId: {
     type: String,
@@ -27,12 +27,12 @@ const CommentsSchema = new SimpleSchema({
   },
 });
 CommentsSchema.extend(CommentsDateSchema);
-CommentsSchema.extend(CommentsNewsIdSchema);
+CommentsSchema.extend(CommentsContentSchema);
 
 // method schemas
 const AddCommentSchema = new SimpleSchema({});
 AddCommentSchema.extend(CommentsSchema);
-AddCommentSchema.extend(CommentsNewsIdSchema);
+AddCommentSchema.extend(CommentsContentSchema);
 
 const RemoveCommentSchema = new SimpleSchema({
   commentId: {
@@ -40,4 +40,13 @@ const RemoveCommentSchema = new SimpleSchema({
   },
 });
 
-export { CommentsSchema, AddCommentSchema, RemoveCommentSchema };
+const UpdateCommentSchema = new SimpleSchema({});
+UpdateCommentSchema.extend(RemoveCommentSchema);
+UpdateCommentSchema.extend(CommentsContentSchema);
+
+export {
+  CommentsSchema,
+  AddCommentSchema,
+  RemoveCommentSchema,
+  UpdateCommentSchema,
+};
