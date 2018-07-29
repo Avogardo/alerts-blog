@@ -30,7 +30,12 @@ const styles = {
 
 class BasicNews extends Component {
   render() {
-    const { topNews, authors, unit8ArrayToUrl } = this.props;
+    const {
+      topNews,
+      authors,
+      unit8ArrayToUrl,
+      newsCard,
+    } = this.props;
     const { newsCardHeader, newsCardContent, tileCard } = this.props.classes;
 
     return (
@@ -47,17 +52,21 @@ class BasicNews extends Component {
             </GridList>
             <CardHeader
               className={newsCardHeader}
-              title={<h4 className="news-card-title">{news.title}</h4>}
+              title={
+                <h4 className={newsCard ? 'news-page-title' : 'news-card-title'}>{news.title}</h4>
+              }
               subheader={
                 <TileSubtitle authors={authors} createdAt={news.createdAt} index={index} />
               }
             />
-            <CardContent className={newsCardContent}>
-              <Typography component="p">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit
-                , sed do eiusmod tempor incididunt.
-              </Typography>
-            </CardContent>
+            {!newsCard &&
+              <CardContent className={newsCardContent}>
+                <Typography component="p">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit
+                  , sed do eiusmod tempor incididunt.
+                </Typography>
+              </CardContent>
+            }
           </Card>
         ))
         :
@@ -67,11 +76,13 @@ class BasicNews extends Component {
 }
 
 BasicNews.defaultProps = {
+  newsCard: false,
   topNews: [],
   authors: [],
 };
 
 BasicNews.propTypes = {
+  newsCard: PropTypes.bool,
   topNews: PropTypes.arrayOf(PropTypes.shape({
     _id: PropTypes.string.isRequired,
     authorId: PropTypes.string.isRequired,

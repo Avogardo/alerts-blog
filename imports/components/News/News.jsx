@@ -11,12 +11,18 @@ const styles = {
     padding: 20,
     marginTop: 50,
   },
+  newsContentCard: {
+    marginTop: 30,
+    paddingLeft: 0,
+    paddingTop: 0,
+    paddingRight: 0,
+  },
 };
 
 class News extends Component {
   render() {
     const { news, author, unit8ArrayToUrl } = this.props;
-    const { newsCard } = this.props.classes;
+    const { newsCard, newsContentCard } = this.props.classes;
 
     return [
       <div key="breaking-news" className="breaking-news-wrapper">
@@ -25,11 +31,12 @@ class News extends Component {
       <article key="news-card">
         <Card className={newsCard}>
           <BasicNews
+            newsCard
             topNews={news}
             authors={author}
             unit8ArrayToUrl={unit8ArrayToUrl}
           />
-          <CardContent>
+          <CardContent className={newsContentCard}>
             {news[0].content}
           </CardContent>
         </Card>
@@ -46,6 +53,7 @@ News.defaultProps = {
 News.propTypes = {
   classes: PropTypes.shape({
     newsCard: PropTypes.string.isRequired,
+    newsContentCard: PropTypes.string.isRequired,
   }).isRequired,
   author: PropTypes.arrayOf(PropTypes.string.isRequired),
   news: PropTypes.arrayOf(PropTypes.shape({

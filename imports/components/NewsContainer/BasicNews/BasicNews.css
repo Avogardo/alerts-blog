@@ -28,6 +28,12 @@
     font-weight: 600;
 }
 
+.news-page-title {
+    margin: 0 0 6px 0;
+    font-size: 24px;
+    font-weight: 600;
+}
+
 .header-card-title {
     color: #ffffff;
     font-size: 14px;
