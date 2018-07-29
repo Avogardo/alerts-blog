@@ -1,12 +1,15 @@
 import SimpleSchema from 'simpl-schema';
 
-const CommentsSchema = new SimpleSchema({
-  content: {
-    type: String,
-  },
+const CommentsDateSchema = new SimpleSchema({
   createdAt: {
     type: Date,
     defaultValue: new Date(),
+  },
+});
+
+const CommentsSchema = new SimpleSchema({
+  content: {
+    type: String,
   },
   newsId: {
     type: String,
@@ -16,5 +19,10 @@ const CommentsSchema = new SimpleSchema({
     optional: true,
   },
 });
+CommentsSchema.extend(CommentsDateSchema);
 
-export { CommentsSchema };
+// method schemas
+const AddCommentSchema = new SimpleSchema({});
+AddCommentSchema.extend(CommentsSchema);
+
+export { CommentsSchema, AddCommentSchema };
