@@ -4,8 +4,14 @@ import {
   updateComment as updateCommentMethod,
 } from './methods.js';
 
-const createComment = (content, newsId, parentId) => new Promise((resolve, reject) => {
+const createComment = (
+  username,
+  content,
+  newsId,
+  parentId,
+) => new Promise((resolve, reject) => {
   createCommentMethod.call({
+    username,
     content,
     newsId,
     parentId,

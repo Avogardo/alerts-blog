@@ -42,7 +42,7 @@ class News extends Component {
             {news[0].content}
           </CardContent>
 
-          <AddComment />
+          <AddComment newsId={news[0]._id} />
         </Card>
       </article>,
       <NewsContainer key="exit-container" exitContainer />,

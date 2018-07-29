@@ -28,6 +28,7 @@ const createComment = new ValidatedMethod({
   name: 'comment.add',
   validate: AddCommentSchema.validator({ clean: true }),
   run({
+    username,
     content,
     newsId,
     parentId,
@@ -39,9 +40,19 @@ const createComment = new ValidatedMethod({
       );
     }
 
-    const authorId = Meteor.userId();
     const createdAt = new Date();
 
+    if (username) {
+      return Comments.insert({
+        username,
+        createdAt,
+        content,
+        newsId,
+        parentId,
+      });
+    }
+
+    const authorId = Meteor.userId();
     return Comments.insert({
       authorId,
       createdAt,
