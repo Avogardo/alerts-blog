@@ -45,7 +45,7 @@ class News extends Component {
           <AddComment />
         </Card>
       </article>,
-      <NewsContainer exitContainer />,
+      <NewsContainer key="exit-container" exitContainer />,
     ];
   }
 }
