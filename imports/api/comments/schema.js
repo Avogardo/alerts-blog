@@ -18,6 +18,10 @@ const CommentsSchema = new SimpleSchema({
     type: String,
     optional: true,
   },
+  parentId: {
+    type: String,
+    optional: true,
+  },
 });
 CommentsSchema.extend(CommentsDateSchema);
 
