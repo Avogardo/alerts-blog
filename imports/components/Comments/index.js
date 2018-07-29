@@ -3,6 +3,7 @@ import { Tracker } from 'meteor/tracker';
 import { compose } from 'react-komposer';
 import { Comments as CommentsCollection } from '/imports/api/comments';
 import Comments from './Comments.jsx';
+import AddComment from './AddComment';
 
 const getTrackerLoader = composer =>
   (props, onData, env) => {
@@ -27,9 +28,11 @@ const composer = (props, onData) => {
     const comments = CommentsCollection.find({ newsId }).fetch();
 
     onData(null, {
+      ...props,
       comments,
     });
   }
 };
 
+export { AddComment };
 export default compose(getTrackerLoader(composer))(Comments);
