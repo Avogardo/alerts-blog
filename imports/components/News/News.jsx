@@ -4,6 +4,7 @@ import { Card, withStyles, CardContent } from '@material-ui/core';
 
 import SectionHeader from '../NewsContainer/SectionHeader';
 import BasicNews from '../NewsContainer/BasicNews';
+import NewsContainer from '../NewsContainer';
 import './News.css';
 
 const styles = {
@@ -41,6 +42,7 @@ class News extends Component {
           </CardContent>
         </Card>
       </article>,
+      <NewsContainer exitContainer />,
     ];
   }
 }
