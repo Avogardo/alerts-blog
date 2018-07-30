@@ -7,7 +7,7 @@ import {
   withStyles,
 } from '@material-ui/core';
 import TileSubtitle from '../TileSubtitle';
-import { HistoryContext } from '../../MainLayout';
+import { HistoryContext } from '../../Context';
 import './EnterNews.css';
 
 const styles = {

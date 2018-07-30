@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Route, Redirect } from 'react-router-dom';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
+import { HistoryContext } from '../Context';
 import Navigation from '../Navigation';
 import NewsContainer from '../NewsContainer';
 import SignIn from '../SignIn';
@@ -10,8 +11,6 @@ import CreateNews from '../CreateNews';
 import Footer from '../Footer';
 import News from '../News';
 import './MainLayout.css';
-
-export const HistoryContext = React.createContext({});
 
 class MainLayout extends Component {
   render() {
