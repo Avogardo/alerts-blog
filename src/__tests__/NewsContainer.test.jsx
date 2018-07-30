@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import TestRenderer from 'react-test-renderer';
 import { Card } from '@material-ui/core';
 import NewsContainer from '../../imports/components/NewsContainer/NewsContainer.jsx';
-import EnterNews from '../../imports/components/NewsContainer/EnterNews';
+import EnterNews from '../../imports/components/NewsContainer/EnterNews/EnterNews.jsx';
 import ExitNews from '../../imports/components/NewsContainer/ExitNews';
 import SectionHeader from '../../imports/components/NewsContainer/SectionHeader';
 import BasicNews from '../../imports/components/NewsContainer/BasicNews';
@@ -16,6 +16,7 @@ describe('NewsContainer', () => {
   beforeEach(() => {
     props = {
       unit8ArrayToUrl: () => {},
+      goToNews: () => {},
       classes: {
         mainNewsCard: '',
         newsCard: '',
@@ -36,6 +37,7 @@ describe('NewsContainer', () => {
     beforeEach(() => {
       props = {
         unit8ArrayToUrl: () => {},
+        goToNews: () => {},
         enterContainer: true,
         classes: {
           mainNewsCard: '',
@@ -70,6 +72,7 @@ describe('NewsContainer', () => {
     beforeEach(() => {
       props = {
         unit8ArrayToUrl: () => {},
+        goToNews: () => {},
         exitContainer: true,
         classes: {
           mainNewsCard: '',

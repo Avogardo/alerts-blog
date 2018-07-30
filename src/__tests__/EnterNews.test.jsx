@@ -7,7 +7,7 @@ import {
   GridListTile,
   GridListTileBar,
 } from '@material-ui/core';
-import EnterNews from '../../imports/components/NewsContainer/EnterNews';
+import EnterNews from '../../imports/components/NewsContainer/EnterNews/EnterNews.jsx';
 import TileSubtitle from '../../imports/components/NewsContainer/TileSubtitle';
 
 describe('EnterNews', () => {
@@ -18,9 +18,9 @@ describe('EnterNews', () => {
   beforeEach(() => {
     props = {
       unit8ArrayToUrl: () => {},
+      goToNews: () => {},
       classes: {
         gridListTileBar: '',
-        breakingNews: '',
       },
     };
 
@@ -28,18 +28,11 @@ describe('EnterNews', () => {
     testInstance = testRenderer.root;
   });
 
-  it('always render breaking news card', () => {
-    expect(testInstance.findByType(Card)).toBeDefined();
-  });
-
-  it('always render breaking news strong title', () => {
-    expect(testInstance.findByType(Card).findByType('strong')).toBeDefined();
-  });
-
   describe('There are news', () => {
     beforeEach(() => {
       props = {
         unit8ArrayToUrl: () => {},
+        goToNews: () => {},
         topNews: [{
           _id: '',
           authorId: '',
@@ -57,7 +50,6 @@ describe('EnterNews', () => {
         authors: [''],
         classes: {
           gridListTileBar: '',
-          breakingNews: '',
         },
       };
 
@@ -100,9 +92,9 @@ describe('EnterNews', () => {
     beforeEach(() => {
       props = {
         unit8ArrayToUrl: () => {},
+        goToNews: () => {},
         classes: {
           gridListTileBar: '',
-          breakingNews: '',
         },
       };
 
