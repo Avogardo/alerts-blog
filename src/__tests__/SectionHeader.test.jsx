@@ -91,8 +91,6 @@ describe('SectionHeader', () => {
     beforeEach(() => {
       props = {
         breakingNews: true,
-        youtube: false,
-        facebook: false,
         headerTitle: 'title',
         classes: {
           headerCard: '',
@@ -115,6 +113,10 @@ describe('SectionHeader', () => {
 
     it('always render a Card element', () => {
       expect(testInstance.findByType(Card)).toBeDefined();
+    });
+
+    it('always render a Card element strong title', () => {
+      expect(testInstance.findByType(Card).findByType('strong')).toBeDefined();
     });
   });
 });
