@@ -21,15 +21,36 @@ const getTrackerLoader = composer =>
   };
 
 const composer = (props, onData) => {
-  const newsId = props.newsOd;
+  const { newsId } = props;
   const commentsHandler = Meteor.subscribe('newsComments', newsId);
+  const userListHandler = Meteor.subscribe('userList');
 
-  if (commentsHandler.ready()) {
-    const comments = CommentsCollection.find({ newsId }).fetch();
+  if (commentsHandler.ready() && userListHandler.ready()) {
+    const users = Meteor.users.find({}).fetch();
+
+    const comments = CommentsCollection.find({ newsId }).map((comment) => {
+      if (comment.authorId) {
+        const author = users.find(user => user._id === comment.authorId);
+        comment.author = {
+          name: author.profile.name,
+          avatar: author.profile.avatar,
+        };
+      } else {
+        comment.author = {
+          name: comment.username,
+        };
+      }
+
+      return comment;
+    });
 
     onData(null, {
       ...props,
       comments,
+    });
+  } else {
+    onData(null, {
+      ...props,
     });
   }
 };

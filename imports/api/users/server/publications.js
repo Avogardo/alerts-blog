@@ -21,6 +21,7 @@ Meteor.publish('userList', function publishUserList() {
   const options = {
     fields: {
       'profile.name': 1,
+      'profile.avatar': 1,
     },
   };
 

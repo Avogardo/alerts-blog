@@ -5,7 +5,7 @@ import { Card, withStyles, CardContent } from '@material-ui/core';
 import SectionHeader from '../NewsContainer/SectionHeader';
 import BasicNews from '../NewsContainer/BasicNews';
 import NewsContainer from '../NewsContainer';
-import { AddComment } from '../Comments';
+import Comments, { AddComment } from '../Comments';
 import './News.css';
 
 const styles = {
@@ -41,6 +41,8 @@ class News extends Component {
           <CardContent className={newsContentCard}>
             {news[0].content}
           </CardContent>
+
+          <Comments newsId={news[0]._id} />
 
           <AddComment newsId={news[0]._id} />
         </Card>
