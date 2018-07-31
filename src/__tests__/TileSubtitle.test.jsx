@@ -23,4 +23,8 @@ describe('TileSubtitle', () => {
     ReactDOM.render(<TileSubtitle {...props} />, div);
     ReactDOM.unmountComponentAtNode(div);
   });
+
+  it('always render span wrapper', () => {
+    expect(testInstance.findByProps({className: 'subtitle-tile'})).toBeDefined();
+  });
 });
