@@ -1,7 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TestRenderer from 'react-test-renderer';
-import { CalendarMultipleCheckIcon, MessageOutlineIcon } from 'mdi-react';
+import {
+  CalendarMultipleCheckIcon,
+  MessageOutlineIcon,
+  AccountOutlineIcon,
+} from 'mdi-react';
 import TileSubtitle from '../../imports/components/NewsContainer/TileSubtitle';
 
 describe('TileSubtitle', () => {
@@ -39,5 +43,11 @@ describe('TileSubtitle', () => {
 
   it('always render a MessageOutlineIcon icon', () => {
     expect(testInstance.findByType(MessageOutlineIcon)).toBeDefined();
+  });
+
+  describe('There are no authors', () => {
+    it('never render AccountOutlineIcon icon', () => {
+      expect(testInstance.findAllByType(AccountOutlineIcon).length).toBe(0);
+    });
   });
 });
