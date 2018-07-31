@@ -86,4 +86,29 @@ describe('SectionHeader', () => {
       expect(testInstance.findByProps({className: 'social-header-action'})).toBeDefined();
     });
   });
+
+  describe('Breaking news', () => {
+    beforeEach(() => {
+      props = {
+        breakingNews: true,
+        headerTitle: 'title',
+        classes: {
+          headerCard: '',
+          secondaryHeaderCard: '',
+          youtubeHeader: '',
+          socialIconButton: '',
+          facebookHeader: '',
+        },
+      };
+
+      testRenderer = TestRenderer.create(<SectionHeader {...props} />);
+      testInstance = testRenderer.root;
+    });
+
+    it('renders without crashing', () => {
+      const div = document.createElement('div');
+      ReactDOM.render(<SectionHeader {...props} />, div);
+      ReactDOM.unmountComponentAtNode(div);
+    });
+  });
 });
