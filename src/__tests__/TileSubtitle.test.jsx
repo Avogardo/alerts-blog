@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TestRenderer from 'react-test-renderer';
+import { CalendarMultipleCheckIcon } from 'mdi-react';
 import TileSubtitle from '../../imports/components/NewsContainer/TileSubtitle';
 
 describe('TileSubtitle', () => {
@@ -30,5 +31,9 @@ describe('TileSubtitle', () => {
 
   it('always render calendar wrappers', () => {
     expect(testInstance.findAllByProps({className: 'tile-subtitle-item'}).length).toBeGreaterThan(0);
+  });
+
+  it('always render a CalendarMultipleCheckIcon icon', () => {
+    expect(testInstance.findByType(CalendarMultipleCheckIcon)).toBeDefined();
   });
 });
