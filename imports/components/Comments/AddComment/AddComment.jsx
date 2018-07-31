@@ -204,7 +204,7 @@ class AddComment extends Component {
           }
 
           <Input
-            className={inputMultiline}
+            className={[inputMultiline, 'input-multiline'].join(' ')}
             placeholder="Message"
             fullWidth
             multiline
