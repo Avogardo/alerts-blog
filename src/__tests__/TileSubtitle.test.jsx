@@ -50,4 +50,27 @@ describe('TileSubtitle', () => {
       expect(testInstance.findAllByType(AccountOutlineIcon).length).toBe(0);
     });
   });
+
+  describe('There are authors', () => {
+    beforeEach(() => {
+      props = {
+        authors: ['Jakub'],
+        index: 0,
+        createdAt: new Date(),
+      };
+
+      testRenderer = TestRenderer.create(<TileSubtitle {...props} />);
+      testInstance = testRenderer.root;
+    });
+
+    it('renders without crashing', () => {
+      const div = document.createElement('div');
+      ReactDOM.render(<TileSubtitle {...props} />, div);
+      ReactDOM.unmountComponentAtNode(div);
+    });
+
+    it('always render AccountOutlineIcon icon', () => {
+      expect(testInstance.findByType(AccountOutlineIcon)).toBeDefined();
+    });
+  });
 });
