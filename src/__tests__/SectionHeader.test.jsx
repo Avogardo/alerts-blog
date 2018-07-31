@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TestRenderer from 'react-test-renderer';
-import { CardHeader, IconButton } from '@material-ui/core';
+import { CardHeader, IconButton, Card } from '@material-ui/core';
 import { YoutubeIcon } from 'mdi-react';
 import SectionHeader from '../../imports/components/NewsContainer/SectionHeader';
 
@@ -91,6 +91,8 @@ describe('SectionHeader', () => {
     beforeEach(() => {
       props = {
         breakingNews: true,
+        youtube: false,
+        facebook: false,
         headerTitle: 'title',
         classes: {
           headerCard: '',
@@ -109,6 +111,10 @@ describe('SectionHeader', () => {
       const div = document.createElement('div');
       ReactDOM.render(<SectionHeader {...props} />, div);
       ReactDOM.unmountComponentAtNode(div);
+    });
+
+    it('always render a Card element', () => {
+      expect(testInstance.findByType(Card)).toBeDefined();
     });
   });
 });
