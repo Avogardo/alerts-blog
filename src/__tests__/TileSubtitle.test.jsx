@@ -27,4 +27,8 @@ describe('TileSubtitle', () => {
   it('always render span wrapper', () => {
     expect(testInstance.findByProps({className: 'subtitle-tile'})).toBeDefined();
   });
+
+  it('always render calendar wrappers', () => {
+    expect(testInstance.findAllByProps({className: 'tile-subtitle-item'}).length).toBeGreaterThan(0);
+  });
 });
