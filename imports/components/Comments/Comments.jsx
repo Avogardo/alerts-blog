@@ -1,11 +1,42 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import {
+  Card,
+  CardHeader,
+  CardContent,
+} from '@material-ui/core';
 
 class Comments extends Component {
+  renderComments() {
+    const { comments } = this.props;
+    if (comments) {
+      return comments.map(comment => (
+        <Card key={comment._id}>
+          <img
+            src={comment.author.avatar}
+            alt={comment.author.name}
+          />
+          <CardHeader
+            title={comment.author.name}
+            subheader={comment.createdAt.toISOString()}
+          />
+          <CardContent>
+            {comment.content}
+          </CardContent>
+        </Card>
+      ));
+    }
+
+    return '';
+  }
+
   render() {
-    return (
-      <p>Comments</p>
-    );
+    const { comments } = this.props;
+
+    return [
+      <h6 key="comments-section-header">{comments.length} Comments</h6>,
+      <div key="comments-section-body">{this.renderComments()}</div>,
+    ];
   }
 }
 
