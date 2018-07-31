@@ -73,4 +73,27 @@ describe('TileSubtitle', () => {
       expect(testInstance.findByType(AccountOutlineIcon)).toBeDefined();
     });
   });
+
+  describe('Title subtitle component is aside', () => {
+    beforeEach(() => {
+      props = {
+        isAside: true,
+        index: 0,
+        createdAt: new Date(),
+      };
+
+      testRenderer = TestRenderer.create(<TileSubtitle {...props} />);
+      testInstance = testRenderer.root;
+    });
+
+    it('renders without crashing', () => {
+      const div = document.createElement('div');
+      ReactDOM.render(<TileSubtitle {...props} />, div);
+      ReactDOM.unmountComponentAtNode(div);
+    });
+
+    it('always render aside span wrapper', () => {
+      expect(testInstance.findByProps({className: 'subtitle-tile aside-margin'})).toBeDefined();
+    });
+  });
 });
