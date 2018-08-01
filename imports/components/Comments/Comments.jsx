@@ -7,6 +7,7 @@ import {
   CardContent,
   withStyles,
 } from '@material-ui/core';
+import { AccountIcon } from 'mdi-react';
 
 const styles = {
   commentCard: {
@@ -49,11 +50,15 @@ class Comments extends Component {
 
       return comments.map(comment => (
         <Card className={commentCard} key={comment._id}>
-          <img
-            className="comment-avatar"
-            src={comment.author.avatar}
-            alt={comment.author.name}
-          />
+          {comment.author.avatar ?
+            <img
+              className="comment-avatar"
+              src={comment.author.avatar}
+              alt={comment.author.name}
+            />
+            :
+            <AccountIcon size={60} />
+          }
           <div className="comment-content-wrapper">
             <CardHeader
               className={commentCardHeader}
