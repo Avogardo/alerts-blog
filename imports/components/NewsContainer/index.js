@@ -36,6 +36,7 @@ const composer = (props, onData) => {
     const topNews = NewsCollection.find({}, options).fetch();
 
     onData(null, {
+      ...props,
       topNews,
       unit8ArrayToUrl,
       goToNews: newsActions.goToNews,
@@ -47,6 +48,7 @@ const composer = (props, onData) => {
         users.find(user => user._id === news.authorId).profile.name);
 
       onData(null, {
+        ...props,
         topNews,
         authors,
         unit8ArrayToUrl,
@@ -55,6 +57,7 @@ const composer = (props, onData) => {
     }
   } else {
     onData(null, {
+      ...props,
       unit8ArrayToUrl,
       goToNews: newsActions.goToNews,
     });

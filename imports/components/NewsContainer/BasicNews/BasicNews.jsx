@@ -10,6 +10,7 @@ import {
   Typography,
 } from '@material-ui/core';
 import TileSubtitle from '../TileSubtitle';
+import { HistoryContext } from '../../Context';
 import './BasicNews.css';
 
 const styles = {
@@ -35,6 +36,7 @@ class BasicNews extends Component {
       authors,
       unit8ArrayToUrl,
       newsCard,
+      goToNews,
     } = this.props;
     const { newsCardHeader, newsCardContent, tileCard } = this.props.classes;
 
@@ -50,15 +52,20 @@ class BasicNews extends Component {
                 />
               </GridListTile>
             </GridList>
-            <CardHeader
-              className={newsCardHeader}
-              title={
-                <h4 className={newsCard ? 'news-page-title' : 'news-card-title'}>{news.title}</h4>
-              }
-              subheader={
-                <TileSubtitle authors={authors} createdAt={news.createdAt} index={index} />
-              }
-            />
+            <HistoryContext.Consumer>
+              {history => (
+                <CardHeader
+                  onClick={() => goToNews(history, news._id)}
+                  className={newsCardHeader}
+                  title={
+                    <h4 className={newsCard ? 'news-page-title' : 'news-card-title'}>{news.title}</h4>
+                  }
+                  subheader={
+                    <TileSubtitle authors={authors} createdAt={news.createdAt} index={index} />
+                  }
+                />
+              )}
+            </HistoryContext.Consumer>
             {!newsCard &&
               <CardContent className={newsCardContent}>
                 <Typography component="p">
@@ -79,6 +86,7 @@ BasicNews.defaultProps = {
   newsCard: false,
   topNews: [],
   authors: [],
+  goToNews: () => {},
 };
 
 BasicNews.propTypes = {
@@ -104,6 +112,7 @@ BasicNews.propTypes = {
     tileCard: PropTypes.string.isRequired,
   }).isRequired,
   unit8ArrayToUrl: PropTypes.func.isRequired,
+  goToNews: PropTypes.func,
 };
 
 export default withStyles(styles)(BasicNews);

@@ -65,8 +65,8 @@ class MainLayout extends Component {
                   : <Redirect to="/" />
               )}
             />
+            <Route exact path="/news/:id" component={News} />
           </HistoryContext.Provider>
-          <Route exact path="/news/:id" component={News} />
         </div>
 
         <Footer />

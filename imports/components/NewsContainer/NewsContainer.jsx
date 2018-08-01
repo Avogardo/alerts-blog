@@ -52,11 +52,12 @@ class NewsContainer extends Component {
           <Card className={newsCard}>
             <SectionHeader headerTitle="Most Popular" />
             <BasicNews
+              goToNews={goToNews}
               topNews={oneNews}
               authors={authors}
               unit8ArrayToUrl={unit8ArrayToUrl}
             />
-            <ExitNews topNews={topNews} unit8ArrayToUrl={unit8ArrayToUrl} />
+            <ExitNews goToNews={goToNews} topNews={topNews} unit8ArrayToUrl={unit8ArrayToUrl} />
             <SectionHeader secondary headerTitle="Social Networks" />
             <SectionHeader facebook />
             <SectionHeader youtube />
@@ -70,6 +71,7 @@ class NewsContainer extends Component {
         <Card className={newsCard}>
           <SectionHeader headerTitle={headerTitle} />
           <BasicNews
+            goToNews={goToNews}
             topNews={topNews}
             authors={authors}
             unit8ArrayToUrl={unit8ArrayToUrl}

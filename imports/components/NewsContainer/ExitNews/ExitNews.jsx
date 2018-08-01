@@ -6,6 +6,7 @@ import {
   Card,
 } from '@material-ui/core';
 import TileSubtitle from '../TileSubtitle';
+import { HistoryContext } from '../../Context';
 import './ExitNews.css';
 
 const styles = {
@@ -24,7 +25,7 @@ const styles = {
 
 class ExitNews extends Component {
   render() {
-    const { topNews, unit8ArrayToUrl } = this.props;
+    const { topNews, unit8ArrayToUrl, goToNews } = this.props;
     const { asideNewsCard, asideNewsHeaderCard } = this.props.classes;
 
     return topNews.map((news, index) => (
@@ -33,13 +34,18 @@ class ExitNews extends Component {
           className="aside-news-image"
           style={{ backgroundImage: `url(${unit8ArrayToUrl(news.enterImage.data.image)})` }}
         />
-        <CardHeader
-          className={asideNewsHeaderCard}
-          title={<h6>{news.title}</h6>}
-          subheader={
-            <TileSubtitle isAside createdAt={news.createdAt} index={index} />
-          }
-        />
+        <HistoryContext.Consumer>
+          {history => (
+            <CardHeader
+              onClick={() => goToNews(history, news._id)}
+              className={asideNewsHeaderCard}
+              title={<h6>{news.title}</h6>}
+              subheader={
+                <TileSubtitle isAside createdAt={news.createdAt} index={index} />
+              }
+            />
+          )}
+        </HistoryContext.Consumer>
       </Card>
     ));
   }
@@ -69,6 +75,7 @@ ExitNews.propTypes = {
     asideNewsHeaderCard: PropTypes.string.isRequired,
   }).isRequired,
   unit8ArrayToUrl: PropTypes.func.isRequired,
+  goToNews: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(ExitNews);

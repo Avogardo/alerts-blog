@@ -19,9 +19,13 @@ const goToCreateNews = (history) => {
 };
 
 const goToNews = (history, newsId) => {
-  const location = `news/${newsId}`;
+  const location = history.location.pathname.includes('/news/')
+    ? newsId
+    : `news/${newsId}`;
+
   if (history.location.pathname !== location) {
     history.push(location);
+    window.scrollTo(0, 0);
   }
 };
 
