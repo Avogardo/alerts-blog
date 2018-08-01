@@ -2,27 +2,71 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
   Card,
+  Button,
   CardHeader,
   CardContent,
+  withStyles,
 } from '@material-ui/core';
+
+const styles = {
+  commentCard: {
+    backgroundColor: 'transparent',
+    boxShadow: 'unset',
+    display: 'flex',
+    alignItems: 'flex-start',
+    justifyContent: 'space-between',
+    marginBottom: 30,
+  },
+  commentCardHeader: {
+    paddingTop: 0,
+  },
+  commentContentCard: {
+    paddingTop: 0,
+    paddingBottom: 16,
+    fontSize: 14,
+    color: '#777777',
+    lineHeight: '23px',
+  },
+  replyButton: {
+    backgroundColor: '#222222',
+    color: '#ffffff',
+    '&:hover': {
+      backgroundColor: '#333333',
+    },
+  },
+};
 
 class Comments extends Component {
   renderComments() {
     const { comments } = this.props;
     if (comments) {
+      const {
+        commentCard,
+        commentCardHeader,
+        commentContentCard,
+        replyButton,
+      } = this.props.classes;
+
       return comments.map(comment => (
-        <Card key={comment._id}>
+        <Card className={commentCard} key={comment._id}>
           <img
+            className="comment-avatar"
             src={comment.author.avatar}
             alt={comment.author.name}
           />
-          <CardHeader
-            title={comment.author.name}
-            subheader={comment.createdAt.toISOString()}
-          />
-          <CardContent>
-            {comment.content}
-          </CardContent>
+          <div className="comment-content-wrapper">
+            <CardHeader
+              className={commentCardHeader}
+              title={<span className="comment-header">{comment.author.name}</span>}
+              subheader={<span className="comment-subtitle">{comment.createdAt.toISOString()}</span>}
+            />
+            <CardContent className={commentContentCard}>
+              {comment.content}
+            </CardContent>
+          </div>
+          <Button className={replyButton} variant="raised">
+            Reply
+          </Button>
         </Card>
       ));
     }
@@ -34,7 +78,7 @@ class Comments extends Component {
     const { comments } = this.props;
 
     return [
-      <h6 key="comments-section-header">{comments.length} Comments</h6>,
+      <h6 className="comments-section-header" key="comments-section-header">{comments.length} Comments</h6>,
       <div key="comments-section-body">{this.renderComments()}</div>,
     ];
   }
@@ -55,6 +99,12 @@ Comments.propTypes = {
     createdAt: PropTypes.instanceOf(Date).isRequired,
     newsId: PropTypes.string.isRequired,
   })),
+  classes: PropTypes.shape({
+    commentCard: PropTypes.string.isRequired,
+    commentCardHeader: PropTypes.string.isRequired,
+    commentContentCard: PropTypes.string.isRequired,
+    replyButton: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
-export default Comments;
+export default withStyles(styles)(Comments);
