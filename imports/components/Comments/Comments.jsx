@@ -8,6 +8,7 @@ import {
   withStyles,
 } from '@material-ui/core';
 import { AccountIcon } from 'mdi-react';
+import { formatDate } from '../../../src/appHelper';
 
 const styles = {
   commentCard: {
@@ -63,7 +64,7 @@ class Comments extends Component {
             <CardHeader
               className={commentCardHeader}
               title={<span className="comment-header">{comment.author.name}</span>}
-              subheader={<span className="comment-subtitle">{comment.createdAt.toISOString()}</span>}
+              subheader={<span className="comment-subtitle">{formatDate(comment.createdAt)}</span>}
             />
             <CardContent className={commentContentCard}>
               {comment.content}
