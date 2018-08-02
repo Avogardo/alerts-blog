@@ -21,7 +21,7 @@ const styles = {
     display: 'flex',
     alignItems: 'flex-start',
     justifyContent: 'space-between',
-    marginBottom: 30,
+    marginTop: 30,
   },
   commentCommentCard: {
     backgroundColor: 'transparent',
@@ -29,7 +29,7 @@ const styles = {
     display: 'flex',
     alignItems: 'flex-start',
     justifyContent: 'space-between',
-    marginBottom: 30,
+    marginTop: 30,
     marginLeft: 25,
   },
   commentCardHeader: {
@@ -51,6 +51,7 @@ const styles = {
   },
   addCommentExpansionPanel: {
     boxShadow: 'unset',
+    marginTop: 0,
     '&:before': {
       backgroundColor: 'unset',
     },
@@ -119,7 +120,7 @@ class Comment extends Component {
 
             <ExpansionPanel className={addCommentExpansionPanel} expanded={isReplyExpanded}>
               <ExpansionPanelDetails>
-                <AddComment newsId={comment.newsId} parentId={comment._id} />
+                <AddComment isChildComment newsId={comment.newsId} parentId={comment._id} />
               </ExpansionPanelDetails>
             </ExpansionPanel>
           </Fragment>

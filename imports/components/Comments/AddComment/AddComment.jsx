@@ -16,11 +16,21 @@ const styles = {
     backgroundColor: '#ecf0f1',
     boxShadow: 'unset',
     padding: '50px 20px',
-    marginTop: 50,
+    marginTop: 80,
+  },
+  addCommentChildrenCard: {
+    backgroundColor: '#ecf0f1',
+    boxShadow: 'unset',
+    padding: '25px 20px',
+    width: '100%',
   },
   addCommentHeader: {
     padding: 0,
     marginBottom: 50,
+  },
+  addCommentChildrenHeader: {
+    padding: 0,
+    marginBottom: 20,
   },
   actionCard: {
     flexDirection: 'column',
@@ -162,7 +172,7 @@ class AddComment extends Component {
   };
 
   render() {
-    const { isLoggedIn } = this.props;
+    const { isLoggedIn, isChildComment } = this.props;
     const {
       addCommentCard,
       addCommentHeader,
@@ -170,6 +180,8 @@ class AddComment extends Component {
       input,
       inputMultiline,
       button,
+      addCommentChildrenCard,
+      addCommentChildrenHeader,
     } = this.props.classes;
     const {
       author,
@@ -181,9 +193,9 @@ class AddComment extends Component {
     } = this.state;
 
     return (
-      <Card className={addCommentCard}>
+      <Card className={isChildComment ? addCommentChildrenCard : addCommentCard}>
         <CardHeader
-          className={addCommentHeader}
+          className={isChildComment ? addCommentChildrenHeader : addCommentHeader}
           title={<h4 className="add-comment-header">Post Comment</h4>}
         />
 
@@ -248,11 +260,13 @@ class AddComment extends Component {
 AddComment.defaultProps = {
   parentId: '',
   newsId: '',
+  isChildComment: false,
 };
 
 AddComment.propTypes = {
   parentId: PropTypes.string,
   newsId: PropTypes.string,
+  isChildComment: PropTypes.bool,
   classes: PropTypes.shape({
     addCommentCard: PropTypes.string.isRequired,
     addCommentHeader: PropTypes.string.isRequired,
@@ -260,6 +274,8 @@ AddComment.propTypes = {
     input: PropTypes.string.isRequired,
     inputMultiline: PropTypes.string.isRequired,
     button: PropTypes.string.isRequired,
+    addCommentChildrenCard: PropTypes.string.isRequired,
+    addCommentChildrenHeader: PropTypes.string.isRequired,
   }).isRequired,
   createComment: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired,
