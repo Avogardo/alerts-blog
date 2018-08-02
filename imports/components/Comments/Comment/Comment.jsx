@@ -23,6 +23,15 @@ const styles = {
     justifyContent: 'space-between',
     marginBottom: 30,
   },
+  commentCommentCard: {
+    backgroundColor: 'transparent',
+    boxShadow: 'unset',
+    display: 'flex',
+    alignItems: 'flex-start',
+    justifyContent: 'space-between',
+    marginBottom: 30,
+    marginLeft: 25,
+  },
   commentCardHeader: {
     paddingTop: 0,
   },
@@ -38,6 +47,12 @@ const styles = {
     color: '#ffffff',
     '&:hover': {
       backgroundColor: '#333333',
+    },
+  },
+  addCommentExpansionPanel: {
+    boxShadow: 'unset',
+    '&:before': {
+      backgroundColor: 'unset',
     },
   },
 };
@@ -66,11 +81,13 @@ class Comment extends Component {
       commentCardHeader,
       commentContentCard,
       replyButton,
+      commentCommentCard,
+      addCommentExpansionPanel,
     } = this.props.classes;
 
     return (
       <Fragment>
-        <Card className={commentCard}>
+        <Card className={comment.parentId ? commentCommentCard : commentCard}>
           {comment.author.avatar ?
             <img
               className="comment-avatar"
@@ -100,7 +117,7 @@ class Comment extends Component {
           <Fragment>
             <Comments isChildComment newsId={comment.newsId} parentId={comment._id} />
 
-            <ExpansionPanel expanded={isReplyExpanded}>
+            <ExpansionPanel className={addCommentExpansionPanel} expanded={isReplyExpanded}>
               <ExpansionPanelDetails>
                 <AddComment newsId={comment.newsId} parentId={comment._id} />
               </ExpansionPanelDetails>
@@ -128,6 +145,8 @@ Comment.propTypes = {
     commentCardHeader: PropTypes.string.isRequired,
     commentContentCard: PropTypes.string.isRequired,
     replyButton: PropTypes.string.isRequired,
+    commentCommentCard: PropTypes.string.isRequired,
+    addCommentExpansionPanel: PropTypes.string.isRequired,
   }).isRequired,
 };
 
