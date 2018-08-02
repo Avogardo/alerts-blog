@@ -1,6 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Comment from './Comment';
+
+const formatCommentAmount = amount => (amount < 10 ? `0${amount}` : amount);
 
 class Comments extends Component {
   renderComments() {
@@ -15,17 +17,23 @@ class Comments extends Component {
   }
 
   render() {
-    const { comments } = this.props;
+    const { isChildComment, commentAmount } = this.props;
 
-    return [
-      <h6 className="comments-section-header" key="comments-section-header">{comments.length} Comments</h6>,
-      <div key="comments-section-body">{this.renderComments()}</div>,
-    ];
+    return (
+      <Fragment>
+        {!isChildComment &&
+          <h6 className="comments-section-header">{formatCommentAmount(commentAmount)} Comments</h6>
+        }
+        <div>{this.renderComments()}</div>
+      </Fragment>
+    );
   }
 }
 
 Comments.defaultProps = {
   comments: [],
+  isChildComment: false,
+  commentAmount: 0,
 };
 
 Comments.propTypes = {
@@ -39,6 +47,8 @@ Comments.propTypes = {
     createdAt: PropTypes.instanceOf(Date).isRequired,
     newsId: PropTypes.string.isRequired,
   })),
+  isChildComment: PropTypes.bool,
+  commentAmount: PropTypes.number,
 };
 
 export default Comments;
