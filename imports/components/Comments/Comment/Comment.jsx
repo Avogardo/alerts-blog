@@ -11,6 +11,8 @@ import {
 } from '@material-ui/core';
 import { AccountIcon } from 'mdi-react';
 import { formatDate } from '../../../../src/appHelper';
+import AddComment from '../AddComment';
+import Comments from '../../Comments';
 
 const styles = {
   commentCard: {
@@ -93,9 +95,11 @@ class Comment extends Component {
           </Button>
         </Card>
 
+        <Comments newsId={comment.newsId} parentId={comment._id} />
+
         <ExpansionPanel expanded={isReplyExpanded}>
           <ExpansionPanelDetails>
-            test
+            <AddComment newsId={comment.newsId} parentId={comment._id} />
           </ExpansionPanelDetails>
         </ExpansionPanel>
       </Fragment>
