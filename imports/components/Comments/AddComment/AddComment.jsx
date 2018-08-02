@@ -98,7 +98,13 @@ class AddComment extends Component {
 
   addComment() {
     const { author, content } = this.state;
-    const { createComment, parentId, newsId } = this.props;
+    const {
+      createComment,
+      parentId,
+      newsId,
+      onExpand,
+      isChildComment,
+    } = this.props;
 
     if (this.validateForm(author, content)) {
       return;
@@ -115,6 +121,9 @@ class AddComment extends Component {
         snackBarMessage: 'Comment has been created',
         isSnackBarOpen: true,
       });
+      if (isChildComment) {
+        onExpand();
+      }
     }).catch((error) => {
       this.setState({
         snackBarMessage: `Error: ${error.message}`,
@@ -261,6 +270,7 @@ AddComment.defaultProps = {
   parentId: '',
   newsId: '',
   isChildComment: false,
+  onExpand: () => {},
 };
 
 AddComment.propTypes = {
@@ -278,6 +288,7 @@ AddComment.propTypes = {
     addCommentChildrenHeader: PropTypes.string.isRequired,
   }).isRequired,
   createComment: PropTypes.func.isRequired,
+  onExpand: PropTypes.func,
   isLoggedIn: PropTypes.bool.isRequired,
 };
 

@@ -120,7 +120,12 @@ class Comment extends Component {
 
             <ExpansionPanel className={addCommentExpansionPanel} expanded={isReplyExpanded}>
               <ExpansionPanelDetails>
-                <AddComment isChildComment newsId={comment.newsId} parentId={comment._id} />
+                <AddComment
+                  isChildComment
+                  onExpand={this.onExpand}
+                  newsId={comment.newsId}
+                  parentId={comment._id}
+                />
               </ExpansionPanelDetails>
             </ExpansionPanel>
           </Fragment>
