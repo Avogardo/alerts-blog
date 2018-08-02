@@ -90,18 +90,23 @@ class Comment extends Component {
               {comment.content}
             </CardContent>
           </div>
-          <Button onClick={this.onExpand} className={replyButton} variant="raised">
-            Reply
-          </Button>
+          {!comment.parentId &&
+            <Button onClick={this.onExpand} className={replyButton} variant="raised">
+              Reply
+            </Button>
+          }
         </Card>
+        {!comment.parentId &&
+          <Fragment>
+            <Comments isChildComment newsId={comment.newsId} parentId={comment._id} />
 
-        <Comments newsId={comment.newsId} parentId={comment._id} />
-
-        <ExpansionPanel expanded={isReplyExpanded}>
-          <ExpansionPanelDetails>
-            <AddComment newsId={comment.newsId} parentId={comment._id} />
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
+            <ExpansionPanel expanded={isReplyExpanded}>
+              <ExpansionPanelDetails>
+                <AddComment newsId={comment.newsId} parentId={comment._id} />
+              </ExpansionPanelDetails>
+            </ExpansionPanel>
+          </Fragment>
+        }
       </Fragment>
     );
   }

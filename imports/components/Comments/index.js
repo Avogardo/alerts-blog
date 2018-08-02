@@ -28,10 +28,11 @@ const composer = (props, onData) => {
   const userListHandler = Meteor.subscribe('userList');
 
   if (commentsHandler.ready() && userListHandler.ready()) {
+    const commentAmount = CommentsCollection.find({ newsId }).count();
     const users = Meteor.users.find({}).fetch();
     const commentsCursor = parentId ?
       CommentsCollection.find({ newsId, parentId }) :
-      CommentsCollection.find({ newsId });
+      CommentsCollection.find({ newsId, parentId: null });
 
     const comments = commentsCursor.fetch().map((comment) => {
       if (comment.authorId) {
@@ -52,6 +53,7 @@ const composer = (props, onData) => {
     onData(null, {
       ...props,
       comments,
+      commentAmount,
     });
   } else {
     onData(null, {
