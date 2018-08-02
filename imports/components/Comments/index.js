@@ -21,14 +21,19 @@ const getTrackerLoader = composer =>
   };
 
 const composer = (props, onData) => {
-  const { newsId } = props;
-  const commentsHandler = Meteor.subscribe('newsComments', newsId);
+  const { newsId, parentId } = props;
+  const commentsHandler = parentId ?
+    Meteor.subscribe('commentComments', newsId, parentId) :
+    Meteor.subscribe('newsComments', newsId);
   const userListHandler = Meteor.subscribe('userList');
 
   if (commentsHandler.ready() && userListHandler.ready()) {
     const users = Meteor.users.find({}).fetch();
+    const commentsCursor = parentId ?
+      CommentsCollection.find({ newsId, parentId }) :
+      CommentsCollection.find({ newsId });
 
-    const comments = CommentsCollection.find({ newsId }).map((comment) => {
+    const comments = commentsCursor.fetch().map((comment) => {
       if (comment.authorId) {
         const author = users.find(user => user._id === comment.authorId);
         comment.author = {

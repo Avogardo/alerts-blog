@@ -247,11 +247,12 @@ class AddComment extends Component {
 
 AddComment.defaultProps = {
   parentId: '',
+  newsId: '',
 };
 
 AddComment.propTypes = {
   parentId: PropTypes.string,
-  newsId: PropTypes.string.isRequired,
+  newsId: PropTypes.string,
   classes: PropTypes.shape({
     addCommentCard: PropTypes.string.isRequired,
     addCommentHeader: PropTypes.string.isRequired,
