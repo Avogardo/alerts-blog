@@ -1,79 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {
-  Card,
-  Button,
-  CardHeader,
-  CardContent,
-  withStyles,
-} from '@material-ui/core';
-import { AccountIcon } from 'mdi-react';
-import { formatDate } from '../../../src/appHelper';
-
-const styles = {
-  commentCard: {
-    backgroundColor: 'transparent',
-    boxShadow: 'unset',
-    display: 'flex',
-    alignItems: 'flex-start',
-    justifyContent: 'space-between',
-    marginBottom: 30,
-  },
-  commentCardHeader: {
-    paddingTop: 0,
-  },
-  commentContentCard: {
-    paddingTop: 0,
-    paddingBottom: 16,
-    fontSize: 14,
-    color: '#777777',
-    lineHeight: '23px',
-  },
-  replyButton: {
-    backgroundColor: '#222222',
-    color: '#ffffff',
-    '&:hover': {
-      backgroundColor: '#333333',
-    },
-  },
-};
+import Comment from './Comment';
 
 class Comments extends Component {
   renderComments() {
     const { comments } = this.props;
     if (comments) {
-      const {
-        commentCard,
-        commentCardHeader,
-        commentContentCard,
-        replyButton,
-      } = this.props.classes;
-
       return comments.map(comment => (
-        <Card className={commentCard} key={comment._id}>
-          {comment.author.avatar ?
-            <img
-              className="comment-avatar"
-              src={comment.author.avatar}
-              alt={comment.author.name}
-            />
-            :
-            <AccountIcon size={60} />
-          }
-          <div className="comment-content-wrapper">
-            <CardHeader
-              className={commentCardHeader}
-              title={<span className="comment-header">{comment.author.name}</span>}
-              subheader={<span className="comment-subtitle">{formatDate(comment.createdAt)}</span>}
-            />
-            <CardContent className={commentContentCard}>
-              {comment.content}
-            </CardContent>
-          </div>
-          <Button className={replyButton} variant="raised">
-            Reply
-          </Button>
-        </Card>
+        <Comment key={comment._id} comment={comment} />
       ));
     }
 
@@ -105,12 +39,6 @@ Comments.propTypes = {
     createdAt: PropTypes.instanceOf(Date).isRequired,
     newsId: PropTypes.string.isRequired,
   })),
-  classes: PropTypes.shape({
-    commentCard: PropTypes.string.isRequired,
-    commentCardHeader: PropTypes.string.isRequired,
-    commentContentCard: PropTypes.string.isRequired,
-    replyButton: PropTypes.string.isRequired,
-  }).isRequired,
 };
 
-export default withStyles(styles)(Comments);
+export default Comments;
