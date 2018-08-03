@@ -13,6 +13,7 @@ import { AccountIcon } from 'mdi-react';
 import { formatDate } from '../../../../src/appHelper';
 import AddComment from '../AddComment';
 import Comments from '../../Comments';
+import './Comment.css';
 
 const styles = {
   commentCard: {
@@ -124,11 +125,16 @@ class Comment extends Component {
               {comment.content}
             </CardContent>
           </div>
-          {!comment.parentId &&
-            <Button onClick={this.onExpand} className={replyButton} variant="raised">
-              Reply
+          <div className="comment-buttons-wrapper">
+            {!comment.parentId &&
+              <Button onClick={this.onExpand} className={replyButton} variant="raised">
+                Reply
+              </Button>
+            }
+            <Button color="secondary" variant="raised">
+              Remove
             </Button>
-          }
+          </div>
         </Card>
         {!comment.parentId &&
           <Fragment>
