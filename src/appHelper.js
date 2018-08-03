@@ -12,3 +12,5 @@ export const formatDate = (date) => {
 
   return `${day} ${monthNamesEng[monthIndex]}, ${year}`;
 };
+
+export const formatCommentAmount = amount => (amount < 10 ? `0${amount}` : amount);

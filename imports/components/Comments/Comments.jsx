@@ -1,8 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Comment from './Comment';
-
-const formatCommentAmount = amount => (amount < 10 ? `0${amount}` : amount);
+import { formatCommentAmount } from '../../../src/appHelper';
 
 class Comments extends Component {
   renderComments() {
