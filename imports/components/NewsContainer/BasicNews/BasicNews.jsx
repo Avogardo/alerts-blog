@@ -61,7 +61,12 @@ class BasicNews extends Component {
                     <h4 className={newsCard ? 'news-page-title' : 'news-card-title'}>{news.title}</h4>
                   }
                   subheader={
-                    <TileSubtitle authors={authors} createdAt={news.createdAt} index={index} />
+                    <TileSubtitle
+                      newsId={news._id}
+                      authors={authors}
+                      createdAt={news.createdAt}
+                      index={index}
+                    />
                   }
                 />
               )}
