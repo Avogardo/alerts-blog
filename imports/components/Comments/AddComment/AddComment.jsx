@@ -98,7 +98,13 @@ class AddComment extends Component {
 
   addComment() {
     const { author, content } = this.state;
-    const { createComment, parentId, newsId } = this.props;
+    const {
+      createComment,
+      parentId,
+      newsId,
+      isChildComment,
+      onExpand,
+    } = this.props;
 
     if (this.validateForm(author, content)) {
       return;
@@ -111,6 +117,9 @@ class AddComment extends Component {
       parentId,
     ).then(() => {
       this.clearState();
+      if (isChildComment) {
+        onExpand();
+      }
       this.setState({
         snackBarMessage: 'Comment has been created',
         isSnackBarOpen: true,
@@ -261,11 +270,13 @@ AddComment.defaultProps = {
   parentId: '',
   newsId: '',
   isChildComment: false,
+  onExpand: () => {},
 };
 
 AddComment.propTypes = {
   parentId: PropTypes.string,
   newsId: PropTypes.string,
+  onExpand: PropTypes.func,
   isChildComment: PropTypes.bool,
   classes: PropTypes.shape({
     addCommentCard: PropTypes.string.isRequired,
