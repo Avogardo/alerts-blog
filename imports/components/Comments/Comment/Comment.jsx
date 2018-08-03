@@ -72,6 +72,22 @@ class Comment extends Component {
     this.setState({
       isReplyExpanded: !this.state.isReplyExpanded,
     });
+
+    if (!this.state.isReplyExpanded) {
+      const { comment } = this.props;
+      const expansionPanel = document.getElementById(`comment${comment._id}`);
+      const rect = expansionPanel.getBoundingClientRect();
+      const isVisible = (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+      );
+
+      if (!isVisible) {
+        expansionPanel.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
   }
 
   render() {
@@ -118,7 +134,7 @@ class Comment extends Component {
           <Fragment>
             <Comments isChildComment newsId={comment.newsId} parentId={comment._id} />
 
-            <ExpansionPanel className={addCommentExpansionPanel} expanded={isReplyExpanded}>
+            <ExpansionPanel id={`comment${comment._id}`} className={addCommentExpansionPanel} expanded={isReplyExpanded}>
               <ExpansionPanelDetails>
                 <AddComment isChildComment newsId={comment.newsId} parentId={comment._id} />
               </ExpansionPanelDetails>
