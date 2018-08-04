@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Card, withStyles, CardContent } from '@material-ui/core';
+import {
+  Card,
+  withStyles,
+  CardContent,
+  Chip,
+} from '@material-ui/core';
 
 import SectionHeader from '../NewsContainer/SectionHeader';
 import BasicNews from '../NewsContainer/BasicNews';
@@ -19,9 +24,25 @@ const styles = {
     paddingTop: 0,
     paddingRight: 0,
   },
+  chips: {
+    margin: 4,
+  },
 };
 
 class News extends Component {
+  renderTags() {
+    const { tags } = this.props.news[0];
+    const { chips } = this.props.classes;
+
+    return tags.map(tag => (
+      <Chip
+        key={tag + new Date().getTime() + Math.random()}
+        label={tag}
+        className={chips}
+      />
+    ));
+  }
+
   render() {
     const { news, author, unit8ArrayToUrl } = this.props;
     const { newsCard, newsContentCard } = this.props.classes;
@@ -42,6 +63,10 @@ class News extends Component {
             {news[0].content}
           </CardContent>
 
+          {!!news[0].tags.length &&
+            <div className="news-tags-wrapper">{this.renderTags()}</div>
+          }
+
           <Comments newsId={news[0]._id} />
 
           <AddComment newsId={news[0]._id} />
@@ -61,6 +86,7 @@ News.propTypes = {
   classes: PropTypes.shape({
     newsCard: PropTypes.string.isRequired,
     newsContentCard: PropTypes.string.isRequired,
+    chips: PropTypes.string.isRequired,
   }).isRequired,
   author: PropTypes.arrayOf(PropTypes.string.isRequired),
   news: PropTypes.arrayOf(PropTypes.shape({
