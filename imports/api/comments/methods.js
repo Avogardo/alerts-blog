@@ -36,7 +36,7 @@ const createComment = new ValidatedMethod({
     if (content.length < 5) {
       throw new Meteor.Error(
         'not.enough.characters',
-        'Article is too short',
+        'Comment is too short',
       );
     }
 
@@ -73,6 +73,12 @@ const removeComment = new ValidatedMethod({
   validate: RemoveCommentSchema.validator({ clean: true }),
   run({ commentId }) {
     throwErrorIfNotAdmin();
+
+    const commentToRemove = Comments.findOne({ parentId: commentId });
+    if (commentToRemove) {
+      Comments.remove({ parentId: commentId });
+    }
+
     return Comments.remove({ _id: commentId });
   },
 });
