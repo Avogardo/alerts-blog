@@ -92,7 +92,7 @@ class Comment extends Component {
   }
 
   render() {
-    const { comment, isAdmin } = this.props;
+    const { comment, isAdmin, onCommentDelete } = this.props;
     const { isReplyExpanded } = this.state;
     const {
       commentCard,
@@ -132,7 +132,7 @@ class Comment extends Component {
               </Button>
             }
             {isAdmin &&
-              <Button color="secondary" variant="raised">
+              <Button onClick={() => onCommentDelete(comment._id)} color="secondary" variant="raised">
                 Remove
               </Button>
             }
@@ -142,7 +142,11 @@ class Comment extends Component {
           <Fragment>
             <Comments isChildComment newsId={comment.newsId} parentId={comment._id} />
 
-            <ExpansionPanel id={`comment${comment._id}`} className={addCommentExpansionPanel} expanded={isReplyExpanded}>
+            <ExpansionPanel
+              id={`comment${comment._id}`}
+              className={addCommentExpansionPanel}
+              expanded={isReplyExpanded}
+            >
               <ExpansionPanelDetails>
                 <AddComment
                   isChildComment
@@ -179,7 +183,7 @@ Comment.propTypes = {
     addCommentExpansionPanel: PropTypes.string.isRequired,
   }).isRequired,
   isAdmin: PropTypes.bool.isRequired,
-  removeComment: PropTypes.func.isRequired,
+  onCommentDelete: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(Comment);

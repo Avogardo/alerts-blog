@@ -1,14 +1,51 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { Snackbar } from '@material-ui/core';
 import Comment from './Comment';
 import { formatCommentAmount } from '../../../src/appHelper';
 
 class Comments extends Component {
+  constructor(props) {
+    super(props);
+    this.onCommentDelete = this.onCommentDelete.bind(this);
+
+    this.state = {
+      snackBarMessage: '',
+      isSnackBarOpen: false,
+    };
+  }
+
+  onCommentDelete(commentId) {
+    const { removeComment } = this.props;
+
+    removeComment(commentId).then(() => {
+      this.setState({
+        snackBarMessage: 'Comment has been removed',
+        isSnackBarOpen: true,
+      });
+    }).catch((error) => {
+      this.setState({
+        snackBarMessage: `Error: ${error.message}`,
+        isSnackBarOpen: true,
+      });
+    });
+  }
+
+  snackBarClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    this.setState({
+      isSnackBarOpen: false,
+    });
+  };
+
   renderComments() {
     const { comments } = this.props;
     if (comments) {
       return comments.map(comment => (
-        <Comment key={comment._id} comment={comment} />
+        <Comment onCommentDelete={this.onCommentDelete} key={comment._id} comment={comment} />
       ));
     }
 
@@ -17,6 +54,7 @@ class Comments extends Component {
 
   render() {
     const { isChildComment, commentAmount } = this.props;
+    const { snackBarMessage, isSnackBarOpen } = this.state;
 
     return (
       <Fragment>
@@ -24,6 +62,20 @@ class Comments extends Component {
           <h6 className="comments-section-header">{formatCommentAmount(commentAmount)} Comments</h6>
         }
         <div>{this.renderComments()}</div>
+
+        <Snackbar
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'left',
+          }}
+          open={isSnackBarOpen}
+          autoHideDuration={3500}
+          onClose={this.snackBarClose}
+          ContentProps={{
+            'aria-describedby': 'message-id',
+          }}
+          message={<span id="message-id">{snackBarMessage}</span>}
+        />
       </Fragment>
     );
   }
@@ -46,6 +98,7 @@ Comments.propTypes = {
     createdAt: PropTypes.instanceOf(Date).isRequired,
     newsId: PropTypes.string.isRequired,
   })),
+  removeComment: PropTypes.func.isRequired,
   isChildComment: PropTypes.bool,
   commentAmount: PropTypes.number,
 };

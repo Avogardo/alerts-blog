@@ -1,6 +1,5 @@
 import { Meteor } from 'meteor/meteor';
 import { compose } from 'react-komposer';
-import { actions as commentsActions } from '/imports/api/comments';
 import { isAdmin } from '../../../api/users';
 import Comment from './Comment.jsx';
 
@@ -10,7 +9,6 @@ const composer = (props, onData) => {
   onData(null, {
     ...props,
     isAdmin: isAdmin(userId),
-    removeComment: commentsActions.removeComment,
   });
 };
 

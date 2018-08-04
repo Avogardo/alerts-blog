@@ -1,7 +1,10 @@
 import { Meteor } from 'meteor/meteor';
 import { Tracker } from 'meteor/tracker';
 import { compose } from 'react-komposer';
-import { Comments as CommentsCollection } from '/imports/api/comments';
+import {
+  Comments as CommentsCollection,
+  actions as commentsActions,
+} from '/imports/api/comments';
 import Comments from './Comments.jsx';
 import AddComment from './AddComment';
 
@@ -22,6 +25,7 @@ const getTrackerLoader = composer =>
 
 const composer = (props, onData) => {
   const { newsId, parentId } = props;
+  const { removeComment } = commentsActions;
   const commentsHandler = parentId ?
     Meteor.subscribe('commentComments', newsId, parentId) :
     Meteor.subscribe('newsComments', newsId);
@@ -54,10 +58,12 @@ const composer = (props, onData) => {
       ...props,
       comments,
       commentAmount,
+      removeComment,
     });
   } else {
     onData(null, {
       ...props,
+      removeComment,
     });
   }
 };
