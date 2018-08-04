@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Tracker } from 'meteor/tracker';
 import { compose } from 'react-komposer';
 import { News as NewsCollection } from '/imports/api/news';
+import { isAdmin } from '../../api/users';
 import News from './News.jsx';
 
 const getTrackerLoader = composer =>
@@ -32,6 +33,7 @@ const composer = (props, onData) => {
 
   if (newsHandler.ready()) {
     const news = NewsCollection.find({ _id: newsId }).fetch();
+    const userId = Meteor.userId();
 
     if (userListHandler.ready()) {
       const users = Meteor.users.find({}).fetch();
@@ -41,11 +43,13 @@ const composer = (props, onData) => {
         news,
         unit8ArrayToUrl,
         author,
+        isAdmin: isAdmin(userId),
       });
     } else {
       onData(null, {
         news,
         unit8ArrayToUrl,
+        isAdmin: isAdmin(userId),
       });
     }
   }

@@ -5,6 +5,7 @@ import {
   Button,
   CardHeader,
   CardContent,
+  CardActions,
   withStyles,
   ExpansionPanel,
   ExpansionPanelDetails,
@@ -13,7 +14,6 @@ import { AccountIcon } from 'mdi-react';
 import { formatDate } from '../../../../src/appHelper';
 import AddComment from '../AddComment';
 import Comments from '../../Comments';
-import './Comment.css';
 
 const styles = {
   commentCard: {
@@ -56,6 +56,11 @@ const styles = {
     '&:before': {
       backgroundColor: 'unset',
     },
+  },
+  commentCardActions: {
+    display: 'flex',
+    flexDirection: 'column',
+    padding: 0,
   },
 };
 
@@ -101,6 +106,7 @@ class Comment extends Component {
       replyButton,
       commentCommentCard,
       addCommentExpansionPanel,
+      commentCardActions,
     } = this.props.classes;
 
     return (
@@ -125,7 +131,7 @@ class Comment extends Component {
               {comment.content}
             </CardContent>
           </div>
-          <div className="comment-buttons-wrapper">
+          <CardActions className={commentCardActions}>
             {!comment.parentId &&
               <Button onClick={this.onExpand} className={replyButton} variant="raised">
                 Reply
@@ -136,7 +142,7 @@ class Comment extends Component {
                 Remove
               </Button>
             }
-          </div>
+          </CardActions>
         </Card>
         {!comment.parentId &&
           <Fragment>
@@ -181,6 +187,7 @@ Comment.propTypes = {
     replyButton: PropTypes.string.isRequired,
     commentCommentCard: PropTypes.string.isRequired,
     addCommentExpansionPanel: PropTypes.string.isRequired,
+    commentCardActions: PropTypes.string.isRequired,
   }).isRequired,
   isAdmin: PropTypes.bool.isRequired,
   onCommentDelete: PropTypes.func.isRequired,

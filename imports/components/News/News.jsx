@@ -5,6 +5,8 @@ import {
   withStyles,
   CardContent,
   Chip,
+  Button,
+  CardActions,
 } from '@material-ui/core';
 
 import SectionHeader from '../NewsContainer/SectionHeader';
@@ -44,7 +46,12 @@ class News extends Component {
   }
 
   render() {
-    const { news, author, unit8ArrayToUrl } = this.props;
+    const {
+      news,
+      author,
+      unit8ArrayToUrl,
+      isAdmin,
+    } = this.props;
     const { newsCard, newsContentCard } = this.props.classes;
 
     return [
@@ -65,6 +72,17 @@ class News extends Component {
 
           {!!news[0].tags.length &&
             <div className="news-tags-wrapper">{this.renderTags()}</div>
+          }
+
+          {isAdmin &&
+            <CardActions>
+              <Button variant="raised">
+                Remove
+              </Button>
+              <Button variant="raised">
+                Edit
+              </Button>
+            </CardActions>
           }
 
           <Comments newsId={news[0]._id} />
@@ -104,6 +122,7 @@ News.propTypes = {
     }).isRequired,
   }).isRequired),
   unit8ArrayToUrl: PropTypes.func.isRequired,
+  isAdmin: PropTypes.bool.isRequired,
 };
 
 export default withStyles(styles)(News);
