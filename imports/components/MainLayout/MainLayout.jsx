@@ -97,10 +97,10 @@ class MainLayout extends Component {
             />
             <Route
               exact
-              path="/create-news"
-              render={() => (
+              path="/create-news/:id?"
+              render={routeProps => (
                 isAuthorized
-                  ? <CreateNews />
+                  ? <CreateNews match={routeProps.match} />
                   : <Redirect to="/" />
               )}
             />

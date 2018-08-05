@@ -1,7 +1,10 @@
 import { Meteor } from 'meteor/meteor';
 import { Tracker } from 'meteor/tracker';
 import { compose } from 'react-komposer';
-import { News as NewsCollection } from '/imports/api/news';
+import {
+  News as NewsCollection,
+  actions as newsActions,
+} from '/imports/api/news';
 import { isAdmin } from '../../api/users';
 import News from './News.jsx';
 
@@ -23,6 +26,7 @@ const getTrackerLoader = composer =>
 const composer = (props, onData) => {
   const newsId = props.match.params.id;
   const { onRemoveNews } = props;
+  const { goToCreateNews } = newsActions;
   const newsHandler = Meteor.subscribe('singleNews', newsId);
   const userListHandler = Meteor.subscribe('userList');
 
@@ -41,18 +45,22 @@ const composer = (props, onData) => {
       const author = [users.find(user => user._id === news[0].authorId).profile.name];
 
       onData(null, {
+        ...props,
         news,
         unit8ArrayToUrl,
         onRemoveNews,
         author,
         isAdmin: isAdmin(userId),
+        goToCreateNews,
       });
     } else {
       onData(null, {
+        ...props,
         news,
         unit8ArrayToUrl,
         onRemoveNews,
         isAdmin: isAdmin(userId),
+        goToCreateNews,
       });
     }
   }

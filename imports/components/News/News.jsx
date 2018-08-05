@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import ReactRouterPropTypes from 'react-router-prop-types';
 import {
   Card,
   withStyles,
@@ -59,6 +60,8 @@ class News extends Component {
       unit8ArrayToUrl,
       isAdmin,
       onRemoveNews,
+      goToCreateNews,
+      history,
     } = this.props;
     const { newsCard, newsContentCard, editButton } = this.props.classes;
 
@@ -87,7 +90,7 @@ class News extends Component {
               <Button onClick={() => onRemoveNews(news[0]._id)} variant="raised" color="secondary">
                 Remove
               </Button>
-              <Button className={editButton} variant="raised">
+              <Button onClick={() => goToCreateNews(history, news[0]._id)} className={editButton} variant="raised">
                 Edit
               </Button>
             </CardActions>
@@ -109,6 +112,7 @@ News.defaultProps = {
 };
 
 News.propTypes = {
+  history: ReactRouterPropTypes.history.isRequired,
   classes: PropTypes.shape({
     newsCard: PropTypes.string.isRequired,
     newsContentCard: PropTypes.string.isRequired,
@@ -133,6 +137,7 @@ News.propTypes = {
   unit8ArrayToUrl: PropTypes.func.isRequired,
   isAdmin: PropTypes.bool.isRequired,
   onRemoveNews: PropTypes.func.isRequired,
+  goToCreateNews: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(News);
