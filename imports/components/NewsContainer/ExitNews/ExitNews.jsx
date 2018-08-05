@@ -41,7 +41,12 @@ class ExitNews extends Component {
               className={asideNewsHeaderCard}
               title={<h6>{news.title}</h6>}
               subheader={
-                <TileSubtitle isAside createdAt={news.createdAt} index={index} />
+                <TileSubtitle
+                  newsId={news._id}
+                  isAside
+                  createdAt={news.createdAt}
+                  index={index}
+                />
               }
             />
           )}

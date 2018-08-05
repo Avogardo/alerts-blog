@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
 import { isAdmin } from '/imports/api/users';
+import { Comments } from '../comments';
 import {
   AddNewsSchema,
   NewsIdentitySchema,
@@ -78,6 +79,7 @@ const removeNews = new ValidatedMethod({
   validate: NewsIdentitySchema.validator({ clean: true }),
   run({ newsId }) {
     throwErrorIfNotAdmin();
+    Comments.remove({ newsId });
     return News.remove({ _id: newsId });
   },
 });

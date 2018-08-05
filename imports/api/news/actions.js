@@ -11,8 +11,8 @@ const goToNewsContainer = (history) => {
   }
 };
 
-const goToCreateNews = (history) => {
-  const location = '/create-news';
+const goToCreateNews = (history, newsId) => {
+  const location = newsId ? `/create-news/${newsId}` : '/create-news';
   if (history.location.pathname !== location) {
     history.push(location);
   }

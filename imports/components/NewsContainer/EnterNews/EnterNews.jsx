@@ -43,7 +43,12 @@ class EnterNews extends Component {
                       className={gridListTileBar}
                       title={news.title}
                       subtitle={
-                        <TileSubtitle authors={authors} createdAt={news.createdAt} index={index} />
+                        <TileSubtitle
+                          newsId={news._id}
+                          authors={authors}
+                          createdAt={news.createdAt}
+                          index={index}
+                        />
                       }
                     />
                   )}

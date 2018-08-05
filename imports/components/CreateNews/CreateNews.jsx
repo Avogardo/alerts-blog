@@ -250,6 +250,8 @@ class CreateNews extends React.Component {
   }
 
   render() {
+    const { news } = this.props;
+    const isNews = Object.keys(news).length;
     const {
       actions,
       defaultFileInput,
@@ -273,7 +275,7 @@ class CreateNews extends React.Component {
 
     return (
       <form>
-        <CardHeader title="Create news" />
+        <CardHeader title={isNews ? 'Edit News' : 'Create news'} />
         <CardActions className={actions}>
           <TextField
             label="Post title"
@@ -371,6 +373,10 @@ class CreateNews extends React.Component {
   }
 }
 
+CreateNews.defaultProps = {
+  news: {},
+};
+
 CreateNews.propTypes = {
   classes: PropTypes.shape({
     actions: PropTypes.string.isRequired,
@@ -384,6 +390,20 @@ CreateNews.propTypes = {
     contentInput: PropTypes.string.isRequired,
   }).isRequired,
   createNews: PropTypes.func.isRequired,
+  news: PropTypes.shape({
+    _id: PropTypes.string,
+    authorId: PropTypes.string,
+    title: PropTypes.string,
+    content: PropTypes.string,
+    createdAt: PropTypes.instanceOf(Date),
+    tags: PropTypes.arrayOf(PropTypes.string),
+    enterImage: PropTypes.shape({
+      data: PropTypes.shape({
+        name: PropTypes.string,
+        image: PropTypes.instanceOf(Uint8Array),
+      }),
+    }),
+  }),
 };
 
 export default withStyles(styles)(CreateNews);

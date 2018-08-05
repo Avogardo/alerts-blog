@@ -1,3 +1,15 @@
+import { Meteor } from 'meteor/meteor';
+import { compose } from 'react-komposer';
+import { isAdmin } from '../../../api/users';
 import Comment from './Comment.jsx';
 
-export default Comment;
+const composer = (props, onData) => {
+  const userId = Meteor.userId();
+
+  onData(null, {
+    ...props,
+    isAdmin: isAdmin(userId),
+  });
+};
+
+export default compose(composer)(Comment);

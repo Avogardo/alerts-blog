@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Card, withStyles, CardContent } from '@material-ui/core';
+import ReactRouterPropTypes from 'react-router-prop-types';
+import {
+  Card,
+  withStyles,
+  CardContent,
+  Chip,
+  Button,
+  CardActions,
+} from '@material-ui/core';
 
 import SectionHeader from '../NewsContainer/SectionHeader';
 import BasicNews from '../NewsContainer/BasicNews';
@@ -19,12 +27,43 @@ const styles = {
     paddingTop: 0,
     paddingRight: 0,
   },
+  chips: {
+    margin: 4,
+  },
+  editButton: {
+    backgroundColor: '#222222',
+    color: '#ffffff',
+    '&:hover': {
+      backgroundColor: '#333333',
+    },
+  },
 };
 
 class News extends Component {
+  renderTags() {
+    const { tags } = this.props.news[0];
+    const { chips } = this.props.classes;
+
+    return tags.map(tag => (
+      <Chip
+        key={tag + new Date().getTime() + Math.random()}
+        label={tag}
+        className={chips}
+      />
+    ));
+  }
+
   render() {
-    const { news, author, unit8ArrayToUrl } = this.props;
-    const { newsCard, newsContentCard } = this.props.classes;
+    const {
+      news,
+      author,
+      unit8ArrayToUrl,
+      isAdmin,
+      onRemoveNews,
+      goToCreateNews,
+      history,
+    } = this.props;
+    const { newsCard, newsContentCard, editButton } = this.props.classes;
 
     return [
       <div key="breaking-news" className="breaking-news-wrapper">
@@ -42,6 +81,21 @@ class News extends Component {
             {news[0].content}
           </CardContent>
 
+          {!!news[0].tags.length &&
+            <div className="news-tags-wrapper">{this.renderTags()}</div>
+          }
+
+          {isAdmin &&
+            <CardActions>
+              <Button onClick={() => onRemoveNews(news[0]._id)} variant="raised" color="secondary">
+                Remove
+              </Button>
+              <Button onClick={() => goToCreateNews(history, news[0]._id)} className={editButton} variant="raised">
+                Edit
+              </Button>
+            </CardActions>
+          }
+
           <Comments newsId={news[0]._id} />
 
           <AddComment newsId={news[0]._id} />
@@ -58,9 +112,12 @@ News.defaultProps = {
 };
 
 News.propTypes = {
+  history: ReactRouterPropTypes.history.isRequired,
   classes: PropTypes.shape({
     newsCard: PropTypes.string.isRequired,
     newsContentCard: PropTypes.string.isRequired,
+    chips: PropTypes.string.isRequired,
+    editButton: PropTypes.string.isRequired,
   }).isRequired,
   author: PropTypes.arrayOf(PropTypes.string.isRequired),
   news: PropTypes.arrayOf(PropTypes.shape({
@@ -78,6 +135,9 @@ News.propTypes = {
     }).isRequired,
   }).isRequired),
   unit8ArrayToUrl: PropTypes.func.isRequired,
+  isAdmin: PropTypes.bool.isRequired,
+  onRemoveNews: PropTypes.func.isRequired,
+  goToCreateNews: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(News);
