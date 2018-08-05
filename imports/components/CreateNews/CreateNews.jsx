@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import ReactRouterPropTypes from 'react-router-prop-types';
 import {
   Button,
   CardHeader,
@@ -145,7 +145,13 @@ class CreateNews extends React.Component {
   }
 
   onCreate() {
-    const { createNews, updateNews, news } = this.props;
+    const {
+      createNews,
+      updateNews,
+      news,
+      goToNews,
+      history,
+    } = this.props;
     const isNews = Object.keys(news).length;
     const {
       title,
@@ -166,11 +172,11 @@ class CreateNews extends React.Component {
         { data: unit8ArrayFiles },
         tags,
       ).then(() => {
-        this.clearState();
         this.setState({
           snackBarMessage: 'News has been edited',
           isSnackBarOpen: true,
         });
+        goToNews(history, news._id);
       }).catch((error) => {
         this.setState({
           snackBarMessage: `Error: ${error.message}`,
@@ -425,6 +431,7 @@ CreateNews.defaultProps = {
 };
 
 CreateNews.propTypes = {
+  history: ReactRouterPropTypes.history.isRequired,
   classes: PropTypes.shape({
     actions: PropTypes.string.isRequired,
     secondActions: PropTypes.string.isRequired,
@@ -438,6 +445,7 @@ CreateNews.propTypes = {
   }).isRequired,
   createNews: PropTypes.func.isRequired,
   updateNews: PropTypes.func.isRequired,
+  goToNews: PropTypes.func.isRequired,
   news: PropTypes.shape({
     _id: PropTypes.string,
     authorId: PropTypes.string,

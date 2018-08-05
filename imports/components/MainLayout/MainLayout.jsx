@@ -100,7 +100,7 @@ class MainLayout extends Component {
               path="/create-news/:id?"
               render={routeProps => (
                 isAuthorized
-                  ? <CreateNews match={routeProps.match} />
+                  ? <CreateNews match={routeProps.match} history={routeProps.history} />
                   : <Redirect to="/" />
               )}
             />

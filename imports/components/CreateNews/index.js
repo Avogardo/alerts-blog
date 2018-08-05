@@ -24,7 +24,7 @@ const getTrackerLoader = composer =>
 
 const composer = (props, onData) => {
   const newsId = props.match.params.id;
-  const { createNews, updateNews } = newsActions;
+  const { createNews, updateNews, goToNews } = newsActions;
 
   if (newsId) {
     const newsHandler = Meteor.subscribe('singleNews', newsId);
@@ -35,6 +35,7 @@ const composer = (props, onData) => {
         news,
         createNews,
         updateNews,
+        goToNews,
         ...props,
       });
     }
@@ -42,6 +43,7 @@ const composer = (props, onData) => {
     onData(null, {
       createNews,
       updateNews,
+      goToNews,
       ...props,
     });
   }
