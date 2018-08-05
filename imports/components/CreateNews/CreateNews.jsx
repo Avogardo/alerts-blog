@@ -67,7 +67,31 @@ class CreateNews extends React.Component {
       snackBarMessage: '',
       titleError: '',
       contentError: '',
+      wasDataLoaded: false,
     };
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    if (Object.keys(props.news).length && !state.wasDataLoaded) {
+      const {
+        title,
+        authorId,
+        content,
+        tags,
+        enterImage,
+      } = props.news;
+
+      return {
+        title,
+        authorId,
+        content,
+        tags,
+        unit8ArrayFiles: [enterImage.data],
+        wasDataLoaded: true,
+      };
+    }
+
+    return null;
   }
 
   onTitleChange({ target: { value } }) {
@@ -271,11 +295,12 @@ class CreateNews extends React.Component {
       snackBarMessage,
       titleError,
       contentError,
+      wasDataLoaded,
     } = this.state;
 
     return (
       <form>
-        <CardHeader title={isNews ? 'Edit News' : 'Create news'} />
+        <CardHeader title={isNews && wasDataLoaded ? 'Edit News' : 'Create news'} />
         <CardActions className={actions}>
           <TextField
             label="Post title"
