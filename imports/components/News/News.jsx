@@ -29,6 +29,13 @@ const styles = {
   chips: {
     margin: 4,
   },
+  editButton: {
+    backgroundColor: '#222222',
+    color: '#ffffff',
+    '&:hover': {
+      backgroundColor: '#333333',
+    },
+  },
 };
 
 class News extends Component {
@@ -53,7 +60,7 @@ class News extends Component {
       isAdmin,
       onRemoveNews,
     } = this.props;
-    const { newsCard, newsContentCard } = this.props.classes;
+    const { newsCard, newsContentCard, editButton } = this.props.classes;
 
     return [
       <div key="breaking-news" className="breaking-news-wrapper">
@@ -77,10 +84,10 @@ class News extends Component {
 
           {isAdmin &&
             <CardActions>
-              <Button onClick={() => onRemoveNews(news[0]._id)} variant="raised">
+              <Button onClick={() => onRemoveNews(news[0]._id)} variant="raised" color="secondary">
                 Remove
               </Button>
-              <Button variant="raised">
+              <Button className={editButton} variant="raised">
                 Edit
               </Button>
             </CardActions>
@@ -106,6 +113,7 @@ News.propTypes = {
     newsCard: PropTypes.string.isRequired,
     newsContentCard: PropTypes.string.isRequired,
     chips: PropTypes.string.isRequired,
+    editButton: PropTypes.string.isRequired,
   }).isRequired,
   author: PropTypes.arrayOf(PropTypes.string.isRequired),
   news: PropTypes.arrayOf(PropTypes.shape({
