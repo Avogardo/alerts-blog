@@ -51,6 +51,7 @@ class News extends Component {
       author,
       unit8ArrayToUrl,
       isAdmin,
+      onRemoveNews,
     } = this.props;
     const { newsCard, newsContentCard } = this.props.classes;
 
@@ -76,7 +77,7 @@ class News extends Component {
 
           {isAdmin &&
             <CardActions>
-              <Button variant="raised">
+              <Button onClick={() => onRemoveNews(news[0]._id)} variant="raised">
                 Remove
               </Button>
               <Button variant="raised">
@@ -123,6 +124,7 @@ News.propTypes = {
   }).isRequired),
   unit8ArrayToUrl: PropTypes.func.isRequired,
   isAdmin: PropTypes.bool.isRequired,
+  onRemoveNews: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(News);

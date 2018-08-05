@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Route, Redirect } from 'react-router-dom';
 import ReactRouterPropTypes from 'react-router-prop-types';
+import { Snackbar } from '@material-ui/core';
 
 import { HistoryContext } from '../Context';
 import Navigation from '../Navigation';
@@ -13,6 +14,43 @@ import News from '../News';
 import './MainLayout.css';
 
 class MainLayout extends Component {
+  constructor(props) {
+    super(props);
+    this.onRemoveNews = this.onRemoveNews.bind(this);
+
+    this.state = {
+      snackBarMessage: '',
+      isSnackBarOpen: false,
+    };
+  }
+
+  onRemoveNews(newsId) {
+    const { removeNews, goToNewsContainer, history } = this.props;
+    goToNewsContainer(history);
+
+    removeNews(newsId).then(() => {
+      this.setState({
+        snackBarMessage: 'Comment has been removed',
+        isSnackBarOpen: true,
+      });
+    }).catch((error) => {
+      this.setState({
+        snackBarMessage: `Error: ${error.message}`,
+        isSnackBarOpen: true,
+      });
+    });
+  }
+
+  snackBarClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    this.setState({
+      isSnackBarOpen: false,
+    });
+  };
+
   render() {
     const {
       isLoggedInUser,
@@ -20,6 +58,7 @@ class MainLayout extends Component {
       location,
       history,
     } = this.props;
+    const { snackBarMessage, isSnackBarOpen } = this.state;
 
     const shouldHideBackground = location.pathname === '/' || location.pathname.includes('/news/');
 
@@ -65,11 +104,35 @@ class MainLayout extends Component {
                   : <Redirect to="/" />
               )}
             />
-            <Route exact path="/news/:id" component={News} />
+            <Route
+              exact
+              path="/news/:id"
+              render={routeProps => (
+                <News
+                  history={routeProps.history}
+                  match={routeProps.match}
+                  onRemoveNews={this.onRemoveNews}
+                />
+              )}
+            />
           </HistoryContext.Provider>
         </div>
 
         <Footer />
+
+        <Snackbar
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'left',
+          }}
+          open={isSnackBarOpen}
+          autoHideDuration={3500}
+          onClose={this.snackBarClose}
+          ContentProps={{
+            'aria-describedby': 'message-id',
+          }}
+          message={<span id="message-id">{snackBarMessage}</span>}
+        />
       </div>
     );
   }
@@ -79,6 +142,8 @@ MainLayout.propTypes = {
   history: ReactRouterPropTypes.history.isRequired,
   isLoggedInUser: PropTypes.bool.isRequired,
   isAuthorized: PropTypes.bool.isRequired,
+  removeNews: PropTypes.func.isRequired,
+  goToNewsContainer: PropTypes.func.isRequired,
   location: ReactRouterPropTypes.location.isRequired,
 };
 

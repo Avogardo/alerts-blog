@@ -22,6 +22,7 @@ const getTrackerLoader = composer =>
 
 const composer = (props, onData) => {
   const newsId = props.match.params.id;
+  const { onRemoveNews } = props;
   const newsHandler = Meteor.subscribe('singleNews', newsId);
   const userListHandler = Meteor.subscribe('userList');
 
@@ -42,6 +43,7 @@ const composer = (props, onData) => {
       onData(null, {
         news,
         unit8ArrayToUrl,
+        onRemoveNews,
         author,
         isAdmin: isAdmin(userId),
       });
@@ -49,6 +51,7 @@ const composer = (props, onData) => {
       onData(null, {
         news,
         unit8ArrayToUrl,
+        onRemoveNews,
         isAdmin: isAdmin(userId),
       });
     }
