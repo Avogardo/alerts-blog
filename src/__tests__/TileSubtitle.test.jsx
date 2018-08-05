@@ -6,7 +6,7 @@ import {
   MessageOutlineIcon,
   AccountOutlineIcon,
 } from 'mdi-react';
-import TileSubtitle from '../../imports/components/NewsContainer/TileSubtitle';
+import TileSubtitle from '../../imports/components/NewsContainer/TileSubtitle/TileSubtitle.jsx';
 
 describe('TileSubtitle', () => {
   let props;
