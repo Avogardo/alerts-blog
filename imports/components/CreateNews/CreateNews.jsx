@@ -145,7 +145,8 @@ class CreateNews extends React.Component {
   }
 
   onCreate() {
-    const { createNews } = this.props;
+    const { createNews, updateNews, news } = this.props;
+    const isNews = Object.keys(news).length;
     const {
       title,
       content,
@@ -157,23 +158,44 @@ class CreateNews extends React.Component {
       return;
     }
 
-    createNews(
-      title,
-      content,
-      { data: unit8ArrayFiles },
-      tags,
-    ).then(() => {
-      this.clearState();
-      this.setState({
-        snackBarMessage: 'News has been created',
-        isSnackBarOpen: true,
+    if (isNews) {
+      updateNews(
+        news._id,
+        title,
+        content,
+        { data: unit8ArrayFiles },
+        tags,
+      ).then(() => {
+        this.clearState();
+        this.setState({
+          snackBarMessage: 'News has been edited',
+          isSnackBarOpen: true,
+        });
+      }).catch((error) => {
+        this.setState({
+          snackBarMessage: `Error: ${error.message}`,
+          isSnackBarOpen: true,
+        });
       });
-    }).catch((error) => {
-      this.setState({
-        snackBarMessage: `Error: ${error.message}`,
-        isSnackBarOpen: true,
+    } else {
+      createNews(
+        title,
+        content,
+        { data: unit8ArrayFiles },
+        tags,
+      ).then(() => {
+        this.clearState();
+        this.setState({
+          snackBarMessage: 'News has been created',
+          isSnackBarOpen: true,
+        });
+      }).catch((error) => {
+        this.setState({
+          snackBarMessage: `Error: ${error.message}`,
+          isSnackBarOpen: true,
+        });
       });
-    });
+    }
   }
 
   validateForm(title, content) {
@@ -415,6 +437,7 @@ CreateNews.propTypes = {
     contentInput: PropTypes.string.isRequired,
   }).isRequired,
   createNews: PropTypes.func.isRequired,
+  updateNews: PropTypes.func.isRequired,
   news: PropTypes.shape({
     _id: PropTypes.string,
     authorId: PropTypes.string,
