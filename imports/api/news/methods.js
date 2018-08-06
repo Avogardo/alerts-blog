@@ -105,11 +105,13 @@ const updateNews = new ValidatedMethod({
   }) {
     throwErrorIfNotAdmin();
 
+    const enterImage = images.data[0];
     return News.update(newsId, {
       $set: {
         title,
         content,
         images,
+        enterImage: { data: enterImage },
         tags,
       },
     });
