@@ -59,6 +59,10 @@ describe('Add comment', () => {
   });
 
   it('always renders a Button element', () => {
-    expect(testInstance.findAllByType(Input)).toBeDefined();
+    expect(testInstance.findByType(Button)).toBeDefined();
+  });
+
+  it('always renders a Snackbar element', () => {
+    expect(testInstance.findByType(Snackbar)).toBeDefined();
   });
 });
