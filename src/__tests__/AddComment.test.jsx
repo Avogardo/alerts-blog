@@ -54,7 +54,7 @@ describe('Add comment', () => {
     expect(testInstance.findByType(CardActions)).toBeDefined();
   });
 
-  it('renders 2 Input elements of not logged in', () => {
+  it('renders 2 Input elements if not logged in', () => {
     expect(testInstance.findAllByType(Input)).toHaveLength(2);
   });
 
@@ -95,6 +95,10 @@ describe('Add comment', () => {
       const div = document.createElement('div');
       ReactDOM.render(<AddComment {...props} />, div);
       ReactDOM.unmountComponentAtNode(div);
+    });
+
+    it('renders an Input element if logged in', () => {
+      expect(testInstance.findByType(Input)).toBeDefined();
     });
   });
 });
