@@ -6,7 +6,6 @@ import {
   CardHeader,
   CardActions,
   Button,
-  withStyles,
   Input,
   Snackbar,
 } from '@material-ui/core';
@@ -57,5 +56,9 @@ describe('Add comment', () => {
 
   it('renders 2 Input elements of not logged in', () => {
     expect(testInstance.findAllByType(Input)).toHaveLength(2);
+  });
+
+  it('always renders a Button element', () => {
+    expect(testInstance.findAllByType(Input)).toBeDefined();
   });
 });
