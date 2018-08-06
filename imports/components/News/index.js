@@ -28,6 +28,7 @@ const composer = (props, onData) => {
   const { onRemoveNews } = props;
   const { goToCreateNews } = newsActions;
   const newsHandler = Meteor.subscribe('singleNews', newsId);
+  const newsWithPhotosHandler = Meteor.subscribe('singleNews', newsId, true);
   const userListHandler = Meteor.subscribe('userList');
 
   const unit8ArrayToUrl = (image) => {
@@ -37,22 +38,38 @@ const composer = (props, onData) => {
   };
 
   if (newsHandler.ready()) {
-    const news = NewsCollection.find({ _id: newsId }).fetch();
+    let news = NewsCollection.find({ _id: newsId }).fetch();
     const userId = Meteor.userId();
 
     if (userListHandler.ready()) {
       const users = Meteor.users.find({}).fetch();
       const author = [users.find(user => user._id === news[0].authorId).profile.name];
 
-      onData(null, {
-        ...props,
-        news,
-        unit8ArrayToUrl,
-        onRemoveNews,
-        author,
-        isAdmin: isAdmin(userId),
-        goToCreateNews,
-      });
+      if (newsWithPhotosHandler.ready()) {
+        news = NewsCollection.find({ _id: newsId }).fetch();
+
+        if (news[0].images && news[0].images.data.length > 1) {
+          onData(null, {
+            ...props,
+            news,
+            unit8ArrayToUrl,
+            onRemoveNews,
+            author,
+            isAdmin: isAdmin(userId),
+            goToCreateNews,
+          });
+        }
+      } else {
+        onData(null, {
+          ...props,
+          news,
+          unit8ArrayToUrl,
+          onRemoveNews,
+          author,
+          isAdmin: isAdmin(userId),
+          goToCreateNews,
+        });
+      }
     } else {
       onData(null, {
         ...props,

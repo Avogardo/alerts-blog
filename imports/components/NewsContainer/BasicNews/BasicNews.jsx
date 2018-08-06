@@ -9,6 +9,8 @@ import {
   CardContent,
   Typography,
 } from '@material-ui/core';
+import ImageGallery from 'react-image-gallery';
+import '/node_modules/react-image-gallery/styles/css/image-gallery.css';
 import TileSubtitle from '../TileSubtitle';
 import { HistoryContext } from '../../Context';
 import './BasicNews.css';
@@ -46,10 +48,14 @@ class BasicNews extends Component {
           <Card className={tileCard} key={news._id}>
             <GridList cellHeight={250} cols={1}>
               <GridListTile className="enter-news-tile" key={news._id}>
-                <div
-                  className="enter-news-image"
-                  style={{ backgroundImage: `url(${unit8ArrayToUrl(news.enterImage.data.image)})` }}
-                />
+                {newsCard && topNews[0].images ?
+                  <ImageGallery items={topNews[0].imagesFroSlider} />
+                  :
+                  <div
+                    className="enter-news-image"
+                    style={{ backgroundImage: `url(${unit8ArrayToUrl(news.enterImage.data.image)})` }}
+                  />
+                }
               </GridListTile>
             </GridList>
             <HistoryContext.Consumer>
@@ -109,6 +115,10 @@ BasicNews.propTypes = {
         image: PropTypes.instanceOf(Uint8Array).isRequired,
       }),
     }).isRequired,
+    imagesFroSlider: PropTypes.arrayOf(PropTypes.shape({
+      original: PropTypes.string.isRequired,
+      thumbnail: PropTypes.string.isRequired,
+    })),
   })),
   authors: PropTypes.arrayOf(PropTypes.string.isRequired),
   classes: PropTypes.shape({
