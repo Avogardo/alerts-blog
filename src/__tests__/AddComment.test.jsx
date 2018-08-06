@@ -65,4 +65,36 @@ describe('Add comment', () => {
   it('always renders a Snackbar element', () => {
     expect(testInstance.findByType(Snackbar)).toBeDefined();
   });
+
+  describe('Is user logged in', () => {
+    let props;
+    let testRenderer;
+    let testInstance;
+
+    beforeEach(() => {
+      props = {
+        classes: {
+          addCommentCard: '',
+          addCommentHeader: '',
+          actionCard: '',
+          input: '',
+          inputMultiline: '',
+          button: '',
+          addCommentChildrenCard: '',
+          addCommentChildrenHeader: '',
+        },
+        createComment: () => {},
+        isLoggedIn: true,
+      };
+
+      testRenderer = TestRenderer.create(<AddComment {...props} />);
+      testInstance = testRenderer.root;
+    });
+
+    it('renders without crashing', () => {
+      const div = document.createElement('div');
+      ReactDOM.render(<AddComment {...props} />, div);
+      ReactDOM.unmountComponentAtNode(div);
+    });
+  });
 });
