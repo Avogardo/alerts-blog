@@ -50,4 +50,8 @@ describe('Add comment', () => {
   it('always renders a CardHeader element', () => {
     expect(testInstance.findByType(CardHeader)).toBeDefined();
   });
+
+  it('always renders a CardActions element', () => {
+    expect(testInstance.findByType(CardActions)).toBeDefined();
+  });
 });
