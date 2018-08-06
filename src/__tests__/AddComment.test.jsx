@@ -54,4 +54,8 @@ describe('Add comment', () => {
   it('always renders a CardActions element', () => {
     expect(testInstance.findByType(CardActions)).toBeDefined();
   });
+
+  it('renders 2 Input elements of not logged in', () => {
+    expect(testInstance.findAllByType(Input)).toHaveLength(2);
+  });
 });
