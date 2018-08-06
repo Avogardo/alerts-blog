@@ -49,7 +49,13 @@ class BasicNews extends Component {
             <GridList cellHeight={250} cols={1}>
               <GridListTile className="enter-news-tile" key={news._id}>
                 {newsCard && topNews[0].images ?
-                  <ImageGallery items={topNews[0].imagesFroSlider} />
+                  <ImageGallery
+                    showBullets
+                    showIndex
+                    showThumbnails={false}
+                    showPlayButton={false}
+                    items={topNews[0].imagesFroSlider}
+                  />
                   :
                   <div
                     className="enter-news-image"
