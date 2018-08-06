@@ -17,14 +17,18 @@ Meteor.publish('recentNewsWithLimit', function publishRecentNewsLimit(limit = 3)
   return News.find({}, options);
 });
 
-Meteor.publish('singleNews', function publishSingleNews(newsId) {
+Meteor.publish('singleNews', function publishSingleNews(newsId, withPhotos = false) {
   check(newsId, String);
+  check(withPhotos, Boolean);
 
   const query = {
     _id: newsId,
   };
-
-  const options = {};
+  const options = {
+    fields: {
+      images: withPhotos,
+    },
+  };
 
   return News.find(query, options);
 });
