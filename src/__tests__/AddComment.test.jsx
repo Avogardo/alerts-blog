@@ -42,4 +42,8 @@ describe('Add comment', () => {
     ReactDOM.render(<AddComment {...props} />, div);
     ReactDOM.unmountComponentAtNode(div);
   });
+
+  it('always renders a Card element', () => {
+    expect(testInstance.findByType(Card)).toBeDefined();
+  });
 });
