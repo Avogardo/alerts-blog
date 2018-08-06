@@ -46,4 +46,8 @@ describe('Add comment', () => {
   it('always renders a Card element', () => {
     expect(testInstance.findByType(Card)).toBeDefined();
   });
+
+  it('always renders a CardHeader element', () => {
+    expect(testInstance.findByType(CardHeader)).toBeDefined();
+  });
 });
