@@ -58,7 +58,7 @@ class BasicNews extends Component {
                   />
                   :
                   <div
-                    className="enter-news-image"
+                    className={newsCard ? 'enter-news-image-no-animation' : 'enter-news-image'}
                     style={{ backgroundImage: `url(${unit8ArrayToUrl(news.enterImage.data.image)})` }}
                   />
                 }

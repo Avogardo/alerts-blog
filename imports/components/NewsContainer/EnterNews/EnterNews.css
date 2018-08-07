@@ -9,6 +9,14 @@
     background-position: center center;
 }
 
+.enter-news-image-no-animation {
+    -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
+    height: 250px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
 .enter-news-tile {
     margin-bottom: 6px;
 }
