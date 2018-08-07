@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
+import RichTextEditor from 'react-rte';
 import {
   Button,
   CardHeader,
@@ -50,7 +51,6 @@ class CreateNews extends React.Component {
   constructor(props) {
     super(props);
     this.onTitleChange = this.onTitleChange.bind(this);
-    this.onContentChange = this.onContentChange.bind(this);
     this.onFileChange = this.onFileChange.bind(this);
     this.onTagKeyPress = this.onTagKeyPress.bind(this);
     this.onTagChange = this.onTagChange.bind(this);
@@ -59,6 +59,7 @@ class CreateNews extends React.Component {
 
     this.state = {
       title: '',
+      value: RichTextEditor.createEmptyValue(),
       content: '',
       tagInput: '',
       unit8ArrayFiles: [],
@@ -100,11 +101,12 @@ class CreateNews extends React.Component {
     });
   }
 
-  onContentChange({ target: { value } }) {
+  onChange = (value) => {
     this.setState({
-      content: value,
+      value,
+      content: value.toString('html'),
     });
-  }
+  };
 
   onFileChange({ target }) {
     const fileArray = [...target.files];
@@ -244,6 +246,7 @@ class CreateNews extends React.Component {
   clearState() {
     this.setState({
       title: '',
+      value: RichTextEditor.createEmptyValue(),
       content: '',
       tagInput: '',
       unit8ArrayFiles: [],
@@ -317,7 +320,7 @@ class CreateNews extends React.Component {
 
     const {
       title,
-      content,
+      value,
       tagInput,
       isSnackBarOpen,
       snackBarMessage,
@@ -340,17 +343,11 @@ class CreateNews extends React.Component {
             error={!!titleError}
             helperText={titleError}
           />
-          <TextField
-            label="Post content"
-            fullWidth
-            multiline
-            margin="normal"
-            rowsMax="15"
-            onChange={this.onContentChange}
-            value={content}
-            error={!!contentError}
-            helperText={contentError}
-            className={contentInput}
+
+          <RichTextEditor
+            value={value}
+            onChange={this.onChange}
+            placeholder="Post content"
           />
 
           <CardActions className={chipsActions}>

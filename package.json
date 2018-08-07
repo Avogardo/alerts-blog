@@ -21,6 +21,7 @@
     "react-motion-drawer": "^3.1.0",
     "react-router-dom": "^4.2.2",
     "react-router-prop-types": "^1.0.4",
+    "react-rte": "^0.16.1",
     "simpl-schema": "^1.5.0"
   },
   "devDependencies": {
