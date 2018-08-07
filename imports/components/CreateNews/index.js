@@ -27,7 +27,7 @@ const composer = (props, onData) => {
   const { createNews, updateNews, goToNews } = newsActions;
 
   if (newsId) {
-    const newsHandler = Meteor.subscribe('singleNews', newsId);
+    const newsHandler = Meteor.subscribe('singleNews', newsId, true, true);
     if (newsHandler.ready()) {
       const news = NewsCollection.find({ _id: newsId }).fetch()[0];
 

@@ -78,7 +78,7 @@ class CreateNews extends React.Component {
         authorId,
         content,
         tags,
-        enterImage,
+        images,
       } = props.news;
 
       return {
@@ -86,7 +86,7 @@ class CreateNews extends React.Component {
         authorId,
         content,
         tags,
-        unit8ArrayFiles: [enterImage.data],
+        unit8ArrayFiles: images.data,
         wasDataLoaded: true,
       };
     }
@@ -458,6 +458,12 @@ CreateNews.propTypes = {
         name: PropTypes.string,
         image: PropTypes.instanceOf(Uint8Array),
       }),
+    }),
+    images: PropTypes.shape({
+      data: PropTypes.arrayOf(PropTypes.shape({
+        image: PropTypes.instanceOf(Uint8Array),
+        name: PropTypes.string.isRequired,
+      })).isRequired,
     }),
   }),
 };

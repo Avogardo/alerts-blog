@@ -17,18 +17,26 @@ Meteor.publish('recentNewsWithLimit', function publishRecentNewsLimit(limit = 3)
   return News.find({}, options);
 });
 
-Meteor.publish('singleNews', function publishSingleNews(newsId, withPhotos = false) {
-  check(newsId, String);
-  check(withPhotos, Boolean);
+Meteor.publish(
+  'singleNews',
+  function publishSingleNews(newsId, withPhotos = false, publishBoth = false) {
+    check(newsId, String);
+    check(withPhotos, Boolean);
 
-  const query = {
-    _id: newsId,
-  };
-  const options = {
-    fields: {
-      images: withPhotos,
-    },
-  };
+    const query = {
+      _id: newsId,
+    };
 
-  return News.find(query, options);
-});
+    if (publishBoth) {
+      return News.find(query);
+    }
+
+    const options = {
+      fields: {
+        images: withPhotos,
+      },
+    };
+
+    return News.find(query, options);
+  },
+);
