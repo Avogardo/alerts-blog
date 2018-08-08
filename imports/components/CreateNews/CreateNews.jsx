@@ -34,9 +34,6 @@ const styles = {
   topInput: {
     marginTop: 0,
   },
-  contentInput: {
-    marginBottom: 35,
-  },
   actionButtons: {
     margin: 16,
   },
@@ -220,7 +217,7 @@ class CreateNews extends React.Component {
       });
     }
 
-    if (content.length < 15) {
+    if (content.length < 25) {
       isError = true;
       this.setState({
         contentError: 'Article is too short',
@@ -316,7 +313,6 @@ class CreateNews extends React.Component {
       actionButtons,
       chipsActions,
       chipsInput,
-      contentInput,
     } = this.props.classes;
 
     const {
@@ -345,12 +341,19 @@ class CreateNews extends React.Component {
             helperText={titleError}
           />
 
-          <RichTextEditor
-            value={value}
-            editorClassName="create-news-editor-field"
-            onChange={this.onChange}
-            placeholder="Post content"
-          />
+          <div id="rich-text-editor" className={contentError ? 'rich-text-editor-error' : ''}>
+            <RichTextEditor
+              value={value}
+              editorClassName="create-news-editor-field"
+              onChange={this.onChange}
+              placeholder="Post content"
+            />
+            {contentError &&
+              <CardContent>
+                Error: {contentError}.
+              </CardContent>
+            }
+          </div>
 
           <CardActions className={chipsActions}>
             {this.renderImages()}
@@ -440,7 +443,6 @@ CreateNews.propTypes = {
     chipsActions: PropTypes.string.isRequired,
     chips: PropTypes.string.isRequired,
     chipsInput: PropTypes.string.isRequired,
-    contentInput: PropTypes.string.isRequired,
   }).isRequired,
   createNews: PropTypes.func.isRequired,
   updateNews: PropTypes.func.isRequired,
