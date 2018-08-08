@@ -14,6 +14,7 @@ import {
   Snackbar,
   Avatar,
 } from '@material-ui/core';
+import './CreateNews.css';
 
 const styles = {
   actions: {
@@ -346,6 +347,7 @@ class CreateNews extends React.Component {
 
           <RichTextEditor
             value={value}
+            editorClassName="create-news-editor-field"
             onChange={this.onChange}
             placeholder="Post content"
           />
