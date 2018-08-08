@@ -16,6 +16,7 @@ import {
   FacebookIcon,
   YoutubeIcon,
   EmailOutlineIcon,
+  CloseIcon,
 } from 'mdi-react';
 import Sidebar from '../Sidebar';
 import './Navigation.css';
@@ -174,7 +175,11 @@ class Navigation extends Component {
                 placeholder="Search by tag"
               />
               <IconButton onClick={this.toggleSearch} color="inherit">
-                <Search />
+                {isSearchHidden ?
+                  <Search />
+                  :
+                  <CloseIcon />
+                }
               </IconButton>
             </div>
           </Toolbar>
