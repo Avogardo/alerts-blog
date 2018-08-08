@@ -49,6 +49,7 @@ class News extends Component {
         key={tag + new Date().getTime() + Math.random()}
         label={tag}
         className={chips}
+        onClick={() => {}}
       />
     ));
   }

@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TestRenderer from 'react-test-renderer';
+import { MemoryRouter } from 'react-router-dom';
 import {
   CardActions,
   TextField,
@@ -16,15 +17,26 @@ describe('Create news', () => {
   beforeEach(() => {
     props = {
       createNews: () => {},
+      updateNews: () => {},
+      goToNews: () => {},
     };
 
-    testRenderer = TestRenderer.create(<CreateNews {...props} />);
+    testRenderer = TestRenderer.create(
+      <MemoryRouter>
+        <CreateNews {...props} />
+      </MemoryRouter>
+    );
     testInstance = testRenderer.root;
   });
 
   it('renders without crashing', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<CreateNews {...props} />, div);
+    ReactDOM.render(
+      <MemoryRouter>
+        <CreateNews {...props} />
+      </MemoryRouter>,
+      div,
+    );
     ReactDOM.unmountComponentAtNode(div);
   });
 
@@ -36,8 +48,8 @@ describe('Create news', () => {
     expect(testInstance.findAllByType(CardActions)).toHaveLength(4);
   });
 
-  it('always renders 3 TextField', () => {
-    expect(testInstance.findAllByType(TextField)).toHaveLength(3);
+  it('always renders 2 TextField', () => {
+    expect(testInstance.findAllByType(TextField)).toHaveLength(2);
   });
 
   it('always renders 3 buttons', () => {

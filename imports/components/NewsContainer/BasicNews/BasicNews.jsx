@@ -42,10 +42,6 @@ class BasicNews extends Component {
     } = this.props;
     const { newsCardHeader, newsCardContent, tileCard } = this.props.classes;
 
-    // todo custom on change image event function to prevent scrolling
-    // b = document.querySelector('.image-gallery-image')
-    // b.addEventListener('scroll', () => b.scrollTop = 100);
-
     return (
       topNews.length ?
         topNews.map((news, index) => (
