@@ -58,6 +58,18 @@ const composer = (props, onData) => {
             isAdmin: isAdmin(userId),
             goToCreateNews,
           });
+        } else {
+          delete news[0].imagesFroSlider;
+          delete news[0].images;
+          onData(null, {
+            ...props,
+            news,
+            unit8ArrayToUrl,
+            onRemoveNews,
+            author,
+            isAdmin: isAdmin(userId),
+            goToCreateNews,
+          });
         }
       } else {
         onData(null, {
