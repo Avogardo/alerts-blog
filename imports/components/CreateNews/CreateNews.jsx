@@ -79,11 +79,13 @@ class CreateNews extends React.Component {
         tags,
         images,
       } = props.news;
+      const value = RichTextEditor.createValueFromString(content, 'html');
 
       return {
         title,
         authorId,
         content,
+        value,
         tags,
         unit8ArrayFiles: images.data,
         wasDataLoaded: true,
