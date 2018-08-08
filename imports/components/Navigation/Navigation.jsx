@@ -6,6 +6,8 @@ import {
   Toolbar,
   Typography,
   IconButton,
+  Input,
+  withStyles,
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import Search from '@material-ui/icons/Search';
@@ -33,6 +35,25 @@ const style = {
   },
 };
 
+const styles = {
+  inputSearch: {
+    backgroundColor: '#ffffff',
+    paddingLeft: 5,
+    paddingRight: 5,
+    borderRadius: 3,
+    position: 'relative',
+    transition: 'opacity 0.1s ease, top 0.2s ease',
+  },
+  inputSearchHidden: {
+    opacity: 0,
+    top: -45,
+  },
+  inputSearchShowed: {
+    opacity: 1,
+    top: 0,
+  },
+};
+
 class Navigation extends Component {
   constructor(props) {
     super(props);
@@ -41,9 +62,11 @@ class Navigation extends Component {
     this.goToNewsContainer = this.goToNewsContainer.bind(this);
     this.goToCreateNews = this.goToCreateNews.bind(this);
     this.onLogOut = this.onLogOut.bind(this);
+    this.toggleSearch = this.toggleSearch.bind(this);
 
     this.state = {
       isSidebarOpen: false,
+      isSearchHidden: true,
     };
   }
 
@@ -85,10 +108,17 @@ class Navigation extends Component {
     goToCreateNews(history);
   }
 
+  toggleSearch() {
+    this.setState({
+      isSearchHidden: !this.state.isSearchHidden,
+    });
+  }
+
   render() {
     const { appBar, toolbar, secondaryAppBar } = style;
     const { isAuthorized } = this.props;
-    const { isSidebarOpen } = this.state;
+    const { inputSearch, inputSearchHidden, inputSearchShowed } = this.props.classes;
+    const { isSidebarOpen, isSearchHidden } = this.state;
     return (
       <nav>
         <Sidebar
@@ -137,9 +167,16 @@ class Navigation extends Component {
                 Menu
               </Typography>
             </div>
-            <IconButton color="inherit">
-              <Search />
-            </IconButton>
+            <div>
+              <Input
+                className={[inputSearch, isSearchHidden ? inputSearchHidden : inputSearchShowed].join(' ')}
+                disableUnderline
+                placeholder="Search by tag"
+              />
+              <IconButton onClick={this.toggleSearch} color="inherit">
+                <Search />
+              </IconButton>
+            </div>
           </Toolbar>
         </AppBar>
       </nav>
@@ -154,6 +191,11 @@ Navigation.propTypes = {
   onLogOut: PropTypes.func.isRequired,
   history: ReactRouterPropTypes.history.isRequired,
   isAuthorized: PropTypes.bool.isRequired,
+  classes: PropTypes.shape({
+    inputSearch: PropTypes.string.isRequired,
+    inputSearchHidden: PropTypes.string.isRequired,
+    inputSearchShowed: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
-export default Navigation;
+export default withStyles(styles)(Navigation);
