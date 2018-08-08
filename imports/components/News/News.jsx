@@ -77,9 +77,10 @@ class News extends Component {
             authors={author}
             unit8ArrayToUrl={unit8ArrayToUrl}
           />
-          <CardContent className={newsContentCard}>
-            {news[0].content}
-          </CardContent>
+          <CardContent
+            className={newsContentCard}
+            dangerouslySetInnerHTML={{ __html: (news[0].content || '') }}
+          />
 
           {!!news[0].tags.length &&
             <div className="news-tags-wrapper">{this.renderTags()}</div>
