@@ -7,6 +7,7 @@ import {
   TextField,
   Button,
 } from '@material-ui/core';
+import RichTextEditor from 'react-rte';
 import CreateNews from '../../imports/components/CreateNews/CreateNews.jsx';
 
 describe('Create news', () => {
@@ -43,6 +44,10 @@ describe('Create news', () => {
   it('always renders a form', () => {
     expect(testInstance.findAllByType('form')).toHaveLength(1);
   });
+
+  it('always render a RichTextEditor element', () => {
+      expect(testInstance.findByType(RichTextEditor)).toBeDefined();
+    });
 
   it('always renders 4 CardActions', () => {
     expect(testInstance.findAllByType(CardActions)).toHaveLength(4);
