@@ -408,7 +408,7 @@ class CreateNews extends React.Component {
             color="primary"
             onClick={this.onCreate}
           >
-            Create
+            {isNews ? 'Save' : 'Create'}
           </Button>
         </CardActions>
 
