@@ -7,7 +7,14 @@ Meteor.publish('news', function publishNewsList() {
 });
 
 Meteor.publish('tagNewsList', function publishNewsList(tagName = '') {
-  return News.find({ tags: { $all: [tagName] } });
+  const options = {
+    sort: { createdAt: -1 },
+    fields: {
+      images: 0,
+    },
+  };
+
+  return News.find({ tags: { $all: [tagName] } }, options);
 });
 
 Meteor.publish('recentNewsWithLimit', function publishRecentNewsLimit(limit = 3) {

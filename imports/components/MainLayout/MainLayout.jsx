@@ -60,7 +60,11 @@ class MainLayout extends Component {
     } = this.props;
     const { snackBarMessage, isSnackBarOpen } = this.state;
 
-    const shouldHideBackground = location.pathname === '/' || location.pathname.includes('/news/');
+    const shouldHideBackground = (
+      location.pathname === '/' ||
+      location.pathname.includes('/news/') ||
+      location.pathname.includes('/tag/')
+    );
 
     return (
       <div className="container">
