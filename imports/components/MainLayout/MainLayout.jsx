@@ -115,6 +115,12 @@ class MainLayout extends Component {
                 />
               )}
             />
+
+            <Route
+              exact
+              path="/tag/:tag"
+              render={props => <NewsContainer {...props} exitContainer />}
+            />
           </HistoryContext.Provider>
         </div>
 
