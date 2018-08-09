@@ -27,6 +27,10 @@ const goToNews = (history, newsId) => {
     location = `/news/${newsId}`;
   }
 
+  if (history.location.pathname.includes('/tag/')) {
+    location = `/news/${newsId}`;
+  }
+
   if (history.location.pathname !== location) {
     history.push(location);
     window.scrollTo(0, 0);
