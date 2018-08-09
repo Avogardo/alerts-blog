@@ -27,6 +27,7 @@ class NewsContainer extends Component {
       unit8ArrayToUrl,
       headerTitle,
       goToNews,
+      tagName,
     } = this.props;
     const { mainNewsCard, newsCard } = this.props.classes;
 
@@ -51,12 +52,14 @@ class NewsContainer extends Component {
         <section>
           <Card className={newsCard}>
             <SectionHeader headerTitle="Most Popular" />
-            <BasicNews
-              goToNews={goToNews}
-              topNews={oneNews}
-              authors={authors}
-              unit8ArrayToUrl={unit8ArrayToUrl}
-            />
+            {!tagName &&
+              <BasicNews
+                goToNews={goToNews}
+                topNews={oneNews}
+                authors={authors}
+                unit8ArrayToUrl={unit8ArrayToUrl}
+              />
+            }
             <ExitNews goToNews={goToNews} topNews={topNews} unit8ArrayToUrl={unit8ArrayToUrl} />
             <SectionHeader secondary headerTitle="Social Networks" />
             <SectionHeader facebook />
@@ -86,6 +89,7 @@ NewsContainer.defaultProps = {
   enterContainer: false,
   exitContainer: false,
   headerTitle: '',
+  tagName: '',
   topNews: [],
   authors: [],
 };
@@ -94,6 +98,7 @@ NewsContainer.propTypes = {
   enterContainer: PropTypes.bool,
   exitContainer: PropTypes.bool,
   headerTitle: PropTypes.string,
+  tagName: PropTypes.string,
   topNews: PropTypes.arrayOf(PropTypes.shape({
     _id: PropTypes.string.isRequired,
     authorId: PropTypes.string.isRequired,

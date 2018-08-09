@@ -20,7 +20,7 @@ const getTrackerLoader = composer =>
   };
 
 const composer = (props, onData) => {
-  const tagName = props.match.params.tag;
+  const tagName = ((props.match || {}).params || {}).tag;
   const userListHandler = Meteor.subscribe('userList');
   const topNewsHandler = tagName ?
     Meteor.subscribe('tagNewsList', tagName)
@@ -42,6 +42,7 @@ const composer = (props, onData) => {
     onData(null, {
       ...props,
       topNews,
+      tagName,
       unit8ArrayToUrl,
       goToNews: newsActions.goToNews,
     });
@@ -55,6 +56,7 @@ const composer = (props, onData) => {
         ...props,
         topNews,
         authors,
+        tagName,
         unit8ArrayToUrl,
         goToNews: newsActions.goToNews,
       });
@@ -63,6 +65,7 @@ const composer = (props, onData) => {
     onData(null, {
       ...props,
       unit8ArrayToUrl,
+      tagName,
       goToNews: newsActions.goToNews,
     });
   }
