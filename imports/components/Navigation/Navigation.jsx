@@ -193,7 +193,7 @@ class Navigation extends Component {
             </div>
             <div>
               <Input
-                className={[inputSearch, isSearchHidden ? inputSearchHidden : inputSearchShowed].join(' ')}
+                className={['input-search-for-media', inputSearch, isSearchHidden ? inputSearchHidden : inputSearchShowed].join(' ')}
                 disableUnderline
                 onChange={this.onTagChange}
                 onKeyPress={this.onTagKeyPress}

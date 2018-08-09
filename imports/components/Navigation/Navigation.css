@@ -25,3 +25,9 @@ nav {
 .logo-container img {
     margin: 0 15px;
 }
+
+@media only screen and (max-width: 425px) {
+    .input-search-for-media {
+        width: 100px;
+    }
+}
