@@ -23,7 +23,12 @@ const styles = theme => ({
   },
 });
 
-const SignIn = ({ classes, errorMessage, onGoogleLogin }) => (
+const SignIn = ({
+  classes,
+  errorMessage,
+  onGoogleLogin,
+  onFacebookLogin,
+}) => (
   <form className={classes.signIn}>
     <h2>Create account with Google Plus!</h2>
 
@@ -34,6 +39,16 @@ const SignIn = ({ classes, errorMessage, onGoogleLogin }) => (
       className={classes.button}
     >
       Continue with Google
+      <GooglePlusIcon className={classes.rightIcon} />
+    </Button>
+
+    <Button
+      onClick={() => onFacebookLogin()}
+      variant="raised"
+      color="primary"
+      className={classes.button}
+    >
+      Continue with Facebook
       <GooglePlusIcon className={classes.rightIcon} />
     </Button>
 
@@ -56,6 +71,7 @@ SignIn.propTypes = {
     signIn: PropTypes.string.isRequired,
   }).isRequired,
   onGoogleLogin: PropTypes.func.isRequired,
+  onFacebookLogin: PropTypes.func.isRequired,
   errorMessage: PropTypes.string,
 };
 

@@ -3,28 +3,28 @@ import { Meteor } from 'meteor/meteor';
 import md5 from 'md5';
 
 const setAdminOnFirstUser = (options, user) => {
-  if (Meteor.users.find({}).count() > 0) {
-    user.isAdmin = false;
-  } else {
-    user.isAdmin = true;
-  }
+  user.isAdmin = Meteor.users.find({}).count() === 0;
   return user;
 };
 
 const saveUserProfile = (options, user) => {
-  const profile = (options && options.profile) || {};
-  user.profile = profile;
+  user.profile = (options && options.profile) || {};
   return user;
 };
 
 const getAvatarUrl = (user) => {
-  const googleAvatar = user.services.google.picture;
-
-  if (googleAvatar) {
-    return googleAvatar;
+  let avatar;
+  if (user.services.google) {
+    avatar = user.services.google.picture;
+  } else if (user.services.facebook) {
+    avatar = `http://graph.facebook.com/${user.services.facebook.id}/picture/?type=large`;
   }
 
-  const emailHash = md5(user.services.google.email);
+  if (avatar) {
+    return avatar;
+  }
+
+  const emailHash = md5((user.services.google || user.services.facebook).email);
   return `https://s.gravatar.com/avatar/${emailHash}`;
 };
 
@@ -37,12 +37,15 @@ const setUserAvatar = (options, user) => {
 
 const getPublicEmail = (user) => {
   if (user.services.google) {
-    const googleEmail = [{
+    return [{
       address: user.services.google.email,
       verified: user.services.google.verified_email,
     }];
-
-    return googleEmail;
+  } else if (user.services.facebook) {
+    return [{
+      address: user.services.facebook.email,
+      verified: user.services.facebook.verified_email,
+    }];
   }
 
   return undefined;

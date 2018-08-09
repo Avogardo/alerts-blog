@@ -11,6 +11,23 @@ const composer = (props, onData) => {
         const errorMessage = error.message ? error.message : error;
         onData(null, {
           onGoogleLogin,
+          onFacebookLogin,
+          errorMessage,
+        });
+      } else {
+        newsActions.goToNewsContainer(props.history);
+      }
+    },
+  );
+
+  const onFacebookLogin = () => Meteor.loginWithFacebook(
+    { requestPermissions: ['email'] },
+    (error) => {
+      if (error) {
+        const errorMessage = error.message ? error.message : error;
+        onData(null, {
+          onGoogleLogin,
+          onFacebookLogin,
           errorMessage,
         });
       } else {
@@ -21,6 +38,7 @@ const composer = (props, onData) => {
 
   onData(null, {
     onGoogleLogin,
+    onFacebookLogin,
     ...props,
   });
 };

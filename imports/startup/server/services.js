@@ -14,18 +14,26 @@ const addServiceConfiguration = (serviceName) => {
 
   const {
     clientId,
+    appId,
     loginStyle,
     secret,
   } = service;
 
-  ServiceConfiguration.configurations.upsert({
-    service: serviceName,
-  }, {
+  const config = clientId ? {
     service: serviceName,
     clientId,
     secret,
     loginStyle,
-  });
+  } : {
+    service: serviceName,
+    appId,
+    secret,
+    loginStyle,
+  };
+
+  ServiceConfiguration.configurations.upsert({
+    service: serviceName,
+  }, config);
 };
 
 const addServicesConfiguration = () => {

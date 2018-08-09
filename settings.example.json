@@ -5,6 +5,11 @@
       "clientId": "CLIENT-ID",
       "loginStyle": "popup",
       "secret": "SECRET"
+    },
+    "facebook": {
+      "appId": "APP-ID",
+      "loginStyle": "popup",
+      "secret": "SECRET"
     }
   }
 }
