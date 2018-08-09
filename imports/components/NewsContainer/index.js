@@ -37,7 +37,7 @@ const composer = (props, onData) => {
     const options = {
       limit: props.enterContainer ? 3 : 4,
     };
-    const topNews = NewsCollection.find({}, options).fetch();
+    const topNews = NewsCollection.find({}, tagName ? {} : options).fetch();
 
     onData(null, {
       ...props,

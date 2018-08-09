@@ -14,6 +14,10 @@ Meteor.publish('tagNewsList', function publishNewsList(tagName = '') {
     },
   };
 
+  if (tagName === 'all') {
+    return News.find({}, options);
+  }
+
   return News.find({ tags: { $all: [tagName] } }, options);
 });
 
