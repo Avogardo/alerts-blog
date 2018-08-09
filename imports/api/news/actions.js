@@ -33,6 +33,13 @@ const goToNews = (history, newsId) => {
   }
 };
 
+const goToTagSearch = (history, tag = '') => {
+  const location = `/tag/${tag}`;
+  if (history.location.pathname !== location) {
+    history.push(location);
+  }
+};
+
 const createNews = (title, content, images, tags) => new Promise((resolve, reject) => {
   createNewsMethod.call({
     title,
@@ -81,6 +88,7 @@ const actions = {
   createNews,
   removeNews,
   updateNews,
+  goToTagSearch,
 };
 
 export default actions;
