@@ -132,7 +132,7 @@ class CreateNews extends React.Component {
 
   onTagChange({ target: { value } }) {
     this.setState({
-      tagInput: value.trim(),
+      tagInput: value.trim().toLowerCase(),
     });
   }
 

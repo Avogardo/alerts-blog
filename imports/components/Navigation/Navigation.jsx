@@ -84,7 +84,7 @@ class Navigation extends Component {
 
   onTagChange({ target: { value } }) {
     this.setState({
-      tag: value.trim(),
+      tag: value.trim().toLowerCase(),
     });
   }
 
