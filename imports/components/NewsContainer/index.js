@@ -20,8 +20,12 @@ const getTrackerLoader = composer =>
   };
 
 const composer = (props, onData) => {
-  const topNewsHandler = Meteor.subscribe('recentNewsWithLimit', 4);
+  const tagName = props.match.params.tag;
   const userListHandler = Meteor.subscribe('userList');
+  const topNewsHandler = tagName ?
+    Meteor.subscribe('tagNewsList', tagName)
+    :
+    Meteor.subscribe('recentNewsWithLimit', 4);
 
   const unit8ArrayToUrl = (image) => {
     const blob = new Blob([image], { type: 'image/jpeg' });

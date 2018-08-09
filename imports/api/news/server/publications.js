@@ -6,6 +6,10 @@ Meteor.publish('news', function publishNewsList() {
   return News.find({});
 });
 
+Meteor.publish('tagNewsList', function publishNewsList(tagName = '') {
+  return News.find({ tags: { $all: [tagName] } });
+});
+
 Meteor.publish('recentNewsWithLimit', function publishRecentNewsLimit(limit = 3) {
   const options = {
     limit,
