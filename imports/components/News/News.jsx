@@ -40,6 +40,16 @@ const styles = {
 };
 
 class News extends Component {
+  constructor(props) {
+    super(props);
+    this.goToTagSearch = this.goToTagSearch.bind(this);
+  }
+
+  goToTagSearch({ target }) {
+    const { goToTagSearch, history } = this.props;
+    goToTagSearch(history, target.textContent);
+  }
+
   renderTags() {
     const { tags } = this.props.news[0];
     const { chips } = this.props.classes;
@@ -49,7 +59,7 @@ class News extends Component {
         key={tag + new Date().getTime() + Math.random()}
         label={tag}
         className={chips}
-        onClick={() => {}}
+        onClick={this.goToTagSearch}
       />
     ));
   }
@@ -140,6 +150,7 @@ News.propTypes = {
   isAdmin: PropTypes.bool.isRequired,
   onRemoveNews: PropTypes.func.isRequired,
   goToCreateNews: PropTypes.func.isRequired,
+  goToTagSearch: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(News);

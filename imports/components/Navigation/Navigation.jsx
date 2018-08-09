@@ -62,12 +62,16 @@ class Navigation extends Component {
     this.goToSignIn = this.goToSignIn.bind(this);
     this.goToNewsContainer = this.goToNewsContainer.bind(this);
     this.goToCreateNews = this.goToCreateNews.bind(this);
+    this.goToTagSearch = this.goToTagSearch.bind(this);
     this.onLogOut = this.onLogOut.bind(this);
+    this.onTagChange = this.onTagChange.bind(this);
+    this.onTagKeyPress = this.onTagKeyPress.bind(this);
     this.toggleSearch = this.toggleSearch.bind(this);
 
     this.state = {
       isSidebarOpen: false,
       isSearchHidden: true,
+      tag: '',
     };
   }
 
@@ -76,6 +80,18 @@ class Navigation extends Component {
 
     this.toggleSidebar();
     onLogOut(history);
+  }
+
+  onTagChange({ target: { value } }) {
+    this.setState({
+      tag: value.trim(),
+    });
+  }
+
+  onTagKeyPress(e) {
+    if (e.key === 'Enter') {
+      this.goToTagSearch();
+    }
   }
 
   setSidebarState(open) {
@@ -102,6 +118,12 @@ class Navigation extends Component {
     goToNewsContainer(history);
   }
 
+  goToTagSearch() {
+    const { goToTagSearch, history } = this.props;
+    const { tag } = this.state;
+    goToTagSearch(history, tag);
+  }
+
   goToCreateNews() {
     const { goToCreateNews, history } = this.props;
 
@@ -119,7 +141,8 @@ class Navigation extends Component {
     const { appBar, toolbar, secondaryAppBar } = style;
     const { isAuthorized } = this.props;
     const { inputSearch, inputSearchHidden, inputSearchShowed } = this.props.classes;
-    const { isSidebarOpen, isSearchHidden } = this.state;
+    const { isSidebarOpen, isSearchHidden, tag } = this.state;
+
     return (
       <nav>
         <Sidebar
@@ -172,6 +195,9 @@ class Navigation extends Component {
               <Input
                 className={[inputSearch, isSearchHidden ? inputSearchHidden : inputSearchShowed].join(' ')}
                 disableUnderline
+                onChange={this.onTagChange}
+                onKeyPress={this.onTagKeyPress}
+                value={tag}
                 placeholder="Search by tag"
               />
               <IconButton onClick={this.toggleSearch} color="inherit">
@@ -192,6 +218,7 @@ class Navigation extends Component {
 Navigation.propTypes = {
   goToSignIn: PropTypes.func.isRequired,
   goToNewsContainer: PropTypes.func.isRequired,
+  goToTagSearch: PropTypes.func.isRequired,
   goToCreateNews: PropTypes.func.isRequired,
   onLogOut: PropTypes.func.isRequired,
   history: ReactRouterPropTypes.history.isRequired,

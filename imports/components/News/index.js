@@ -26,7 +26,7 @@ const getTrackerLoader = composer =>
 const composer = (props, onData) => {
   const newsId = props.match.params.id;
   const { onRemoveNews } = props;
-  const { goToCreateNews } = newsActions;
+  const { goToCreateNews, goToTagSearch } = newsActions;
   const newsHandler = Meteor.subscribe('singleNews', newsId);
   const newsWithPhotosHandler = Meteor.subscribe('singleNews', newsId, true);
   const userListHandler = Meteor.subscribe('userList');
@@ -57,6 +57,7 @@ const composer = (props, onData) => {
             author,
             isAdmin: isAdmin(userId),
             goToCreateNews,
+            goToTagSearch,
           });
         } else {
           delete news[0].imagesFroSlider;
@@ -69,6 +70,7 @@ const composer = (props, onData) => {
             author,
             isAdmin: isAdmin(userId),
             goToCreateNews,
+            goToTagSearch,
           });
         }
       } else {
@@ -80,6 +82,7 @@ const composer = (props, onData) => {
           author,
           isAdmin: isAdmin(userId),
           goToCreateNews,
+          goToTagSearch,
         });
       }
     } else {
@@ -90,6 +93,7 @@ const composer = (props, onData) => {
         onRemoveNews,
         isAdmin: isAdmin(userId),
         goToCreateNews,
+        goToTagSearch,
       });
     }
   }

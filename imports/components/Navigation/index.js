@@ -5,13 +5,14 @@ import Navigation from './Navigation.jsx';
 
 const composer = (props, onData) => {
   const { goToSignIn } = userActions;
-  const { goToNewsContainer, goToCreateNews } = newsActions;
+  const { goToNewsContainer, goToCreateNews, goToTagSearch } = newsActions;
 
   onData(null, {
     ...props,
     goToSignIn,
     goToNewsContainer,
     goToCreateNews,
+    goToTagSearch,
     onLogOut,
   });
 };
