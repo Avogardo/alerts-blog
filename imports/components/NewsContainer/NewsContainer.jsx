@@ -52,18 +52,25 @@ class NewsContainer extends Component {
         <section>
           <Card className={newsCard}>
             <SectionHeader headerTitle="Most Popular" />
-            {!tagName &&
-              <BasicNews
-                goToNews={goToNews}
-                topNews={oneNews}
-                authors={authors}
-                unit8ArrayToUrl={unit8ArrayToUrl}
-              />
-            }
+            <BasicNews
+              goToNews={goToNews}
+              topNews={oneNews}
+              authors={authors}
+              unit8ArrayToUrl={unit8ArrayToUrl}
+            />
             <ExitNews goToNews={goToNews} topNews={topNews} unit8ArrayToUrl={unit8ArrayToUrl} />
             <SectionHeader secondary headerTitle="Social Networks" />
             <SectionHeader facebook />
             <SectionHeader youtube />
+          </Card>
+        </section>
+      );
+    } else if (tagName) {
+      return (
+        <section>
+          <Card className={newsCard}>
+            <SectionHeader headerTitle={`Searching for: #${tagName}`} />
+            <ExitNews goToNews={goToNews} topNews={topNews} unit8ArrayToUrl={unit8ArrayToUrl} />
           </Card>
         </section>
       );
