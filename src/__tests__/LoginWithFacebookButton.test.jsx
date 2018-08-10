@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import TestRenderer from 'react-test-renderer';
 import { Button } from '@material-ui/core';
+import { FacebookIcon } from 'mdi-react';
 import LoginWithFacebookButton from '../../imports/components/SignIn/LoginButtons/LoginWithFacebookButton/LoginWithFacebookButton.jsx';
 
 describe('Login with Facebook button', () => {
@@ -30,5 +31,9 @@ describe('Login with Facebook button', () => {
 
   it('always renders a Button element', () => {
     expect(testInstance.findByType(Button)).toBeDefined();
+  });
+
+  it('always renders a FacebookIcon inside Button element', () => {
+    expect(testInstance.findByType(Button).findByType(FacebookIcon)).toBeDefined();
   });
 });
