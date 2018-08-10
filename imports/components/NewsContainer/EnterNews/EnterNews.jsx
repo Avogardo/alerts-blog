@@ -5,6 +5,7 @@ import {
   GridListTile,
   GridListTileBar,
   withStyles,
+  CircularProgress,
 } from '@material-ui/core';
 import TileSubtitle from '../TileSubtitle';
 import { HistoryContext } from '../../Context';
@@ -57,7 +58,20 @@ class EnterNews extends Component {
             ))}
           </GridList>
           :
-          ''
+          <GridList cellHeight={250} cols={1}>
+            {[1, 2, 3].map(news => (
+              <GridListTile className="enter-news-tile" key={news}>
+                <div
+                  className="enter-news-image-loading"
+                />
+                <GridListTileBar
+                  className={gridListTileBar}
+                  title="Loading"
+                  subtitle="Waiting..."
+                />
+              </GridListTile>
+            ))}
+          </GridList>
         }
       </Fragment>
     );
