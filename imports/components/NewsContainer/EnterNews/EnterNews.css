@@ -38,24 +38,24 @@
 }
 
 @-webkit-keyframes AnimationName {
-    0%{background-position:0% 49%}
-    50%{background-position:100% 52%}
-    100%{background-position:0% 49%}
+    0%{background-position: 0 49%}
+    50%{background-position: 100% 52%}
+    100%{background-position: 0 49%}
 }
 @-moz-keyframes AnimationName {
-    0%{background-position:0% 49%}
-    50%{background-position:100% 52%}
-    100%{background-position:0% 49%}
+    0%{background-position: 0 49%}
+    50%{background-position: 100% 52%}
+    100%{background-position: 0 49%}
 }
 @-o-keyframes AnimationName {
-    0%{background-position:0% 49%}
-    50%{background-position:100% 52%}
-    100%{background-position:0% 49%}
+    0%{background-position: 0 49%}
+    50%{background-position: 100% 52%}
+    100%{background-position: 0 49%}
 }
 @keyframes AnimationName {
-    0%{background-position:0% 49%}
-    50%{background-position:100% 52%}
-    100%{background-position:0% 49%}
+    0%{background-position: 0 49%}
+    50%{background-position: 100% 52%}
+    100%{background-position: 0 49%}
 }
 
 .enter-news-tile > div {

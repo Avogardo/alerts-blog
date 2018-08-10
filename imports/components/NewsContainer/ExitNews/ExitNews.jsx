@@ -28,31 +28,45 @@ class ExitNews extends Component {
     const { topNews, unit8ArrayToUrl, goToNews } = this.props;
     const { asideNewsCard, asideNewsHeaderCard } = this.props.classes;
 
-    return topNews.map((news, index) => (
-      <Card key={`bottom${news._id}`} className={asideNewsCard}>
-        <div
-          className="aside-news-image"
-          style={{ backgroundImage: `url(${unit8ArrayToUrl(news.enterImage.data.image)})` }}
-        />
-        <HistoryContext.Consumer>
-          {history => (
-            <CardHeader
-              onClick={() => goToNews(history, news._id)}
-              className={asideNewsHeaderCard}
-              title={<h6>{news.title}</h6>}
-              subheader={
-                <TileSubtitle
-                  newsId={news._id}
-                  isAside
-                  createdAt={news.createdAt}
-                  index={index}
-                />
-              }
+    return (
+      topNews.length ?
+        topNews.map((news, index) => (
+          <Card key={`bottom${news._id}`} className={asideNewsCard}>
+            <div
+              className="aside-news-image"
+              style={{ backgroundImage: `url(${unit8ArrayToUrl(news.enterImage.data.image)})` }}
             />
-          )}
-        </HistoryContext.Consumer>
-      </Card>
-    ));
+            <HistoryContext.Consumer>
+              {history => (
+                <CardHeader
+                  onClick={() => goToNews(history, news._id)}
+                  className={asideNewsHeaderCard}
+                  title={<h6>{news.title}</h6>}
+                  subheader={
+                    <TileSubtitle
+                      newsId={news._id}
+                      isAside
+                      createdAt={news.createdAt}
+                      index={index}
+                    />
+                  }
+                />
+              )}
+            </HistoryContext.Consumer>
+          </Card>
+        ))
+        :
+        [1, 2, 3, 4].map(news => (
+          <Card key={news} className={asideNewsCard}>
+            <div className="aside-news-image-loading" />
+            <CardHeader
+              className={asideNewsHeaderCard}
+              title="Loading"
+              subheader="Waiting"
+            />
+          </Card>
+        ))
+    );
   }
 }
 
