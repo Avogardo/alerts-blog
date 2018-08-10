@@ -39,6 +39,7 @@ class BasicNews extends Component {
       unit8ArrayToUrl,
       newsCard,
       goToNews,
+      exitNews,
     } = this.props;
     const { newsCardHeader, newsCardContent, tileCard } = this.props.classes;
 
@@ -94,13 +95,35 @@ class BasicNews extends Component {
           </Card>
         ))
         :
-        ''
+        (exitNews ? [1] : [1, 2, 3, 4]).map(news => (
+          <Card className={tileCard} key={news}>
+            <GridList cellHeight={250} cols={1}>
+              <GridListTile className="enter-news-tile">
+                <div className="enter-news-image-loading" />
+              </GridListTile>
+            </GridList>
+            <CardHeader
+              className={newsCardHeader}
+              title="Loading"
+              subheader="Waiting..."
+            />
+            {!newsCard &&
+            <CardContent className={newsCardContent}>
+              <Typography component="p">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit
+                , sed do eiusmod tempor incididunt.
+              </Typography>
+            </CardContent>
+            }
+          </Card>
+        ))
     );
   }
 }
 
 BasicNews.defaultProps = {
   newsCard: false,
+  exitNews: false,
   topNews: [],
   authors: [],
   goToNews: () => {},
@@ -108,6 +131,7 @@ BasicNews.defaultProps = {
 
 BasicNews.propTypes = {
   newsCard: PropTypes.bool,
+  exitNews: PropTypes.bool,
   topNews: PropTypes.arrayOf(PropTypes.shape({
     _id: PropTypes.string.isRequired,
     authorId: PropTypes.string.isRequired,
