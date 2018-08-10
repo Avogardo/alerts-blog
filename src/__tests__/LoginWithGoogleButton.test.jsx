@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import TestRenderer from 'react-test-renderer';
 import { Button } from '@material-ui/core';
+import GooglePlusIcon from 'mdi-react/GooglePlusIcon';
 import LoginWithGoogleButton from '../../imports/components/SignIn/LoginButtons/LoginWithGoogleButton/LoginWithGoogleButton.jsx';
 
 describe('Login with Google button', () => {
@@ -30,5 +31,9 @@ describe('Login with Google button', () => {
 
   it('always renders a Button element', () => {
     expect(testInstance.findByType(Button)).toBeDefined();
+  });
+
+  it('always renders a GooglePlusIcon inside Button element', () => {
+    expect(testInstance.findByType(Button).findByType(GooglePlusIcon)).toBeDefined();
   });
 });
