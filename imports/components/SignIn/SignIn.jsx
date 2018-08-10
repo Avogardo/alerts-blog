@@ -1,20 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ReactRouterPropTypes from 'react-router-prop-types';
 import {
   withStyles,
-  Button,
   CardContent,
 } from '@material-ui/core';
-import GooglePlusIcon from 'mdi-react/GooglePlusIcon';
+import LoginButtons from './LoginButtons';
 
-const styles = theme => ({
-  button: {
-    margin: theme.spacing.unit,
-    backgroundColor: '#d34836',
-  },
-  rightIcon: {
-    marginLeft: theme.spacing.unit,
-  },
+const styles = () => ({
   signIn: {
     padding: '10px',
     display: 'flex',
@@ -23,34 +16,12 @@ const styles = theme => ({
   },
 });
 
-const SignIn = ({
-  classes,
-  errorMessage,
-  onGoogleLogin,
-  onFacebookLogin,
-}) => (
+const SignIn = ({ classes, errorMessage, history }) => (
   <form className={classes.signIn}>
     <h2>Create account with Google Plus!</h2>
 
-    <Button
-      onClick={() => onGoogleLogin()}
-      variant="raised"
-      color="secondary"
-      className={classes.button}
-    >
-      Continue with Google
-      <GooglePlusIcon className={classes.rightIcon} />
-    </Button>
-
-    <Button
-      onClick={() => onFacebookLogin()}
-      variant="raised"
-      color="primary"
-      className={classes.button}
-    >
-      Continue with Facebook
-      <GooglePlusIcon className={classes.rightIcon} />
-    </Button>
+    <LoginButtons history={history} facebook />
+    <LoginButtons history={history} google />
 
     {errorMessage &&
       <CardContent>
@@ -65,13 +36,10 @@ SignIn.defaultProps = {
 };
 
 SignIn.propTypes = {
+  history: ReactRouterPropTypes.history.isRequired,
   classes: PropTypes.shape({
-    button: PropTypes.string.isRequired,
-    rightIcon: PropTypes.string.isRequired,
     signIn: PropTypes.string.isRequired,
   }).isRequired,
-  onGoogleLogin: PropTypes.func.isRequired,
-  onFacebookLogin: PropTypes.func.isRequired,
   errorMessage: PropTypes.string,
 };
 
