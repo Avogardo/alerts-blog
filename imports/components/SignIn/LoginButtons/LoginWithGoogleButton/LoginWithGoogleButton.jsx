@@ -10,9 +10,12 @@ const styles = theme => ({
   button: {
     margin: theme.spacing.unit,
     backgroundColor: '#d34836',
+    height: 40,
   },
   rightIcon: {
     marginLeft: theme.spacing.unit,
+    position: 'absolute',
+    right: 10,
   },
 });
 

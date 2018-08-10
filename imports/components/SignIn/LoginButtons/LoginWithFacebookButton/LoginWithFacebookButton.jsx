@@ -4,15 +4,18 @@ import {
   withStyles,
   Button,
 } from '@material-ui/core';
-import GooglePlusIcon from 'mdi-react/GooglePlusIcon';
+import { FacebookIcon } from 'mdi-react';
 
 const styles = theme => ({
   button: {
     margin: theme.spacing.unit,
     backgroundColor: '#4c63a2',
+    height: 40,
   },
   rightIcon: {
     marginLeft: theme.spacing.unit,
+    position: 'absolute',
+    right: 13,
   },
 });
 
@@ -24,7 +27,7 @@ const LoginWithFacebookButton = ({ onFacebookLogin, classes }) => (
     className={classes.button}
   >
     Continue with Facebook
-    <GooglePlusIcon className={classes.rightIcon} />
+    <FacebookIcon size={22} className={classes.rightIcon} />
   </Button>
 );
 
