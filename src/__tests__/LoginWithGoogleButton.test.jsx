@@ -27,4 +27,8 @@ describe('Login with Google button', () => {
     ReactDOM.render(<LoginWithGoogleButton {...props} />, div);
     ReactDOM.unmountComponentAtNode(div);
   });
+
+  it('always renders a Button element', () => {
+    expect(testInstance.findByType(Button)).toBeDefined();
+  });
 });
