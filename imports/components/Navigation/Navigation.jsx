@@ -48,10 +48,12 @@ const styles = {
   inputSearchHidden: {
     opacity: 0,
     top: -45,
+    visibility: 'hidden',
   },
   inputSearchShowed: {
     opacity: 1,
     top: 0,
+    visibility: 'visible',
   },
 };
 
