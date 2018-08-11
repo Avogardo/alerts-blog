@@ -30,19 +30,25 @@ nav {
 	flex: 0 1 auto;
 }
 
+#navigation-app-bar {
+    margin-bottom: 10px;
+    width: 1140px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.navigation-wrapper-mobile {
+    display: none;
+    align-items: center;
+}
+
 .navigation-wrapper {
     display: flex;
     align-items: center;
 }
 
 @media only screen and (max-width: 1200px) {
-    .navigation-toolbar {
-        width: unset;
-        margin-left: unset;
-        margin-right: unset;
-    }
-
-    .logo-container {
+    .navigation-toolbar, .logo-container {
         width: unset;
         margin-left: unset;
         margin-right: unset;
@@ -50,6 +56,19 @@ nav {
 
     .logo-container img {
         margin: 0 15px;
+    }
+
+    #navigation-app-bar {
+        width: auto;
+        margin: 0 15px;
+    }
+
+    .navigation-wrapper-mobile {
+        display: flex;
+    }
+
+    .navigation-wrapper {
+        display: none;
     }
 }
 
