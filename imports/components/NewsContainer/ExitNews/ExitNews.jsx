@@ -62,7 +62,7 @@ class ExitNews extends Component {
             <CardHeader
               className={asideNewsHeaderCard}
               title="Loading"
-              subheader="Waiting"
+              subheader="Wait..."
             />
           </Card>
         ))

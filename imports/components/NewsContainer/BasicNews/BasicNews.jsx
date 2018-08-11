@@ -105,7 +105,7 @@ class BasicNews extends Component {
             <CardHeader
               className={newsCardHeader}
               title="Loading"
-              subheader="Waiting..."
+              subheader="Wait..."
             />
             {!newsCard &&
             <CardContent className={newsCardContent}>

@@ -58,9 +58,9 @@ class EnterNews extends Component {
           <GridListTile className="enter-news-tile" key={news}>
             <div className="enter-news-image-loading" />
             <GridListTileBar
-              className={gridListTileBar}
-              title="Loading"
-              subtitle="Waiting..."
+              className={[gridListTileBar, 'enter-news-title-bar'].join(' ')}
+              title={<spam className="enter-news-title">Loading</spam>}
+              subtitle="Wait..."
             />
           </GridListTile>
         ))}
