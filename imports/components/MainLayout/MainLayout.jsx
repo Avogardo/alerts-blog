@@ -86,7 +86,6 @@ class MainLayout extends Component {
                 <Fragment>
                   <NewsContainer enterContainer />
                   <NewsContainer headerTitle="Latest News" />
-                  <NewsContainer exitContainer />
                 </Fragment>
               )}
             />
@@ -117,7 +116,6 @@ class MainLayout extends Component {
                   match={routeProps.match}
                   onRemoveNews={this.onRemoveNews}
                 />,
-                <NewsContainer exitContainer />,
               ]}
             />
 
@@ -126,6 +124,8 @@ class MainLayout extends Component {
               path="/tag/:tag"
               render={props => <NewsContainer {...props} />}
             />
+
+            {shouldHideBackground && <NewsContainer exitContainer />}
           </HistoryContext.Provider>
         </div>
 

@@ -39,7 +39,7 @@ class EnterNews extends Component {
                 <GridListTileBar
                   onClick={() => goToNews(history, news._id)}
                   className={[gridListTileBar, 'enter-news-title-bar'].join(' ')}
-                  title={<spam className="enter-news-title">{news.title}</spam>}
+                  title={<span className="enter-news-title">{news.title}</span>}
                   subtitle={
                     <TileSubtitle
                       newsId={news._id}
@@ -59,7 +59,7 @@ class EnterNews extends Component {
             <div className="enter-news-image-loading" />
             <GridListTileBar
               className={[gridListTileBar, 'enter-news-title-bar'].join(' ')}
-              title={<spam className="enter-news-title">Loading</spam>}
+              title={<span className="enter-news-title">Loading</span>}
               subtitle="Wait..."
             />
           </GridListTile>

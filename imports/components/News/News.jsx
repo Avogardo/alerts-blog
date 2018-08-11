@@ -12,7 +12,6 @@ import {
 
 import SectionHeader from '../NewsContainer/SectionHeader';
 import BasicNews from '../NewsContainer/BasicNews';
-import NewsContainer from '../NewsContainer';
 import Comments, { AddComment } from '../Comments';
 import './News.css';
 
@@ -122,7 +121,6 @@ class News extends Component {
           }
         </Card>
       </article>,
-      <NewsContainer key="exit-container" exitContainer />,
     ];
   }
 }
