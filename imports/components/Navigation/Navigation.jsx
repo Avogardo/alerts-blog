@@ -157,7 +157,7 @@ class Navigation extends Component {
         />
 
         <AppBar style={appBar} position="static">
-          <Toolbar style={toolbar}>
+          <Toolbar className="navigation-toolbar" style={toolbar}>
             <div>
               <IconButton color="inherit">
                 <FacebookIcon size={14} />
