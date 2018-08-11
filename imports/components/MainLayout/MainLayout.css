@@ -4,12 +4,6 @@
 	min-height: 100vh;
 }
 
-@media only screen and (max-width: 550px) {
-	.container {
-		min-height: calc(100vh - 60px);
-	}
-}
-
 .content-container {
 	width: auto;
 	background-color: #ffffff;
@@ -18,7 +12,20 @@
 }
 
 .content-container-root {
-	width: auto;
-	margin: 0 15px 15px 15px;
+	width: 1140px;
+	margin: 0 auto 15px auto;
 	flex: 1 1 auto;
+}
+
+@media only screen and (max-width: 1200px) {
+	.content-container-root {
+		width: auto;
+		margin: 0 15px 15px 15px;
+	}
+}
+
+@media only screen and (max-width: 550px) {
+	.container {
+		min-height: calc(100vh - 60px);
+	}
 }
