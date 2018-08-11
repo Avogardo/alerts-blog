@@ -30,6 +30,10 @@ nav {
 	flex: 0 1 auto;
 }
 
+#app > div > nav > div:nth-child(1) {
+    display: none !important;
+}
+
 #navigation-app-bar {
     margin-bottom: 10px;
     width: 1140px;
@@ -69,6 +73,10 @@ nav {
 
     .navigation-wrapper {
         display: none;
+    }
+
+    #app > div > nav > div:nth-child(1) {
+        display: block !important;
     }
 }
 
