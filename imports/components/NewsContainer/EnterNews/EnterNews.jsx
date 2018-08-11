@@ -38,8 +38,8 @@ class EnterNews extends Component {
               {history => (
                 <GridListTileBar
                   onClick={() => goToNews(history, news._id)}
-                  className={gridListTileBar}
-                  title={news.title}
+                  className={[gridListTileBar, 'enter-news-title-bar'].join(' ')}
+                  title={<spam className="enter-news-title">{news.title}</spam>}
                   subtitle={
                     <TileSubtitle
                       newsId={news._id}

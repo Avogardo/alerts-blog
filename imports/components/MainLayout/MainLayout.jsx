@@ -111,13 +111,14 @@ class MainLayout extends Component {
             <Route
               exact
               path="/news/:id"
-              render={routeProps => (
+              render={routeProps => [
                 <News
                   history={routeProps.history}
                   match={routeProps.match}
                   onRemoveNews={this.onRemoveNews}
-                />
-              )}
+                />,
+                <NewsContainer exitContainer />,
+              ]}
             />
 
             <Route
