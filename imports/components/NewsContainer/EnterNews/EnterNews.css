@@ -19,6 +19,7 @@
 
 .enter-news-tile {
     margin-bottom: 6px;
+    list-style: none;
 }
 
 .enter-news-title-bar > div {
