@@ -1,18 +1,25 @@
-.logo-container {
-    display: flex;
-    align-items: center;
-    background-color: #ffffff;
-}
-
 .navigation-toolbar {
     width: 1140px;
     margin-left: auto;
     margin-right: auto;
 }
 
+.logo-container {
+    width: 1140px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+}
+
+.logo-bar {
+    background-color: #ffffff;
+}
+
 .logo-container img {
     border-radius: 5px;
     height: 30px;
+    margin-right: 15px;
 }
 
 h1 {
@@ -28,15 +35,21 @@ nav {
     align-items: center;
 }
 
-.logo-container img {
-    margin: 0 15px;
-}
-
 @media only screen and (max-width: 1200px) {
     .navigation-toolbar {
         width: unset;
         margin-left: unset;
         margin-right: unset;
+    }
+
+    .logo-container {
+        width: unset;
+        margin-left: unset;
+        margin-right: unset;
+    }
+
+    .logo-container img {
+        margin: 0 15px;
     }
 }
 

@@ -174,13 +174,15 @@ class Navigation extends Component {
           </Toolbar>
         </AppBar>
 
-        <div
-          className="logo-container"
-          onClick={this.goToNewsContainer}
-          role="presentation"
-        >
-          <img alt="logo" src="https://drive.google.com/uc?id=1U_HEoR8c2kubf6-JsbHEcwo564J5zjlE" />
-          <h1>Alarms blog</h1>
+        <div className="logo-bar">
+          <div
+            className="logo-container"
+            onClick={this.goToNewsContainer}
+            role="presentation"
+          >
+            <img alt="logo" src="https://drive.google.com/uc?id=1U_HEoR8c2kubf6-JsbHEcwo564J5zjlE" />
+            <h1>Alarms blog</h1>
+          </div>
         </div>
 
         <AppBar style={secondaryAppBar} position="static">
