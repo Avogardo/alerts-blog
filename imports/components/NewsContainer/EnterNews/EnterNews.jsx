@@ -1,11 +1,10 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
   GridList,
   GridListTile,
   GridListTileBar,
   withStyles,
-  CircularProgress,
 } from '@material-ui/core';
 import TileSubtitle from '../TileSubtitle';
 import { HistoryContext } from '../../Context';
@@ -28,52 +27,44 @@ class EnterNews extends Component {
     const { gridListTileBar } = this.props.classes;
 
     return (
-      <Fragment>
-        {topNews.length ?
-          <GridList cellHeight={250} cols={1}>
-            {topNews.map((news, index) => (
-              <GridListTile className="enter-news-tile" key={news._id}>
-                <div
-                  className="enter-news-image"
-                  style={{ backgroundImage: `url(${unit8ArrayToUrl(news.enterImage.data.image)})` }}
-                />
-                <HistoryContext.Consumer>
-                  {history => (
-                    <GridListTileBar
-                      onClick={() => goToNews(history, news._id)}
-                      className={gridListTileBar}
-                      title={news.title}
-                      subtitle={
-                        <TileSubtitle
-                          newsId={news._id}
-                          authors={authors}
-                          createdAt={news.createdAt}
-                          index={index}
-                        />
-                      }
-                    />
-                  )}
-                </HistoryContext.Consumer>
-              </GridListTile>
-            ))}
-          </GridList>
-          :
-          <GridList cellHeight={250} cols={1}>
-            {[1, 2, 3].map(news => (
-              <GridListTile className="enter-news-tile" key={news}>
-                <div
-                  className="enter-news-image-loading"
-                />
+      <GridList cellHeight={250} cols={1}>
+        {topNews.length ? topNews.map((news, index) => (
+          <GridListTile className="enter-news-tile" key={news._id}>
+            <div
+              className="enter-news-image"
+              style={{ backgroundImage: `url(${unit8ArrayToUrl(news.enterImage.data.image)})` }}
+            />
+            <HistoryContext.Consumer>
+              {history => (
                 <GridListTileBar
+                  onClick={() => goToNews(history, news._id)}
                   className={gridListTileBar}
-                  title="Loading"
-                  subtitle="Waiting..."
+                  title={news.title}
+                  subtitle={
+                    <TileSubtitle
+                      newsId={news._id}
+                      authors={authors}
+                      createdAt={news.createdAt}
+                      index={index}
+                    />
+                  }
                 />
-              </GridListTile>
-            ))}
-          </GridList>
-        }
-      </Fragment>
+              )}
+            </HistoryContext.Consumer>
+          </GridListTile>
+        ))
+        :
+        [1, 2, 3].map(news => (
+          <GridListTile className="enter-news-tile" key={news}>
+            <div className="enter-news-image-loading" />
+            <GridListTileBar
+              className={gridListTileBar}
+              title="Loading"
+              subtitle="Waiting..."
+            />
+          </GridListTile>
+        ))}
+      </GridList>
     );
   }
 }

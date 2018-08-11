@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import {
@@ -88,29 +88,38 @@ class News extends Component {
             authors={author}
             unit8ArrayToUrl={unit8ArrayToUrl}
           />
-          <CardContent
-            className={newsContentCard}
-            dangerouslySetInnerHTML={{ __html: (news[0].content || '') }}
-          />
 
-          {!!news[0].tags.length &&
-            <div className="news-tags-wrapper">{this.renderTags()}</div>
+          {news[0] ?
+            <Fragment>
+              <CardContent
+                className={newsContentCard}
+                dangerouslySetInnerHTML={{ __html: (news[0].content || '') }}
+              />
+
+              {!!news[0].tags.length &&
+                <div className="news-tags-wrapper">{this.renderTags()}</div>
+              }
+
+              {isAdmin &&
+                <CardActions>
+                  <Button onClick={() => onRemoveNews(news[0]._id)} variant="raised" color="secondary">
+                    Remove
+                  </Button>
+                  <Button onClick={() => goToCreateNews(history, news[0]._id)} className={editButton} variant="raised">
+                    Edit
+                  </Button>
+                </CardActions>
+              }
+
+              <Comments newsId={news[0]._id} />
+
+              <AddComment newsId={news[0]._id} />
+            </Fragment>
+            :
+            ['fake-1', 'fake-2', 'fake-3', 'fake-4', 'fake-5'].map(line => (
+              <div key={line} className="aaa" />
+            ))
           }
-
-          {isAdmin &&
-            <CardActions>
-              <Button onClick={() => onRemoveNews(news[0]._id)} variant="raised" color="secondary">
-                Remove
-              </Button>
-              <Button onClick={() => goToCreateNews(history, news[0]._id)} className={editButton} variant="raised">
-                Edit
-              </Button>
-            </CardActions>
-          }
-
-          <Comments newsId={news[0]._id} />
-
-          <AddComment newsId={news[0]._id} />
         </Card>
       </article>,
       <NewsContainer key="exit-container" exitContainer />,

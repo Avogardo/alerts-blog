@@ -95,7 +95,7 @@ class BasicNews extends Component {
           </Card>
         ))
         :
-        (exitNews ? [1] : [1, 2, 3, 4]).map(news => (
+        (exitNews || newsCard ? [1] : [1, 2, 3, 4]).map(news => (
           <Card className={tileCard} key={news}>
             <GridList cellHeight={250} cols={1}>
               <GridListTile className="enter-news-tile">

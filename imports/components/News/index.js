@@ -31,6 +31,7 @@ const composer = (props, onData) => {
   const newsWithPhotosHandler = Meteor.subscribe('singleNews', newsId, true);
   const userListHandler = Meteor.subscribe('userList');
 
+  const userId = Meteor.userId();
   const unit8ArrayToUrl = (image) => {
     const blob = new Blob([image], { type: 'image/jpeg' });
     const urlCreator = window.URL || window.webkitURL;
@@ -39,7 +40,6 @@ const composer = (props, onData) => {
 
   if (newsHandler.ready()) {
     let news = NewsCollection.find({ _id: newsId }).fetch();
-    const userId = Meteor.userId();
 
     if (userListHandler.ready()) {
       const users = Meteor.users.find({}).fetch();
@@ -96,6 +96,15 @@ const composer = (props, onData) => {
         goToTagSearch,
       });
     }
+  } else {
+    onData(null, {
+      ...props,
+      unit8ArrayToUrl,
+      onRemoveNews,
+      isAdmin: isAdmin(userId),
+      goToCreateNews,
+      goToTagSearch,
+    });
   }
 };
 
