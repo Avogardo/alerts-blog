@@ -11,8 +11,11 @@
     margin-right: 10px;
 }
 
-.subtitle-tile {
+.enter-news-wrapper > li .subtitle-tile {
     margin-top: 20px;
+}
+
+.subtitle-tile {
     display: flex;
     align-items: center;
     font-size: 12px;
@@ -24,7 +27,7 @@
 }
 
 @media only screen and (max-width: 1200px) {
-    .subtitle-tile {
+    .enter-news-wrapper > li .subtitle-tile {
         margin-top: 0;
     }
 }
