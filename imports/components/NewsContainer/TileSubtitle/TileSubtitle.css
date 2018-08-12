@@ -12,6 +12,7 @@
 }
 
 .subtitle-tile {
+    margin-top: 20px;
     display: flex;
     align-items: center;
     font-size: 12px;
@@ -20,4 +21,10 @@
 
 .aside-margin {
     margin: 10px 0;
+}
+
+@media only screen and (max-width: 1200px) {
+    .subtitle-tile {
+        margin-top: 0;
+    }
 }
