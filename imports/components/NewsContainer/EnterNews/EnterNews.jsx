@@ -54,7 +54,7 @@ class EnterNews extends Component {
         {topNews.length ?
           <Fragment>
             {enterNews(welcomeNews, 0)}
-            <div>
+            <div className="enter-side-news-wrapper">
               {newsList.map((news, index) => (
                 enterNews(news, index + 1)
               ))}

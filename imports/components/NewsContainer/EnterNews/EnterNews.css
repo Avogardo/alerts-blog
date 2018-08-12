@@ -3,21 +3,21 @@
     flex-wrap: wrap;
 }
 
-#app > div > div > section:nth-child(1) > div > div:nth-child(1) > li {
+.enter-news-wrapper > li {
     height: 442px;
     margin-right: 10px;
     width: 756px;
 }
 
-#app > div > div > section:nth-child(1) > div > div:nth-child(1) > div {
+.enter-side-news-wrapper {
     width: 373px;
 }
 
-#app > div > div > section:nth-child(1) > div > div:nth-child(1) > div > li:nth-child(1) {
+.enter-side-news-wrapper li:first-child {
     margin-bottom: 10px;
 }
 
-#app > div > div > section:nth-child(1) > div > div.enter-news-wrapper > li > div > div.enter-news-image {
+.enter-news-wrapper > li .enter-news-image {
     height: 442px;
 }
 
@@ -101,25 +101,21 @@
         flex-wrap: unset;
     }
 
-    #app > div > div > section:nth-child(1) > div > div:nth-child(1) > li {
+    .enter-news-wrapper > li {
         height: unset;
         margin-right: unset;
         width: unset;
     }
 
-    #app > div > div > section:nth-child(1) > div > div:nth-child(1) > div {
+    .enter-side-news-wrapper {
         width: unset;
     }
 
-    #app > div > div > section:nth-child(1) > div > div:nth-child(1) > div > li:nth-child(1) {
+    .enter-side-news-wrapper li:first-child {
         margin-bottom: 6px;
     }
 
-    #app > div > div > section:nth-child(1) > div > div.enter-news-wrapper > li > div > div.enter-news-image {
-        height: 250px;
-    }
-
-    .enter-news-image {
+    .enter-news-wrapper > li .enter-news-image, .enter-news-image {
         height: 250px;
     }
 }
