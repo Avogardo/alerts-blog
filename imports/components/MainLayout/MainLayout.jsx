@@ -85,8 +85,10 @@ class MainLayout extends Component {
               render={() => (
                 <Fragment>
                   <NewsContainer enterContainer />
-                  <NewsContainer headerTitle="Latest News" />
-                  <NewsContainer exitContainer />
+                  <div className="body-news-section-wrapper">
+                    <NewsContainer headerTitle="Latest News" />
+                    <NewsContainer exitContainer />
+                  </div>
                 </Fragment>
               )}
             />

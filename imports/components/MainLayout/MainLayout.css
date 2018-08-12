@@ -24,11 +24,32 @@
 	flex: 1 1 auto;
 }
 
+.body-news-section-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.body-news-section-wrapper section:first-child {
+    width: 750px;
+}
+
+.body-news-section-wrapper section:last-child {
+    width: 360px;
+}
+
 @media only screen and (max-width: 1200px) {
 	.content-container-root, .content-container {
 		width: auto;
 		margin: 0 15px 15px 15px;
 	}
+
+    .body-news-section-wrapper {
+        display: block;
+    }
+
+    .body-news-section-wrapper section:first-child, .body-news-section-wrapper section:last-child {
+        width: unset;
+    }
 }
 
 @media only screen and (max-width: 550px) {
