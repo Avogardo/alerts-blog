@@ -48,7 +48,7 @@ class BasicNews extends Component {
         topNews.map((news, index) => (
           <Card className={tileCard} key={news._id}>
             <GridList cellHeight={250} cols={1}>
-              <GridListTile className="enter-news-tile" key={news._id}>
+              <GridListTile className="basic-news-tile" key={news._id}>
                 {newsCard && topNews[0].images ?
                   <ImageGallery
                     showBullets
@@ -59,7 +59,7 @@ class BasicNews extends Component {
                   />
                   :
                   <div
-                    className={newsCard ? 'enter-news-image-no-animation' : 'enter-news-image'}
+                    className={newsCard ? 'basic-news-image-no-animation' : 'basic-news-image'}
                     style={{ backgroundImage: `url(${unit8ArrayToUrl(news.enterImage.data.image)})` }}
                   />
                 }
@@ -98,8 +98,8 @@ class BasicNews extends Component {
         (exitNews || newsCard ? [1] : [1, 2, 3, 4]).map(news => (
           <Card className={tileCard} key={news}>
             <GridList cellHeight={250} cols={1}>
-              <GridListTile className="enter-news-tile">
-                <div className="enter-news-image-loading" />
+              <GridListTile className="basic-news-tile">
+                <div className="basic-news-image-loading" />
               </GridListTile>
             </GridList>
             <CardHeader

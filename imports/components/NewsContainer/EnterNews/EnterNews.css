@@ -1,9 +1,32 @@
+.enter-news-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#app > div > div > section:nth-child(1) > div > div:nth-child(1) > li {
+    height: 442px;
+    margin-right: 10px;
+    width: 756px;
+}
+
+#app > div > div > section:nth-child(1) > div > div:nth-child(1) > div {
+    width: 373px;
+}
+
+#app > div > div > section:nth-child(1) > div > div:nth-child(1) > div > li:nth-child(1) {
+    margin-bottom: 10px;
+}
+
+#app > div > div > section:nth-child(1) > div > div.enter-news-wrapper > li > div > div.enter-news-image {
+    height: 442px;
+}
+
 .enter-news-image {
     opacity: 0.8;
 	transition: transform 0.3s ease, opacity 0.1s ease;
     cursor: pointer;
     -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
-    height: 250px;
+    height: 216px;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
@@ -70,4 +93,33 @@
 
 .enter-news-tile > div {
     background-color: #000000;
+}
+
+@media only screen and (max-width: 1200px) {
+    .enter-news-wrapper {
+        display: unset;
+        flex-wrap: unset;
+    }
+
+    #app > div > div > section:nth-child(1) > div > div:nth-child(1) > li {
+        height: unset;
+        margin-right: unset;
+        width: unset;
+    }
+
+    #app > div > div > section:nth-child(1) > div > div:nth-child(1) > div {
+        width: unset;
+    }
+
+    #app > div > div > section:nth-child(1) > div > div:nth-child(1) > div > li:nth-child(1) {
+        margin-bottom: 6px;
+    }
+
+    #app > div > div > section:nth-child(1) > div > div.enter-news-wrapper > li > div > div.enter-news-image {
+        height: 250px;
+    }
+
+    .enter-news-image {
+        height: 250px;
+    }
 }

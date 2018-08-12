@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { GridListTile, GridListTileBar, withStyles } from '@material-ui/core';
 import TileSubtitle from '../TileSubtitle';
@@ -20,44 +20,63 @@ class EnterNews extends Component {
       goToNews,
     } = this.props;
     const { gridListTileBar } = this.props.classes;
+    const welcomeNews = topNews[0];
+    const newsList = topNews.slice(1);
 
-    return topNews.length ?
-      topNews.map((news, index) => (
-        <GridListTile className="enter-news-tile" key={news._id}>
-          <div
-            className="enter-news-image"
-            style={{ backgroundImage: `url(${unit8ArrayToUrl(news.enterImage.data.image)})` }}
-          />
-          <HistoryContext.Consumer>
-            {history => (
+    const enterNews = (news, index) => (
+      <GridListTile className="enter-news-tile" key={news._id}>
+        <div
+          className="enter-news-image"
+          style={{ backgroundImage: `url(${unit8ArrayToUrl(news.enterImage.data.image)})` }}
+        />
+        <HistoryContext.Consumer>
+          {history => (
+            <GridListTileBar
+              onClick={() => goToNews(history, news._id)}
+              className={[gridListTileBar, 'enter-news-title-bar'].join(' ')}
+              title={<span className="enter-news-title">{news.title}</span>}
+              subtitle={
+                <TileSubtitle
+                  newsId={news._id}
+                  authors={authors}
+                  createdAt={news.createdAt}
+                  index={index}
+                />
+              }
+            />
+          )}
+        </HistoryContext.Consumer>
+      </GridListTile>
+    );
+
+    return (
+      <div className="enter-news-wrapper">
+        {topNews.length ?
+          <Fragment>
+            {enterNews(welcomeNews, 0)}
+            <div>
+              {newsList.map((news, index) => (
+                enterNews(news, index + 1)
+              ))}
+            </div>
+          </Fragment>
+        :
+          [1, 2, 3].map(news => (
+            <GridListTile
+              className="enter-news-tile"
+              key={news + new Date().getTime() + Math.random()}
+            >
+              <div className="enter-news-image-loading" />
               <GridListTileBar
-                onClick={() => goToNews(history, news._id)}
                 className={[gridListTileBar, 'enter-news-title-bar'].join(' ')}
-                title={<span className="enter-news-title">{news.title}</span>}
-                subtitle={
-                  <TileSubtitle
-                    newsId={news._id}
-                    authors={authors}
-                    createdAt={news.createdAt}
-                    index={index}
-                  />
-                }
+                title={<span className="enter-news-title">Loading</span>}
+                subtitle="Wait..."
               />
-            )}
-          </HistoryContext.Consumer>
-        </GridListTile>
-      ))
-      :
-      [1, 2, 3].map(news => (
-        <GridListTile className="enter-news-tile" key={news + new Date().getTime() + Math.random()}>
-          <div className="enter-news-image-loading" />
-          <GridListTileBar
-            className={[gridListTileBar, 'enter-news-title-bar'].join(' ')}
-            title={<span className="enter-news-title">Loading</span>}
-            subtitle="Wait..."
-          />
-        </GridListTile>
-      ));
+            </GridListTile>
+          ))
+        }
+      </div>
+    );
   }
 }
 
