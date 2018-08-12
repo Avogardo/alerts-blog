@@ -117,11 +117,12 @@ class MainLayout extends Component {
               path="/news/:id"
               render={routeProps => [
                 <News
+                  key="news-section"
                   history={routeProps.history}
                   match={routeProps.match}
                   onRemoveNews={this.onRemoveNews}
                 />,
-                <NewsContainer exitContainer />,
+                <NewsContainer key="exit-news-section" exitContainer />,
               ]}
             />
 

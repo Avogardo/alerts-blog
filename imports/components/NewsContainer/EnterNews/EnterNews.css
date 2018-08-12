@@ -71,7 +71,7 @@
 }
 
 .enter-news-image-loading {
-    height: 250px;
+    height: 442px;
     background: linear-gradient(273deg, #d1d1d1, #444444);
     background-size: 400% 400%;
 
@@ -79,6 +79,10 @@
     -moz-animation: AnimationName 2s ease infinite;
     -o-animation: AnimationName 2s ease infinite;
     animation: AnimationName 2s ease infinite;
+}
+
+.enter-side-news-wrapper .enter-news-image-loading {
+    height: 216px;
 }
 
 @-webkit-keyframes AnimationName {
@@ -136,5 +140,9 @@
 
     .enter-news-wrapper > li .enter-news-title-bar > div {
         bottom: 14px;
+    }
+
+    .enter-news-image-loading {
+        height: 250px;
     }
 }

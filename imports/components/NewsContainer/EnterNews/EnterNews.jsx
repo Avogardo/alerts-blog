@@ -49,6 +49,20 @@ class EnterNews extends Component {
       </GridListTile>
     );
 
+    const loadingTile = news => (
+      <GridListTile
+        className="enter-news-tile"
+        key={news + new Date().getTime() + Math.random()}
+      >
+        <div className="enter-news-image-loading" />
+        <GridListTileBar
+          className={[gridListTileBar, 'enter-news-title-bar'].join(' ')}
+          title={<span className="enter-news-title">Loading</span>}
+          subtitle="Wait..."
+        />
+      </GridListTile>
+    );
+
     return (
       <div className="enter-news-wrapper">
         {topNews.length ?
@@ -61,19 +75,14 @@ class EnterNews extends Component {
             </div>
           </Fragment>
         :
-          [1, 2, 3].map(news => (
-            <GridListTile
-              className="enter-news-tile"
-              key={news + new Date().getTime() + Math.random()}
-            >
-              <div className="enter-news-image-loading" />
-              <GridListTileBar
-                className={[gridListTileBar, 'enter-news-title-bar'].join(' ')}
-                title={<span className="enter-news-title">Loading</span>}
-                subtitle="Wait..."
-              />
-            </GridListTile>
-          ))
+          <Fragment>
+            {loadingTile(1)}
+            <div className="enter-side-news-wrapper">
+              {[2, 3].map(news => (
+                loadingTile(news)
+              ))}
+            </div>
+          </Fragment>
         }
       </div>
     );
