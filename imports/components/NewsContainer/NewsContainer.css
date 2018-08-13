@@ -1,0 +1,17 @@
+.desktop-base-container {
+    display: block;
+}
+
+.mobile-base-container {
+    display: none;
+}
+
+@media only screen and (max-width: 1200px) {
+    .desktop-base-container {
+        display: none;
+    }
+
+    .mobile-base-container {
+        display: block;
+    }
+}
