@@ -15,6 +15,7 @@
 }
 
 .social-header-action {
+    cursor: pointer;
     margin-left: 10px;
     border-left: 1px solid #eee;
     padding-left: 10px;

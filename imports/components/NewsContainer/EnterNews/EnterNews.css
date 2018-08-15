@@ -24,7 +24,6 @@
 .enter-news-image {
     opacity: 0.8;
 	transition: transform 0.3s ease, opacity 0.1s ease;
-    cursor: pointer;
     -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
     height: 216px;
     background-size: cover;
@@ -53,6 +52,10 @@
 .enter-news-wrapper > li .enter-news-title-bar > div {
     position: absolute;
     bottom: 30px;
+}
+
+.enter-news-title-bar {
+    cursor: pointer;
 }
 
 .enter-news-wrapper > li .enter-news-title {

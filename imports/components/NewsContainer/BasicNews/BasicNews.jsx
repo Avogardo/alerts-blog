@@ -22,6 +22,7 @@ const styles = {
   newsCardHeader: {
     padding: 0,
     marginTop: 10,
+    cursor: 'pointer',
   },
   newsCardContent: {
     paddingTop: 16,

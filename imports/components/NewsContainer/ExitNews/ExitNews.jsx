@@ -20,6 +20,7 @@ const styles = {
   asideNewsHeaderCard: {
     flex: 1,
     paddingRight: 0,
+    cursor: 'pointer',
   },
 };
 
@@ -41,7 +42,7 @@ class ExitNews extends Component {
                 <CardHeader
                   onClick={() => goToNews(history, news._id)}
                   className={asideNewsHeaderCard}
-                  title={<h6>{news.title}</h6>}
+                  title={<h6 className="exit-news-title">{news.title}</h6>}
                   subheader={
                     <TileSubtitle
                       newsId={news._id}

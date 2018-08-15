@@ -11,7 +11,6 @@
 .basic-news-image {
     opacity: 0.8;
 	transition: transform 0.3s ease, opacity 0.1s ease;
-    cursor: pointer;
     -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
     height: 250px;
     background-size: cover;
@@ -63,6 +62,11 @@
     margin: 0 0 6px 0;
     font-size: 18px;
     font-weight: 600;
+    transition: color 0.3s ease 0s;
+}
+
+.news-card-title:hover {
+    color: #f6214b;
 }
 
 .news-page-title {

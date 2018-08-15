@@ -44,6 +44,7 @@ const styles = {
     padding: '12px 15px',
     marginTop: 4,
     fontSize: 14,
+    cursor: 'pointer',
   },
 };
 

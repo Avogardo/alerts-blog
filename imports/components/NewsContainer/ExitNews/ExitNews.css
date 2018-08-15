@@ -5,8 +5,15 @@ h6 {
     line-height: 20px;
 }
 
+.exit-news-title {
+    transition: color 0.3s ease 0s;
+}
+
+.exit-news-title:hover {
+    color: #f6214b;
+}
+
 .aside-news-image {
-    cursor: pointer;
     -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
     height: 80px;
     width: 100px;
