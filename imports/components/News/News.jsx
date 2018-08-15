@@ -116,7 +116,7 @@ class News extends Component {
             </Fragment>
             :
             ['fake-1', 'fake-2', 'fake-3', 'fake-4', 'fake-5'].map(line => (
-              <div key={line} className="aaa" />
+              <div key={line} className="text-loading-placeholder" />
             ))
           }
         </Card>

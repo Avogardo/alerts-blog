@@ -47,6 +47,21 @@
     width: 280px;
 }
 
+.basic-text-loading-placeholder {
+    height: 15px;
+    width: 100%;
+    border-radius: 15px;
+    margin: 10px 0;
+    background-color: grey;
+    background: linear-gradient(273deg, #444444, #d1d1d1);
+    background-size: 400% 400%;
+
+    -webkit-animation: AnimationName 2s ease infinite;
+    -moz-animation: AnimationName 2s ease infinite;
+    -o-animation: AnimationName 2s ease infinite;
+    animation: AnimationName 2s ease infinite;
+}
+
 .basic-news-tile {
     margin-bottom: 6px;
 }
@@ -123,6 +138,11 @@
         height: 250px;
     }
 
+    .basic-news-wrapper .basic-news-image-loading {
+        width: unset;
+        height: 250px;
+    }
+
     .basic-news-wrapper .basic-news-tile-wrapper {
         flex: 1;
         padding-left: 0;
@@ -136,6 +156,4 @@
         height: unset;
         overflow: unset;
     }
-
-
 }

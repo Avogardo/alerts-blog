@@ -93,8 +93,11 @@ class BasicNews extends Component {
               {!newsCard &&
                 <CardContent className={newsCardContent}>
                   <Typography component="p">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit
-                    , sed do eiusmod tempor incididunt.
+                    {news.content.length > 92 ?
+                      `${news.content.substring(0, 92).replace(/<\/?[^>]+(>|$)/g, '').replace(/&nbsp;/g, '')}...`
+                      :
+                      news.content
+                    }
                   </Typography>
                 </CardContent>
               }
@@ -120,10 +123,9 @@ class BasicNews extends Component {
               />
               {!newsCard &&
               <CardContent className={newsCardContent}>
-                <Typography component="p">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit
-                  , sed do eiusmod tempor incididunt.
-                </Typography>
+                <div className="basic-text-loading-placeholder" />
+                <div className="basic-text-loading-placeholder" />
+                <div className="basic-text-loading-placeholder" />
               </CardContent>
               }
             </div>
