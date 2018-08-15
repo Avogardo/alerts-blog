@@ -5,7 +5,6 @@ import EnterNews from './EnterNews';
 import BasicNews from './BasicNews';
 import ExitNews from './ExitNews';
 import SectionHeader from './SectionHeader';
-import './NewsContainer.css';
 
 const styles = {
   mainNewsCard: {
@@ -82,21 +81,12 @@ class NewsContainer extends Component {
       <section>
         <Card className={newsCard}>
           <SectionHeader headerTitle={headerTitle} />
-          <div className="mobile-base-container">
-            <BasicNews
-              goToNews={goToNews}
-              topNews={topNews}
-              authors={authors}
-              unit8ArrayToUrl={unit8ArrayToUrl}
-            />
-          </div>
-          <div className="desktop-base-container">
-            <ExitNews
-              goToNews={goToNews}
-              topNews={topNews}
-              unit8ArrayToUrl={unit8ArrayToUrl}
-            />
-          </div>
+          <BasicNews
+            goToNews={goToNews}
+            topNews={topNews}
+            authors={authors}
+            unit8ArrayToUrl={unit8ArrayToUrl}
+          />
         </Card>
       </section>
     );
