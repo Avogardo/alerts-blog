@@ -103,25 +103,30 @@ class BasicNews extends Component {
         ))
         :
         (exitNews || newsCard ? [1] : [1, 2, 3, 4]).map(news => (
-          <Card className={tileCard} key={news}>
-            <GridList cellHeight={250} cols={1}>
+          <Card
+            className={[tileCard, basicNewsList ? 'basic-news-wrapper' : ''].join(' ')}
+            key={news}
+          >
+            <GridList className="basic-grid-list" cellHeight={250} cols={1}>
               <GridListTile className="basic-news-tile">
                 <div className="basic-news-image-loading" />
               </GridListTile>
             </GridList>
-            <CardHeader
-              className={newsCardHeader}
-              title="Loading"
-              subheader="Wait..."
-            />
-            {!newsCard &&
-            <CardContent className={newsCardContent}>
-              <Typography component="p">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit
-                , sed do eiusmod tempor incididunt.
-              </Typography>
-            </CardContent>
-            }
+            <div className="basic-news-tile-wrapper">
+              <CardHeader
+                className={newsCardHeader}
+                title="Loading"
+                subheader="Wait..."
+              />
+              {!newsCard &&
+              <CardContent className={newsCardContent}>
+                <Typography component="p">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit
+                  , sed do eiusmod tempor incididunt.
+                </Typography>
+              </CardContent>
+              }
+            </div>
           </Card>
         ))
     );

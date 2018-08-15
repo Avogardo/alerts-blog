@@ -31,6 +31,22 @@
     background-position: center center;
 }
 
+.basic-news-image-loading {
+    height: 250px;
+    background: linear-gradient(273deg, #d1d1d1, #444444);
+    background-size: 400% 400%;
+
+    -webkit-animation: AnimationName 2s ease infinite;
+    -moz-animation: AnimationName 2s ease infinite;
+    -o-animation: AnimationName 2s ease infinite;
+    animation: AnimationName 2s ease infinite;
+}
+
+.basic-news-wrapper .basic-news-image-loading {
+    height: 190px;
+    width: 280px;
+}
+
 .basic-news-tile {
     margin-bottom: 6px;
 }
