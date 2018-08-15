@@ -40,14 +40,18 @@ class BasicNews extends Component {
       newsCard,
       goToNews,
       exitNews,
+      basicNewsList,
     } = this.props;
     const { newsCardHeader, newsCardContent, tileCard } = this.props.classes;
 
     return (
       topNews.length ?
         topNews.map((news, index) => (
-          <Card className={tileCard} key={news._id}>
-            <GridList cellHeight={250} cols={1}>
+          <Card
+            className={[tileCard, basicNewsList ? 'basic-news-wrapper' : ''].join(' ')}
+            key={news._id}
+          >
+            <GridList className="basic-grid-list" cellHeight={250} cols={1}>
               <GridListTile className="basic-news-tile" key={news._id}>
                 {newsCard && topNews[0].images ?
                   <ImageGallery
@@ -65,33 +69,35 @@ class BasicNews extends Component {
                 }
               </GridListTile>
             </GridList>
-            <HistoryContext.Consumer>
-              {history => (
-                <CardHeader
-                  onClick={() => goToNews(history, news._id)}
-                  className={newsCardHeader}
-                  title={
-                    <h4 className={newsCard ? 'news-page-title' : 'news-card-title'}>{news.title}</h4>
-                  }
-                  subheader={
-                    <TileSubtitle
-                      newsId={news._id}
-                      authors={authors}
-                      createdAt={news.createdAt}
-                      index={index}
-                    />
-                  }
-                />
-              )}
-            </HistoryContext.Consumer>
-            {!newsCard &&
-              <CardContent className={newsCardContent}>
-                <Typography component="p">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit
-                  , sed do eiusmod tempor incididunt.
-                </Typography>
-              </CardContent>
-            }
+            <div className="basic-news-tile-wrapper">
+              <HistoryContext.Consumer>
+                {history => (
+                  <CardHeader
+                    onClick={() => goToNews(history, news._id)}
+                    className={newsCardHeader}
+                    title={
+                      <h4 className={newsCard ? 'news-page-title' : 'news-card-title'}>{news.title}</h4>
+                    }
+                    subheader={
+                      <TileSubtitle
+                        newsId={news._id}
+                        authors={authors}
+                        createdAt={news.createdAt}
+                        index={index}
+                      />
+                    }
+                  />
+                )}
+              </HistoryContext.Consumer>
+              {!newsCard &&
+                <CardContent className={newsCardContent}>
+                  <Typography component="p">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit
+                    , sed do eiusmod tempor incididunt.
+                  </Typography>
+                </CardContent>
+              }
+            </div>
           </Card>
         ))
         :
@@ -124,6 +130,7 @@ class BasicNews extends Component {
 BasicNews.defaultProps = {
   newsCard: false,
   exitNews: false,
+  basicNewsList: false,
   topNews: [],
   authors: [],
   goToNews: () => {},
@@ -132,6 +139,7 @@ BasicNews.defaultProps = {
 BasicNews.propTypes = {
   newsCard: PropTypes.bool,
   exitNews: PropTypes.bool,
+  basicNewsList: PropTypes.bool,
   topNews: PropTypes.arrayOf(PropTypes.shape({
     _id: PropTypes.string.isRequired,
     authorId: PropTypes.string.isRequired,
