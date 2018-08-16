@@ -10,7 +10,6 @@ import {
   CardActions,
 } from '@material-ui/core';
 
-import SectionHeader from '../NewsContainer/SectionHeader';
 import BasicNews from '../NewsContainer/BasicNews';
 import Comments, { AddComment } from '../Comments';
 import './News.css';
@@ -75,10 +74,7 @@ class News extends Component {
     } = this.props;
     const { newsCard, newsContentCard, editButton } = this.props.classes;
 
-    return [
-      <div key="breaking-news" className="breaking-news-wrapper">
-        <SectionHeader breakingNews headerTitle="Astronomy Binoculars A Great Alternative" />
-      </div>,
+    return (
       <article key="news-card">
         <Card className={newsCard}>
           <BasicNews
@@ -120,8 +116,8 @@ class News extends Component {
             ))
           }
         </Card>
-      </article>,
-    ];
+      </article>
+    );
   }
 }
 

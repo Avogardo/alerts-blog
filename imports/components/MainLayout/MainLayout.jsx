@@ -11,6 +11,7 @@ import SignIn from '../SignIn';
 import CreateNews from '../CreateNews';
 import Footer from '../Footer';
 import News from '../News';
+import SectionHeader from '../NewsContainer/SectionHeader';
 import './MainLayout.css';
 
 class MainLayout extends Component {
@@ -116,13 +117,18 @@ class MainLayout extends Component {
               exact
               path="/news/:id"
               render={routeProps => [
-                <News
-                  key="news-section"
-                  history={routeProps.history}
-                  match={routeProps.match}
-                  onRemoveNews={this.onRemoveNews}
-                />,
-                <NewsContainer key="exit-news-section" exitContainer />,
+                <div key="breaking-news" className="breaking-news-wrapper">
+                  <SectionHeader breakingNews headerTitle="Astronomy Binoculars A Great Alternative" />
+                </div>,
+                <div key="single-news-wrapper" className="single-news-wrapper">
+                  <News
+                    key="news-section"
+                    history={routeProps.history}
+                    match={routeProps.match}
+                    onRemoveNews={this.onRemoveNews}
+                  />
+                  <NewsContainer key="exit-news-section" exitContainer />
+                </div>,
               ]}
             />
 
