@@ -112,17 +112,25 @@
     font-weight: 600;
 }
 
+.image-gallery-mobile {
+    display: none;
+}
+
+.image-gallery-desktop {
+    display: block;
+}
+
 .image-gallery-content * {
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 .image-gallery-image {
-    height: 255px;
+    height: 310px;
 }
 
 .image-gallery-slide img {
     width: 100%;
-    height: 250px;
+    height: 350px;
     object-fit: cover;
 }
 
@@ -155,5 +163,28 @@
     .basic-news-wrapper .basic-grid-list {
         height: unset;
         overflow: unset;
+    }
+
+    .image-gallery-desktop {
+        display: none;
+    }
+
+    .image-gallery-mobile {
+        display: block;
+    }
+
+    .image-gallery-content * {
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    .image-gallery-image {
+        height: 255px;
+    }
+
+    .image-gallery-slide img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
     }
 }

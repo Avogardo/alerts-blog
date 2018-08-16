@@ -54,19 +54,29 @@ class BasicNews extends Component {
           >
             <GridList className="basic-grid-list" cellHeight={250} cols={1}>
               <GridListTile className="basic-news-tile" key={news._id}>
-                {newsCard && topNews[0].images ?
-                  <ImageGallery
-                    showBullets
-                    showIndex
-                    showThumbnails={false}
-                    showPlayButton={false}
-                    items={topNews[0].imagesFroSlider}
-                  />
-                  :
-                  <div
-                    className={newsCard ? 'basic-news-image-no-animation' : 'basic-news-image'}
-                    style={{ backgroundImage: `url(${unit8ArrayToUrl(news.enterImage.data.image)})` }}
-                  />
+                {newsCard && topNews[0].images ? [
+                  <div className="image-gallery-mobile">
+                    <ImageGallery
+                      showBullets
+                      showIndex
+                      showThumbnails={false}
+                      showPlayButton={false}
+                      items={topNews[0].imagesFroSlider}
+                    />
+                  </div>,
+                  <div className="image-gallery-desktop">
+                    <ImageGallery
+                      showBullets
+                      showIndex
+                      showPlayButton={false}
+                      items={topNews[0].imagesFroSlider}
+                    />
+                  </div>,
+                ] :
+                <div
+                  className={newsCard ? 'basic-news-image-no-animation' : 'basic-news-image'}
+                  style={{ backgroundImage: `url(${unit8ArrayToUrl(news.enterImage.data.image)})` }}
+                />
                 }
               </GridListTile>
             </GridList>
