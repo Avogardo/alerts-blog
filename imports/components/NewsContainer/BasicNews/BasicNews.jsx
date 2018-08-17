@@ -55,7 +55,7 @@ class BasicNews extends Component {
             <GridList className="basic-grid-list" cellHeight={250} cols={1}>
               <GridListTile className="basic-news-tile" key={news._id}>
                 {newsCard && topNews[0].images ? [
-                  <div className="image-gallery-mobile">
+                  <div key="image-gallery-mobile" className="image-gallery-mobile">
                     <ImageGallery
                       showBullets
                       showIndex
@@ -64,7 +64,7 @@ class BasicNews extends Component {
                       items={topNews[0].imagesFroSlider}
                     />
                   </div>,
-                  <div className="image-gallery-desktop">
+                  <div key="image-gallery-desktop" className="image-gallery-desktop">
                     <ImageGallery
                       showBullets
                       showIndex
