@@ -118,8 +118,29 @@ const updateNews = new ValidatedMethod({
   },
 });
 
+const updateNewsViews = new ValidatedMethod({
+  name: 'news.views.update',
+  validate: NewsIdentitySchema.validator({ clean: true }),
+  run({ newsId }) {
+    const query = { _id: newsId };
+    const options = {
+      fields: {
+        views: 1,
+      },
+    };
+    const views = News.findOne(query, options).views + Math.floor((Math.random() * 15) + 1);
+
+    return News.update(newsId, {
+      $set: {
+        views,
+      },
+    });
+  },
+});
+
 export {
   createNews,
   removeNews,
   updateNews,
+  updateNewsViews,
 };
