@@ -33,6 +33,21 @@ Meteor.publish('recentNewsWithLimit', function publishRecentNewsLimit(limit = 3)
 });
 
 Meteor.publish(
+  'quiteRecentNewsWithLimit',
+  function publishQuiteRecentNewsLimit(limit = 4, skip = 3) {
+    const options = {
+      limit,
+      skip,
+      sort: { createdAt: -1 },
+      fields: {
+        images: 0,
+      },
+    };
+    return News.find({}, options);
+  },
+);
+
+Meteor.publish(
   'singleNews',
   function publishSingleNews(newsId, withPhotos = false, publishBoth = false) {
     check(newsId, String);
