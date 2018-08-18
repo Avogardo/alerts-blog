@@ -22,10 +22,14 @@ const getTrackerLoader = composer =>
 const composer = (props, onData) => {
   const tagName = ((props.match || {}).params || {}).tag;
   const userListHandler = Meteor.subscribe('userList');
-  const topNewsHandler = tagName ?
-    Meteor.subscribe('tagNewsList', tagName)
-    :
-    Meteor.subscribe('recentNewsWithLimit', 4);
+  let topNewsHandler = Meteor.subscribe('quiteRecentNewsWithLimit');
+  if (props.enterContainer) {
+    topNewsHandler = Meteor.subscribe('recentNewsWithLimit');
+  } else if (props.exitContainer) {
+    topNewsHandler = Meteor.subscribe('recentNewsWithLimit', 4);
+  } else if (tagName) {
+    topNewsHandler = Meteor.subscribe('tagNewsList', tagName);
+  }
 
   const unit8ArrayToUrl = (image) => {
     const blob = new Blob([image], { type: 'image/jpeg' });
@@ -34,10 +38,45 @@ const composer = (props, onData) => {
   };
 
   if (topNewsHandler.ready()) {
-    const options = {
-      limit: props.enterContainer ? 3 : 4,
+    let options = {
+      limit: 4,
+      skip: 3,
+      sort: { createdAt: -1 },
+      fields: {
+        images: 0,
+      },
     };
-    const topNews = NewsCollection.find({}, tagName ? {} : options).fetch();
+    let query = {};
+    if (props.enterContainer) {
+      options = {
+        limit: 3,
+        sort: { createdAt: -1 },
+        fields: {
+          images: 0,
+        },
+      };
+    } else if (props.exitContainer) {
+      options = {
+        limit: 4,
+        sort: { createdAt: -1 },
+        fields: {
+          images: 0,
+        },
+      };
+    } else if (tagName) {
+      options = {
+        sort: { createdAt: -1 },
+        fields: {
+          images: 0,
+        },
+      };
+      if (tagName !== 'all') {
+        query = {
+          tags: { $all: [tagName] },
+        };
+      }
+    }
+    const topNews = NewsCollection.find(query, options).fetch();
 
     onData(null, {
       ...props,
