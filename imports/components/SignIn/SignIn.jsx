@@ -6,6 +6,7 @@ import {
   CardContent,
 } from '@material-ui/core';
 import LoginButtons from './LoginButtons';
+import './SignIn.css';
 
 const styles = () => ({
   signIn: {
@@ -17,8 +18,8 @@ const styles = () => ({
 });
 
 const SignIn = ({ classes, errorMessage, history }) => (
-  <form className={classes.signIn}>
-    <h2>Create account with Google Plus!</h2>
+  <form className={[classes.signIn, 'sign-in-wrapper'].join(' ')}>
+    <h2>Create account with Facebook or Google Plus!</h2>
 
     <LoginButtons history={history} facebook />
     <LoginButtons history={history} google />
