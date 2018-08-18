@@ -2,6 +2,7 @@ import {
   createNews as createNewsMethod,
   removeNews as removeNewsMethod,
   updateNews as updateNewsMethod,
+  updateNewsViews as updateNewsViewsMethod,
 } from './methods.js';
 
 const goToNewsContainer = (history) => {
@@ -85,14 +86,25 @@ const updateNews = (newsId, title, content, images, tags) => new Promise((resolv
   });
 });
 
+const updateNewsViews = newsId => new Promise((resolve, reject) => {
+  updateNewsViewsMethod.call({ newsId }, (err, res) => {
+    if (err) {
+      err = err.reason || err;
+      return reject(new Error(err));
+    }
+    return resolve(res);
+  });
+});
+
 const actions = {
   goToNewsContainer,
   goToCreateNews,
   goToNews,
+  goToTagSearch,
   createNews,
   removeNews,
   updateNews,
-  goToTagSearch,
+  updateNewsViews,
 };
 
 export default actions;
