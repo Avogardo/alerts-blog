@@ -42,6 +42,10 @@ const NewsSchema = new SimpleSchema({
     blackbox: true,
     defaultValue: {},
   },
+  views: {
+    type: Number,
+    defaultValue: 0,
+  },
 });
 NewsSchema.extend(NewsContentSchema);
 NewsSchema.extend(NewsImagesSchema);
