@@ -1,11 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import {
-  GridList,
-  GridListTile,
-  GridListTileBar,
-  withStyles,
-} from '@material-ui/core';
+import { GridListTile, GridListTileBar, withStyles } from '@material-ui/core';
 import TileSubtitle from '../TileSubtitle';
 import { HistoryContext } from '../../Context';
 import './EnterNews.css';
@@ -25,46 +20,71 @@ class EnterNews extends Component {
       goToNews,
     } = this.props;
     const { gridListTileBar } = this.props.classes;
+    const welcomeNews = topNews[0];
+    const newsList = topNews.slice(1);
+
+    const enterNews = (news, index) => (
+      <GridListTile className="enter-news-tile" key={news._id}>
+        <div
+          className="enter-news-image"
+          style={{ backgroundImage: `url(${unit8ArrayToUrl(news.enterImage.data.image)})` }}
+        />
+        <HistoryContext.Consumer>
+          {history => (
+            <GridListTileBar
+              onClick={() => goToNews(history, news._id)}
+              className={[gridListTileBar, 'enter-news-title-bar'].join(' ')}
+              title={<span className="enter-news-title">{news.title}</span>}
+              subtitle={
+                <TileSubtitle
+                  newsId={news._id}
+                  authors={authors}
+                  createdAt={news.createdAt}
+                  index={index}
+                />
+              }
+            />
+          )}
+        </HistoryContext.Consumer>
+      </GridListTile>
+    );
+
+    const loadingTile = news => (
+      <GridListTile
+        className="enter-news-tile"
+        key={news + new Date().getTime() + Math.random()}
+      >
+        <div className="enter-news-image-loading" />
+        <GridListTileBar
+          className={[gridListTileBar, 'enter-news-title-bar'].join(' ')}
+          title={<span className="enter-news-title">Loading</span>}
+          subtitle="Wait..."
+        />
+      </GridListTile>
+    );
 
     return (
-      <GridList cellHeight={250} cols={1}>
-        {topNews.length ? topNews.map((news, index) => (
-          <GridListTile className="enter-news-tile" key={news._id}>
-            <div
-              className="enter-news-image"
-              style={{ backgroundImage: `url(${unit8ArrayToUrl(news.enterImage.data.image)})` }}
-            />
-            <HistoryContext.Consumer>
-              {history => (
-                <GridListTileBar
-                  onClick={() => goToNews(history, news._id)}
-                  className={[gridListTileBar, 'enter-news-title-bar'].join(' ')}
-                  title={<span className="enter-news-title">{news.title}</span>}
-                  subtitle={
-                    <TileSubtitle
-                      newsId={news._id}
-                      authors={authors}
-                      createdAt={news.createdAt}
-                      index={index}
-                    />
-                  }
-                />
-              )}
-            </HistoryContext.Consumer>
-          </GridListTile>
-        ))
+      <div className="enter-news-wrapper">
+        {topNews.length ?
+          <Fragment>
+            {enterNews(welcomeNews, 0)}
+            <div className="enter-side-news-wrapper">
+              {newsList.map((news, index) => (
+                enterNews(news, index + 1)
+              ))}
+            </div>
+          </Fragment>
         :
-        [1, 2, 3].map(news => (
-          <GridListTile className="enter-news-tile" key={news}>
-            <div className="enter-news-image-loading" />
-            <GridListTileBar
-              className={[gridListTileBar, 'enter-news-title-bar'].join(' ')}
-              title={<span className="enter-news-title">Loading</span>}
-              subtitle="Wait..."
-            />
-          </GridListTile>
-        ))}
-      </GridList>
+          <Fragment>
+            {loadingTile(1)}
+            <div className="enter-side-news-wrapper">
+              {[2, 3].map(news => (
+                loadingTile(news)
+              ))}
+            </div>
+          </Fragment>
+        }
+      </div>
     );
   }
 }

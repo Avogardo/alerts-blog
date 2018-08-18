@@ -1,12 +1,26 @@
+.navigation-toolbar {
+    width: 1140px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .logo-container {
+    cursor: pointer;
+    width: 1140px;
+    margin-left: auto;
+    margin-right: auto;
     display: flex;
     align-items: center;
+}
+
+.logo-bar {
     background-color: #ffffff;
 }
 
 .logo-container img {
     border-radius: 5px;
     height: 30px;
+    margin-right: 15px;
 }
 
 h1 {
@@ -17,13 +31,54 @@ nav {
 	flex: 0 1 auto;
 }
 
+#app > div > nav > div:nth-child(1) {
+    display: none !important;
+}
+
+#navigation-app-bar {
+    margin-bottom: 10px;
+    width: 1140px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.navigation-wrapper-mobile {
+    display: none;
+    align-items: center;
+}
+
 .navigation-wrapper {
     display: flex;
     align-items: center;
 }
 
-.logo-container img {
-    margin: 0 15px;
+@media only screen and (max-width: 1200px) {
+    .navigation-toolbar, .logo-container {
+        width: unset;
+        margin-left: unset;
+        margin-right: unset;
+    }
+
+    .logo-container img {
+        margin: 0 15px;
+    }
+
+    #navigation-app-bar {
+        width: auto;
+        margin: 0 15px;
+    }
+
+    .navigation-wrapper-mobile {
+        display: flex;
+    }
+
+    .navigation-wrapper {
+        display: none;
+    }
+
+    #app > div > nav > div:nth-child(1) {
+        display: block !important;
+    }
 }
 
 @media only screen and (max-width: 425px) {

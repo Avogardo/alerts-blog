@@ -11,6 +11,10 @@
     margin-right: 10px;
 }
 
+.enter-news-wrapper > li .subtitle-tile {
+    margin-top: 20px;
+}
+
 .subtitle-tile {
     display: flex;
     align-items: center;
@@ -20,4 +24,10 @@
 
 .aside-margin {
     margin: 10px 0;
+}
+
+@media only screen and (max-width: 1200px) {
+    .enter-news-wrapper > li .subtitle-tile {
+        margin-top: 0;
+    }
 }

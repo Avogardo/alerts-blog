@@ -82,6 +82,7 @@ class NewsContainer extends Component {
         <Card className={newsCard}>
           <SectionHeader headerTitle={headerTitle} />
           <BasicNews
+            basicNewsList
             goToNews={goToNews}
             topNews={topNews}
             authors={authors}

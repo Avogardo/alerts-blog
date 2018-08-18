@@ -22,6 +22,7 @@ const styles = {
   newsCardHeader: {
     padding: 0,
     marginTop: 10,
+    cursor: 'pointer',
   },
   newsCardContent: {
     paddingTop: 16,
@@ -40,81 +41,104 @@ class BasicNews extends Component {
       newsCard,
       goToNews,
       exitNews,
+      basicNewsList,
     } = this.props;
     const { newsCardHeader, newsCardContent, tileCard } = this.props.classes;
 
     return (
       topNews.length ?
         topNews.map((news, index) => (
-          <Card className={tileCard} key={news._id}>
-            <GridList cellHeight={250} cols={1}>
-              <GridListTile className="enter-news-tile" key={news._id}>
-                {newsCard && topNews[0].images ?
-                  <ImageGallery
-                    showBullets
-                    showIndex
-                    showThumbnails={false}
-                    showPlayButton={false}
-                    items={topNews[0].imagesFroSlider}
-                  />
-                  :
-                  <div
-                    className={newsCard ? 'enter-news-image-no-animation' : 'enter-news-image'}
-                    style={{ backgroundImage: `url(${unit8ArrayToUrl(news.enterImage.data.image)})` }}
-                  />
+          <Card
+            className={[tileCard, basicNewsList ? 'basic-news-wrapper' : ''].join(' ')}
+            key={news._id}
+          >
+            <GridList className="basic-grid-list" cellHeight={250} cols={1}>
+              <GridListTile className="basic-news-tile" key={news._id}>
+                {newsCard && topNews[0].images ? [
+                  <div key="image-gallery-mobile" className="image-gallery-mobile">
+                    <ImageGallery
+                      showBullets
+                      showIndex
+                      showThumbnails={false}
+                      showPlayButton={false}
+                      items={topNews[0].imagesFroSlider}
+                    />
+                  </div>,
+                  <div key="image-gallery-desktop" className="image-gallery-desktop">
+                    <ImageGallery
+                      showBullets
+                      showIndex
+                      showPlayButton={false}
+                      items={topNews[0].imagesFroSlider}
+                    />
+                  </div>,
+                ] :
+                <div
+                  className={newsCard ? 'basic-news-image-no-animation' : 'basic-news-image'}
+                  style={{ backgroundImage: `url(${unit8ArrayToUrl(news.enterImage.data.image)})` }}
+                />
                 }
               </GridListTile>
             </GridList>
-            <HistoryContext.Consumer>
-              {history => (
-                <CardHeader
-                  onClick={() => goToNews(history, news._id)}
-                  className={newsCardHeader}
-                  title={
-                    <h4 className={newsCard ? 'news-page-title' : 'news-card-title'}>{news.title}</h4>
-                  }
-                  subheader={
-                    <TileSubtitle
-                      newsId={news._id}
-                      authors={authors}
-                      createdAt={news.createdAt}
-                      index={index}
-                    />
-                  }
-                />
-              )}
-            </HistoryContext.Consumer>
-            {!newsCard &&
-              <CardContent className={newsCardContent}>
-                <Typography component="p">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit
-                  , sed do eiusmod tempor incididunt.
-                </Typography>
-              </CardContent>
-            }
+            <div className="basic-news-tile-wrapper">
+              <HistoryContext.Consumer>
+                {history => (
+                  <CardHeader
+                    onClick={() => goToNews(history, news._id)}
+                    className={newsCardHeader}
+                    title={
+                      <h4 className={newsCard ? 'news-page-title' : 'news-card-title'}>{news.title}</h4>
+                    }
+                    subheader={
+                      <TileSubtitle
+                        newsId={news._id}
+                        authors={authors}
+                        createdAt={news.createdAt}
+                        index={index}
+                      />
+                    }
+                  />
+                )}
+              </HistoryContext.Consumer>
+              {!newsCard &&
+                <CardContent className={newsCardContent}>
+                  <Typography component="p">
+                    {news.content.length > 92 ?
+                      `${news.content.substring(0, 92).replace(/<\/?[^>]+(>|$)/g, '').replace(/&nbsp;/g, '')}...`
+                      :
+                      news.content
+                    }
+                  </Typography>
+                </CardContent>
+              }
+            </div>
           </Card>
         ))
         :
         (exitNews || newsCard ? [1] : [1, 2, 3, 4]).map(news => (
-          <Card className={tileCard} key={news}>
-            <GridList cellHeight={250} cols={1}>
-              <GridListTile className="enter-news-tile">
-                <div className="enter-news-image-loading" />
+          <Card
+            className={[tileCard, basicNewsList ? 'basic-news-wrapper' : ''].join(' ')}
+            key={news}
+          >
+            <GridList className="basic-grid-list" cellHeight={250} cols={1}>
+              <GridListTile className="basic-news-tile">
+                <div className="basic-news-image-loading" />
               </GridListTile>
             </GridList>
-            <CardHeader
-              className={newsCardHeader}
-              title="Loading"
-              subheader="Wait..."
-            />
-            {!newsCard &&
-            <CardContent className={newsCardContent}>
-              <Typography component="p">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit
-                , sed do eiusmod tempor incididunt.
-              </Typography>
-            </CardContent>
-            }
+            <div className="basic-news-tile-wrapper">
+              <CardHeader
+                className={newsCardHeader}
+                title="Loading"
+                subheader="Wait..."
+              />
+              {!newsCard &&
+              <CardContent className={newsCardContent}>
+                <div className="basic-text-loading-placeholder" />
+                <div className="basic-text-loading-placeholder" />
+                <div className="basic-text-loading-placeholder" />
+              </CardContent>
+              }
+            </div>
           </Card>
         ))
     );
@@ -124,6 +148,7 @@ class BasicNews extends Component {
 BasicNews.defaultProps = {
   newsCard: false,
   exitNews: false,
+  basicNewsList: false,
   topNews: [],
   authors: [],
   goToNews: () => {},
@@ -132,6 +157,7 @@ BasicNews.defaultProps = {
 BasicNews.propTypes = {
   newsCard: PropTypes.bool,
   exitNews: PropTypes.bool,
+  basicNewsList: PropTypes.bool,
   topNews: PropTypes.arrayOf(PropTypes.shape({
     _id: PropTypes.string.isRequired,
     authorId: PropTypes.string.isRequired,

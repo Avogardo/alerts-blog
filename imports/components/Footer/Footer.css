@@ -6,3 +6,17 @@ footer {
     font-weight: 300;
     margin-top: 105px;
 }
+
+.footer-content {
+    width: 1140px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media only screen and (max-width: 1200px) {
+    .footer-content {
+        width: unset;
+        margin-left: unset;
+        margin-right: unset;
+    }
+}

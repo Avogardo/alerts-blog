@@ -4,6 +4,7 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import {
   AppBar,
   Toolbar,
+  Button,
   Typography,
   IconButton,
   Input,
@@ -31,8 +32,6 @@ const style = {
   },
   secondaryAppBar: {
     backgroundColor: '#04091e',
-    margin: '0 15px',
-    width: 'auto',
   },
 };
 
@@ -55,17 +54,18 @@ const styles = {
     top: 0,
     visibility: 'visible',
   },
+  button: {
+    color: '#ffffff',
+    fontSize: 12,
+  },
 };
 
 class Navigation extends Component {
   constructor(props) {
     super(props);
     this.toggleSidebar = this.toggleSidebar.bind(this);
-    this.goToSignIn = this.goToSignIn.bind(this);
     this.goToNewsContainer = this.goToNewsContainer.bind(this);
-    this.goToCreateNews = this.goToCreateNews.bind(this);
     this.goToTagSearch = this.goToTagSearch.bind(this);
-    this.onLogOut = this.onLogOut.bind(this);
     this.onTagChange = this.onTagChange.bind(this);
     this.onTagKeyPress = this.onTagKeyPress.bind(this);
     this.toggleSearch = this.toggleSearch.bind(this);
@@ -77,10 +77,12 @@ class Navigation extends Component {
     };
   }
 
-  onLogOut() {
+  onLogOut = (isMobile = true) => () => {
     const { onLogOut, history } = this.props;
 
-    this.toggleSidebar();
+    if (isMobile) {
+      this.toggleSidebar();
+    }
     onLogOut(history);
   }
 
@@ -108,12 +110,14 @@ class Navigation extends Component {
     });
   }
 
-  goToSignIn() {
+  goToSignIn = (isMobile = true) => () => {
     const { goToSignIn, history } = this.props;
 
-    this.toggleSidebar();
+    if (isMobile) {
+      this.toggleSidebar();
+    }
     goToSignIn(history);
-  }
+  };
 
   goToNewsContainer() {
     const { goToNewsContainer, history } = this.props;
@@ -126,12 +130,14 @@ class Navigation extends Component {
     goToTagSearch(history, tag);
   }
 
-  goToCreateNews() {
+  goToCreateNews = (isMobile = true) => () => {
     const { goToCreateNews, history } = this.props;
 
-    this.toggleSidebar();
+    if (isMobile) {
+      this.toggleSidebar();
+    }
     goToCreateNews(history);
-  }
+  };
 
   toggleSearch() {
     this.setState({
@@ -141,8 +147,13 @@ class Navigation extends Component {
 
   render() {
     const { appBar, toolbar, secondaryAppBar } = style;
-    const { isAuthorized } = this.props;
-    const { inputSearch, inputSearchHidden, inputSearchShowed } = this.props.classes;
+    const { isAuthorized, isLoggedInUser } = this.props;
+    const {
+      inputSearch,
+      inputSearchHidden,
+      inputSearchShowed,
+      button,
+    } = this.props.classes;
     const { isSidebarOpen, isSearchHidden, tag } = this.state;
 
     return (
@@ -150,14 +161,14 @@ class Navigation extends Component {
         <Sidebar
           isSidebarOpen={isSidebarOpen}
           setSidebarState={open => this.setSidebarState(open)}
-          goToSignIn={this.goToSignIn}
-          goToCreateNews={this.goToCreateNews}
-          onLogOut={this.onLogOut}
+          goToSignIn={this.goToSignIn()}
+          goToCreateNews={this.goToCreateNews()}
+          onLogOut={this.onLogOut()}
           isAuthorized={isAuthorized}
         />
 
         <AppBar style={appBar} position="static">
-          <Toolbar style={toolbar}>
+          <Toolbar className="navigation-toolbar" style={toolbar}>
             <div>
               <IconButton color="inherit">
                 <FacebookIcon size={14} />
@@ -174,18 +185,23 @@ class Navigation extends Component {
           </Toolbar>
         </AppBar>
 
-        <div
-          className="logo-container"
-          onClick={this.goToNewsContainer}
-          role="presentation"
-        >
-          <img alt="logo" src="https://drive.google.com/uc?id=1U_HEoR8c2kubf6-JsbHEcwo564J5zjlE" />
-          <h1>Alarms blog</h1>
+        <div className="logo-bar">
+          <div
+            className="logo-container"
+            onClick={this.goToNewsContainer}
+            role="presentation"
+          >
+            <img
+              alt="logo"
+              src="https://drive.google.com/uc?id=1U_HEoR8c2kubf6-JsbHEcwo564J5zjlE"
+            />
+            <h1>Alarms blog</h1>
+          </div>
         </div>
 
-        <AppBar style={secondaryAppBar} position="static">
+        <AppBar id="navigation-app-bar" style={secondaryAppBar} position="static">
           <Toolbar style={toolbar}>
-            <div className="navigation-wrapper">
+            <div className="navigation-wrapper-mobile">
               <IconButton onClick={this.toggleSidebar} color="inherit" aria-label="Menu">
                 <MenuIcon />
               </IconButton>
@@ -193,6 +209,41 @@ class Navigation extends Component {
                 Menu
               </Typography>
             </div>
+
+            <div className="navigation-wrapper">
+              {isLoggedInUser ? [
+                <Button
+                  key="create-news-button"
+                  onClick={this.goToCreateNews(false)}
+                  className={button}
+                >
+                  Create news
+                </Button>,
+                <Button
+                  key="log-out-button"
+                  onClick={this.onLogOut(false)}
+                  className={button}
+                >
+                  Log out
+                </Button>,
+              ] : [
+                <Button
+                  key="log-in-button"
+                  className={button}
+                  onClick={this.goToSignIn(false)}
+                >
+                  Log in
+                </Button>,
+                <Button
+                  key="sign-in-button"
+                  className={button}
+                  onClick={this.goToSignIn(false)}
+                >
+                  Sign in
+                </Button>,
+              ]}
+            </div>
+
             <div>
               <Input
                 className={['input-search-for-media', inputSearch, isSearchHidden ? inputSearchHidden : inputSearchShowed].join(' ')}
@@ -225,10 +276,12 @@ Navigation.propTypes = {
   onLogOut: PropTypes.func.isRequired,
   history: ReactRouterPropTypes.history.isRequired,
   isAuthorized: PropTypes.bool.isRequired,
+  isLoggedInUser: PropTypes.bool.isRequired,
   classes: PropTypes.shape({
     inputSearch: PropTypes.string.isRequired,
     inputSearchHidden: PropTypes.string.isRequired,
     inputSearchShowed: PropTypes.string.isRequired,
+    button: PropTypes.string.isRequired,
   }).isRequired,
 };
 

@@ -11,6 +11,7 @@ import SignIn from '../SignIn';
 import CreateNews from '../CreateNews';
 import Footer from '../Footer';
 import News from '../News';
+import SectionHeader from '../NewsContainer/SectionHeader';
 import './MainLayout.css';
 
 class MainLayout extends Component {
@@ -85,7 +86,10 @@ class MainLayout extends Component {
               render={() => (
                 <Fragment>
                   <NewsContainer enterContainer />
-                  <NewsContainer headerTitle="Latest News" />
+                  <div className="body-news-section-wrapper">
+                    <NewsContainer headerTitle="Latest News" />
+                    <NewsContainer exitContainer />
+                  </div>
                 </Fragment>
               )}
             />
@@ -98,6 +102,7 @@ class MainLayout extends Component {
                   : <SignIn {...props} />
                 )}
             />
+
             <Route
               exact
               path="/create-news/:id?"
@@ -107,15 +112,23 @@ class MainLayout extends Component {
                   : <Redirect to="/" />
               )}
             />
+
             <Route
               exact
               path="/news/:id"
               render={routeProps => [
-                <News
-                  history={routeProps.history}
-                  match={routeProps.match}
-                  onRemoveNews={this.onRemoveNews}
-                />,
+                <div key="breaking-news" className="breaking-news-wrapper">
+                  <SectionHeader breakingNews headerTitle="Astronomy Binoculars A Great Alternative" />
+                </div>,
+                <div key="single-news-wrapper" className="single-news-wrapper">
+                  <News
+                    key="news-section"
+                    history={routeProps.history}
+                    match={routeProps.match}
+                    onRemoveNews={this.onRemoveNews}
+                  />
+                  <NewsContainer key="exit-news-section" exitContainer />
+                </div>,
               ]}
             />
 
@@ -124,8 +137,6 @@ class MainLayout extends Component {
               path="/tag/:tag"
               render={props => <NewsContainer {...props} />}
             />
-
-            {shouldHideBackground && <NewsContainer exitContainer />}
           </HistoryContext.Provider>
         </div>
 

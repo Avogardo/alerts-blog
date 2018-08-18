@@ -1,7 +1,16 @@
-.enter-news-image {
+.basic-news-wrapper {
+    display: flex;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.basic-news-wrapper:last-child {
+    margin-bottom: 0;
+}
+
+.basic-news-image {
     opacity: 0.8;
 	transition: transform 0.3s ease, opacity 0.1s ease;
-    cursor: pointer;
     -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
     height: 250px;
     background-size: cover;
@@ -9,16 +18,79 @@
     background-position: center center;
 }
 
-.enter-news-tile {
-    margin-bottom: 6px;
+.basic-news-wrapper .basic-news-image {
+    height: 190px;
+    width: 280px;
 }
 
-.enter-news-tile:hover .enter-news-image {
+.basic-news-image-no-animation {
+    -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
+    height: 310px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.single-news-wrapper .basic-news-image-loading {
+    height: 310px;
+}
+
+.basic-news-image-loading {
+    height: 250px;
+    background: linear-gradient(273deg, #d1d1d1, #444444);
+    background-size: 400% 400%;
+
+    -webkit-animation: AnimationName 2s ease infinite;
+    -moz-animation: AnimationName 2s ease infinite;
+    -o-animation: AnimationName 2s ease infinite;
+    animation: AnimationName 2s ease infinite;
+}
+
+.basic-news-wrapper .basic-news-image-loading {
+    height: 190px;
+    width: 280px;
+}
+
+.basic-text-loading-placeholder {
+    height: 15px;
+    width: 100%;
+    border-radius: 15px;
+    margin: 10px 0;
+    background-color: grey;
+    background: linear-gradient(273deg, #444444, #d1d1d1);
+    background-size: 400% 400%;
+
+    -webkit-animation: AnimationName 2s ease infinite;
+    -moz-animation: AnimationName 2s ease infinite;
+    -o-animation: AnimationName 2s ease infinite;
+    animation: AnimationName 2s ease infinite;
+}
+
+.basic-news-tile {
+    margin-bottom: 6px;
+    height: unset !important;
+}
+
+.basic-news-tile:hover .basic-news-image {
 	transform: scale(1.05, 1.05);
     opacity: 1;
 }
 
-.enter-news-tile > div {
+.basic-news-wrapper .basic-news-tile-wrapper {
+    flex: 1;
+    padding-left: 30px;
+}
+
+.basic-news-wrapper .basic-news-tile {
+    height: unset;
+}
+
+.basic-news-wrapper .basic-grid-list {
+    height: 190px;
+    overflow: hidden;
+}
+
+.basic-news-tile > div {
     background-color: #000000;
 }
 
@@ -26,6 +98,11 @@
     margin: 0 0 6px 0;
     font-size: 18px;
     font-weight: 600;
+    transition: color 0.3s ease 0s;
+}
+
+.news-card-title:hover {
+    color: #f6214b;
 }
 
 .news-page-title {
@@ -40,16 +117,89 @@
     font-weight: 600;
 }
 
+.image-gallery-mobile {
+    display: none;
+}
+
+.image-gallery-desktop {
+    display: block;
+}
+
 .image-gallery-content * {
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 .image-gallery-image {
-    height: 255px;
+    height: 310px;
 }
 
 .image-gallery-slide img {
     width: 100%;
-    height: 250px;
+    height: 310px;
     object-fit: cover;
+}
+
+@media only screen and (max-width: 1200px) {
+    .basic-news-wrapper {
+        display: block;
+        margin-bottom: unset;
+        align-items: center;
+    }
+
+    .basic-news-wrapper .basic-news-image {
+        width: unset;
+        height: 250px;
+    }
+
+    .basic-news-wrapper .basic-news-image-loading {
+        width: unset;
+        height: 250px;
+    }
+
+    .basic-news-image-no-animation, .single-news-wrapper .basic-news-image-loading {
+        height: 250px;
+    }
+
+    .basic-news-wrapper .basic-news-tile-wrapper {
+        flex: 1;
+        padding-left: 0;
+    }
+
+    .basic-news-wrapper .basic-news-tile {
+        height: 254px;
+    }
+
+    .basic-news-wrapper .basic-grid-list {
+        height: unset;
+        overflow: unset;
+    }
+
+    .image-gallery-desktop {
+        display: none;
+    }
+
+    .image-gallery-mobile {
+        display: block;
+    }
+
+    .image-gallery-content * {
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    .image-gallery-image {
+        height: 255px;
+    }
+
+    .image-gallery-slide img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+    }
+}
+
+@media all and (display-mode: fullscreen) {
+    .image-gallery-image, .image-gallery-slide img {
+        height: unset;
+    }
 }

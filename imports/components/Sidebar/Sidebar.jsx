@@ -60,7 +60,7 @@ const Sidebar = ({
       :
         <Fragment>
           <List>
-            <ListItem button>
+            <ListItem button onClick={goToSignIn}>
               <ListItemIcon>
                 <AccountBox />
               </ListItemIcon>
