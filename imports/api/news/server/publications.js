@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 import News from './../News.js';
+import { actions } from '../../news';
 
 Meteor.publish('news', function publishNewsList() {
   return News.find({});
@@ -66,7 +67,7 @@ Meteor.publish(
         images: withPhotos,
       },
     };
-
+    actions.updateNewsViews(newsId);
     return News.find(query, options);
   },
 );
