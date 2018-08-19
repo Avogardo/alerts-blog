@@ -23,10 +23,11 @@ const getTrackerLoader = composer =>
     };
   };
 
+let wasViewUpdated = '';
 const composer = (props, onData) => {
   const newsId = props.match.params.id;
   const { onRemoveNews } = props;
-  const { goToCreateNews, goToTagSearch } = newsActions;
+  const { goToCreateNews, goToTagSearch, updateNewsViews } = newsActions;
   const newsHandler = Meteor.subscribe('singleNews', newsId);
   const newsWithPhotosHandler = Meteor.subscribe('singleNews', newsId, true);
   const userListHandler = Meteor.subscribe('userList');
@@ -39,6 +40,11 @@ const composer = (props, onData) => {
   };
 
   if (newsHandler.ready()) {
+    if (wasViewUpdated !== newsId) {
+      updateNewsViews(newsId);
+      wasViewUpdated = newsId;
+    }
+
     let news = NewsCollection.find({ _id: newsId }).fetch();
 
     if (userListHandler.ready()) {
