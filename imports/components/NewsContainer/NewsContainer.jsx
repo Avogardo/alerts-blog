@@ -46,7 +46,8 @@ class NewsContainer extends Component {
         </section>
       );
     } else if (exitContainer) {
-      const oneNews = topNews.slice(0, 1);
+      const newsList = topNews.slice(1, topNews.length);
+      const singleNews = topNews[0] ? [topNews[0]] : [];
 
       return (
         <section>
@@ -55,11 +56,11 @@ class NewsContainer extends Component {
             <BasicNews
               exitNews
               goToNews={goToNews}
-              topNews={oneNews}
+              topNews={singleNews}
               authors={authors}
               unit8ArrayToUrl={unit8ArrayToUrl}
             />
-            <ExitNews goToNews={goToNews} topNews={topNews} unit8ArrayToUrl={unit8ArrayToUrl} />
+            <ExitNews goToNews={goToNews} topNews={newsList} unit8ArrayToUrl={unit8ArrayToUrl} />
             <SectionHeader secondary headerTitle="Social Networks" />
             <SectionHeader facebook />
             <SectionHeader youtube />
