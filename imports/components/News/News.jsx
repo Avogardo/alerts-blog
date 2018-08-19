@@ -91,6 +91,7 @@ class News extends Component {
                 dangerouslySetInnerHTML={{ __html: (news[0].content || '') }}
               />
 
+              Views: {news[0].views}
               {!!news[0].tags.length &&
                 <div className="news-tags-wrapper">{this.renderTags()}</div>
               }
@@ -138,6 +139,7 @@ News.propTypes = {
   news: PropTypes.arrayOf(PropTypes.shape({
     _id: PropTypes.string.isRequired,
     authorId: PropTypes.string.isRequired,
+    views: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired,
     createdAt: PropTypes.instanceOf(Date).isRequired,
