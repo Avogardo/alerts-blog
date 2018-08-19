@@ -13,6 +13,8 @@ import {
   Typography,
   Snackbar,
   Avatar,
+  Checkbox,
+  FormControlLabel,
 } from '@material-ui/core';
 import './CreateNews.css';
 
@@ -54,6 +56,7 @@ class CreateNews extends React.Component {
     this.onTagChange = this.onTagChange.bind(this);
     this.onCreate = this.onCreate.bind(this);
     this.clearState = this.clearState.bind(this);
+    this.switchBreakingNews = this.switchBreakingNews.bind(this);
 
     this.state = {
       title: '',
@@ -67,6 +70,7 @@ class CreateNews extends React.Component {
       titleError: '',
       contentError: '',
       wasDataLoaded: false,
+      isBreakingNews: false,
     };
   }
 
@@ -160,6 +164,7 @@ class CreateNews extends React.Component {
       content,
       unit8ArrayFiles,
       tags,
+      isBreakingNews,
     } = this.state;
 
     if (this.validateForm(title, content)) {
@@ -231,6 +236,12 @@ class CreateNews extends React.Component {
     }
 
     return isError;
+  }
+
+  switchBreakingNews({ target }) {
+    this.setState({
+      isBreakingNews: target.checked,
+    });
   }
 
   snackBarClose = (event, reason) => {
@@ -326,6 +337,7 @@ class CreateNews extends React.Component {
       titleError,
       contentError,
       wasDataLoaded,
+      isBreakingNews,
     } = this.state;
 
     return (
@@ -402,14 +414,26 @@ class CreateNews extends React.Component {
           >
             Clear
           </Button>
-          <Button
-            className={actionButtons}
-            variant="raised"
-            color="primary"
-            onClick={this.onCreate}
-          >
-            {isNews ? 'Save' : 'Create'}
-          </Button>
+
+          <div>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={isBreakingNews}
+                  onChange={this.switchBreakingNews}
+                />
+              }
+              label="Breaking news"
+            />
+            <Button
+              className={actionButtons}
+              variant="raised"
+              color="primary"
+              onClick={this.onCreate}
+            >
+              {isNews ? 'Save' : 'Create'}
+            </Button>
+          </div>
         </CardActions>
 
         <Snackbar
