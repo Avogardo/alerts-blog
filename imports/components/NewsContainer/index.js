@@ -26,7 +26,7 @@ const composer = (props, onData) => {
   if (props.enterContainer) {
     topNewsHandler = Meteor.subscribe('recentNewsWithLimit');
   } else if (props.exitContainer) {
-    topNewsHandler = Meteor.subscribe('recentNewsWithLimit', 4);
+    topNewsHandler = Meteor.subscribe('mostPopularNewsListWithLimit');
   } else if (tagName) {
     topNewsHandler = Meteor.subscribe('tagNewsList', tagName);
   }
@@ -57,8 +57,8 @@ const composer = (props, onData) => {
       };
     } else if (props.exitContainer) {
       options = {
-        limit: 4,
-        sort: { createdAt: -1 },
+        limit: 5,
+        sort: { views: -1 },
         fields: {
           images: 0,
         },
