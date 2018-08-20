@@ -26,6 +26,9 @@ const NewsTagsSchema = new SimpleSchema({
   'tags.$': {
     type: String,
   },
+  isBreakingNews: {
+    type: Boolean,
+  },
 });
 
 const NewsSchema = new SimpleSchema({
