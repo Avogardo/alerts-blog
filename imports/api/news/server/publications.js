@@ -80,3 +80,12 @@ Meteor.publish(
     return News.find(query, options);
   },
 );
+
+Meteor.publish('breakingNews', function publishBreakingNews() {
+  const options = {
+    fields: {
+      title: 1,
+    },
+  };
+  return News.find({}, options);
+});
