@@ -20,11 +20,12 @@ const throwErrorIfNotAdmin = () => {
 
 /**
  * Create new news
- * @param   { String }  title    news title
- * @param   { String }  content  news content
- * @param   { Array }   images   images (blobs)
- * @param   { Array }   tags     tags (strings)
- * @return  { String }           news
+ * @param   { String }   title           news title
+ * @param   { String }   content         news content
+ * @param   { Array }    images          images (blobs)
+ * @param   { Array }    tags            tags (strings)
+ * @param   { Boolean }  isBreakingNews  is breaking news
+ * @return  { String }                   news
  */
 const createNews = new ValidatedMethod({
   name: 'news.add',
@@ -34,6 +35,7 @@ const createNews = new ValidatedMethod({
     content,
     images,
     tags,
+    isBreakingNews,
   }) {
     throwErrorIfNotAdmin();
     if (images.data.length > 15) {
@@ -65,6 +67,7 @@ const createNews = new ValidatedMethod({
       images,
       enterImage: { data: enterImage },
       tags,
+      isBreakingNews,
     });
   },
 });
@@ -86,12 +89,13 @@ const removeNews = new ValidatedMethod({
 
 /**
  * Update news
- * @param   { String }  newsId   news id
- * @param   { String }  title    news title
- * @param   { String }  content  news content
- * @param   { Array }   images   images (blobs)
- * @param   { Array }   tags     tags (strings)
- * @return  { String }           news
+ * @param   { String }   newsId          news id
+ * @param   { String }   title           news title
+ * @param   { String }   content         news content
+ * @param   { Array }    images          images (blobs)
+ * @param   { Array }    tags            tags (strings)
+ * @param   { Boolean }  isBreakingNews  is breaking news
+ * @return  { String }                   news
  */
 const updateNews = new ValidatedMethod({
   name: 'news.update',
@@ -102,6 +106,7 @@ const updateNews = new ValidatedMethod({
     content,
     images,
     tags,
+    isBreakingNews,
   }) {
     throwErrorIfNotAdmin();
 
@@ -113,6 +118,7 @@ const updateNews = new ValidatedMethod({
         images,
         enterImage: { data: enterImage },
         tags,
+        isBreakingNews,
       },
     });
   },

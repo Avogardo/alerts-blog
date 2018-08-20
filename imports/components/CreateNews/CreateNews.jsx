@@ -178,6 +178,7 @@ class CreateNews extends React.Component {
         content,
         { data: unit8ArrayFiles },
         tags,
+        isBreakingNews,
       ).then(() => {
         this.setState({
           snackBarMessage: 'News has been edited',
@@ -196,6 +197,7 @@ class CreateNews extends React.Component {
         content,
         { data: unit8ArrayFiles },
         tags,
+        isBreakingNews,
       ).then(() => {
         this.clearState();
         this.setState({
