@@ -41,7 +41,7 @@ class NewsContainer extends Component {
               authors={authors}
               unit8ArrayToUrl={unit8ArrayToUrl}
             />
-            <SectionHeader breakingNews headerTitle="Astronomy Binoculars A Great Alternative" />
+            <SectionHeader breakingNews />
           </Card>
         </section>
       );

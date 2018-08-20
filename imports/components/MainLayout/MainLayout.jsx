@@ -118,7 +118,7 @@ class MainLayout extends Component {
               path="/news/:id"
               render={routeProps => [
                 <div key="breaking-news" className="breaking-news-wrapper">
-                  <SectionHeader breakingNews headerTitle="Astronomy Binoculars A Great Alternative" />
+                  <SectionHeader breakingNews />
                 </div>,
                 <div key="single-news-wrapper" className="single-news-wrapper">
                   <News

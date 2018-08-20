@@ -84,8 +84,8 @@ Meteor.publish(
 Meteor.publish('breakingNews', function publishBreakingNews() {
   const options = {
     fields: {
-      title: 1,
+      images: 0,
     },
   };
-  return News.find({}, options);
+  return News.find({ isBreakingNews: true }, options);
 });
