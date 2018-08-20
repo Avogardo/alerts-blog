@@ -8,6 +8,7 @@ import {
   UpdateNewsSchema,
 } from './schema.js';
 import News from './News.js';
+import { removeOldBreakingNewsIfExists } from './helper';
 
 const throwErrorIfNotAdmin = () => {
   if (!isAdmin()) {
@@ -59,6 +60,7 @@ const createNews = new ValidatedMethod({
     const createdAt = new Date();
     const enterImage = images.data[0];
 
+    removeOldBreakingNewsIfExists(isBreakingNews);
     return News.insert({
       authorId,
       createdAt,
@@ -111,6 +113,7 @@ const updateNews = new ValidatedMethod({
     throwErrorIfNotAdmin();
 
     const enterImage = images.data[0];
+    removeOldBreakingNewsIfExists(isBreakingNews);
     return News.update(newsId, {
       $set: {
         title,
