@@ -45,12 +45,19 @@ const goToTagSearch = (history, tag = '') => {
   }
 };
 
-const createNews = (title, content, images, tags) => new Promise((resolve, reject) => {
+const createNews = (
+  title,
+  content,
+  images,
+  tags,
+  isBreakingNews,
+) => new Promise((resolve, reject) => {
   createNewsMethod.call({
     title,
     content,
     images,
     tags,
+    isBreakingNews,
   }, (err, res) => {
     if (err) {
       err = err.reason || err;
@@ -70,13 +77,21 @@ const removeNews = newsId => new Promise((resolve, reject) => {
   });
 });
 
-const updateNews = (newsId, title, content, images, tags) => new Promise((resolve, reject) => {
+const updateNews = (
+  newsId,
+  title,
+  content,
+  images,
+  tags,
+  isBreakingNews,
+) => new Promise((resolve, reject) => {
   updateNewsMethod.call({
     newsId,
     title,
     content,
     images,
     tags,
+    isBreakingNews,
   }, (err, res) => {
     if (err) {
       err = err.reason || err;

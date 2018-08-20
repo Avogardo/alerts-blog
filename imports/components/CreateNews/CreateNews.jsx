@@ -82,6 +82,7 @@ class CreateNews extends React.Component {
         content,
         tags,
         images,
+        isBreakingNews,
       } = props.news;
       const value = RichTextEditor.createValueFromString(content, 'html');
 
@@ -93,6 +94,7 @@ class CreateNews extends React.Component {
         tags,
         unit8ArrayFiles: images.data,
         wasDataLoaded: true,
+        isBreakingNews,
       };
     }
 
@@ -482,6 +484,7 @@ CreateNews.propTypes = {
     content: PropTypes.string,
     createdAt: PropTypes.instanceOf(Date),
     tags: PropTypes.arrayOf(PropTypes.string),
+    isBreakingNews: PropTypes.bool,
     enterImage: PropTypes.shape({
       data: PropTypes.shape({
         name: PropTypes.string,

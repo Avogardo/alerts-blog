@@ -28,6 +28,7 @@ const NewsTagsSchema = new SimpleSchema({
   },
   isBreakingNews: {
     type: Boolean,
+    defaultValue: false,
   },
 });
 
