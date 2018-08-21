@@ -266,6 +266,7 @@ class CreateNews extends React.Component {
       tagInput: '',
       unit8ArrayFiles: [],
       tags: [],
+      isBreakingNews: false,
     });
   }
 
