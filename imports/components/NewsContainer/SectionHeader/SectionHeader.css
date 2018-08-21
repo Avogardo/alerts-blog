@@ -38,4 +38,6 @@
 
 .breaking-news-strong {
     color: #f6214b;
+    margin-right: 2px;
+    white-space: nowrap;
 }

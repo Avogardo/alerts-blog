@@ -45,6 +45,8 @@ const styles = {
     marginTop: 4,
     fontSize: 14,
     cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
   },
 };
 
@@ -54,6 +56,7 @@ const SectionHeader = ({
   youtube,
   facebook,
   breakingNews,
+  breakingNewsData,
   classes: {
     headerCard,
     secondaryHeaderCard,
@@ -91,7 +94,11 @@ const SectionHeader = ({
     return (
       <Card className={breakingNewsCard}>
         <strong className="breaking-news-strong">Breaking News: </strong>
-        {headerTitle}
+        {breakingNewsData.title ?
+          breakingNewsData.title
+          :
+          <div className="basic-text-loading-placeholder" />
+        }
       </Card>
     );
   }
@@ -110,6 +117,7 @@ SectionHeader.defaultProps = {
   facebook: false,
   breakingNews: false,
   headerTitle: '',
+  breakingNewsData: {},
 };
 
 SectionHeader.propTypes = {
@@ -118,6 +126,10 @@ SectionHeader.propTypes = {
   youtube: PropTypes.bool,
   facebook: PropTypes.bool,
   breakingNews: PropTypes.bool,
+  breakingNewsData: PropTypes.shape({
+    _id: PropTypes.string,
+    title: PropTypes.string,
+  }),
   classes: PropTypes.shape({
     headerCard: PropTypes.string.isRequired,
     secondaryHeaderCard: PropTypes.string.isRequired,

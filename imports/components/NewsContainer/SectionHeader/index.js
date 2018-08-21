@@ -29,11 +29,11 @@ const composer = (props, onData) => {
           title: 1,
         },
       };
-      const headerTitle = News.find({ isBreakingNews: true }, options).fetch()[0].title;
+      const breakingNewsData = News.find({ isBreakingNews: true }, options).fetch()[0];
 
       onData(null, {
         ...props,
-        headerTitle,
+        breakingNewsData,
       });
     } else {
       onData(null, {
