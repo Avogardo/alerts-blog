@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import TestRenderer from 'react-test-renderer';
 import { CardHeader, IconButton, Card } from '@material-ui/core';
 import { YoutubeIcon, FacebookIcon } from 'mdi-react';
-import SectionHeader from '../../imports/components/NewsContainer/SectionHeader';
+import SectionHeader from '../../imports/components/NewsContainer/SectionHeader/SectionHeader.jsx';
 
 describe('SectionHeader', () => {
   let props;
