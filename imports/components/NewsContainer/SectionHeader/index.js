@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Tracker } from 'meteor/tracker';
 import { compose } from 'react-komposer';
-import { News } from '/imports/api/news';
+import { News, actions as newsActions } from '/imports/api/news';
 import SectionHeader from './SectionHeader.jsx';
 
 const getTrackerLoader = composer =>
@@ -34,15 +34,18 @@ const composer = (props, onData) => {
       onData(null, {
         ...props,
         breakingNewsData,
+        goToNews: newsActions.goToNews,
       });
     } else {
       onData(null, {
         ...props,
+        goToNews: newsActions.goToNews,
       });
     }
   } else {
     onData(null, {
       ...props,
+      goToNews: newsActions.goToNews,
     });
   }
 };

@@ -7,6 +7,7 @@ import {
   Card,
 } from '@material-ui/core';
 import { YoutubeIcon, FacebookIcon } from 'mdi-react';
+import { HistoryContext } from '../../Context';
 import './SectionHeader.css';
 
 const styles = {
@@ -51,6 +52,7 @@ const styles = {
 };
 
 const SectionHeader = ({
+  goToNews,
   headerTitle,
   secondary,
   youtube,
@@ -91,15 +93,23 @@ const SectionHeader = ({
       />
     );
   } else if (breakingNews) {
+    const goToSingleNews = breakingNewsData._id ? goToNews : () => {};
     return (
-      <Card className={breakingNewsCard}>
-        <strong className="breaking-news-strong">Breaking News: </strong>
-        {breakingNewsData.title ?
-          breakingNewsData.title
-          :
-          <div className="basic-text-loading-placeholder" />
-        }
-      </Card>
+      <HistoryContext.Consumer>
+        {history => (
+          <Card
+            onClick={() => goToSingleNews(history, breakingNewsData._id)}
+            className={breakingNewsCard}
+          >
+            <strong className="breaking-news-strong">Breaking News: </strong>
+            {breakingNewsData.title ?
+              breakingNewsData.title
+              :
+              <div className="basic-text-loading-placeholder breaking-placeholder" />
+            }
+          </Card>
+        )}
+      </HistoryContext.Consumer>
     );
   }
 
@@ -138,6 +148,7 @@ SectionHeader.propTypes = {
     facebookHeader: PropTypes.string.isRequired,
     breakingNewsCard: PropTypes.string.isRequired,
   }).isRequired,
+  goToNews: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(SectionHeader);

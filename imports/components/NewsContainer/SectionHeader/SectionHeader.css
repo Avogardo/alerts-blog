@@ -41,3 +41,7 @@
     margin-right: 2px;
     white-space: nowrap;
 }
+
+.breaking-placeholder {
+    margin: 0;
+}
