@@ -15,7 +15,6 @@ Clone and install dependencies:
 
 ```
 git clone https://github.com/Avogardo/alerts-blog.git
-cd innovativeproject-retrotool
 npm install
 ```
 
