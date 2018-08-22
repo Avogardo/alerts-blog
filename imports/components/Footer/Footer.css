@@ -13,6 +13,21 @@ footer {
     margin-right: auto;
 }
 
+.link-to-github-project {
+    color: #ffffff;
+    transition: color 0.1s ease 0s;
+    margin-left: 4px;
+}
+
+.link-to-github-project:hover {
+    color: #ff4c6f;
+}
+
+.author-name {
+    font-weight: 300;
+    white-space: nowrap;
+}
+
 @media only screen and (max-width: 1200px) {
     .footer-content {
         width: unset;
