@@ -46,8 +46,6 @@ const styles = {
     marginTop: 4,
     fontSize: 14,
     cursor: 'pointer',
-    display: 'flex',
-    alignItems: 'center',
   },
 };
 
