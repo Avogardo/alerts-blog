@@ -9,6 +9,7 @@ News.attachSchema(NewsSchema);
 if (Meteor.isServer) {
   News._ensureIndex({ isBreakingNews: -1 });
   News._ensureIndex({ tags: -1 });
+  News._ensureIndex({ createdAt: -1 });
 }
 
 export default News;
