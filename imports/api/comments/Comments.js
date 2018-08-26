@@ -8,6 +8,7 @@ Comments.attachSchema(CommentsSchema);
 
 if (Meteor.isServer) {
   Comments._ensureIndex({ newsId: -1 });
+  Comments._ensureIndex({ parentId: -1 });
 }
 
 export default Comments;
