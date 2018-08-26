@@ -161,6 +161,7 @@ class Navigation extends Component {
       action: this.goToCreateNews(false),
       loggedIn: true,
       text: 'Create news',
+      needAuthorisation: true,
     }, {
       key: 'log-out-button',
       action: this.onLogOut(false),
@@ -235,7 +236,12 @@ class Navigation extends Component {
             <div className="navigation-wrapper">
               {navigationElements
                 .filter(element => element.loggedIn === isLoggedInUser)
-                .map(({ key, action, text }) => (
+                .map(({
+                  key,
+                  action,
+                  text,
+                  needAuthorisation,
+                }) => (needAuthorisation ? isAuthorized && (
                   <Button
                     key={key}
                     onClick={action}
@@ -243,7 +249,15 @@ class Navigation extends Component {
                   >
                     {text}
                   </Button>
-              ))}
+              ) : (
+                <Button
+                  key={key}
+                  onClick={action}
+                  className={button}
+                >
+                  {text}
+                </Button>
+              )))}
             </div>
 
             <div>
