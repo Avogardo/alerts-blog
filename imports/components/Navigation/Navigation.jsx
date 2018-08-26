@@ -84,7 +84,7 @@ class Navigation extends Component {
       this.toggleSidebar();
     }
     onLogOut(history);
-  }
+  };
 
   onTagChange({ target: { value } }) {
     this.setState({
@@ -156,6 +156,28 @@ class Navigation extends Component {
     } = this.props.classes;
     const { isSidebarOpen, isSearchHidden, tag } = this.state;
 
+    const navigationElements = [{
+      key: 'create-news-button',
+      action: this.goToCreateNews(false),
+      loggedIn: true,
+      text: 'Create news',
+    }, {
+      key: 'log-out-button',
+      action: this.onLogOut(false),
+      loggedIn: true,
+      text: 'Log out',
+    }, {
+      key: 'log-in-button',
+      action: this.goToSignIn(false),
+      loggedIn: false,
+      text: 'Log in',
+    }, {
+      key: 'sign-in-button',
+      action: this.goToSignIn(false),
+      loggedIn: false,
+      text: 'Sign in',
+    }];
+
     return (
       <nav>
         <Sidebar
@@ -211,37 +233,17 @@ class Navigation extends Component {
             </div>
 
             <div className="navigation-wrapper">
-              {isLoggedInUser ? [
-                <Button
-                  key="create-news-button"
-                  onClick={this.goToCreateNews(false)}
-                  className={button}
-                >
-                  Create news
-                </Button>,
-                <Button
-                  key="log-out-button"
-                  onClick={this.onLogOut(false)}
-                  className={button}
-                >
-                  Log out
-                </Button>,
-              ] : [
-                <Button
-                  key="log-in-button"
-                  className={button}
-                  onClick={this.goToSignIn(false)}
-                >
-                  Log in
-                </Button>,
-                <Button
-                  key="sign-in-button"
-                  className={button}
-                  onClick={this.goToSignIn(false)}
-                >
-                  Sign in
-                </Button>,
-              ]}
+              {navigationElements
+                .filter(element => element.loggedIn === isLoggedInUser)
+                .map(({ key, action, text }) => (
+                  <Button
+                    key={key}
+                    onClick={action}
+                    className={button}
+                  >
+                    {text}
+                  </Button>
+              ))}
             </div>
 
             <div>
