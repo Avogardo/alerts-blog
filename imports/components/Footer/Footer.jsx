@@ -19,11 +19,16 @@ const LinkToProject = styled.a`
     color: #ff4c6f;
   }
 `;
+const AuthorName = styled.strong`
+  font-weight: 300;
+  white-space: nowrap;
+`;
 
 const Footer = () => (
   <FooterElement>
     <div className="footer-content">
-      Copyright ©2018 All rights reserved | This page is made by <strong className="author-name">Jakub Wolny</strong> |
+      Copyright ©2018 All rights reserved | This page is made by
+      <AuthorName> Jakub Wolny</AuthorName> |
       <LinkToProject
         className="link-to-github-project"
         target="_blank"
