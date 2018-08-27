@@ -14,3 +14,5 @@ export const formatDate = (date) => {
 };
 
 export const formatCommentAmount = amount => (amount < 10 ? `0${amount}` : amount);
+
+export const sizes = { desktop: 1200 };
