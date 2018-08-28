@@ -9,21 +9,27 @@ import {
   Input,
   Snackbar,
 } from '@material-ui/core';
+import styled, { css } from 'styled-components';
 import './AddComment.css';
 
+const AddCommentElement = styled(Card)`
+  && {
+    background-color: #ecf0f1;
+    box-shadow: unset;
+  
+    ${props => !!props.commentcard && css`
+      padding: 50px 20px;
+      margin-top: 80px;
+    `}
+  
+    ${props => !!props.commentchildrencard && css`
+      padding: 25px 20px;
+      width: 100%;
+    `}
+  }
+`;
+
 const styles = {
-  addCommentCard: {
-    backgroundColor: '#ecf0f1',
-    boxShadow: 'unset',
-    padding: '50px 20px',
-    marginTop: 80,
-  },
-  addCommentChildrenCard: {
-    backgroundColor: '#ecf0f1',
-    boxShadow: 'unset',
-    padding: '25px 20px',
-    width: '100%',
-  },
   addCommentHeader: {
     padding: 0,
     marginBottom: 50,
@@ -183,13 +189,11 @@ class AddComment extends Component {
   render() {
     const { isLoggedIn, isChildComment } = this.props;
     const {
-      addCommentCard,
       addCommentHeader,
       actionCard,
       input,
       inputMultiline,
       button,
-      addCommentChildrenCard,
       addCommentChildrenHeader,
     } = this.props.classes;
     const {
@@ -202,7 +206,10 @@ class AddComment extends Component {
     } = this.state;
 
     return (
-      <Card className={isChildComment ? addCommentChildrenCard : addCommentCard}>
+      <AddCommentElement
+        commentcard={isChildComment ? 0 : 1}
+        commentchildrencard={isChildComment ? 1 : 0}
+      >
         <CardHeader
           className={isChildComment ? addCommentChildrenHeader : addCommentHeader}
           title={<h4 className="add-comment-header">Post Comment</h4>}
@@ -261,7 +268,7 @@ class AddComment extends Component {
           }}
           message={<span id="message-id">{snackBarMessage}</span>}
         />
-      </Card>
+      </AddCommentElement>
     );
   }
 }
@@ -279,13 +286,11 @@ AddComment.propTypes = {
   onExpand: PropTypes.func,
   isChildComment: PropTypes.bool,
   classes: PropTypes.shape({
-    addCommentCard: PropTypes.string.isRequired,
     addCommentHeader: PropTypes.string.isRequired,
     actionCard: PropTypes.string.isRequired,
     input: PropTypes.string.isRequired,
     inputMultiline: PropTypes.string.isRequired,
     button: PropTypes.string.isRequired,
-    addCommentChildrenCard: PropTypes.string.isRequired,
     addCommentChildrenHeader: PropTypes.string.isRequired,
   }).isRequired,
   createComment: PropTypes.func.isRequired,
