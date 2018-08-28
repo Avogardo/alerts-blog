@@ -28,16 +28,21 @@ const AddCommentElement = styled(Card)`
     `}
   }
 `;
+const AddCommentHeader = styled(CardHeader)`
+  && {
+    padding: 0;
+  
+    ${props => !!props.commentheader && css`
+      margin-bottom: 50px;
+    `}
+  
+    ${props => !!props.commentchildrenheader && css`
+      margin-bottom: 20px;
+    `}
+  }
+`;
 
 const styles = {
-  addCommentHeader: {
-    padding: 0,
-    marginBottom: 50,
-  },
-  addCommentChildrenHeader: {
-    padding: 0,
-    marginBottom: 20,
-  },
   actionCard: {
     flexDirection: 'column',
     padding: 0,
@@ -189,12 +194,10 @@ class AddComment extends Component {
   render() {
     const { isLoggedIn, isChildComment } = this.props;
     const {
-      addCommentHeader,
       actionCard,
       input,
       inputMultiline,
       button,
-      addCommentChildrenHeader,
     } = this.props.classes;
     const {
       author,
@@ -210,8 +213,9 @@ class AddComment extends Component {
         commentcard={isChildComment ? 0 : 1}
         commentchildrencard={isChildComment ? 1 : 0}
       >
-        <CardHeader
-          className={isChildComment ? addCommentChildrenHeader : addCommentHeader}
+        <AddCommentHeader
+          commentheader={isChildComment ? 0 : 1}
+          commentchildrenheader={isChildComment ? 1 : 0}
           title={<h4 className="add-comment-header">Post Comment</h4>}
         />
 
@@ -286,12 +290,10 @@ AddComment.propTypes = {
   onExpand: PropTypes.func,
   isChildComment: PropTypes.bool,
   classes: PropTypes.shape({
-    addCommentHeader: PropTypes.string.isRequired,
     actionCard: PropTypes.string.isRequired,
     input: PropTypes.string.isRequired,
     inputMultiline: PropTypes.string.isRequired,
     button: PropTypes.string.isRequired,
-    addCommentChildrenHeader: PropTypes.string.isRequired,
   }).isRequired,
   createComment: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired,
