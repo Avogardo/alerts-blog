@@ -38,34 +38,24 @@ const ActionsCard = styled(CardActions)`
     padding: 0;
   }
 `;
+const AddInput = styled(Input)`
+  && {
+    background-color: #ffffff;
+    font-size: 13px;
+    color: #777777;
+    box-sizing: border-box;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 16px;
+    padding: ${props => props.multiline ? '12px' : '6px 12px'};
+    
+    &:focus: {
+      border: 1px solid #ced4da;
+    }
+  }
+`;
 
 const styles = {
-  input: {
-    backgroundColor: '#ffffff',
-    padding: '6px 12px',
-    fontSize: 13,
-    color: '#777777',
-    boxSizing: 'border-box',
-    marginBottom: '16px',
-    marginLeft: 0,
-    marginRight: 0,
-    '&:focus': {
-      border: '1px solid #ced4da',
-    },
-  },
-  inputMultiline: {
-    backgroundColor: '#ffffff',
-    padding: 12,
-    fontSize: 13,
-    color: '#777777',
-    boxSizing: 'border-box',
-    marginBottom: '16px',
-    marginLeft: 0,
-    marginRight: 0,
-    '&:focus': {
-      border: '1px solid #ced4da',
-    },
-  },
   button: {
     backgroundColor: '#f6214b',
   },
@@ -186,7 +176,7 @@ class AddComment extends Component {
 
   render() {
     const { isLoggedIn, isChildComment } = this.props;
-    const { input, inputMultiline, button } = this.props.classes;
+    const { button } = this.props.classes;
     const {
       author,
       content,
@@ -207,8 +197,7 @@ class AddComment extends Component {
 
         <ActionsCard>
           {!isLoggedIn &&
-            <Input
-              className={input}
+            <AddInput
               placeholder="Enter Name"
               fullWidth
               inputProps={{
@@ -221,8 +210,8 @@ class AddComment extends Component {
             />
           }
 
-          <Input
-            className={[inputMultiline, 'input-multiline'].join(' ')}
+          <AddInput
+            className={'input-multiline'}
             placeholder="Message"
             fullWidth
             multiline
@@ -276,8 +265,6 @@ AddComment.propTypes = {
   onExpand: PropTypes.func,
   isChildComment: PropTypes.bool,
   classes: PropTypes.shape({
-    input: PropTypes.string.isRequired,
-    inputMultiline: PropTypes.string.isRequired,
     button: PropTypes.string.isRequired,
   }).isRequired,
   createComment: PropTypes.func.isRequired,
