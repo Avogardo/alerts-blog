@@ -41,12 +41,14 @@ const AddCommentHeader = styled(CardHeader)`
     `}
   }
 `;
+const ActionsCard = styled(CardActions)`
+  && {
+    flex-direction: column;
+    padding: 0;
+  }
+`;
 
 const styles = {
-  actionCard: {
-    flexDirection: 'column',
-    padding: 0,
-  },
   input: {
     backgroundColor: '#ffffff',
     padding: '6px 12px',
@@ -193,12 +195,7 @@ class AddComment extends Component {
 
   render() {
     const { isLoggedIn, isChildComment } = this.props;
-    const {
-      actionCard,
-      input,
-      inputMultiline,
-      button,
-    } = this.props.classes;
+    const { input, inputMultiline, button } = this.props.classes;
     const {
       author,
       content,
@@ -219,7 +216,7 @@ class AddComment extends Component {
           title={<h4 className="add-comment-header">Post Comment</h4>}
         />
 
-        <CardActions className={actionCard}>
+        <ActionsCard>
           {!isLoggedIn &&
             <Input
               className={input}
@@ -257,7 +254,7 @@ class AddComment extends Component {
           >
             Post Comment
           </Button>
-        </CardActions>
+        </ActionsCard>
 
         <Snackbar
           anchorOrigin={{
@@ -290,7 +287,6 @@ AddComment.propTypes = {
   onExpand: PropTypes.func,
   isChildComment: PropTypes.bool,
   classes: PropTypes.shape({
-    actionCard: PropTypes.string.isRequired,
     input: PropTypes.string.isRequired,
     inputMultiline: PropTypes.string.isRequired,
     button: PropTypes.string.isRequired,
