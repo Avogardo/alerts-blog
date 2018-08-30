@@ -16,13 +16,11 @@ const AddCommentElement = styled(Card)`
   && {
     background-color: #ecf0f1;
     box-shadow: unset;
-  
-    ${props => !!props.commentcard && css`
+
+    ${props => !!props.ischildcomment ? css`
       padding: 50px 20px;
       margin-top: 80px;
-    `}
-  
-    ${props => !!props.commentchildrencard && css`
+    ` : css`
       padding: 25px 20px;
       width: 100%;
     `}
@@ -31,12 +29,10 @@ const AddCommentElement = styled(Card)`
 const AddCommentHeader = styled(CardHeader)`
   && {
     padding: 0;
-  
-    ${props => !!props.commentheader && css`
+
+    ${props => !!props.ischildcomment ? css`
       margin-bottom: 50px;
-    `}
-  
-    ${props => !!props.commentchildrenheader && css`
+    ` : css`
       margin-bottom: 20px;
     `}
   }
@@ -207,12 +203,10 @@ class AddComment extends Component {
 
     return (
       <AddCommentElement
-        commentcard={isChildComment ? 0 : 1}
-        commentchildrencard={isChildComment ? 1 : 0}
+        ischildcomment={isChildComment ? 0 : 1}
       >
         <AddCommentHeader
-          commentheader={isChildComment ? 0 : 1}
-          commentchildrenheader={isChildComment ? 1 : 0}
+          ischildcomment={isChildComment ? 0 : 1}
           title={<h4 className="add-comment-header">Post Comment</h4>}
         />
 
