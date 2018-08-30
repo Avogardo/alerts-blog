@@ -29,12 +29,7 @@ const AddCommentElement = styled(Card)`
 const AddCommentHeader = styled(CardHeader)`
   && {
     padding: 0;
-
-    ${props => !!props.ischildcomment ? css`
-      margin-bottom: 50px;
-    ` : css`
-      margin-bottom: 20px;
-    `}
+    margin-bottom: ${props => !!props.ischildcomment ? 50 : 20}px;
   }
 `;
 const ActionsCard = styled(CardActions)`
