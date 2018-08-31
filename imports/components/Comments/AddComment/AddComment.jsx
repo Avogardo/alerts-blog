@@ -48,10 +48,14 @@ const AddInput = styled(Input)`
     margin-right: 0;
     margin-bottom: 16px;
     padding: ${props => props.multiline ? '12px' : '6px 12px'};
-    
+
     &:focus: {
       border: 1px solid #ced4da;
     }
+  }
+
+  div {
+    min-height: 17px;
   }
 `;
 
