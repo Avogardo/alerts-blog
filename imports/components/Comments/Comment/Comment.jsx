@@ -48,21 +48,22 @@ const ReplyButton = styled(Button)`
   && {
     background-color: #222222;
     color: #ffffff;
-
     &:hover {
       background-color: #333333;
     },
   }
 `;
+const AddCommentExpansionPanel = styled(ExpansionPanel)`
+  && {
+    box-shadow: unset;
+    margin-top: 0;
+    &:before {
+      background-color: unset;
+    },
+  }
+`;
 
 const styles = {
-  addCommentExpansionPanel: {
-    boxShadow: 'unset',
-    marginTop: 0,
-    '&:before': {
-      backgroundColor: 'unset',
-    },
-  },
   commentCardActions: {
     display: 'flex',
     flexDirection: 'column',
@@ -105,7 +106,7 @@ class Comment extends Component {
   render() {
     const { comment, isAdmin, onCommentDelete } = this.props;
     const { isReplyExpanded } = this.state;
-    const { addCommentExpansionPanel, commentCardActions } = this.props.classes;
+    const { commentCardActions } = this.props.classes;
 
     return (
       <Fragment>
@@ -145,9 +146,8 @@ class Comment extends Component {
           <Fragment>
             <Comments isChildComment newsId={comment.newsId} parentId={comment._id} />
 
-            <ExpansionPanel
+            <AddCommentExpansionPanel
               id={`comment${comment._id}`}
-              className={addCommentExpansionPanel}
               expanded={isReplyExpanded}
             >
               <ExpansionPanelDetails>
@@ -158,7 +158,7 @@ class Comment extends Component {
                   onExpand={this.onExpand}
                 />
               </ExpansionPanelDetails>
-            </ExpansionPanel>
+            </AddCommentExpansionPanel>
           </Fragment>
         }
       </Fragment>
@@ -178,7 +178,6 @@ Comment.propTypes = {
     newsId: PropTypes.string.isRequired,
   }).isRequired,
   classes: PropTypes.shape({
-    addCommentExpansionPanel: PropTypes.string.isRequired,
     commentCardActions: PropTypes.string.isRequired,
   }).isRequired,
   isAdmin: PropTypes.bool.isRequired,
