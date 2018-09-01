@@ -31,6 +31,11 @@ const AddCommentHeader = styled(CardHeader)`
     margin-bottom: ${props => !!props.ischildcomment ? 50 : 20}px;
   }
 `;
+const AddCommentHeaderTitle = styled.h4`
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+`;
 const ActionsCard = styled(CardActions)`
   && {
     flex-direction: column;
@@ -191,7 +196,7 @@ class AddComment extends Component {
       >
         <AddCommentHeader
           ischildcomment={isChildComment ? 0 : 1}
-          title={<h4 className="add-comment-header">Post Comment</h4>}
+          title={<AddCommentHeaderTitle>Post Comment</AddCommentHeaderTitle>}
         />
 
         <ActionsCard>
