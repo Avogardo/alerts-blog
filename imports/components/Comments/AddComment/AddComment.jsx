@@ -5,7 +5,6 @@ import {
   CardHeader,
   CardActions,
   Button,
-  withStyles,
   Input,
   Snackbar,
 } from '@material-ui/core';
@@ -58,12 +57,9 @@ const AddInput = styled(Input)`
     min-height: 17px;
   }
 `;
-
-const styles = {
-  button: {
-    backgroundColor: '#f6214b',
-  },
-};
+const PostCommentButton = styled(Button)`
+  background-color: #f6214b;
+`;
 
 class AddComment extends Component {
   constructor(props) {
@@ -180,7 +176,6 @@ class AddComment extends Component {
 
   render() {
     const { isLoggedIn, isChildComment } = this.props;
-    const { button } = this.props.classes;
     const {
       author,
       content,
@@ -215,7 +210,6 @@ class AddComment extends Component {
           }
 
           <AddInput
-            className={'input-multiline'}
             placeholder="Message"
             fullWidth
             multiline
@@ -228,14 +222,13 @@ class AddComment extends Component {
             disableUnderline={!contentError}
           />
 
-          <Button
+          <PostCommentButton
             onClick={this.addComment}
-            className={button}
             variant="raised"
             color="secondary"
           >
             Post Comment
-          </Button>
+          </PostCommentButton>
         </ActionsCard>
 
         <Snackbar
@@ -268,12 +261,9 @@ AddComment.propTypes = {
   newsId: PropTypes.string,
   onExpand: PropTypes.func,
   isChildComment: PropTypes.bool,
-  classes: PropTypes.shape({
-    button: PropTypes.string.isRequired,
-  }).isRequired,
   createComment: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired,
 };
 
 
-export default withStyles(styles)(AddComment);
+export default AddComment;
