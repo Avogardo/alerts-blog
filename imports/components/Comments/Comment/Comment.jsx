@@ -68,6 +68,10 @@ const CommentCardActions = styled(CardActions)`
     padding: 0;
   }
 `;
+const CommentAvatar = styled.img`
+  height: 60px;
+  width: 60px;
+`;
 
 class Comment extends Component {
   constructor(props) {
@@ -109,8 +113,7 @@ class Comment extends Component {
       <Fragment>
         <CommentCard childcommentcard={comment.parentId ? 1 : 0}>
           {comment.author.avatar ?
-            <img
-              className="comment-avatar"
+            <CommentAvatar
               src={comment.author.avatar}
               alt={comment.author.name}
             />
