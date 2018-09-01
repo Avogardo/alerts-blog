@@ -6,7 +6,6 @@ import {
   CardHeader,
   CardContent,
   CardActions,
-  withStyles,
   ExpansionPanel,
   ExpansionPanelDetails,
 } from '@material-ui/core';
@@ -62,14 +61,13 @@ const AddCommentExpansionPanel = styled(ExpansionPanel)`
     },
   }
 `;
-
-const styles = {
-  commentCardActions: {
-    display: 'flex',
-    flexDirection: 'column',
-    padding: 0,
-  },
-};
+const CommentCardActions = styled(CardActions)`
+  && {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+  }
+`;
 
 class Comment extends Component {
   constructor(props) {
@@ -106,7 +104,6 @@ class Comment extends Component {
   render() {
     const { comment, isAdmin, onCommentDelete } = this.props;
     const { isReplyExpanded } = this.state;
-    const { commentCardActions } = this.props.classes;
 
     return (
       <Fragment>
@@ -129,7 +126,7 @@ class Comment extends Component {
               {comment.content}
             </CommentContentCard>
           </div>
-          <CardActions className={commentCardActions}>
+          <CommentCardActions>
             {!comment.parentId &&
               <ReplyButton onClick={this.onExpand} variant="raised">
                 Reply
@@ -140,7 +137,7 @@ class Comment extends Component {
                 Remove
               </Button>
             }
-          </CardActions>
+          </CommentCardActions>
         </CommentCard>
         {!comment.parentId &&
           <Fragment>
@@ -177,11 +174,8 @@ Comment.propTypes = {
     createdAt: PropTypes.instanceOf(Date).isRequired,
     newsId: PropTypes.string.isRequired,
   }).isRequired,
-  classes: PropTypes.shape({
-    commentCardActions: PropTypes.string.isRequired,
-  }).isRequired,
   isAdmin: PropTypes.bool.isRequired,
   onCommentDelete: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(Comment);
+export default Comment;
