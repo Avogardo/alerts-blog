@@ -1,8 +1,14 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import { Snackbar } from '@material-ui/core';
 import Comment from './Comment';
 import { formatCommentAmount } from '../../../src/appHelper';
+
+const AddCommentElement = styled.h6`
+  padding-top: 20px;
+  padding-bottom: 20px;
+`;
 
 class Comments extends Component {
   constructor(props) {
@@ -59,7 +65,7 @@ class Comments extends Component {
     return (
       <Fragment>
         {!isChildComment &&
-          <h6 className="comments-section-header">{formatCommentAmount(commentAmount)} Comments</h6>
+          <AddCommentElement>{formatCommentAmount(commentAmount)} Comments</AddCommentElement>
         }
         <div>{this.renderComments()}</div>
 
