@@ -11,28 +11,27 @@ import {
   ExpansionPanelDetails,
 } from '@material-ui/core';
 import { AccountIcon } from 'mdi-react';
+import styled, { css } from 'styled-components';
 import { formatDate } from '../../../../src/appHelper';
 import AddComment from '../AddComment';
 import Comments from '../../Comments';
 
+const CommentCard = styled(Card)`
+  && {
+    background-color: transparent;
+    box-shadow: unset;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-top: 30px;
+    
+    ${props => !!props.childcommentcard && css`
+      margin-left: 25px;
+    `}
+  }
+`;
+
 const styles = {
-  commentCard: {
-    backgroundColor: 'transparent',
-    boxShadow: 'unset',
-    display: 'flex',
-    alignItems: 'flex-start',
-    justifyContent: 'space-between',
-    marginTop: 30,
-  },
-  commentCommentCard: {
-    backgroundColor: 'transparent',
-    boxShadow: 'unset',
-    display: 'flex',
-    alignItems: 'flex-start',
-    justifyContent: 'space-between',
-    marginTop: 30,
-    marginLeft: 25,
-  },
   commentCardHeader: {
     paddingTop: 0,
   },
@@ -100,18 +99,16 @@ class Comment extends Component {
     const { comment, isAdmin, onCommentDelete } = this.props;
     const { isReplyExpanded } = this.state;
     const {
-      commentCard,
       commentCardHeader,
       commentContentCard,
       replyButton,
-      commentCommentCard,
       addCommentExpansionPanel,
       commentCardActions,
     } = this.props.classes;
 
     return (
       <Fragment>
-        <Card className={comment.parentId ? commentCommentCard : commentCard}>
+        <CommentCard childcommentcard={comment.parentId ? 1 : 0}>
           {comment.author.avatar ?
             <img
               className="comment-avatar"
@@ -143,7 +140,7 @@ class Comment extends Component {
               </Button>
             }
           </CardActions>
-        </Card>
+        </CommentCard>
         {!comment.parentId &&
           <Fragment>
             <Comments isChildComment newsId={comment.newsId} parentId={comment._id} />
@@ -181,11 +178,9 @@ Comment.propTypes = {
     newsId: PropTypes.string.isRequired,
   }).isRequired,
   classes: PropTypes.shape({
-    commentCard: PropTypes.string.isRequired,
     commentCardHeader: PropTypes.string.isRequired,
     commentContentCard: PropTypes.string.isRequired,
     replyButton: PropTypes.string.isRequired,
-    commentCommentCard: PropTypes.string.isRequired,
     addCommentExpansionPanel: PropTypes.string.isRequired,
     commentCardActions: PropTypes.string.isRequired,
   }).isRequired,
