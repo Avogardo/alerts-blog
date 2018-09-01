@@ -72,6 +72,11 @@ const CommentAvatar = styled.img`
   height: 60px;
   width: 60px;
 `;
+const CommentHeader = styled.span`
+  font-size: 16px;
+  font-weight: 600;
+  color: #222222;
+`;
 
 class Comment extends Component {
   constructor(props) {
@@ -122,7 +127,7 @@ class Comment extends Component {
           }
           <div className="comment-content-wrapper">
             <CommentCardHeader
-              title={<span className="comment-header">{comment.author.name}</span>}
+              title={<CommentHeader>{comment.author.name}</CommentHeader>}
               subheader={<span className="comment-subtitle">{formatDate(comment.createdAt)}</span>}
             />
             <CommentContentCard>
