@@ -1,9 +1,0 @@
-.comment-content-wrapper {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-}
-
-.comment-content-wrapper div div span {
-    line-height: 19px;
-}

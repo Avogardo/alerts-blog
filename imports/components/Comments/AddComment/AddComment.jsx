@@ -9,26 +9,25 @@ import {
   Snackbar,
 } from '@material-ui/core';
 import styled, { css } from 'styled-components';
-import './AddComment.css';
 
 const AddCommentElement = styled(Card)`
   && {
     background-color: #ecf0f1;
     box-shadow: unset;
 
-    ${props => !!props.ischildcomment ? css`
+    ${props => (props.ischildcomment ? css`
       padding: 50px 20px;
       margin-top: 80px;
     ` : css`
       padding: 25px 20px;
       width: 100%;
-    `}
+    `)}
   }
 `;
 const AddCommentHeader = styled(CardHeader)`
   && {
     padding: 0;
-    margin-bottom: ${props => !!props.ischildcomment ? 50 : 20}px;
+    margin-bottom: ${props => (props.ischildcomment ? 50 : 20)}px;
   }
 `;
 const AddCommentHeaderTitle = styled.h4`
@@ -51,7 +50,7 @@ const AddInput = styled(Input)`
     margin-left: 0;
     margin-right: 0;
     margin-bottom: 16px;
-    padding: ${props => props.multiline ? '12px' : '6px 12px'};
+    padding: ${props => (props.multiline ? '12px' : '6px 12px')};
 
     &:focus: {
       border: 1px solid #ced4da;

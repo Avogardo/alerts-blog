@@ -83,6 +83,15 @@ const CommentSubtitle = styled.span`
   color: #cccccc;
   line-height: 23px;
 `;
+const CommentContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  
+  div div span {
+    line-height: 19px;
+  }
+`;
 
 class Comment extends Component {
   constructor(props) {
@@ -131,7 +140,7 @@ class Comment extends Component {
             :
             <AccountIcon size={60} />
           }
-          <div className="comment-content-wrapper">
+          <CommentContentWrapper>
             <CommentCardHeader
               title={<CommentHeader>{comment.author.name}</CommentHeader>}
               subheader={<CommentSubtitle>{formatDate(comment.createdAt)}</CommentSubtitle>}
@@ -139,7 +148,7 @@ class Comment extends Component {
             <CommentContentCard>
               {comment.content}
             </CommentContentCard>
-          </div>
+          </CommentContentWrapper>
           <CommentCardActions>
             {!comment.parentId &&
               <ReplyButton onClick={this.onExpand} variant="raised">
