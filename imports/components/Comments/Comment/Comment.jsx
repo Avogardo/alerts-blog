@@ -35,15 +35,17 @@ const CommentCardHeader = styled(CardHeader)`
     padding-top: 0;
   }
 `;
+const CommentContentCard = styled(CardContent)`
+  && {
+    padding-top: 0;
+    padding-bottom: 16px;
+    font-size: 14px;
+    color: #777777;
+    line-height: 23px;
+  }
+`;
 
 const styles = {
-  commentContentCard: {
-    paddingTop: 0,
-    paddingBottom: 16,
-    fontSize: 14,
-    color: '#777777',
-    lineHeight: '23px',
-  },
   replyButton: {
     backgroundColor: '#222222',
     color: '#ffffff',
@@ -100,12 +102,7 @@ class Comment extends Component {
   render() {
     const { comment, isAdmin, onCommentDelete } = this.props;
     const { isReplyExpanded } = this.state;
-    const {
-      commentContentCard,
-      replyButton,
-      addCommentExpansionPanel,
-      commentCardActions,
-    } = this.props.classes;
+    const { replyButton, addCommentExpansionPanel, commentCardActions } = this.props.classes;
 
     return (
       <Fragment>
@@ -124,9 +121,9 @@ class Comment extends Component {
               title={<span className="comment-header">{comment.author.name}</span>}
               subheader={<span className="comment-subtitle">{formatDate(comment.createdAt)}</span>}
             />
-            <CardContent className={commentContentCard}>
+            <CommentContentCard>
               {comment.content}
-            </CardContent>
+            </CommentContentCard>
           </div>
           <CardActions className={commentCardActions}>
             {!comment.parentId &&
@@ -178,7 +175,6 @@ Comment.propTypes = {
     newsId: PropTypes.string.isRequired,
   }).isRequired,
   classes: PropTypes.shape({
-    commentContentCard: PropTypes.string.isRequired,
     replyButton: PropTypes.string.isRequired,
     addCommentExpansionPanel: PropTypes.string.isRequired,
     commentCardActions: PropTypes.string.isRequired,
