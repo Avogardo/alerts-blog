@@ -24,17 +24,19 @@ const CommentCard = styled(Card)`
     align-items: flex-start;
     justify-content: space-between;
     margin-top: 30px;
-    
+
     ${props => !!props.childcommentcard && css`
       margin-left: 25px;
     `}
   }
 `;
+const CommentCardHeader = styled(CardHeader)`
+  && {
+    padding-top: 0;
+  }
+`;
 
 const styles = {
-  commentCardHeader: {
-    paddingTop: 0,
-  },
   commentContentCard: {
     paddingTop: 0,
     paddingBottom: 16,
@@ -99,7 +101,6 @@ class Comment extends Component {
     const { comment, isAdmin, onCommentDelete } = this.props;
     const { isReplyExpanded } = this.state;
     const {
-      commentCardHeader,
       commentContentCard,
       replyButton,
       addCommentExpansionPanel,
@@ -119,8 +120,7 @@ class Comment extends Component {
             <AccountIcon size={60} />
           }
           <div className="comment-content-wrapper">
-            <CardHeader
-              className={commentCardHeader}
+            <CommentCardHeader
               title={<span className="comment-header">{comment.author.name}</span>}
               subheader={<span className="comment-subtitle">{formatDate(comment.createdAt)}</span>}
             />
@@ -178,7 +178,6 @@ Comment.propTypes = {
     newsId: PropTypes.string.isRequired,
   }).isRequired,
   classes: PropTypes.shape({
-    commentCardHeader: PropTypes.string.isRequired,
     commentContentCard: PropTypes.string.isRequired,
     replyButton: PropTypes.string.isRequired,
     addCommentExpansionPanel: PropTypes.string.isRequired,
