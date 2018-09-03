@@ -16,13 +16,17 @@ import {
   Checkbox,
   FormControlLabel,
 } from '@material-ui/core';
+import styled from 'styled-components';
 import './CreateNews.css';
 
+const Actions = styled(CardActions)`
+  && {
+    flex-direction: column;
+    padding: 8px 16px;
+  }
+`;
+
 const styles = {
-  actions: {
-    flexDirection: 'column',
-    padding: '8px 16px',
-  },
   secondActions: {
     justifyContent: 'space-between',
   },
@@ -324,7 +328,6 @@ class CreateNews extends React.Component {
     const { news } = this.props;
     const isNews = Object.keys(news).length;
     const {
-      actions,
       defaultFileInput,
       topInput,
       secondActions,
@@ -348,7 +351,7 @@ class CreateNews extends React.Component {
     return (
       <form>
         <CardHeader title={isNews && wasDataLoaded ? 'Edit News' : 'Create news'} />
-        <CardActions className={actions}>
+        <Actions>
           <TextField
             label="Post title"
             fullWidth
@@ -405,7 +408,7 @@ class CreateNews extends React.Component {
             onChange={this.onTagChange}
             value={tagInput}
           />
-        </CardActions>
+        </Actions>
         <CardActions className={chipsActions}>
           {this.renderTags()}
         </CardActions>
@@ -466,7 +469,6 @@ CreateNews.defaultProps = {
 CreateNews.propTypes = {
   history: ReactRouterPropTypes.history.isRequired,
   classes: PropTypes.shape({
-    actions: PropTypes.string.isRequired,
     secondActions: PropTypes.string.isRequired,
     defaultFileInput: PropTypes.string.isRequired,
     topInput: PropTypes.string.isRequired,
