@@ -16,20 +16,21 @@ import {
   Checkbox,
   FormControlLabel,
 } from '@material-ui/core';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import './CreateNews.css';
 
 const Actions = styled(CardActions)`
   && {
-    flex-direction: column;
-    padding: 8px 16px;
+    ${props => (props.secondaction ? css`
+      justify-content: space-between;
+    ` : css`
+      flex-direction: column;
+      padding: 8px 16px;
+    `)}
   }
 `;
 
 const styles = {
-  secondActions: {
-    justifyContent: 'space-between',
-  },
   chipsActions: {
     flexWrap: 'wrap',
     justifyContent: 'center',
@@ -330,7 +331,6 @@ class CreateNews extends React.Component {
     const {
       defaultFileInput,
       topInput,
-      secondActions,
       actionButtons,
       chipsActions,
       chipsInput,
@@ -413,7 +413,7 @@ class CreateNews extends React.Component {
           {this.renderTags()}
         </CardActions>
 
-        <CardActions className={secondActions}>
+        <Actions secondaction={1}>
           <Button
             className={actionButtons}
             variant="flat"
@@ -442,7 +442,7 @@ class CreateNews extends React.Component {
               {isNews ? 'Save' : 'Create'}
             </Button>
           </div>
-        </CardActions>
+        </Actions>
 
         <Snackbar
           anchorOrigin={{
@@ -469,7 +469,6 @@ CreateNews.defaultProps = {
 CreateNews.propTypes = {
   history: ReactRouterPropTypes.history.isRequired,
   classes: PropTypes.shape({
-    secondActions: PropTypes.string.isRequired,
     defaultFileInput: PropTypes.string.isRequired,
     topInput: PropTypes.string.isRequired,
     actionButtons: PropTypes.string.isRequired,
