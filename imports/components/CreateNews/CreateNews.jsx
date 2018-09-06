@@ -32,14 +32,16 @@ const Actions = styled(CardActions)`
 const DefaultFileInput = styled.input`
   display: none;
 `;
+const TopTextField = styled(TextField)`
+  && {
+    margin-top: 0;
+  }
+`;
 
 const styles = {
   chipsActions: {
     flexWrap: 'wrap',
     justifyContent: 'center',
-  },
-  topInput: {
-    marginTop: 0,
   },
   actionButtons: {
     margin: 16,
@@ -328,12 +330,7 @@ class CreateNews extends React.Component {
   render() {
     const { news } = this.props;
     const isNews = Object.keys(news).length;
-    const {
-      topInput,
-      actionButtons,
-      chipsActions,
-      chipsInput,
-    } = this.props.classes;
+    const { actionButtons, chipsActions, chipsInput } = this.props.classes;
 
     const {
       title,
@@ -351,11 +348,10 @@ class CreateNews extends React.Component {
       <form>
         <CardHeader title={isNews && wasDataLoaded ? 'Edit News' : 'Create news'} />
         <Actions>
-          <TextField
+          <TopTextField
             label="Post title"
             fullWidth
             margin="normal"
-            className={topInput}
             onChange={this.onTitleChange}
             value={title}
             error={!!titleError}
@@ -467,7 +463,6 @@ CreateNews.defaultProps = {
 CreateNews.propTypes = {
   history: ReactRouterPropTypes.history.isRequired,
   classes: PropTypes.shape({
-    topInput: PropTypes.string.isRequired,
     actionButtons: PropTypes.string.isRequired,
     chipsActions: PropTypes.string.isRequired,
     chips: PropTypes.string.isRequired,
