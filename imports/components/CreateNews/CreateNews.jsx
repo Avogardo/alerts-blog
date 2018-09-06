@@ -29,14 +29,14 @@ const Actions = styled(CardActions)`
     `)}
   }
 `;
+const DefaultFileInput = styled.input`
+  display: none;
+`;
 
 const styles = {
   chipsActions: {
     flexWrap: 'wrap',
     justifyContent: 'center',
-  },
-  defaultFileInput: {
-    display: 'none',
   },
   topInput: {
     marginTop: 0,
@@ -329,7 +329,6 @@ class CreateNews extends React.Component {
     const { news } = this.props;
     const isNews = Object.keys(news).length;
     const {
-      defaultFileInput,
       topInput,
       actionButtons,
       chipsActions,
@@ -380,12 +379,11 @@ class CreateNews extends React.Component {
           <CardActions className={chipsActions}>
             {this.renderImages()}
           </CardActions>
-          <input
+          <DefaultFileInput
             accept="image/*"
             id="raised-button-file"
             multiple
             type="file"
-            className={defaultFileInput}
             onChange={this.onFileChange}
           />
           <label htmlFor="raised-button-file">
@@ -469,7 +467,6 @@ CreateNews.defaultProps = {
 CreateNews.propTypes = {
   history: ReactRouterPropTypes.history.isRequired,
   classes: PropTypes.shape({
-    defaultFileInput: PropTypes.string.isRequired,
     topInput: PropTypes.string.isRequired,
     actionButtons: PropTypes.string.isRequired,
     chipsActions: PropTypes.string.isRequired,
