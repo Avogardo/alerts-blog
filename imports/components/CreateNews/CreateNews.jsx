@@ -37,12 +37,14 @@ const TopTextField = styled(TextField)`
     margin-top: 0;
   }
 `;
+const ChipsActions = styled(CardActions)`
+  && {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+`;
 
 const styles = {
-  chipsActions: {
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-  },
   actionButtons: {
     margin: 16,
   },
@@ -330,7 +332,7 @@ class CreateNews extends React.Component {
   render() {
     const { news } = this.props;
     const isNews = Object.keys(news).length;
-    const { actionButtons, chipsActions, chipsInput } = this.props.classes;
+    const { actionButtons, chipsInput } = this.props.classes;
 
     const {
       title,
@@ -372,9 +374,9 @@ class CreateNews extends React.Component {
             }
           </div>
 
-          <CardActions className={chipsActions}>
+          <ChipsActions>
             {this.renderImages()}
-          </CardActions>
+          </ChipsActions>
           <DefaultFileInput
             accept="image/*"
             id="raised-button-file"
@@ -403,9 +405,9 @@ class CreateNews extends React.Component {
             value={tagInput}
           />
         </Actions>
-        <CardActions className={chipsActions}>
+        <ChipsActions>
           {this.renderTags()}
-        </CardActions>
+        </ChipsActions>
 
         <Actions secondaction={1}>
           <Button
@@ -464,7 +466,6 @@ CreateNews.propTypes = {
   history: ReactRouterPropTypes.history.isRequired,
   classes: PropTypes.shape({
     actionButtons: PropTypes.string.isRequired,
-    chipsActions: PropTypes.string.isRequired,
     chips: PropTypes.string.isRequired,
     chipsInput: PropTypes.string.isRequired,
   }).isRequired,
