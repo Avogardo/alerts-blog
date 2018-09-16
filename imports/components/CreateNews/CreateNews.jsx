@@ -43,11 +43,13 @@ const ChipsActions = styled(CardActions)`
     justify-content: center;
   }
 `;
+const ActionButtons = styled(Button)`
+  && {
+    margin: 16px;
+  }
+`;
 
 const styles = {
-  actionButtons: {
-    margin: 16,
-  },
   chips: {
     margin: 4,
   },
@@ -332,7 +334,7 @@ class CreateNews extends React.Component {
   render() {
     const { news } = this.props;
     const isNews = Object.keys(news).length;
-    const { actionButtons, chipsInput } = this.props.classes;
+    const { chipsInput } = this.props.classes;
 
     const {
       title,
@@ -410,14 +412,13 @@ class CreateNews extends React.Component {
         </ChipsActions>
 
         <Actions secondaction={1}>
-          <Button
-            className={actionButtons}
+          <ActionButtons
             variant="flat"
             color="secondary"
             onClick={this.clearState}
           >
             Clear
-          </Button>
+          </ActionButtons>
 
           <div>
             <FormControlLabel
@@ -429,14 +430,13 @@ class CreateNews extends React.Component {
               }
               label="Breaking news"
             />
-            <Button
-              className={actionButtons}
+            <ActionButtons
               variant="raised"
               color="primary"
               onClick={this.onCreate}
             >
               {isNews ? 'Save' : 'Create'}
-            </Button>
+            </ActionButtons>
           </div>
         </Actions>
 
@@ -465,7 +465,6 @@ CreateNews.defaultProps = {
 CreateNews.propTypes = {
   history: ReactRouterPropTypes.history.isRequired,
   classes: PropTypes.shape({
-    actionButtons: PropTypes.string.isRequired,
     chips: PropTypes.string.isRequired,
     chipsInput: PropTypes.string.isRequired,
   }).isRequired,
