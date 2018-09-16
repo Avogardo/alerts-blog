@@ -48,13 +48,15 @@ const ActionButtons = styled(Button)`
     margin: 16px;
   }
 `;
+const ChipsInput = styled(TextField)`
+  && {
+    margin: 0;
+  }
+`;
 
 const styles = {
   chips: {
     margin: 4,
-  },
-  chipsInput: {
-    margin: 0,
   },
 };
 
@@ -334,8 +336,6 @@ class CreateNews extends React.Component {
   render() {
     const { news } = this.props;
     const isNews = Object.keys(news).length;
-    const { chipsInput } = this.props.classes;
-
     const {
       title,
       value,
@@ -397,11 +397,10 @@ class CreateNews extends React.Component {
             </Typography>
           </CardContent>
 
-          <TextField
+          <ChipsInput
             label="Add tags - max 5"
             fullWidth
             margin="normal"
-            className={chipsInput}
             onKeyPress={this.onTagKeyPress}
             onChange={this.onTagChange}
             value={tagInput}
@@ -466,7 +465,6 @@ CreateNews.propTypes = {
   history: ReactRouterPropTypes.history.isRequired,
   classes: PropTypes.shape({
     chips: PropTypes.string.isRequired,
-    chipsInput: PropTypes.string.isRequired,
   }).isRequired,
   createNews: PropTypes.func.isRequired,
   updateNews: PropTypes.func.isRequired,
