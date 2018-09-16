@@ -8,7 +8,6 @@ import {
   TextField,
   CardActions,
   Chip,
-  withStyles,
   CardContent,
   Typography,
   Snackbar,
@@ -53,12 +52,11 @@ const ChipsInput = styled(TextField)`
     margin: 0;
   }
 `;
-
-const styles = {
-  chips: {
-    margin: 4,
-  },
-};
+const Chips = styled(Chip)`
+  && {
+    margin: 4px;
+  }
+`;
 
 class CreateNews extends React.Component {
   constructor(props) {
@@ -88,7 +86,7 @@ class CreateNews extends React.Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    if (Object.keys(props.news).length && !state.wasDataLoaded) {
+    if (props.news && Object.keys(props.news).length && !state.wasDataLoaded) {
       const {
         title,
         authorId,
@@ -301,13 +299,11 @@ class CreateNews extends React.Component {
 
   renderTags() {
     const { tags } = this.state;
-    const { chips } = this.props.classes;
     return tags.map((tag, index) => (
-      <Chip
+      <Chips
         key={tag + new Date().getTime() + Math.random()}
         label={tag}
         onDelete={this.deleteTag(index)}
-        className={chips}
       />
     ));
   }
@@ -319,14 +315,12 @@ class CreateNews extends React.Component {
       const blob = new Blob([image], { type: 'image/jpeg' });
       const urlCreator = window.URL || window.webkitURL;
       const imageUrl = urlCreator.createObjectURL(blob);
-      const { chips } = this.props.classes;
       const labelName = name.length < 30 ? name : `${name.substring(0, 30)}...`;
       return (
-        <Chip
+        <Chips
           key={image[0] + new Date().getTime() + Math.random()}
           avatar={<Avatar src={imageUrl} />}
           label={labelName}
-          className={chips}
           onDelete={this.deleteChip(index)}
         />
       );
@@ -463,9 +457,6 @@ CreateNews.defaultProps = {
 
 CreateNews.propTypes = {
   history: ReactRouterPropTypes.history.isRequired,
-  classes: PropTypes.shape({
-    chips: PropTypes.string.isRequired,
-  }).isRequired,
   createNews: PropTypes.func.isRequired,
   updateNews: PropTypes.func.isRequired,
   goToNews: PropTypes.func.isRequired,
@@ -492,4 +483,4 @@ CreateNews.propTypes = {
   }),
 };
 
-export default withStyles(styles)(CreateNews);
+export default CreateNews;
