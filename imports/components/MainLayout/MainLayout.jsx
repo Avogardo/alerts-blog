@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import { Route, Redirect } from 'react-router-dom';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { Snackbar } from '@material-ui/core';
@@ -13,6 +14,12 @@ import Footer from '../Footer';
 import News from '../News';
 import SectionHeader from '../NewsContainer/SectionHeader';
 import './MainLayout.css';
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+`;
 
 class MainLayout extends Component {
   constructor(props) {
@@ -68,7 +75,7 @@ class MainLayout extends Component {
     );
 
     return (
-      <div className="container">
+      <Container>
         <Navigation
           history={history}
           isLoggedInUser={isLoggedInUser}
@@ -155,7 +162,7 @@ class MainLayout extends Component {
           }}
           message={<span id="message-id">{snackBarMessage}</span>}
         />
-      </div>
+      </Container>
     );
   }
 }
