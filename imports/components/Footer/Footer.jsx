@@ -27,7 +27,7 @@ const FooterContent = styled.div`
   width: 1140px;
   margin-left: auto;
   margin-right: auto;
-  
+
   @media (max-width: ${sizes.desktop}px) {
     width: unset;
     margin-left: unset;
