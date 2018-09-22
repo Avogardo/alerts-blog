@@ -13,12 +13,23 @@ import CreateNews from '../CreateNews';
 import Footer from '../Footer';
 import News from '../News';
 import SectionHeader from '../NewsContainer/SectionHeader';
+import { sizes } from '../../../src/appHelper';
 import './MainLayout.css';
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+
+  @media (max-width: ${sizes.mobile}px) {
+    min-height: calc(100vh - 60px);
+  }
+`;
+const ContentContainer = styled.div`
+  width: 1140px;
+  margin: 0 auto 15px auto;
+  background-color: #ffffff;
+  flex: 1 1 auto;
 `;
 
 class MainLayout extends Component {
