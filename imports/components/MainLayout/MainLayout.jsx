@@ -1,10 +1,11 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Route, Redirect } from 'react-router-dom';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { Snackbar } from '@material-ui/core';
 
+import { sizes } from '../../../src/appHelper';
 import { HistoryContext } from '../Context';
 import Navigation from '../Navigation';
 import NewsContainer from '../NewsContainer';
@@ -13,7 +14,6 @@ import CreateNews from '../CreateNews';
 import Footer from '../Footer';
 import News from '../News';
 import SectionHeader from '../NewsContainer/SectionHeader';
-import { sizes } from '../../../src/appHelper';
 import './MainLayout.css';
 
 const Container = styled.div`
@@ -28,8 +28,16 @@ const Container = styled.div`
 const ContentContainer = styled.div`
   width: 1140px;
   margin: 0 auto 15px auto;
-  background-color: #ffffff;
   flex: 1 1 auto;
+
+  ${props => !!props.contentcontainermain && css`
+    background-color: #ffffff;
+  `}
+
+  @media (max-width: ${sizes.desktop}px) {
+    width: auto;
+    margin: 0 15px 15px 15px;
+  }
 `;
 
 class MainLayout extends Component {
@@ -93,10 +101,7 @@ class MainLayout extends Component {
           isAuthorized={isAuthorized}
         />
 
-        <div
-          className={shouldHideBackground ? 'content-container-root' : 'content-container'}
-          key="content-container"
-        >
+        <ContentContainer contentcontainermain={shouldHideBackground ? 0 : 1}>
           <HistoryContext.Provider value={history}>
             <Route
               exact
@@ -118,7 +123,7 @@ class MainLayout extends Component {
                 isLoggedInUser
                   ? <Redirect to="/" />
                   : <SignIn {...props} />
-                )}
+              )}
             />
 
             <Route
@@ -156,7 +161,7 @@ class MainLayout extends Component {
               render={props => <NewsContainer {...props} />}
             />
           </HistoryContext.Provider>
-        </div>
+        </ContentContainer>
 
         <Footer />
 

@@ -1,16 +1,3 @@
-.content-container {
-	width: 1140px;
-	margin: 0 auto 15px auto;
-	background-color: #ffffff;
-	flex: 1 1 auto;
-}
-
-.content-container-root {
-	width: 1140px;
-	margin: 0 auto 15px auto;
-	flex: 1 1 auto;
-}
-
 .body-news-section-wrapper {
     display: flex;
     justify-content: space-between;
@@ -38,11 +25,6 @@
 }
 
 @media only screen and (max-width: 1200px) {
-	.content-container-root, .content-container {
-		width: auto;
-		margin: 0 15px 15px 15px;
-	}
-
     .body-news-section-wrapper, .single-news-wrapper {
         display: block;
     }
