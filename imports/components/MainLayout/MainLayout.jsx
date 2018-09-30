@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import { Route, Redirect } from 'react-router-dom';
@@ -146,15 +146,13 @@ class MainLayout extends Component {
             <Route
               exact
               path="/"
-              render={() => (
-                <Fragment>
-                  <NewsContainer enterContainer />
-                  <BodyNewsSectionWrapper>
-                    <NewsContainer headerTitle="Latest News" />
-                    <NewsContainer exitContainer />
-                  </BodyNewsSectionWrapper>
-                </Fragment>
-              )}
+              render={() => [
+                <NewsContainer key="main-enter-container" enterContainer />,
+                <BodyNewsSectionWrapper key="main-body-news-wrapper">
+                  <NewsContainer headerTitle="Latest News" />
+                  <NewsContainer exitContainer />
+                </BodyNewsSectionWrapper>,
+              ]}
             />
             <Route
               exact
