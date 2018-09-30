@@ -14,7 +14,6 @@ import CreateNews from '../CreateNews';
 import Footer from '../Footer';
 import News from '../News';
 import SectionHeader from '../NewsContainer/SectionHeader';
-import './MainLayout.css';
 
 const Container = styled.div`
   display: flex;
@@ -54,6 +53,25 @@ const BodyNewsSectionWrapper = styled.div`
     display: block;
 
     section:first-child, section:last-child {
+      width: unset;
+    }
+  }
+`;
+const SingleNewsWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  
+  > article {
+    width: 750px;
+  }
+  > section  {
+    width: 360px;
+  }
+
+  @media (max-width: ${sizes.desktop}px) {
+    display: block;
+
+    > article, > section {
       width: unset;
     }
   }
@@ -162,7 +180,7 @@ class MainLayout extends Component {
                 <div key="breaking-news" className="breaking-news-wrapper">
                   <SectionHeader breakingNews />
                 </div>,
-                <div key="single-news-wrapper" className="single-news-wrapper">
+                <SingleNewsWrapper key="single-news-wrapper">
                   <News
                     key="news-section"
                     history={routeProps.history}
@@ -170,7 +188,7 @@ class MainLayout extends Component {
                     onRemoveNews={this.onRemoveNews}
                   />
                   <NewsContainer key="exit-news-section" exitContainer />
-                </div>,
+                </SingleNewsWrapper>,
               ]}
             />
 

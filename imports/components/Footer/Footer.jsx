@@ -41,7 +41,6 @@ const Footer = () => (
       Copyright ©2018 All rights reserved | This page is made by
       <AuthorName> Jakub Wolny</AuthorName> |
       <LinkToProject
-        className="link-to-github-project"
         target="_blank"
         rel="noopener noreferrer"
         href="https://github.com/Avogardo/alerts-blog"
