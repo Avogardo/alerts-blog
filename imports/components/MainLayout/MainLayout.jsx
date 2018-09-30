@@ -76,6 +76,9 @@ const SingleNewsWrapper = styled.div`
     }
   }
 `;
+const BreakingNewsWrapper = styled.div`
+  margin-top: 10px;
+`;
 
 class MainLayout extends Component {
   constructor(props) {
@@ -177,9 +180,9 @@ class MainLayout extends Component {
               exact
               path="/news/:id"
               render={routeProps => [
-                <div key="breaking-news" className="breaking-news-wrapper">
+                <BreakingNewsWrapper key="breaking-news">
                   <SectionHeader breakingNews />
-                </div>,
+                </BreakingNewsWrapper>,
                 <SingleNewsWrapper key="single-news-wrapper">
                   <News
                     key="news-section"
