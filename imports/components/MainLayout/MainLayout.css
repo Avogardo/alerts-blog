@@ -1,16 +1,3 @@
-.body-news-section-wrapper {
-    display: flex;
-    justify-content: space-between;
-}
-
-.body-news-section-wrapper section:first-child {
-    width: 750px;
-}
-
-.body-news-section-wrapper section:last-child {
-    width: 360px;
-}
-
 .single-news-wrapper {
 	display: flex;
 	justify-content: space-between;
@@ -25,12 +12,10 @@
 }
 
 @media only screen and (max-width: 1200px) {
-    .body-news-section-wrapper, .single-news-wrapper {
+    .single-news-wrapper {
         display: block;
     }
 
-    .body-news-section-wrapper section:first-child,
-	.body-news-section-wrapper section:last-child,
 	.single-news-wrapper > article,
 	.single-news-wrapper > section {
         width: unset;

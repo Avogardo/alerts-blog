@@ -39,6 +39,25 @@ const ContentContainer = styled.div`
     margin: 0 15px 15px 15px;
   }
 `;
+const BodyNewsSectionWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  
+  section:first-child {
+    width: 750px;
+  }
+  section:last-child {
+    width: 360px;
+  }
+
+  @media (max-width: ${sizes.desktop}px) {
+    display: block;
+
+    section:first-child, section:last-child {
+      width: unset;
+    }
+  }
+`;
 
 class MainLayout extends Component {
   constructor(props) {
@@ -109,10 +128,10 @@ class MainLayout extends Component {
               render={() => (
                 <Fragment>
                   <NewsContainer enterContainer />
-                  <div className="body-news-section-wrapper">
+                  <BodyNewsSectionWrapper>
                     <NewsContainer headerTitle="Latest News" />
                     <NewsContainer exitContainer />
-                  </div>
+                  </BodyNewsSectionWrapper>
                 </Fragment>
               )}
             />
