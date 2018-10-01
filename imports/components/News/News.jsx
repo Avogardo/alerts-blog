@@ -9,16 +9,18 @@ import {
   Button,
   CardActions,
 } from '@material-ui/core';
+import styled from 'styled-components';
 
 import BasicNews from '../NewsContainer/BasicNews';
 import Comments, { AddComment } from '../Comments';
 import './News.css';
 
+const NewsCard = styled(Card)`
+  padding: 20px;
+  margin-top: 50px;
+`;
+
 const styles = {
-  newsCard: {
-    padding: 20,
-    marginTop: 50,
-  },
   newsContentCard: {
     marginTop: 30,
     paddingLeft: 0,
@@ -72,11 +74,11 @@ class News extends Component {
       goToCreateNews,
       history,
     } = this.props;
-    const { newsCard, newsContentCard, editButton } = this.props.classes;
+    const { newsContentCard, editButton } = this.props.classes;
 
     return (
       <article key="news-card">
-        <Card className={newsCard}>
+        <NewsCard>
           <BasicNews
             newsCard
             topNews={news}
@@ -116,7 +118,7 @@ class News extends Component {
               <div key={line} className="text-loading-placeholder" />
             ))
           }
-        </Card>
+        </NewsCard>
       </article>
     );
   }
@@ -130,7 +132,6 @@ News.defaultProps = {
 News.propTypes = {
   history: ReactRouterPropTypes.history.isRequired,
   classes: PropTypes.shape({
-    newsCard: PropTypes.string.isRequired,
     newsContentCard: PropTypes.string.isRequired,
     chips: PropTypes.string.isRequired,
     editButton: PropTypes.string.isRequired,
