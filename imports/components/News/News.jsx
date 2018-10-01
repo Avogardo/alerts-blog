@@ -27,11 +27,11 @@ const NewsContentCard = styled(CardContent)`
     padding-right: 0;
   }
 `;
+const Chips = styled(Chip)`
+  margin: 4px;
+`;
 
 const styles = {
-  chips: {
-    margin: 4,
-  },
   editButton: {
     backgroundColor: '#222222',
     color: '#ffffff',
@@ -54,13 +54,11 @@ class News extends Component {
 
   renderTags() {
     const { tags } = this.props.news[0];
-    const { chips } = this.props.classes;
 
     return tags.map(tag => (
-      <Chip
+      <Chips
         key={tag + new Date().getTime() + Math.random()}
         label={tag}
-        className={chips}
         onClick={this.goToTagSearch}
       />
     ));
@@ -133,7 +131,6 @@ News.defaultProps = {
 News.propTypes = {
   history: ReactRouterPropTypes.history.isRequired,
   classes: PropTypes.shape({
-    chips: PropTypes.string.isRequired,
     editButton: PropTypes.string.isRequired,
   }).isRequired,
   author: PropTypes.arrayOf(PropTypes.string.isRequired),
