@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import {
   Card,
-  withStyles,
   CardContent,
   Chip,
   Button,
@@ -30,16 +29,15 @@ const NewsContentCard = styled(CardContent)`
 const Chips = styled(Chip)`
   margin: 4px;
 `;
-
-const styles = {
-  editButton: {
-    backgroundColor: '#222222',
-    color: '#ffffff',
-    '&:hover': {
-      backgroundColor: '#333333',
+const EditButton = styled(Button)`
+  && {
+    background-color: #222222;
+    color: #ffffff;
+    &:hover {
+        background-color: #333333;
     },
-  },
-};
+  }
+`;
 
 class News extends Component {
   constructor(props) {
@@ -74,7 +72,6 @@ class News extends Component {
       goToCreateNews,
       history,
     } = this.props;
-    const { editButton } = this.props.classes;
 
     return (
       <article key="news-card">
@@ -102,9 +99,9 @@ class News extends Component {
                   <Button onClick={() => onRemoveNews(news[0]._id)} variant="raised" color="secondary">
                     Remove
                   </Button>
-                  <Button onClick={() => goToCreateNews(history, news[0]._id)} className={editButton} variant="raised">
+                  <EditButton onClick={() => goToCreateNews(history, news[0]._id)} variant="raised">
                     Edit
-                  </Button>
+                  </EditButton>
                 </CardActions>
               }
 
@@ -130,9 +127,6 @@ News.defaultProps = {
 
 News.propTypes = {
   history: ReactRouterPropTypes.history.isRequired,
-  classes: PropTypes.shape({
-    editButton: PropTypes.string.isRequired,
-  }).isRequired,
   author: PropTypes.arrayOf(PropTypes.string.isRequired),
   news: PropTypes.arrayOf(PropTypes.shape({
     _id: PropTypes.string.isRequired,
@@ -156,4 +150,4 @@ News.propTypes = {
   goToTagSearch: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(News);
+export default News;
