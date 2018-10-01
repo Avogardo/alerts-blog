@@ -19,14 +19,16 @@ const NewsCard = styled(Card)`
   padding: 20px;
   margin-top: 50px;
 `;
+const NewsContentCard = styled(CardContent)`
+  && {
+    margin-top: 30px;
+    padding-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+  }
+`;
 
 const styles = {
-  newsContentCard: {
-    marginTop: 30,
-    paddingLeft: 0,
-    paddingTop: 0,
-    paddingRight: 0,
-  },
   chips: {
     margin: 4,
   },
@@ -74,7 +76,7 @@ class News extends Component {
       goToCreateNews,
       history,
     } = this.props;
-    const { newsContentCard, editButton } = this.props.classes;
+    const { editButton } = this.props.classes;
 
     return (
       <article key="news-card">
@@ -88,8 +90,7 @@ class News extends Component {
 
           {news[0] ?
             <Fragment>
-              <CardContent
-                className={newsContentCard}
+              <NewsContentCard
                 dangerouslySetInnerHTML={{ __html: (news[0].content || '') }}
               />
 
@@ -132,7 +133,6 @@ News.defaultProps = {
 News.propTypes = {
   history: ReactRouterPropTypes.history.isRequired,
   classes: PropTypes.shape({
-    newsContentCard: PropTypes.string.isRequired,
     chips: PropTypes.string.isRequired,
     editButton: PropTypes.string.isRequired,
   }).isRequired,
