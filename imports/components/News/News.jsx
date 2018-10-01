@@ -38,6 +38,9 @@ const EditButton = styled(Button)`
     },
   }
 `;
+const NewsTagsWrapper = styled.div`
+  margin-top: 20px;
+`;
 
 class News extends Component {
   constructor(props) {
@@ -91,7 +94,7 @@ class News extends Component {
 
               Views: {news[0].views}
               {!!news[0].tags.length &&
-                <div className="news-tags-wrapper">{this.renderTags()}</div>
+                <NewsTagsWrapper>{this.renderTags()}</NewsTagsWrapper>
               }
 
               {isAdmin &&
