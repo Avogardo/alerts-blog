@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, Card } from '@material-ui/core';
+import { Card } from '@material-ui/core';
 import styled from 'styled-components';
 import EnterNews from './EnterNews';
 import BasicNews from './BasicNews';
@@ -13,13 +13,10 @@ const MainNewsCard = styled(Card)`
     box-shadow: unset;
   }
 `;
-
-const styles = {
-  newsCard: {
-    padding: 20,
-    marginTop: 50,
-  },
-};
+const NewsCard = styled(Card)`
+  padding: 20px;
+  margin-top: 50px;
+`;
 
 class NewsContainer extends Component {
   render() {
@@ -33,7 +30,6 @@ class NewsContainer extends Component {
       goToNews,
       tagName,
     } = this.props;
-    const { newsCard } = this.props.classes;
 
     if (enterContainer) {
       return (
@@ -55,7 +51,7 @@ class NewsContainer extends Component {
 
       return (
         <section>
-          <Card className={newsCard}>
+          <NewsCard>
             <SectionHeader headerTitle="Most Popular" />
             <BasicNews
               exitNews
@@ -68,23 +64,23 @@ class NewsContainer extends Component {
             <SectionHeader secondary headerTitle="Social Networks" />
             <SectionHeader facebook />
             <SectionHeader youtube />
-          </Card>
+          </NewsCard>
         </section>
       );
     } else if (tagName) {
       return (
         <section>
-          <Card className={newsCard}>
+          <NewsCard>
             <SectionHeader headerTitle={`Searching for: #${tagName}`} />
             <ExitNews goToNews={goToNews} topNews={topNews} unit8ArrayToUrl={unit8ArrayToUrl} />
-          </Card>
+          </NewsCard>
         </section>
       );
     }
 
     return (
       <section>
-        <Card className={newsCard}>
+        <NewsCard>
           <SectionHeader headerTitle={headerTitle} />
           <BasicNews
             basicNewsList
@@ -93,7 +89,7 @@ class NewsContainer extends Component {
             authors={authors}
             unit8ArrayToUrl={unit8ArrayToUrl}
           />
-        </Card>
+        </NewsCard>
       </section>
     );
   }
@@ -128,11 +124,8 @@ NewsContainer.propTypes = {
     }).isRequired,
   }).isRequired),
   authors: PropTypes.arrayOf(PropTypes.string.isRequired),
-  classes: PropTypes.shape({
-    newsCard: PropTypes.string.isRequired,
-  }).isRequired,
   goToNews: PropTypes.func.isRequired,
   unit8ArrayToUrl: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(NewsContainer);
+export default NewsContainer;
