@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles, Card } from '@material-ui/core';
+import styled from 'styled-components';
 import EnterNews from './EnterNews';
 import BasicNews from './BasicNews';
 import ExitNews from './ExitNews';
 import SectionHeader from './SectionHeader';
 
+const MainNewsCard = styled(Card)`
+  && {
+    background-color: transparent;
+    box-shadow: unset;
+  }
+`;
+
 const styles = {
-  mainNewsCard: {
-    backgroundColor: 'transparent',
-    boxShadow: 'unset',
-  },
   newsCard: {
     padding: 20,
     marginTop: 50,
@@ -29,12 +33,12 @@ class NewsContainer extends Component {
       goToNews,
       tagName,
     } = this.props;
-    const { mainNewsCard, newsCard } = this.props.classes;
+    const { newsCard } = this.props.classes;
 
     if (enterContainer) {
       return (
         <section>
-          <Card className={mainNewsCard}>
+          <MainNewsCard>
             <EnterNews
               goToNews={goToNews}
               topNews={topNews}
@@ -42,7 +46,7 @@ class NewsContainer extends Component {
               unit8ArrayToUrl={unit8ArrayToUrl}
             />
             <SectionHeader breakingNews />
-          </Card>
+          </MainNewsCard>
         </section>
       );
     } else if (exitContainer) {
@@ -125,7 +129,6 @@ NewsContainer.propTypes = {
   }).isRequired),
   authors: PropTypes.arrayOf(PropTypes.string.isRequired),
   classes: PropTypes.shape({
-    mainNewsCard: PropTypes.string.isRequired,
     newsCard: PropTypes.string.isRequired,
   }).isRequired,
   goToNews: PropTypes.func.isRequired,
