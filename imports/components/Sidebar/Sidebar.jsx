@@ -14,7 +14,6 @@ import StarIcon from '@material-ui/icons/Star';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import { LogoutIcon } from 'mdi-react';
 
-
 const ListContainer = styled.div`
   width: 300px;
 `;
