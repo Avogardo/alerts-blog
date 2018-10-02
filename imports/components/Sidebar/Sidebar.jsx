@@ -1,28 +1,25 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Drawer from 'react-motion-drawer';
-
+import styled from 'styled-components';
 import {
   ListItem,
   List,
   ListItemIcon,
   ListItemText,
   Divider,
-  withStyles,
 } from '@material-ui/core';
 import AccountBox from '@material-ui/icons/AccountBox';
 import StarIcon from '@material-ui/icons/Star';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import { LogoutIcon } from 'mdi-react';
 
-const styles = {
-  list: {
-    width: 300,
-  },
-};
+
+const ListContainer = styled.div`
+  width: 300px;
+`;
 
 const Sidebar = ({
-  classes,
   isSidebarOpen,
   setSidebarState,
   goToSignIn,
@@ -36,7 +33,7 @@ const Sidebar = ({
     onChange={open => setSidebarState(open)}
     drawerStyle={{ backgroundColor: 'white' }}
   >
-    <div className={classes.list}>
+    <ListContainer>
       { isLoggedInUser ?
         <List>
           {isAuthorized &&
@@ -75,14 +72,11 @@ const Sidebar = ({
           </List>
         </Fragment>
         }
-    </div>
+    </ListContainer>
   </Drawer>
 );
 
 Sidebar.propTypes = {
-  classes: PropTypes.shape({
-    list: PropTypes.string.isRequired,
-  }).isRequired,
   isSidebarOpen: PropTypes.bool.isRequired,
   setSidebarState: PropTypes.func.isRequired,
   goToSignIn: PropTypes.func.isRequired,
@@ -92,4 +86,4 @@ Sidebar.propTypes = {
   isAuthorized: PropTypes.bool.isRequired,
 };
 
-export default withStyles(styles)(Sidebar);
+export default Sidebar;
