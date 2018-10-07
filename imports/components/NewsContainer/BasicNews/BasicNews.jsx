@@ -4,7 +4,6 @@ import styled, { css } from 'styled-components';
 import {
   GridList,
   GridListTile,
-  withStyles,
   Card,
   CardHeader,
   CardContent,
@@ -94,15 +93,14 @@ const NewsCardHeader = styled(CardHeader)`
     cursor: pointer;
   }
 `;
-
-const styles = {
-  newsCardContent: {
-    paddingTop: 16,
-    paddingLeft: 0,
-    paddingRight: 0,
-    marginBottom: 16,
-  },
-};
+const NewsCardContent = styled(CardContent)`
+  && {
+    padding-top: 16px;
+    padding-left: 0;
+    padding-right: 0;
+    margin-bottom: 16px;
+  }
+`;
 
 class BasicNews extends Component {
   render() {
@@ -115,7 +113,6 @@ class BasicNews extends Component {
       exitNews,
       basicNewsList,
     } = this.props;
-    const { newsCardContent } = this.props.classes;
 
     return (
       topNews.length ?
@@ -172,7 +169,7 @@ class BasicNews extends Component {
                 )}
               </HistoryContext.Consumer>
               {!newsCard &&
-                <CardContent className={newsCardContent}>
+                <NewsCardContent>
                   <Typography component="p">
                     {news.content.length > 92 ?
                       `${news.content.substring(0, 92).replace(/<\/?[^>]+(>|$)/g, '').replace(/&nbsp;/g, '')}...`
@@ -180,7 +177,7 @@ class BasicNews extends Component {
                       news.content
                     }
                   </Typography>
-                </CardContent>
+                </NewsCardContent>
               }
             </div>
           </TileCard>
@@ -199,11 +196,11 @@ class BasicNews extends Component {
             <div className="basic-news-tile-wrapper">
               <NewsCardHeader title="Loading" subheader="Wait..." />
               {!newsCard &&
-              <CardContent className={newsCardContent}>
+              <NewsCardContent>
                 <div className="basic-text-loading-placeholder" />
                 <div className="basic-text-loading-placeholder" />
                 <div className="basic-text-loading-placeholder" />
-              </CardContent>
+              </NewsCardContent>
               }
             </div>
           </TileCard>
@@ -244,11 +241,8 @@ BasicNews.propTypes = {
     })),
   })),
   authors: PropTypes.arrayOf(PropTypes.string.isRequired),
-  classes: PropTypes.shape({
-    newsCardContent: PropTypes.string.isRequired,
-  }).isRequired,
   unit8ArrayToUrl: PropTypes.func.isRequired,
   goToNews: PropTypes.func,
 };
 
-export default withStyles(styles)(BasicNews);
+export default BasicNews;
