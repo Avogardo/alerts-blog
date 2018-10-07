@@ -87,13 +87,15 @@ const TileCard = styled(Card)`
     `}
   }
 `;
+const NewsCardHeader = styled(CardHeader)`
+  && {
+    padding: 0;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+`;
 
 const styles = {
-  newsCardHeader: {
-    padding: 0,
-    marginTop: 10,
-    cursor: 'pointer',
-  },
   newsCardContent: {
     paddingTop: 16,
     paddingLeft: 0,
@@ -113,7 +115,7 @@ class BasicNews extends Component {
       exitNews,
       basicNewsList,
     } = this.props;
-    const { newsCardHeader, newsCardContent } = this.props.classes;
+    const { newsCardContent } = this.props.classes;
 
     return (
       topNews.length ?
@@ -153,9 +155,8 @@ class BasicNews extends Component {
             <div className="basic-news-tile-wrapper">
               <HistoryContext.Consumer>
                 {history => (
-                  <CardHeader
+                  <NewsCardHeader
                     onClick={() => goToNews(history, news._id)}
-                    className={newsCardHeader}
                     title={
                       <h4 className={newsCard ? 'news-page-title' : 'news-card-title'}>{news.title}</h4>
                     }
@@ -196,11 +197,7 @@ class BasicNews extends Component {
               </GridListTile>
             </GridList>
             <div className="basic-news-tile-wrapper">
-              <CardHeader
-                className={newsCardHeader}
-                title="Loading"
-                subheader="Wait..."
-              />
+              <NewsCardHeader title="Loading" subheader="Wait..." />
               {!newsCard &&
               <CardContent className={newsCardContent}>
                 <div className="basic-text-loading-placeholder" />
@@ -248,7 +245,6 @@ BasicNews.propTypes = {
   })),
   authors: PropTypes.arrayOf(PropTypes.string.isRequired),
   classes: PropTypes.shape({
-    newsCardHeader: PropTypes.string.isRequired,
     newsCardContent: PropTypes.string.isRequired,
   }).isRequired,
   unit8ArrayToUrl: PropTypes.func.isRequired,
