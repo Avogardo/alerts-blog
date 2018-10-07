@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import styled, { css } from 'styled-components';
 import {
   GridList,
   GridListTile,
@@ -13,12 +14,81 @@ import ImageGallery from 'react-image-gallery';
 import '/node_modules/react-image-gallery/styles/css/image-gallery.css';
 import TileSubtitle from '../TileSubtitle';
 import { HistoryContext } from '../../Context';
+import { sizes } from '../../../../src/appHelper';
 import './BasicNews.css';
 
+
+const TileCard = styled(Card)`
+  && {
+    box-shadow: unset;
+
+    ${props => !!props.basicnewslist && css`
+      display: flex;
+      margin-bottom: 20px;
+      align-items: center;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      .basic-news-image {
+        height: 190px;
+        width: 280px;
+      }
+
+      .basic-news-image-loading {
+        height: 190px;
+        width: 280px;
+      }
+
+      .basic-news-tile-wrapper {
+        flex: 1;
+        padding-left: 30px;
+      }
+
+      .basic-news-tile {
+        height: unset;
+      }
+
+      .basic-grid-list {
+        height: 190px;
+        overflow: hidden;
+      }
+
+      @media (max-width: ${sizes.desktop}px) {
+        display: block;
+        margin-bottom: unset;
+        align-items: center;
+
+        .basic-news-image {
+          width: unset;
+          height: 250px;
+        }
+
+        .basic-news-image-loading {
+          width: unset;
+          height: 250px;
+        }
+
+        .basic-news-tile-wrapper {
+          flex: 1;
+          padding-left: 0;
+        }
+
+        .basic-news-tile {
+          height: 254px;
+        }
+
+        .basic-grid-list {
+          height: unset;
+          overflow: unset;
+        }
+      }
+    `}
+  }
+`;
+
 const styles = {
-  tileCard: {
-    boxShadow: 'unset',
-  },
   newsCardHeader: {
     padding: 0,
     marginTop: 10,
@@ -43,13 +113,13 @@ class BasicNews extends Component {
       exitNews,
       basicNewsList,
     } = this.props;
-    const { newsCardHeader, newsCardContent, tileCard } = this.props.classes;
+    const { newsCardHeader, newsCardContent } = this.props.classes;
 
     return (
       topNews.length ?
         topNews.map((news, index) => (
-          <Card
-            className={[tileCard, basicNewsList ? 'basic-news-wrapper' : ''].join(' ')}
+          <TileCard
+            basicnewslist={basicNewsList ? 1 : 0}
             key={news._id}
           >
             <GridList className="basic-grid-list" cellHeight={250} cols={1}>
@@ -112,12 +182,12 @@ class BasicNews extends Component {
                 </CardContent>
               }
             </div>
-          </Card>
+          </TileCard>
         ))
         :
         (exitNews || newsCard ? [1] : [1, 2, 3, 4]).map(news => (
-          <Card
-            className={[tileCard, basicNewsList ? 'basic-news-wrapper' : ''].join(' ')}
+          <TileCard
+            basicnewslist={basicNewsList ? 1 : 0}
             key={news}
           >
             <GridList className="basic-grid-list" cellHeight={250} cols={1}>
@@ -139,7 +209,7 @@ class BasicNews extends Component {
               </CardContent>
               }
             </div>
-          </Card>
+          </TileCard>
         ))
     );
   }
@@ -180,7 +250,6 @@ BasicNews.propTypes = {
   classes: PropTypes.shape({
     newsCardHeader: PropTypes.string.isRequired,
     newsCardContent: PropTypes.string.isRequired,
-    tileCard: PropTypes.string.isRequired,
   }).isRequired,
   unit8ArrayToUrl: PropTypes.func.isRequired,
   goToNews: PropTypes.func,
